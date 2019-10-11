@@ -1,0 +1,615 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */; };
+		273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DC2350BC5C0093B7DE /* AppDelegate.swift */; };
+		273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */; };
+		273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */; };
+		273B47E42350BC5C0093B7DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E22350BC5C0093B7DE /* Main.storyboard */; };
+		273B47E62350BC620093B7DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E52350BC620093B7DE /* Assets.xcassets */; };
+		273B47E92350BC620093B7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E72350BC620093B7DE /* LaunchScreen.storyboard */; };
+		273B47F42350BC630093B7DE /* insulin_calculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47F32350BC630093B7DE /* insulin_calculatorTests.swift */; };
+		273B47FF2350BC630093B7DE /* insulin_calculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */; };
+		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
+		27B30AE22350C48A007347F5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		273B47F02350BC630093B7DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 273B47D12350BC5B0093B7DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 273B47D82350BC5B0093B7DE;
+			remoteInfo = insulin_calculator;
+		};
+		273B47FB2350BC630093B7DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 273B47D12350BC5B0093B7DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 273B47D82350BC5B0093B7DE;
+			remoteInfo = insulin_calculator;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureManager.swift; sourceTree = "<group>"; };
+		273B47D92350BC5C0093B7DE /* insulin_calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = insulin_calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		273B47DC2350BC5C0093B7DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureViewController.swift; sourceTree = "<group>"; };
+		273B47E32350BC5C0093B7DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		273B47E52350BC620093B7DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		273B47E82350BC620093B7DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		273B47EA2350BC620093B7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		273B47EF2350BC630093B7DE /* insulin_calculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = insulin_calculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		273B47F32350BC630093B7DE /* insulin_calculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insulin_calculatorTests.swift; sourceTree = "<group>"; };
+		273B47F52350BC630093B7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		273B47FA2350BC630093B7DE /* insulin_calculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = insulin_calculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insulin_calculatorUITests.swift; sourceTree = "<group>"; };
+		273B48002350BC630093B7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		27B30AE12350C48A007347F5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		273B47D62350BC5B0093B7DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		273B47EC2350BC630093B7DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		273B47F72350BC630093B7DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		273B47D02350BC5B0093B7DE = {
+			isa = PBXGroup;
+			children = (
+				273B47DB2350BC5C0093B7DE /* insulin_calculator */,
+				273B47F22350BC630093B7DE /* insulin_calculatorTests */,
+				273B47FD2350BC630093B7DE /* insulin_calculatorUITests */,
+				273B47DA2350BC5C0093B7DE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		273B47DA2350BC5C0093B7DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				273B47D92350BC5C0093B7DE /* insulin_calculator.app */,
+				273B47EF2350BC630093B7DE /* insulin_calculatorTests.xctest */,
+				273B47FA2350BC630093B7DE /* insulin_calculatorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		273B47DB2350BC5C0093B7DE /* insulin_calculator */ = {
+			isa = PBXGroup;
+			children = (
+				273B47DC2350BC5C0093B7DE /* AppDelegate.swift */,
+				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
+				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
+				27B30AE32350C491007347F5 /* Model */,
+				273B47E22350BC5C0093B7DE /* Main.storyboard */,
+				273B47E52350BC620093B7DE /* Assets.xcassets */,
+				273B47E72350BC620093B7DE /* LaunchScreen.storyboard */,
+				273B47EA2350BC620093B7DE /* Info.plist */,
+			);
+			path = insulin_calculator;
+			sourceTree = "<group>";
+		};
+		273B47F22350BC630093B7DE /* insulin_calculatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				273B47F32350BC630093B7DE /* insulin_calculatorTests.swift */,
+				273B47F52350BC630093B7DE /* Info.plist */,
+			);
+			path = insulin_calculatorTests;
+			sourceTree = "<group>";
+		};
+		273B47FD2350BC630093B7DE /* insulin_calculatorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */,
+				273B48002350BC630093B7DE /* Info.plist */,
+			);
+			path = insulin_calculatorUITests;
+			sourceTree = "<group>";
+		};
+		27B30AE32350C491007347F5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				27B30ADF2350C432007347F5 /* utils.swift */,
+				2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */,
+				27B30AE12350C48A007347F5 /* DataManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		273B47D82350BC5B0093B7DE /* insulin_calculator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 273B48032350BC630093B7DE /* Build configuration list for PBXNativeTarget "insulin_calculator" */;
+			buildPhases = (
+				273B47D52350BC5B0093B7DE /* Sources */,
+				273B47D62350BC5B0093B7DE /* Frameworks */,
+				273B47D72350BC5B0093B7DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = insulin_calculator;
+			productName = insulin_calculator;
+			productReference = 273B47D92350BC5C0093B7DE /* insulin_calculator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		273B47EE2350BC630093B7DE /* insulin_calculatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 273B48062350BC630093B7DE /* Build configuration list for PBXNativeTarget "insulin_calculatorTests" */;
+			buildPhases = (
+				273B47EB2350BC630093B7DE /* Sources */,
+				273B47EC2350BC630093B7DE /* Frameworks */,
+				273B47ED2350BC630093B7DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				273B47F12350BC630093B7DE /* PBXTargetDependency */,
+			);
+			name = insulin_calculatorTests;
+			productName = insulin_calculatorTests;
+			productReference = 273B47EF2350BC630093B7DE /* insulin_calculatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		273B47F92350BC630093B7DE /* insulin_calculatorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 273B48092350BC630093B7DE /* Build configuration list for PBXNativeTarget "insulin_calculatorUITests" */;
+			buildPhases = (
+				273B47F62350BC630093B7DE /* Sources */,
+				273B47F72350BC630093B7DE /* Frameworks */,
+				273B47F82350BC630093B7DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				273B47FC2350BC630093B7DE /* PBXTargetDependency */,
+			);
+			name = insulin_calculatorUITests;
+			productName = insulin_calculatorUITests;
+			productReference = 273B47FA2350BC630093B7DE /* insulin_calculatorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		273B47D12350BC5B0093B7DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "李灿晨";
+				TargetAttributes = {
+					273B47D82350BC5B0093B7DE = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					273B47EE2350BC630093B7DE = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = 273B47D82350BC5B0093B7DE;
+					};
+					273B47F92350BC630093B7DE = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = 273B47D82350BC5B0093B7DE;
+					};
+				};
+			};
+			buildConfigurationList = 273B47D42350BC5B0093B7DE /* Build configuration list for PBXProject "insulin_calculator" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 273B47D02350BC5B0093B7DE;
+			productRefGroup = 273B47DA2350BC5C0093B7DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				273B47D82350BC5B0093B7DE /* insulin_calculator */,
+				273B47EE2350BC630093B7DE /* insulin_calculatorTests */,
+				273B47F92350BC630093B7DE /* insulin_calculatorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		273B47D72350BC5B0093B7DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273B47E92350BC620093B7DE /* LaunchScreen.storyboard in Resources */,
+				273B47E62350BC620093B7DE /* Assets.xcassets in Resources */,
+				273B47E42350BC5C0093B7DE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		273B47ED2350BC630093B7DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		273B47F82350BC630093B7DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		273B47D52350BC5B0093B7DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */,
+				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
+				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
+				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
+				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
+				27B30AE02350C432007347F5 /* utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		273B47EB2350BC630093B7DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273B47F42350BC630093B7DE /* insulin_calculatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		273B47F62350BC630093B7DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273B47FF2350BC630093B7DE /* insulin_calculatorUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		273B47F12350BC630093B7DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 273B47D82350BC5B0093B7DE /* insulin_calculator */;
+			targetProxy = 273B47F02350BC630093B7DE /* PBXContainerItemProxy */;
+		};
+		273B47FC2350BC630093B7DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 273B47D82350BC5B0093B7DE /* insulin_calculator */;
+			targetProxy = 273B47FB2350BC630093B7DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		273B47E22350BC5C0093B7DE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				273B47E32350BC5C0093B7DE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		273B47E72350BC620093B7DE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				273B47E82350BC620093B7DE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		273B48012350BC630093B7DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		273B48022350BC630093B7DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		273B48042350BC630093B7DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4C47ZVS5JD;
+				INFOPLIST_FILE = insulin_calculator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Frost.insulin-calculator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		273B48052350BC630093B7DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4C47ZVS5JD;
+				INFOPLIST_FILE = insulin_calculator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Frost.insulin-calculator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		273B48072350BC630093B7DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4C47ZVS5JD;
+				INFOPLIST_FILE = insulin_calculatorTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Frost.insulin-calculatorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/insulin_calculator.app/insulin_calculator";
+			};
+			name = Debug;
+		};
+		273B48082350BC630093B7DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4C47ZVS5JD;
+				INFOPLIST_FILE = insulin_calculatorTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Frost.insulin-calculatorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/insulin_calculator.app/insulin_calculator";
+			};
+			name = Release;
+		};
+		273B480A2350BC630093B7DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4C47ZVS5JD;
+				INFOPLIST_FILE = insulin_calculatorUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Frost.insulin-calculatorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = insulin_calculator;
+			};
+			name = Debug;
+		};
+		273B480B2350BC630093B7DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4C47ZVS5JD;
+				INFOPLIST_FILE = insulin_calculatorUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Frost.insulin-calculatorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = insulin_calculator;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		273B47D42350BC5B0093B7DE /* Build configuration list for PBXProject "insulin_calculator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				273B48012350BC630093B7DE /* Debug */,
+				273B48022350BC630093B7DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		273B48032350BC630093B7DE /* Build configuration list for PBXNativeTarget "insulin_calculator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				273B48042350BC630093B7DE /* Debug */,
+				273B48052350BC630093B7DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		273B48062350BC630093B7DE /* Build configuration list for PBXNativeTarget "insulin_calculatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				273B48072350BC630093B7DE /* Debug */,
+				273B48082350BC630093B7DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		273B48092350BC630093B7DE /* Build configuration list for PBXNativeTarget "insulin_calculatorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				273B480A2350BC630093B7DE /* Debug */,
+				273B480B2350BC630093B7DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 273B47D12350BC5B0093B7DE /* Project object */;
+}
