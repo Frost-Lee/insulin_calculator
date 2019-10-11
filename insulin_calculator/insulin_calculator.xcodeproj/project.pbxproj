@@ -18,6 +18,8 @@
 		273B47FF2350BC630093B7DE /* insulin_calculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */; };
 		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
 		27B30AE22350C48A007347F5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
+		27BF1D632350EA7200087274 /* FoodSegmentationModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D622350EA7200087274 /* FoodSegmentationModel.mlmodel */; };
+		27BF1D652350EB1000087274 /* FoodSegmentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D642350EB1000087274 /* FoodSegmentationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		273B48002350BC630093B7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		27B30AE12350C48A007347F5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		27BF1D622350EA7200087274 /* FoodSegmentationModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FoodSegmentationModel.mlmodel; sourceTree = "<group>"; };
+		27BF1D642350EB1000087274 /* FoodSegmentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSegmentationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
 				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
+				27BF1D612350EA5900087274 /* Resources */,
 				27B30AE32350C491007347F5 /* Model */,
 				273B47E52350BC620093B7DE /* Assets.xcassets */,
 				273B47E72350BC620093B7DE /* LaunchScreen.storyboard */,
@@ -141,8 +146,17 @@
 				27B30ADF2350C432007347F5 /* utils.swift */,
 				2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */,
 				27B30AE12350C48A007347F5 /* DataManager.swift */,
+				27BF1D642350EB1000087274 /* FoodSegmentationManager.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		27BF1D612350EA5900087274 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				27BF1D622350EA7200087274 /* FoodSegmentationModel.mlmodel */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +291,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */,
+				27BF1D652350EB1000087274 /* FoodSegmentationManager.swift in Sources */,
 				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
+				27BF1D632350EA7200087274 /* FoodSegmentationModel.mlmodel in Sources */,
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
 				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
@@ -464,7 +480,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Frost.insulin-calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -482,7 +498,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Frost.insulin-calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
