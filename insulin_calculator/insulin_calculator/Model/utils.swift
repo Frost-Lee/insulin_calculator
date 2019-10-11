@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import CoreMotion
+import CoreML
 
 /**
  Save the peripheral objects captured along with image as a temporary JSON file. The data includes session token
@@ -68,7 +69,8 @@ func cacheEstimateImageCaptureData(
                 "height" : cropRect.size.height
             ]
         ],
-        "disparity_data" : depthMap
+        "depth_data" : depthMap,
+        "segmentation_mask" : foodSegmentationMask
     ]
     let jsonStringData = try! JSONSerialization.data(
         withJSONObject: jsonDict,
@@ -131,8 +133,11 @@ func convertAndCropDepthData(depthData: AVDepthData, rect: CGRect) -> [[Float32]
     - photo: The image to crop, represented as `AVCapturePhoto`.
     - rect: The rect that represents the region to preserve in the image. See [metadataOutputRectConverted](https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/1623495-metadataoutputrectconverted)
     for details.
+ 
+ - Returns:
+    The `CGImage` object cropped from `photo` with `rect`.
  */
-func cropImage(photo: AVCapturePhoto, rect: CGRect) -> CGImage? {
+func cropImage(photo: AVCapturePhoto, rect: CGRect) throws -> CGImage {
     let image = photo.cgImageRepresentation()!.takeUnretainedValue()
     let croppedImage = image.cropping(to: CGRect(
         x: rect.origin.x * CGFloat(image.width),
@@ -140,5 +145,35 @@ func cropImage(photo: AVCapturePhoto, rect: CGRect) -> CGImage? {
         width: rect.size.width * CGFloat(image.width),
         height: rect.size.height * CGFloat(image.height)
     ))
-    return croppedImage
+    guard croppedImage != nil else {throw ValueError.shapeMismatch}
+    return croppedImage!
+}
+
+
+/**
+ Convert the `MLMultiArray` object to a 2d `Float32` array. Note that the `MLMultiArray` object have to
+ have shape 1 * w * h.
+ 
+ - Parameters:
+    - multiArray: The multiarray to be converted.
+ 
+ - Returns:
+    A 2d `Float32` array converted from `multiArray` with shape w * h.
+ */
+func convertSegmentMaskData(multiArray: MLMultiArray) throws -> [[Float32]] {
+    let totalValues = multiArray.shape.count
+    let area = Int(truncating: multiArray.shape[1]) * Int(truncating: multiArray.shape[2])
+    guard totalValues == 3 && area == totalValues else {throw ValueError.shapeMismatch}
+    let floatMutablePointer = multiArray.dataPointer.bindMemory(to: Float32.self, capacity: multiArray.count)
+    let floatArray = Array(UnsafeBufferPointer(start: floatMutablePointer, count: multiArray.count))
+    var float2dArray: [[Float32]] = Array(
+        repeating: Array(repeating: 0, count: multiArray.shape[0] as! Int),
+        count: multiArray.shape[1] as! Int
+    )
+    for row in 0 ..< (multiArray.shape[0] as! Int) {
+        for col in 0 ..< (multiArray.shape[1] as! Int) {
+            float2dArray[row][col] = floatArray[row * col + col]
+        }
+    }
+    return float2dArray
 }

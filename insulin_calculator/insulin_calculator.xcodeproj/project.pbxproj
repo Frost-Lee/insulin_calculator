@@ -20,6 +20,7 @@
 		27B30AE22350C48A007347F5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
 		27BF1D632350EA7200087274 /* FoodSegmentationModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D622350EA7200087274 /* FoodSegmentationModel.mlmodel */; };
 		27BF1D652350EB1000087274 /* FoodSegmentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D642350EB1000087274 /* FoodSegmentationManager.swift */; };
+		27BF1D672350FF7700087274 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D662350FF7700087274 /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		27B30AE12350C48A007347F5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		27BF1D622350EA7200087274 /* FoodSegmentationModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FoodSegmentationModel.mlmodel; sourceTree = "<group>"; };
 		27BF1D642350EB1000087274 /* FoodSegmentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSegmentationManager.swift; sourceTree = "<group>"; };
+		27BF1D662350FF7700087274 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				27B30ADF2350C432007347F5 /* utils.swift */,
+				27BF1D662350FF7700087274 /* Errors.swift */,
 				2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */,
 				27B30AE12350C48A007347F5 /* DataManager.swift */,
 				27BF1D642350EB1000087274 /* FoodSegmentationManager.swift */,
@@ -297,6 +300,7 @@
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
 				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
+				27BF1D672350FF7700087274 /* Errors.swift in Sources */,
 				27B30AE02350C432007347F5 /* utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

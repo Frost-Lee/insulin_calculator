@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import CoreMotion
 import Photos
+import CoreML
 
 class EstimateImageCaptureViewController: UIViewController {
 
@@ -24,10 +25,21 @@ class EstimateImageCaptureViewController: UIViewController {
     @IBOutlet weak var indicatorVerticalConstraint: NSLayoutConstraint!
     
     private var estimateImageCaptureManager: EstimateImageCaptureManager!
+    private var foodSegmentationManager: FoodSegmentationManager!
+    
+    /**
+     An array for caching data captured by `EstimateImageCaptureManager`. The elements stands for
+     the photo captured, the attitude when capturing the photo, and the crop rect for the photo.
+     
+     - TODO:
+        Expecting a better way to achieve this functionality.
+     */
+    private var cachedData: (AVCapturePhoto, CMAttitude, CGRect)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         estimateImageCaptureManager = EstimateImageCaptureManager(delegate: self)
+        foodSegmentationManager = FoodSegmentationManager(delegate: self)
         previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
     }
 
@@ -48,6 +60,23 @@ class EstimateImageCaptureViewController: UIViewController {
     }
 
     @IBAction func captureButtonTapped(_ sender: UIButton) {
+        captureButton.isEnabled = false
+        estimateImageCaptureManager.captureImage()
+    }
+    
+    private func submitCapturedData(photo: AVCapturePhoto, attitude: CMAttitude, rect: CGRect, mask: MLMultiArray) {
+        cacheEstimateImageCaptureData(
+            token: "abcd1234",
+            depthMap: convertAndCropDepthData(depthData: photo.depthData!, rect: rect),
+            foodSegmentationMask: try! convertSegmentMaskData(multiArray: mask),
+            calibration: photo.depthData!.cameraCalibrationData!,
+            attitude: attitude,
+            cropRect: rect
+        ) { url in
+            let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
+            self.present(activityViewController, animated: true, completion: nil)
+        }
+        UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: try! cropImage(photo: photo, rect: rect)), nil, nil, nil)
     }
     
     // MARK: - Orientation Indicator Configuration
@@ -93,18 +122,20 @@ extension EstimateImageCaptureViewController: EstimateImageCaptureDelegate {
         guard photo.depthData!.cameraCalibrationData != nil else {return}
         let previewLayer = estimateImageCaptureManager.previewLayer!
         let cropRect = previewLayer.metadataOutputRectConverted(fromLayerRect: previewLayer.bounds)
-        UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: cropImage(photo: photo, rect: cropRect)!), nil, nil, nil)
-        cacheEstimateImageCaptureData(
-            token: "abcd1234",
-            depthMap: convertAndCropDepthData(depthData: photo.depthData!, rect: cropRect),
-            foodSegmentationMask: [[1]],
-            calibration: photo.depthData!.cameraCalibrationData!,
-            attitude: attitude,
-            cropRect: cropRect
-        ) { url in
-            let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
-            self.present(activityViewController, animated: true, completion: nil)
-        }
+        cachedData = (photo, attitude, cropRect)
+        foodSegmentationManager.predict(image: photo.cgImageRepresentation()!.takeUnretainedValue())
     }
 }
 
+
+extension EstimateImageCaptureViewController: FoodSegmentationDelegate {
+    func maskOutput(multiArray: MLMultiArray) {
+        submitCapturedData(
+            photo: cachedData!.0,
+            attitude: cachedData!.1,
+            rect: cachedData!.2,
+            mask: multiArray
+        )
+        cachedData = nil
+    }
+}
