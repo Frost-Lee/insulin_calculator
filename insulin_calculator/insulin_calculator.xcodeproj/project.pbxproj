@@ -107,9 +107,9 @@
 			children = (
 				273B47DC2350BC5C0093B7DE /* AppDelegate.swift */,
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
+				273B47E22350BC5C0093B7DE /* Main.storyboard */,
 				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
 				27B30AE32350C491007347F5 /* Model */,
-				273B47E22350BC5C0093B7DE /* Main.storyboard */,
 				273B47E52350BC620093B7DE /* Assets.xcassets */,
 				273B47E72350BC620093B7DE /* LaunchScreen.storyboard */,
 				273B47EA2350BC620093B7DE /* Info.plist */,
