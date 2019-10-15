@@ -21,6 +21,9 @@
 		27BF1D632350EA7200087274 /* FoodSegmentationModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D622350EA7200087274 /* FoodSegmentationModel.mlmodel */; };
 		27BF1D652350EB1000087274 /* FoodSegmentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D642350EB1000087274 /* FoodSegmentationManager.swift */; };
 		27BF1D672350FF7700087274 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D662350FF7700087274 /* Errors.swift */; };
+		67D5F1E84B73CD79928CDFAC /* Pods_insulin_calculatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F22E0B47A17051DB3D8877F /* Pods_insulin_calculatorTests.framework */; };
+		6DACAC56ADA1C7A9B6DBF3D8 /* Pods_insulin_calculatorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09ED6C9BD80B7C06F1D81FA /* Pods_insulin_calculatorUITests.framework */; };
+		7044597C48B3B558D67DB6EE /* Pods_insulin_calculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E2AF2B7B5F6F9125AC2446 /* Pods_insulin_calculator.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2097F940CCC8ED3EDA137AA2 /* Pods-insulin_calculatorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorUITests.release.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorUITests/Pods-insulin_calculatorUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureManager.swift; sourceTree = "<group>"; };
 		273B47D92350BC5C0093B7DE /* insulin_calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = insulin_calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		273B47DC2350BC5C0093B7DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +65,14 @@
 		27BF1D622350EA7200087274 /* FoodSegmentationModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FoodSegmentationModel.mlmodel; sourceTree = "<group>"; };
 		27BF1D642350EB1000087274 /* FoodSegmentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSegmentationManager.swift; sourceTree = "<group>"; };
 		27BF1D662350FF7700087274 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		39B2B8BA27A8ACF35ABC48B6 /* Pods-insulin_calculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorTests.release.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorTests/Pods-insulin_calculatorTests.release.xcconfig"; sourceTree = "<group>"; };
+		3F22E0B47A17051DB3D8877F /* Pods_insulin_calculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_insulin_calculatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		69004E0383F63A5A3BD3DC1E /* Pods-insulin_calculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculator.debug.xcconfig"; path = "Target Support Files/Pods-insulin_calculator/Pods-insulin_calculator.debug.xcconfig"; sourceTree = "<group>"; };
+		813A8FB0BF0B8FE0C503A163 /* Pods-insulin_calculatorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorTests.debug.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorTests/Pods-insulin_calculatorTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9B62E05E38468988EFDA4998 /* Pods-insulin_calculatorUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorUITests.debug.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorUITests/Pods-insulin_calculatorUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D9E2AF2B7B5F6F9125AC2446 /* Pods_insulin_calculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_insulin_calculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E09ED6C9BD80B7C06F1D81FA /* Pods_insulin_calculatorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_insulin_calculatorUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E978821D8CB1B9794387386B /* Pods-insulin_calculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculator.release.xcconfig"; path = "Target Support Files/Pods-insulin_calculator/Pods-insulin_calculator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7044597C48B3B558D67DB6EE /* Pods_insulin_calculator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67D5F1E84B73CD79928CDFAC /* Pods_insulin_calculatorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DACAC56ADA1C7A9B6DBF3D8 /* Pods_insulin_calculatorUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +110,8 @@
 				273B47F22350BC630093B7DE /* insulin_calculatorTests */,
 				273B47FD2350BC630093B7DE /* insulin_calculatorUITests */,
 				273B47DA2350BC5C0093B7DE /* Products */,
+				CACDF92D954C70207AC0A700 /* Pods */,
+				2E373B0639C780AFDDB63912 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,6 +179,30 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		2E373B0639C780AFDDB63912 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D9E2AF2B7B5F6F9125AC2446 /* Pods_insulin_calculator.framework */,
+				3F22E0B47A17051DB3D8877F /* Pods_insulin_calculatorTests.framework */,
+				E09ED6C9BD80B7C06F1D81FA /* Pods_insulin_calculatorUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CACDF92D954C70207AC0A700 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				69004E0383F63A5A3BD3DC1E /* Pods-insulin_calculator.debug.xcconfig */,
+				E978821D8CB1B9794387386B /* Pods-insulin_calculator.release.xcconfig */,
+				813A8FB0BF0B8FE0C503A163 /* Pods-insulin_calculatorTests.debug.xcconfig */,
+				39B2B8BA27A8ACF35ABC48B6 /* Pods-insulin_calculatorTests.release.xcconfig */,
+				9B62E05E38468988EFDA4998 /* Pods-insulin_calculatorUITests.debug.xcconfig */,
+				2097F940CCC8ED3EDA137AA2 /* Pods-insulin_calculatorUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -169,6 +210,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 273B48032350BC630093B7DE /* Build configuration list for PBXNativeTarget "insulin_calculator" */;
 			buildPhases = (
+				4B6228CED8FFDC8E7C705381 /* [CP] Check Pods Manifest.lock */,
 				273B47D52350BC5B0093B7DE /* Sources */,
 				273B47D62350BC5B0093B7DE /* Frameworks */,
 				273B47D72350BC5B0093B7DE /* Resources */,
@@ -186,6 +228,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 273B48062350BC630093B7DE /* Build configuration list for PBXNativeTarget "insulin_calculatorTests" */;
 			buildPhases = (
+				C82A8D2696D5FF0FFC6F129C /* [CP] Check Pods Manifest.lock */,
 				273B47EB2350BC630093B7DE /* Sources */,
 				273B47EC2350BC630093B7DE /* Frameworks */,
 				273B47ED2350BC630093B7DE /* Resources */,
@@ -204,6 +247,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 273B48092350BC630093B7DE /* Build configuration list for PBXNativeTarget "insulin_calculatorUITests" */;
 			buildPhases = (
+				834FBBEF7A2113B092182281 /* [CP] Check Pods Manifest.lock */,
 				273B47F62350BC630093B7DE /* Sources */,
 				273B47F72350BC630093B7DE /* Frameworks */,
 				273B47F82350BC630093B7DE /* Resources */,
@@ -287,6 +331,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4B6228CED8FFDC8E7C705381 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-insulin_calculator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		834FBBEF7A2113B092182281 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-insulin_calculatorUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C82A8D2696D5FF0FFC6F129C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-insulin_calculatorTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		273B47D52350BC5B0093B7DE /* Sources */ = {
@@ -472,16 +585,17 @@
 		};
 		273B48042350BC630093B7DE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69004E0383F63A5A3BD3DC1E /* Pods-insulin_calculator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4C47ZVS5JD;
+				DEVELOPMENT_TEAM = 99PQ6PW48F;
 				INFOPLIST_FILE = insulin_calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Frost.insulin-calculator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Frostlee.insulin-calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -490,16 +604,17 @@
 		};
 		273B48052350BC630093B7DE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E978821D8CB1B9794387386B /* Pods-insulin_calculator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4C47ZVS5JD;
+				DEVELOPMENT_TEAM = 99PQ6PW48F;
 				INFOPLIST_FILE = insulin_calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Frost.insulin-calculator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Frostlee.insulin-calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -508,6 +623,7 @@
 		};
 		273B48072350BC630093B7DE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 813A8FB0BF0B8FE0C503A163 /* Pods-insulin_calculatorTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -530,6 +646,7 @@
 		};
 		273B48082350BC630093B7DE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39B2B8BA27A8ACF35ABC48B6 /* Pods-insulin_calculatorTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -552,6 +669,7 @@
 		};
 		273B480A2350BC630093B7DE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B62E05E38468988EFDA4998 /* Pods-insulin_calculatorUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -572,6 +690,7 @@
 		};
 		273B480B2350BC630093B7DE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2097F940CCC8ED3EDA137AA2 /* Pods-insulin_calculatorUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,0 +1,6 @@
+framework module Pods_insulin_calculator {
+  umbrella header "Pods-insulin_calculator-umbrella.h"
+
+  export *
+  module * { export * }
+}

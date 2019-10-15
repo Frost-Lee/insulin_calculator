@@ -11,6 +11,7 @@ import AVFoundation
 import CoreMotion
 import Photos
 import CoreML
+//import SVProgressHUD
 
 class EstimateImageCaptureViewController: UIViewController {
 
@@ -41,6 +42,7 @@ class EstimateImageCaptureViewController: UIViewController {
         estimateImageCaptureManager = EstimateImageCaptureManager(delegate: self)
         foodSegmentationManager = FoodSegmentationManager(delegate: self)
         previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
+//        SVProgressHUD.setDefaultStyle(.dark)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +63,7 @@ class EstimateImageCaptureViewController: UIViewController {
 
     @IBAction func captureButtonTapped(_ sender: UIButton) {
         captureButton.isEnabled = false
+//        SVProgressHUD.show(withStatus: "Processing image data")
         estimateImageCaptureManager.captureImage()
     }
     
@@ -77,6 +80,8 @@ class EstimateImageCaptureViewController: UIViewController {
             self.present(activityViewController, animated: true, completion: nil)
         }
         UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: try! cropImage(photo: photo, rect: rect)), nil, nil, nil)
+        captureButton.isEnabled = true
+//        SVProgressHUD.dismiss()
     }
     
     // MARK: - Orientation Indicator Configuration

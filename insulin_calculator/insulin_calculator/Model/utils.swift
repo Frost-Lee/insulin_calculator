@@ -161,17 +161,17 @@ func cropImage(photo: AVCapturePhoto, rect: CGRect) throws -> CGImage {
     A 2d `Float32` array converted from `multiArray` with shape w * h.
  */
 func convertSegmentMaskData(multiArray: MLMultiArray) throws -> [[Float32]] {
-    let totalValues = multiArray.shape.count
+    let totalValues = multiArray.count
     let area = Int(truncating: multiArray.shape[1]) * Int(truncating: multiArray.shape[2])
-    guard totalValues == 3 && area == totalValues else {throw ValueError.shapeMismatch}
+    guard multiArray.shape.count == 3 && area == totalValues else {throw ValueError.shapeMismatch}
     let floatMutablePointer = multiArray.dataPointer.bindMemory(to: Float32.self, capacity: multiArray.count)
     let floatArray = Array(UnsafeBufferPointer(start: floatMutablePointer, count: multiArray.count))
     var float2dArray: [[Float32]] = Array(
-        repeating: Array(repeating: 0, count: multiArray.shape[0] as! Int),
-        count: multiArray.shape[1] as! Int
+        repeating: Array(repeating: 0, count: multiArray.shape[1] as! Int),
+        count: multiArray.shape[2] as! Int
     )
-    for row in 0 ..< (multiArray.shape[0] as! Int) {
-        for col in 0 ..< (multiArray.shape[1] as! Int) {
+    for row in 0 ..< (multiArray.shape[1] as! Int) {
+        for col in 0 ..< (multiArray.shape[2] as! Int) {
             float2dArray[row][col] = floatArray[row * col + col]
         }
     }

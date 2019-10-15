@@ -30,6 +30,8 @@ class FoodSegmentationManager: NSObject {
     init(delegate: FoodSegmentationDelegate) {
         super.init()
         self.delegate = delegate
+        loadModel()
+        configureRequest()
     }
     
     /**
