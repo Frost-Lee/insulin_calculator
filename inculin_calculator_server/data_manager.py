@@ -8,7 +8,7 @@ from PIL import Image
 storage_dir = '/basepath/insulin_calculator_data/recognition_session_data/'
 
 
-class Session_Data_Manager:
+class Session_Data_Manager(object):
     """ The manager that handles file I/O for a session.
 
     Attributes:

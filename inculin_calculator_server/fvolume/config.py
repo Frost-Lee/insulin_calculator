@@ -1,13 +1,13 @@
-unified_image_size = (512, 512)
+UNIFIED_IMAGE_SIZE = (512, 512)
 
-block_reduct_window = (8, 8)
+BLOCK_REDUCT_WINDOW = (8, 8)
 
-food_prob_threshold = 0.7
+FOOD_PROB_THRESHOLD = 0.7
 
-classifier_image_size = (544, 544)
+CLASSIFIER_IMAGE_SIZE = (544, 544)
 
-classification_candidates = 5
+CLASSIFICATION_CANDIDATES = 5
 
-ransac_threshold = 0.01
+RANSAC_THRESHOLD = 0.01
 
-classifier_url = 'https://api-2445582032290.production.gw.apicast.io/v1/foodrecognition?user_key=cf1ba06a7dcb3385b2347316408a74e8'
+CLASSIFIER_URL = 'https://api-2445582032290.production.gw.apicast.io/v1/foodrecognition?user_key=cf1ba06a7dcb3385b2347316408a74e8'

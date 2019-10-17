@@ -14,7 +14,7 @@ def _get_raw_classification_result(buffers):
         The list of responses from the classifier of the `buffer`.
     """
     responses= [requests.post(
-        url=config.classifier_url,
+        url=config.CLASSIFIER_URL,
         headers={'Content-type': 'image/jpeg'},
         data=buffer.getvalue()
     ) for buffer in buffers]
@@ -34,7 +34,7 @@ def get_classification_result(buffers):
     responses = _get_raw_classification_result(buffers)
     json_contents = [response.content for response in responses]
     food_items = [
-        [item for result in content['results'] for item in result['items']][:config.classification_candidates] 
+        [item for result in content['results'] for item in result['items']][:config.CLASSIFICATION_CANDIDATES] 
         if content['is_food'] else None for content in json_contents
     ]
     return food_items

@@ -36,7 +36,7 @@ def _get_plane_mask(point_cloud):
     """
     ransac = linear_model.RANSACRegressor(
         linear_model.LinearRegression(),
-        residual_threshold=config.ransac_threshold
+        residual_threshold=config.RANSAC_THRESHOLD
     )
     ransac.fit(point_cloud[:,:2], point_cloud[:,2])
     return ransac.inlier_mask_
@@ -65,7 +65,7 @@ def _get_point_cloud(depth_map, focal_length, oc_x, oc_y, attitude):
 
 def _get_area_volume_map(depth_map, calibration, attitude):
     """ Returning the reduced area map and volume map of the given depth map. Both 
-        maps will be reduced according to `config.block_reduct_window`.
+        maps will be reduced according to `config.BLOCK_REDUCT_WINDOW`.
 
     Args:
         depth_map: The depth map represented as a numpy array.
@@ -76,9 +76,9 @@ def _get_area_volume_map(depth_map, calibration, attitude):
     point_cloud = _get_point_cloud(depth_map, fl, oc_x, oc_y, attitude)
     inlier_mask = _get_plane_mask(point_cloud)
     background_depth = np.mean(point_cloud[inlier_mask][:,2])
-    depth_map_reduced = skimage.measure.block_reduce(depth_map, config.block_reduct_window, np.mean)
+    depth_map_reduced = skimage.measure.block_reduce(depth_map, config.BLOCK_REDUCT_WINDOW, np.mean)
     area_map = np.vectorize(
-        lambda x: np.product(config.block_reduct_window) * (x / fl) ** 2
+        lambda x: np.product(config.BLOCK_REDUCT_WINDOW) * (x / fl) ** 2
     )(depth_map_reduced)
     volume_map = area_map * (- depth_map_reduced + background_depth)
     return area_map, volume_map
@@ -93,7 +93,7 @@ def get_area_volume(depth_map, calibration, attitude, entity_label):
         calibration: The camera calibration data when capturing the depth map.
         attitude: The device attitude data when capturing the image.
         entity_label: The entity label mask of the depth map, it should be of shape 
-            `config.unified_image_size`. Within these labels, 0 stands for the 
+            `config.UNIFIED_IMAGE_SIZE`. Within these labels, 0 stands for the 
             background, and other positive integers stands for different objects.
     
     Returns:
@@ -101,7 +101,7 @@ def get_area_volume(depth_map, calibration, attitude, entity_label):
         `entity_label`, and the corresponding value stands for `(area, volume)`, 
         measured in square meter and cube meter.
     """
-    depth_map_regulated = cv2.resize(depth_map, config.unified_image_size)
+    depth_map_regulated = cv2.resize(depth_map, config.UNIFIED_IMAGE_SIZE)
     area_map, volume_map = _get_area_volume_map(depth_map_regulated, calibration, attitude)
     result_dict = {
         food_id : (
