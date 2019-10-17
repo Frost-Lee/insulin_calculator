@@ -6,7 +6,9 @@ target 'insulin_calculator' do
   use_frameworks!
 
   # Pods for insulin_calculator
-  # pod 'SVProgressHUD'
+  pod 'SVProgressHUD'
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
 
   target 'insulin_calculatorTests' do
     inherit! :search_paths

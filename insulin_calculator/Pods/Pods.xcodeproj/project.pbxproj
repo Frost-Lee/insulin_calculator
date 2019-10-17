@@ -7,72 +7,180 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		106C0AC1132E8BAB8E6A2F68CE42B53F /* Pods-insulin_calculatorUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CC4CF9AAFEBA69027EE4358BD3EA8E /* Pods-insulin_calculatorUITests-dummy.m */; };
-		15A746AC086EF2E7FDEACA7B13512C37 /* Pods-insulin_calculatorTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FBF78037060E7E7765503C481646C1E5 /* Pods-insulin_calculatorTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		164500CC802B7CE5A83C0A8DE375D858 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		94FB1BE5B5743850E7D01CCDD6A74FE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		AEF853B0A28FBB3B51196AC3DC379A73 /* Pods-insulin_calculator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A8544DE3C59AEA3B66CFA6497F082293 /* Pods-insulin_calculator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D14623D0699069BBC7B4DB2DE57C3B6C /* Pods-insulin_calculator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E6493E5A9DE337A14F1C718502C7C9 /* Pods-insulin_calculator-dummy.m */; };
-		D7CF119A0EB9510C05E69A2BD301FC74 /* Pods-insulin_calculatorTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E26D5615358DA42FE955CFFB6C18E36C /* Pods-insulin_calculatorTests-dummy.m */; };
-		E352FC326E7A3357B463B80AAED84F3B /* Pods-insulin_calculatorUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 269DCBFF4CAB1FA20CE97D2DB3A4E8BD /* Pods-insulin_calculatorUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EE07692D738107FBACBD179D93702CDE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		02864353051BF8E722170372C08CBCA5 /* SVProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B9628331B6597A75BC31A903232F36F /* SVProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		059D92B7BBFBEC53E9A3B6E11C5C3B3A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3DDD096A61235B3EFD3B2E42FDB0B2 /* Response.swift */; };
+		0A39AF55285A3A4F7CBABB6D822FA4A3 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0CA9E439BB73566D7BAA5FBF83F38E /* Alamofire.swift */; };
+		106C0AC1132E8BAB8E6A2F68CE42B53F /* Pods-insulin_calculatorUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1D2ED595611BA55B7F75407A6ADD47 /* Pods-insulin_calculatorUITests-dummy.m */; };
+		15A746AC086EF2E7FDEACA7B13512C37 /* Pods-insulin_calculatorTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D7C1CA70D1904BB1837C54FB1A02921 /* Pods-insulin_calculatorTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		164500CC802B7CE5A83C0A8DE375D858 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0F1732A2D4DBA41714F9E205837D34 /* Foundation.framework */; };
+		17A4314423731C5ECFA194C368EA9CD6 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A930ED81ED2BEB7DB0DB3D66ADA1C28 /* SVProgressAnimatedView.m */; };
+		19D81A29B51F2F555097AF1103E305BA /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BA297570C171C09A3BB99167CA35D4E8 /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D29D2ACADF961F69D32B06FA6A09E28 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC18CB4CF76913A25FEE04D0B7B4504 /* Notifications.swift */; };
+		29B74640E09272D559EB299C1BD64880 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB25CFB219F28693DE79E3D79D995 /* SVProgressHUD.m */; };
+		2FD81864BF1F5CA019F711322688E979 /* SVProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9690017BFCC2D071CCEBA85DC922C098 /* SVProgressHUD-dummy.m */; };
+		355C18EEC82624A06A6CC93965258E33 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F970E9AB6CE0C39A63912D68692845 /* Request.swift */; };
+		35E01DE61490C61B17AE2DF0EF9DAFFE /* SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6561334AF3FC016EB48E624D96C5EF80 /* SwiftyJSON-dummy.m */; };
+		3E0749AF6C51BCF0E4A41CF1D6A76FED /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E3B46518BD8B6F51210D40427A0FB /* DispatchQueue+Alamofire.swift */; };
+		58C02942E078014FAAC6FE02D11610EB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6193BDF9256B1B2DC71E7CF8BFFB3D /* QuartzCore.framework */; };
+		60B6C2A003864AAD3A426448152F67BE /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A8382021EFBEA2E42A37AC3CCE5CAC /* Timeline.swift */; };
+		6347B1BA6D146FE1BF6D4C140D5CDA04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0F1732A2D4DBA41714F9E205837D34 /* Foundation.framework */; };
+		6EFD003458AE7F689DEA720A2030C261 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74255F734B8AC0D6387493652C9951FE /* ResponseSerialization.swift */; };
+		700D3D95AF9520CB227846DFD943A2DA /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BC2F1BC16A6035A68EC5C1F58288D /* ParameterEncoding.swift */; };
+		73AB05789A4982944AF68DBD013E3EB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B8E011B2AAEB1E94BD8C03335E3CB /* NetworkReachabilityManager.swift */; };
+		7671E5390237F6AB028726B8F168DD58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0F1732A2D4DBA41714F9E205837D34 /* Foundation.framework */; };
+		772911DA6E33D1CBBC30131B7C8BDBB3 /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C71BF668E1FE387C14FC4A1B650F7CE /* Alamofire-dummy.m */; };
+		77E8F0EB9FFBE2E3EB0C77095C644606 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE28CDC507403EBB5C92201D848B3711 /* TaskDelegate.swift */; };
+		7E3538A6992A38276764936A9733493D /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9557802B54071B4C4DC8CC0C74002B08 /* AFError.swift */; };
+		8CB05A9D092C2DA32E9901EBE7CF2DE1 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89485002BC4FFB9829435F8C677DA876 /* SVIndefiniteAnimatedView.m */; };
+		8D2A6A90A6DDAF75EA52D471258545CC /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBDF790A8FA360091602AE88AA8038E /* ServerTrustPolicy.swift */; };
+		94FB1BE5B5743850E7D01CCDD6A74FE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0F1732A2D4DBA41714F9E205837D34 /* Foundation.framework */; };
+		A1EC41966B261DCE460BCDE5124A1DBE /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2847B791BFEEC55547098DC6003EB6 /* SessionDelegate.swift */; };
+		A760EA4D9975CAE23F3692CB2312E42F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0F1732A2D4DBA41714F9E205837D34 /* Foundation.framework */; };
+		AA56769D8733D3F3E7976742D5ABA998 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FE95FF811AA65F9EB194B63CB6CB49 /* Validation.swift */; };
+		AEA829AB1A8AF2AD077A808AED6B178A /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F117C43479A8FEF6F40F15E3655C0C1 /* MultipartFormData.swift */; };
+		B24235E79299D6548A2251F43043E98C /* SVProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 82D14B43AFAD737E0E57F5AA582E89D6 /* SVProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B6F6E4CC26451E91B59FAE0F6841DC1F /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C356A6017BB6E349F18019138D5718 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B765B9C19A774B517DB5F40B88F6461F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FAFA8BC2806031859B1CD8BD7C4D02 /* SwiftyJSON.swift */; };
+		D3D959E75368A2E4D765B6BC03481E48 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB6098175627388B3FD09E385E6A9717 /* SVProgressHUD.bundle */; };
+		D3FA0AA634AAEA99AB3FABC36BB4958C /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B365B400E5F1FA02F622C025AADD72BD /* SessionManager.swift */; };
+		D7CF119A0EB9510C05E69A2BD301FC74 /* Pods-insulin_calculatorTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D77D35DD0F3E75DEA56CFAF9D07A55 /* Pods-insulin_calculatorTests-dummy.m */; };
+		E352FC326E7A3357B463B80AAED84F3B /* Pods-insulin_calculatorUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DA210E8CA3FCEF4FB871DA046615566 /* Pods-insulin_calculatorUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E5737D15CB2E8AE81716A9A5DFD1E31D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0F1732A2D4DBA41714F9E205837D34 /* Foundation.framework */; };
+		E77A0694EF7E6B48454108204EEDA7EF /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F361DB3ACAFE1636E1461A15B043579 /* SVRadialGradientLayer.m */; };
+		EB0DD8CEA1A69867A30267439C970440 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67D8BFB12DB39BD86AFD41C960F045D /* Result.swift */; };
+		EE59F5C0DFA857AE80709B62AA4C396E /* SVProgressAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B6550A67CC3D023905758330838709 /* SVProgressAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF818E7E0FDF26CAE014F9877A2D2B60 /* Pods-insulin_calculator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B1D5E0C4C5FE6258BE86CE1874D865E /* Pods-insulin_calculator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F837BF30D9099FCC627EA70FE51B3B9F /* SVIndefiniteAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B44D7D5A70E4B7120069CB909032F60 /* SVIndefiniteAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA7F7916FDAFF005FC5AC76DD4EBDD26 /* Pods-insulin_calculator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DCB2B21FFCDE182CAB1DC6ECB19736 /* Pods-insulin_calculator-dummy.m */; };
+		FC3AC7F81D09E19D2987102B85135278 /* SVRadialGradientLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = D664AB0733D55E3796F88CE2B087B1F8 /* SVRadialGradientLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1C1BFE180BEEF40EDDDBB2C1E0CA76C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27B613D1018881E8D763E62FC9A13A84;
+			remoteInfo = SVProgressHUD;
+		};
+		57BD44B0BBCA3A91901890EA3223D9AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3383968E74B5371B20BB519B170DC7FD;
+			remoteInfo = Alamofire;
+		};
+		5B6137AAFC27E0C1E73BA377C146C357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1ECB5F5E114D56979960897809CFEE66;
+			remoteInfo = SwiftyJSON;
+		};
 		8B5108EA2A3ACE6D060F50D362DBB860 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 7B3C5F8E88EB4B2CE3EC78AFB8232566;
+			remoteGlobalIDString = D6E5DF900EE41AD442F39A20FECB5F83;
 			remoteInfo = "Pods-insulin_calculator";
 		};
 		E9F1A37F725210BF92A02AD9DDC55997 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 7B3C5F8E88EB4B2CE3EC78AFB8232566;
+			remoteGlobalIDString = D6E5DF900EE41AD442F39A20FECB5F83;
 			remoteInfo = "Pods-insulin_calculator";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		182ED5D3E82E51769966B038BE7698A0 /* Pods-insulin_calculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculator.release.xcconfig"; sourceTree = "<group>"; };
-		1ADA4A9091EFA599662900B00B473B5B /* Pods-insulin_calculator-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-insulin_calculator-acknowledgements.markdown"; sourceTree = "<group>"; };
-		243E26E6C17A3F0A35E7B7BA5EDA8433 /* Pods-insulin_calculator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-insulin_calculator.modulemap"; sourceTree = "<group>"; };
-		2543B0476A001A1213639D18C858BC17 /* Pods-insulin_calculatorTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculatorTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		269DCBFF4CAB1FA20CE97D2DB3A4E8BD /* Pods-insulin_calculatorUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-insulin_calculatorUITests-umbrella.h"; sourceTree = "<group>"; };
-		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		502AA093F23DE45A64DEDC328E029C4C /* Pods-insulin_calculatorUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculatorUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		5EB95327A3E2267983393AA377787D34 /* Pods-insulin_calculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculatorTests.release.xcconfig"; sourceTree = "<group>"; };
-		620E2094C4B627AEFFAA1DB2E4719ECF /* Pods-insulin_calculatorUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-insulin_calculatorUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		6522A15B780085FD7DBADD8A216BC739 /* Pods-insulin_calculator-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculator-acknowledgements.plist"; sourceTree = "<group>"; };
-		7075BB0749692F9BE1B58F85C6714E20 /* Pods_insulin_calculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_insulin_calculator.framework; path = "Pods-insulin_calculator.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E3E6B36D806785FB03EBA75CA660C95 /* Pods_insulin_calculatorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_insulin_calculatorUITests.framework; path = "Pods-insulin_calculatorUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F1B81DB0C8B5D46015ECBC132ABD491 /* Pods-insulin_calculatorTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-insulin_calculatorTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		83E6493E5A9DE337A14F1C718502C7C9 /* Pods-insulin_calculator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-insulin_calculator-dummy.m"; sourceTree = "<group>"; };
+		0A566EA7578AE90A39952019C7884A6E /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B2B8E011B2AAEB1E94BD8C03335E3CB /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		0C93EE108D0AEF5621259B8E2E780631 /* Pods-insulin_calculatorUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-insulin_calculatorUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		0DA210E8CA3FCEF4FB871DA046615566 /* Pods-insulin_calculatorUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-insulin_calculatorUITests-umbrella.h"; sourceTree = "<group>"; };
+		0E3DDD096A61235B3EFD3B2E42FDB0B2 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		0E73F5DCE4B72A822ED28EC8F0A13250 /* Pods-insulin_calculator-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculator-Info.plist"; sourceTree = "<group>"; };
+		11DCB2B21FFCDE182CAB1DC6ECB19736 /* Pods-insulin_calculator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-insulin_calculator-dummy.m"; sourceTree = "<group>"; };
+		12D77D35DD0F3E75DEA56CFAF9D07A55 /* Pods-insulin_calculatorTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-insulin_calculatorTests-dummy.m"; sourceTree = "<group>"; };
+		1395ECD4AA241A388E5AA4831DFD68CA /* Pods-insulin_calculatorUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculatorUITests-Info.plist"; sourceTree = "<group>"; };
+		14FE95FF811AA65F9EB194B63CB6CB49 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		15280D9132A690FC21053AE8F07FEB65 /* Pods-insulin_calculatorTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-insulin_calculatorTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		153A31016EEF1D2FC09CCF2501E13157 /* Pods-insulin_calculator-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculator-acknowledgements.plist"; sourceTree = "<group>"; };
+		1B1D2ED595611BA55B7F75407A6ADD47 /* Pods-insulin_calculatorUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-insulin_calculatorUITests-dummy.m"; sourceTree = "<group>"; };
+		1F9B5DB6D3AC782FD4F2DDED40A02981 /* Pods-insulin_calculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculator.release.xcconfig"; sourceTree = "<group>"; };
+		2B1D5E0C4C5FE6258BE86CE1874D865E /* Pods-insulin_calculator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-insulin_calculator-umbrella.h"; sourceTree = "<group>"; };
+		2B44D7D5A70E4B7120069CB909032F60 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		2DC18CB4CF76913A25FEE04D0B7B4504 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
+		2F7BC2F1BC16A6035A68EC5C1F58288D /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		304E97F9A0A8C7F82EC30A1992943395 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31F970E9AB6CE0C39A63912D68692845 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		3C71BF668E1FE387C14FC4A1B650F7CE /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
+		3EBDF790A8FA360091602AE88AA8038E /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		4293FCE55577103A5C74A6989D51C70D /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
+		480F319418C313AFB83F8621F54BFA78 /* Pods-insulin_calculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculator.debug.xcconfig"; sourceTree = "<group>"; };
+		4C204181F09A07494EA9121928201D0B /* Pods_insulin_calculatorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_insulin_calculatorUITests.framework; path = "Pods-insulin_calculatorUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		544F039544EAE1D7F0BA104632504D67 /* Pods-insulin_calculatorUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-insulin_calculatorUITests.modulemap"; sourceTree = "<group>"; };
+		5A930ED81ED2BEB7DB0DB3D66ADA1C28 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		611CB25CFB219F28693DE79E3D79D995 /* SVProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
+		614516EDD49DFF3738ED9CC9701BC4DD /* Pods-insulin_calculatorTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-insulin_calculatorTests.modulemap"; sourceTree = "<group>"; };
+		62225636A2B28A008E87C91762B7385D /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
+		63C356A6017BB6E349F18019138D5718 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		6561334AF3FC016EB48E624D96C5EF80 /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
+		6613B5EB9C1D2A2D03CE201E39D1A51F /* Pods-insulin_calculatorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculatorTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6D413E705F03C5359D3DB4E349C24A0E /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
+		6F117C43479A8FEF6F40F15E3655C0C1 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		6F93329809A9AF65FDA84850207B582E /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
+		6FFE18A586A2F779F363F8A53FFFA41E /* Pods-insulin_calculator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-insulin_calculator.modulemap"; sourceTree = "<group>"; };
+		74255F734B8AC0D6387493652C9951FE /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		77D530540C3C275CDC1981069E78960F /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		77FB13FDB97E2D9CB6BF3DBDFA10C944 /* Pods-insulin_calculatorTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculatorTests-Info.plist"; sourceTree = "<group>"; };
+		7B9628331B6597A75BC31A903232F36F /* SVProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
+		7BAEB38562A727C4AA3FA1D46456BFD2 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		82D14B43AFAD737E0E57F5AA582E89D6 /* SVProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-umbrella.h"; sourceTree = "<group>"; };
+		84B2FBFE277588273FCB93A18C7D5E9B /* Pods-insulin_calculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculatorTests.release.xcconfig"; sourceTree = "<group>"; };
+		850271D9580AF26AA295B25E3EB6388A /* Pods-insulin_calculatorTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculatorTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		89485002BC4FFB9829435F8C677DA876 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		8D157101A6EF5B04C3989A52E326764C /* SVProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SVProgressHUD.xcconfig; sourceTree = "<group>"; };
+		8D7C1CA70D1904BB1837C54FB1A02921 /* Pods-insulin_calculatorTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-insulin_calculatorTests-umbrella.h"; sourceTree = "<group>"; };
+		9557802B54071B4C4DC8CC0C74002B08 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
+		9690017BFCC2D071CCEBA85DC922C098 /* SVProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD-dummy.m"; sourceTree = "<group>"; };
+		9CFBD87144078751B7B3938438D22DC7 /* Pods_insulin_calculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_insulin_calculator.framework; path = "Pods-insulin_calculator.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A0FF0695A9E2BD90E8DC21E53F4759BA /* Pods_insulin_calculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_insulin_calculatorTests.framework; path = "Pods-insulin_calculatorTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4BE31590E3A6E32F218D94848223D88 /* Pods-insulin_calculatorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculatorUITests.release.xcconfig"; sourceTree = "<group>"; };
-		A5C6E251FFA95D039B605BA48FC73949 /* Pods-insulin_calculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculator.debug.xcconfig"; sourceTree = "<group>"; };
-		A6C8CB6C8FCE39C493AFBB1F756C437E /* Pods-insulin_calculatorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculatorTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A8544DE3C59AEA3B66CFA6497F082293 /* Pods-insulin_calculator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-insulin_calculator-umbrella.h"; sourceTree = "<group>"; };
-		AA3577F4FF0A3102FEC0D065263319CB /* Pods-insulin_calculatorUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-insulin_calculatorUITests.modulemap"; sourceTree = "<group>"; };
-		C98490D812D29A04330214DE8DB1EEEA /* Pods-insulin_calculatorTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-insulin_calculatorTests.modulemap"; sourceTree = "<group>"; };
-		CE4B73C1DF923EA7EF9F6A8CB706E327 /* Pods-insulin_calculatorUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculatorUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		CEE032D40E81B5AEB8364B05540C65A9 /* Pods-insulin_calculator-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculator-Info.plist"; sourceTree = "<group>"; };
-		E0AAEA31ED19C22456B0301B7EEAD296 /* Pods-insulin_calculatorUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculatorUITests-Info.plist"; sourceTree = "<group>"; };
-		E26D5615358DA42FE955CFFB6C18E36C /* Pods-insulin_calculatorTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-insulin_calculatorTests-dummy.m"; sourceTree = "<group>"; };
-		E4011AF429150CEDBD5CCDB24034F2B8 /* Pods-insulin_calculatorTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculatorTests-Info.plist"; sourceTree = "<group>"; };
-		E7CC4CF9AAFEBA69027EE4358BD3EA8E /* Pods-insulin_calculatorUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-insulin_calculatorUITests-dummy.m"; sourceTree = "<group>"; };
-		FBF78037060E7E7765503C481646C1E5 /* Pods-insulin_calculatorTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-insulin_calculatorTests-umbrella.h"; sourceTree = "<group>"; };
+		9E3F69D5B829722465FF76E6ADEAF3CA /* SVProgressHUD-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SVProgressHUD-Info.plist"; sourceTree = "<group>"; };
+		9F361DB3ACAFE1636E1461A15B043579 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		A5FAFA8BC2806031859B1CD8BD7C4D02 /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
+		AB6098175627388B3FD09E385E6A9717 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
+		ADEF94EDBBC99084A80124FEF8E4D3D7 /* Pods-insulin_calculator-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-insulin_calculator-frameworks.sh"; sourceTree = "<group>"; };
+		B365B400E5F1FA02F622C025AADD72BD /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
+		B7872786248CAB4E9DD65D1E7A9F3E9F /* Pods-insulin_calculator-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-insulin_calculator-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BA2847B791BFEEC55547098DC6003EB6 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
+		BA297570C171C09A3BB99167CA35D4E8 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
+		BA5E3B46518BD8B6F51210D40427A0FB /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
+		BC0CA9E439BB73566D7BAA5FBF83F38E /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
+		BE3BC919C57CF54D1CE4BCC2D414E449 /* Pods_insulin_calculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_insulin_calculatorTests.framework; path = "Pods-insulin_calculatorTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C396BAEA6F117A0A97602040498279E9 /* SVProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-prefix.pch"; sourceTree = "<group>"; };
+		C765C987A7B9CB3BC424A3E772EAA7E9 /* Pods-insulin_calculatorUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculatorUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		CB6193BDF9256B1B2DC71E7CF8BFFB3D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		D11190E4D8A1725C141DC33C579B494D /* SwiftyJSON-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwiftyJSON-Info.plist"; sourceTree = "<group>"; };
+		D664AB0733D55E3796F88CE2B087B1F8 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		D67D8BFB12DB39BD86AFD41C960F045D /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
+		DF781C4911E373F1DBE06758F47A6A1A /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		E0AB520CB661D78CB328B6FD7A903EC2 /* Pods-insulin_calculatorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculatorUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E334F4AEC0900391AF6BB1A6B792D2FA /* Pods-insulin_calculatorUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculatorUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		EB0F1732A2D4DBA41714F9E205837D34 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		EE28CDC507403EBB5C92201D848B3711 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
+		F2F8CA962154DD98AE8FC248C22E1B7F /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyJSON.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5B6550A67CC3D023905758330838709 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		F6A8382021EFBEA2E42A37AC3CCE5CAC /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		FE8AE19E33CC7E8052BB21A90065DB8E /* Alamofire-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Alamofire-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5F876732B50AC4DFE170449CB224B098 /* Frameworks */ = {
+		44FE4E2FEE949B6F7DA065E9CFBC1053 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE07692D738107FBACBD179D93702CDE /* Foundation.framework in Frameworks */,
+				A760EA4D9975CAE23F3692CB2312E42F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +192,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C939A9BA0AB729DD36E924E194654C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7671E5390237F6AB028726B8F168DD58 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B30280B0116D40F1884B7E45DDBC31DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5737D15CB2E8AE81716A9A5DFD1E31D /* Foundation.framework in Frameworks */,
+				58C02942E078014FAAC6FE02D11610EB /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC1A3DB2A9973DFC7BF4DDB3204FA222 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -92,101 +217,229 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1626ADC3A7EC435D2722B3173355D36 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6347B1BA6D146FE1BF6D4C140D5CDA04 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		17B19DA73A6C0D7E348153C704E9DFFF /* Pods-insulin_calculator */ = {
+		08F2AD2E7E3C3D0A22A508F26623FD0F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				243E26E6C17A3F0A35E7B7BA5EDA8433 /* Pods-insulin_calculator.modulemap */,
-				1ADA4A9091EFA599662900B00B473B5B /* Pods-insulin_calculator-acknowledgements.markdown */,
-				6522A15B780085FD7DBADD8A216BC739 /* Pods-insulin_calculator-acknowledgements.plist */,
-				83E6493E5A9DE337A14F1C718502C7C9 /* Pods-insulin_calculator-dummy.m */,
-				CEE032D40E81B5AEB8364B05540C65A9 /* Pods-insulin_calculator-Info.plist */,
-				A8544DE3C59AEA3B66CFA6497F082293 /* Pods-insulin_calculator-umbrella.h */,
-				A5C6E251FFA95D039B605BA48FC73949 /* Pods-insulin_calculator.debug.xcconfig */,
-				182ED5D3E82E51769966B038BE7698A0 /* Pods-insulin_calculator.release.xcconfig */,
+				304E97F9A0A8C7F82EC30A1992943395 /* Alamofire.framework */,
+				9CFBD87144078751B7B3938438D22DC7 /* Pods_insulin_calculator.framework */,
+				BE3BC919C57CF54D1CE4BCC2D414E449 /* Pods_insulin_calculatorTests.framework */,
+				4C204181F09A07494EA9121928201D0B /* Pods_insulin_calculatorUITests.framework */,
+				0A566EA7578AE90A39952019C7884A6E /* SVProgressHUD.framework */,
+				F2F8CA962154DD98AE8FC248C22E1B7F /* SwiftyJSON.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		09B15E0D734621F247D3A90893CB2FD4 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6D413E705F03C5359D3DB4E349C24A0E /* SVProgressHUD.modulemap */,
+				8D157101A6EF5B04C3989A52E326764C /* SVProgressHUD.xcconfig */,
+				9690017BFCC2D071CCEBA85DC922C098 /* SVProgressHUD-dummy.m */,
+				9E3F69D5B829722465FF76E6ADEAF3CA /* SVProgressHUD-Info.plist */,
+				C396BAEA6F117A0A97602040498279E9 /* SVProgressHUD-prefix.pch */,
+				82D14B43AFAD737E0E57F5AA582E89D6 /* SVProgressHUD-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SVProgressHUD";
+			sourceTree = "<group>";
+		};
+		158878B6F893A2E22D30336B74C55020 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AB6098175627388B3FD09E385E6A9717 /* SVProgressHUD.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C850C37433B9EAF70AA8EF4EC21FC43 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2381A7A5242139CA5E6176595A053A7C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				77D530540C3C275CDC1981069E78960F /* Alamofire.modulemap */,
+				DF781C4911E373F1DBE06758F47A6A1A /* Alamofire.xcconfig */,
+				3C71BF668E1FE387C14FC4A1B650F7CE /* Alamofire-dummy.m */,
+				FE8AE19E33CC7E8052BB21A90065DB8E /* Alamofire-Info.plist */,
+				7BAEB38562A727C4AA3FA1D46456BFD2 /* Alamofire-prefix.pch */,
+				63C356A6017BB6E349F18019138D5718 /* Alamofire-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Alamofire";
+			sourceTree = "<group>";
+		};
+		3EF1798CDBD272429CB2C18ED2E35DE5 /* Pods-insulin_calculator */ = {
+			isa = PBXGroup;
+			children = (
+				6FFE18A586A2F779F363F8A53FFFA41E /* Pods-insulin_calculator.modulemap */,
+				B7872786248CAB4E9DD65D1E7A9F3E9F /* Pods-insulin_calculator-acknowledgements.markdown */,
+				153A31016EEF1D2FC09CCF2501E13157 /* Pods-insulin_calculator-acknowledgements.plist */,
+				11DCB2B21FFCDE182CAB1DC6ECB19736 /* Pods-insulin_calculator-dummy.m */,
+				ADEF94EDBBC99084A80124FEF8E4D3D7 /* Pods-insulin_calculator-frameworks.sh */,
+				0E73F5DCE4B72A822ED28EC8F0A13250 /* Pods-insulin_calculator-Info.plist */,
+				2B1D5E0C4C5FE6258BE86CE1874D865E /* Pods-insulin_calculator-umbrella.h */,
+				480F319418C313AFB83F8621F54BFA78 /* Pods-insulin_calculator.debug.xcconfig */,
+				1F9B5DB6D3AC782FD4F2DDED40A02981 /* Pods-insulin_calculator.release.xcconfig */,
 			);
 			name = "Pods-insulin_calculator";
 			path = "Target Support Files/Pods-insulin_calculator";
 			sourceTree = "<group>";
 		};
-		207F8491AE5EAEE3C0003D0E431B7194 /* Targets Support Files */ = {
+		585A1233F44D5D24AE3492701DF7CC34 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				17B19DA73A6C0D7E348153C704E9DFFF /* Pods-insulin_calculator */,
-				6801E08E5ADF88FDCEB2D406825D29D7 /* Pods-insulin_calculatorTests */,
-				31D206FAB4AC6E12301667307CB13CD1 /* Pods-insulin_calculatorUITests */,
+				3EF1798CDBD272429CB2C18ED2E35DE5 /* Pods-insulin_calculator */,
+				E5CA072EDA54779436F975106AECDB55 /* Pods-insulin_calculatorTests */,
+				EEF87CD3D08A7798B3FF71C4139C68B2 /* Pods-insulin_calculatorUITests */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		23AA3B481F49B9E9A05903A14C3F3043 /* Products */ = {
+		595A6A78A2F6E6B5B509C766AC1F5C4E /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
-				7075BB0749692F9BE1B58F85C6714E20 /* Pods_insulin_calculator.framework */,
-				A0FF0695A9E2BD90E8DC21E53F4759BA /* Pods_insulin_calculatorTests.framework */,
-				7E3E6B36D806785FB03EBA75CA660C95 /* Pods_insulin_calculatorUITests.framework */,
+				9557802B54071B4C4DC8CC0C74002B08 /* AFError.swift */,
+				BC0CA9E439BB73566D7BAA5FBF83F38E /* Alamofire.swift */,
+				BA5E3B46518BD8B6F51210D40427A0FB /* DispatchQueue+Alamofire.swift */,
+				6F117C43479A8FEF6F40F15E3655C0C1 /* MultipartFormData.swift */,
+				0B2B8E011B2AAEB1E94BD8C03335E3CB /* NetworkReachabilityManager.swift */,
+				2DC18CB4CF76913A25FEE04D0B7B4504 /* Notifications.swift */,
+				2F7BC2F1BC16A6035A68EC5C1F58288D /* ParameterEncoding.swift */,
+				31F970E9AB6CE0C39A63912D68692845 /* Request.swift */,
+				0E3DDD096A61235B3EFD3B2E42FDB0B2 /* Response.swift */,
+				74255F734B8AC0D6387493652C9951FE /* ResponseSerialization.swift */,
+				D67D8BFB12DB39BD86AFD41C960F045D /* Result.swift */,
+				3EBDF790A8FA360091602AE88AA8038E /* ServerTrustPolicy.swift */,
+				BA2847B791BFEEC55547098DC6003EB6 /* SessionDelegate.swift */,
+				B365B400E5F1FA02F622C025AADD72BD /* SessionManager.swift */,
+				EE28CDC507403EBB5C92201D848B3711 /* TaskDelegate.swift */,
+				F6A8382021EFBEA2E42A37AC3CCE5CAC /* Timeline.swift */,
+				14FE95FF811AA65F9EB194B63CB6CB49 /* Validation.swift */,
+				2381A7A5242139CA5E6176595A053A7C /* Support Files */,
 			);
-			name = Products;
+			name = Alamofire;
+			path = Alamofire;
 			sourceTree = "<group>";
 		};
-		31D206FAB4AC6E12301667307CB13CD1 /* Pods-insulin_calculatorUITests */ = {
+		6C850C37433B9EAF70AA8EF4EC21FC43 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				AA3577F4FF0A3102FEC0D065263319CB /* Pods-insulin_calculatorUITests.modulemap */,
-				620E2094C4B627AEFFAA1DB2E4719ECF /* Pods-insulin_calculatorUITests-acknowledgements.markdown */,
-				CE4B73C1DF923EA7EF9F6A8CB706E327 /* Pods-insulin_calculatorUITests-acknowledgements.plist */,
-				E7CC4CF9AAFEBA69027EE4358BD3EA8E /* Pods-insulin_calculatorUITests-dummy.m */,
-				E0AAEA31ED19C22456B0301B7EEAD296 /* Pods-insulin_calculatorUITests-Info.plist */,
-				269DCBFF4CAB1FA20CE97D2DB3A4E8BD /* Pods-insulin_calculatorUITests-umbrella.h */,
-				502AA093F23DE45A64DEDC328E029C4C /* Pods-insulin_calculatorUITests.debug.xcconfig */,
-				A4BE31590E3A6E32F218D94848223D88 /* Pods-insulin_calculatorUITests.release.xcconfig */,
-			);
-			name = "Pods-insulin_calculatorUITests";
-			path = "Target Support Files/Pods-insulin_calculatorUITests";
-			sourceTree = "<group>";
-		};
-		6801E08E5ADF88FDCEB2D406825D29D7 /* Pods-insulin_calculatorTests */ = {
-			isa = PBXGroup;
-			children = (
-				C98490D812D29A04330214DE8DB1EEEA /* Pods-insulin_calculatorTests.modulemap */,
-				7F1B81DB0C8B5D46015ECBC132ABD491 /* Pods-insulin_calculatorTests-acknowledgements.markdown */,
-				2543B0476A001A1213639D18C858BC17 /* Pods-insulin_calculatorTests-acknowledgements.plist */,
-				E26D5615358DA42FE955CFFB6C18E36C /* Pods-insulin_calculatorTests-dummy.m */,
-				E4011AF429150CEDBD5CCDB24034F2B8 /* Pods-insulin_calculatorTests-Info.plist */,
-				FBF78037060E7E7765503C481646C1E5 /* Pods-insulin_calculatorTests-umbrella.h */,
-				A6C8CB6C8FCE39C493AFBB1F756C437E /* Pods-insulin_calculatorTests.debug.xcconfig */,
-				5EB95327A3E2267983393AA377787D34 /* Pods-insulin_calculatorTests.release.xcconfig */,
-			);
-			name = "Pods-insulin_calculatorTests";
-			path = "Target Support Files/Pods-insulin_calculatorTests";
-			sourceTree = "<group>";
-		};
-		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
+				EB0F1732A2D4DBA41714F9E205837D34 /* Foundation.framework */,
+				CB6193BDF9256B1B2DC71E7CF8BFFB3D /* QuartzCore.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		892412CA83C4BA5CD710A38DC30B7D50 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				2B44D7D5A70E4B7120069CB909032F60 /* SVIndefiniteAnimatedView.h */,
+				89485002BC4FFB9829435F8C677DA876 /* SVIndefiniteAnimatedView.m */,
+				F5B6550A67CC3D023905758330838709 /* SVProgressAnimatedView.h */,
+				5A930ED81ED2BEB7DB0DB3D66ADA1C28 /* SVProgressAnimatedView.m */,
+				7B9628331B6597A75BC31A903232F36F /* SVProgressHUD.h */,
+				611CB25CFB219F28693DE79E3D79D995 /* SVProgressHUD.m */,
+				D664AB0733D55E3796F88CE2B087B1F8 /* SVRadialGradientLayer.h */,
+				9F361DB3ACAFE1636E1461A15B043579 /* SVRadialGradientLayer.m */,
+				158878B6F893A2E22D30336B74C55020 /* Resources */,
+				09B15E0D734621F247D3A90893CB2FD4 /* Support Files */,
+			);
+			name = SVProgressHUD;
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		8C1AD7B71DAFF6128E7079438DB054DD /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				A5FAFA8BC2806031859B1CD8BD7C4D02 /* SwiftyJSON.swift */,
+				DAC22ED8C053AA83EB170B20CA1442A5 /* Support Files */,
+			);
+			name = SwiftyJSON;
+			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				23AA3B481F49B9E9A05903A14C3F3043 /* Products */,
-				207F8491AE5EAEE3C0003D0E431B7194 /* Targets Support Files */,
+				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
+				DB5AD298414FB0A336931151B875632A /* Pods */,
+				08F2AD2E7E3C3D0A22A508F26623FD0F /* Products */,
+				585A1233F44D5D24AE3492701DF7CC34 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+		DAC22ED8C053AA83EB170B20CA1442A5 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
+				62225636A2B28A008E87C91762B7385D /* SwiftyJSON.modulemap */,
+				6F93329809A9AF65FDA84850207B582E /* SwiftyJSON.xcconfig */,
+				6561334AF3FC016EB48E624D96C5EF80 /* SwiftyJSON-dummy.m */,
+				D11190E4D8A1725C141DC33C579B494D /* SwiftyJSON-Info.plist */,
+				4293FCE55577103A5C74A6989D51C70D /* SwiftyJSON-prefix.pch */,
+				BA297570C171C09A3BB99167CA35D4E8 /* SwiftyJSON-umbrella.h */,
 			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "../Target Support Files/SwiftyJSON";
+			sourceTree = "<group>";
+		};
+		DB5AD298414FB0A336931151B875632A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				595A6A78A2F6E6B5B509C766AC1F5C4E /* Alamofire */,
+				892412CA83C4BA5CD710A38DC30B7D50 /* SVProgressHUD */,
+				8C1AD7B71DAFF6128E7079438DB054DD /* SwiftyJSON */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E5CA072EDA54779436F975106AECDB55 /* Pods-insulin_calculatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				614516EDD49DFF3738ED9CC9701BC4DD /* Pods-insulin_calculatorTests.modulemap */,
+				15280D9132A690FC21053AE8F07FEB65 /* Pods-insulin_calculatorTests-acknowledgements.markdown */,
+				850271D9580AF26AA295B25E3EB6388A /* Pods-insulin_calculatorTests-acknowledgements.plist */,
+				12D77D35DD0F3E75DEA56CFAF9D07A55 /* Pods-insulin_calculatorTests-dummy.m */,
+				77FB13FDB97E2D9CB6BF3DBDFA10C944 /* Pods-insulin_calculatorTests-Info.plist */,
+				8D7C1CA70D1904BB1837C54FB1A02921 /* Pods-insulin_calculatorTests-umbrella.h */,
+				6613B5EB9C1D2A2D03CE201E39D1A51F /* Pods-insulin_calculatorTests.debug.xcconfig */,
+				84B2FBFE277588273FCB93A18C7D5E9B /* Pods-insulin_calculatorTests.release.xcconfig */,
+			);
+			name = "Pods-insulin_calculatorTests";
+			path = "Target Support Files/Pods-insulin_calculatorTests";
+			sourceTree = "<group>";
+		};
+		EEF87CD3D08A7798B3FF71C4139C68B2 /* Pods-insulin_calculatorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				544F039544EAE1D7F0BA104632504D67 /* Pods-insulin_calculatorUITests.modulemap */,
+				0C93EE108D0AEF5621259B8E2E780631 /* Pods-insulin_calculatorUITests-acknowledgements.markdown */,
+				C765C987A7B9CB3BC424A3E772EAA7E9 /* Pods-insulin_calculatorUITests-acknowledgements.plist */,
+				1B1D2ED595611BA55B7F75407A6ADD47 /* Pods-insulin_calculatorUITests-dummy.m */,
+				1395ECD4AA241A388E5AA4831DFD68CA /* Pods-insulin_calculatorUITests-Info.plist */,
+				0DA210E8CA3FCEF4FB871DA046615566 /* Pods-insulin_calculatorUITests-umbrella.h */,
+				E334F4AEC0900391AF6BB1A6B792D2FA /* Pods-insulin_calculatorUITests.debug.xcconfig */,
+				E0AB520CB661D78CB328B6FD7A903EC2 /* Pods-insulin_calculatorUITests.release.xcconfig */,
+			);
+			name = "Pods-insulin_calculatorUITests";
+			path = "Target Support Files/Pods-insulin_calculatorUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +453,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23D70D9651451F43E7E8CC1A87B4B7E9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6F6E4CC26451E91B59FAE0F6841DC1F /* Alamofire-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		482C0C01AD118ADAA933DA9CB81A239D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F837BF30D9099FCC627EA70FE51B3B9F /* SVIndefiniteAnimatedView.h in Headers */,
+				EE59F5C0DFA857AE80709B62AA4C396E /* SVProgressAnimatedView.h in Headers */,
+				B24235E79299D6548A2251F43043E98C /* SVProgressHUD-umbrella.h in Headers */,
+				02864353051BF8E722170372C08CBCA5 /* SVProgressHUD.h in Headers */,
+				FC3AC7F81D09E19D2987102B85135278 /* SVRadialGradientLayer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		728A84A80A9BE6DC8FA12737E5FF54B6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -208,33 +481,77 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AA7DB241EADF342597C3463C7BF11F5 /* Headers */ = {
+		9484DA675D485D3C38ECDBDAC4554898 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEF853B0A28FBB3B51196AC3DC379A73 /* Pods-insulin_calculator-umbrella.h in Headers */,
+				EF818E7E0FDF26CAE014F9877A2D2B60 /* Pods-insulin_calculator-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2E77E7AFE2D86BC3FDA513BD84BD640 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19D81A29B51F2F555097AF1103E305BA /* SwiftyJSON-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		7B3C5F8E88EB4B2CE3EC78AFB8232566 /* Pods-insulin_calculator */ = {
+		1ECB5F5E114D56979960897809CFEE66 /* SwiftyJSON */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 784C74C04668E769C31D5F5451AF8611 /* Build configuration list for PBXNativeTarget "Pods-insulin_calculator" */;
+			buildConfigurationList = 015B438F4CE79C1589C146B5EE1D47FF /* Build configuration list for PBXNativeTarget "SwiftyJSON" */;
 			buildPhases = (
-				9AA7DB241EADF342597C3463C7BF11F5 /* Headers */,
-				2FF94CE71218E3EC1373292F458013EC /* Sources */,
-				5F876732B50AC4DFE170449CB224B098 /* Frameworks */,
-				3A37D742F567B21CE355CB097CB6C002 /* Resources */,
+				A2E77E7AFE2D86BC3FDA513BD84BD640 /* Headers */,
+				3E920E9F6C6EE52DFF4E9CA6C6530DA5 /* Sources */,
+				8C939A9BA0AB729DD36E924E194654C9 /* Frameworks */,
+				7C99B43B771CDB474198D30E993D2706 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-insulin_calculator";
-			productName = "Pods-insulin_calculator";
-			productReference = 7075BB0749692F9BE1B58F85C6714E20 /* Pods_insulin_calculator.framework */;
+			name = SwiftyJSON;
+			productName = SwiftyJSON;
+			productReference = F2F8CA962154DD98AE8FC248C22E1B7F /* SwiftyJSON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		27B613D1018881E8D763E62FC9A13A84 /* SVProgressHUD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A98D52C1140948044C2D2B2CE8B676E4 /* Build configuration list for PBXNativeTarget "SVProgressHUD" */;
+			buildPhases = (
+				482C0C01AD118ADAA933DA9CB81A239D /* Headers */,
+				A6E2ED5A769830AE5A5BE8AEC9AF7B67 /* Sources */,
+				B30280B0116D40F1884B7E45DDBC31DA /* Frameworks */,
+				967AC5B55612B030AD10881637BCA247 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SVProgressHUD;
+			productName = SVProgressHUD;
+			productReference = 0A566EA7578AE90A39952019C7884A6E /* SVProgressHUD.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3383968E74B5371B20BB519B170DC7FD /* Alamofire */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E87124444A44B7DB55208E7FEC21D331 /* Build configuration list for PBXNativeTarget "Alamofire" */;
+			buildPhases = (
+				23D70D9651451F43E7E8CC1A87B4B7E9 /* Headers */,
+				A1C8B029F600160149A2404C342F6E50 /* Sources */,
+				F1626ADC3A7EC435D2722B3173355D36 /* Frameworks */,
+				28FF73341543B6F0A7DF3C20CFFEA0AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Alamofire;
+			productName = Alamofire;
+			productReference = 304E97F9A0A8C7F82EC30A1992943395 /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		B0E977557CE0BE856D6F38CBECB97236 /* Pods-insulin_calculatorTests */ = {
@@ -253,7 +570,28 @@
 			);
 			name = "Pods-insulin_calculatorTests";
 			productName = "Pods-insulin_calculatorTests";
-			productReference = A0FF0695A9E2BD90E8DC21E53F4759BA /* Pods_insulin_calculatorTests.framework */;
+			productReference = BE3BC919C57CF54D1CE4BCC2D414E449 /* Pods_insulin_calculatorTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D6E5DF900EE41AD442F39A20FECB5F83 /* Pods-insulin_calculator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5FC960F430B843FB2A7F03913EC8E09 /* Build configuration list for PBXNativeTarget "Pods-insulin_calculator" */;
+			buildPhases = (
+				9484DA675D485D3C38ECDBDAC4554898 /* Headers */,
+				1926476C44479091FDB8412553D4F3C1 /* Sources */,
+				44FE4E2FEE949B6F7DA065E9CFBC1053 /* Frameworks */,
+				DF1386A4DF1E516E4AE043236CD132D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1354DB715890883D6A6188ECA9631FA8 /* PBXTargetDependency */,
+				765AFA1C45E17FA4F1E30909E7300772 /* PBXTargetDependency */,
+				368F827F37B36CD7EF46CA22FD88BE5E /* PBXTargetDependency */,
+			);
+			name = "Pods-insulin_calculator";
+			productName = "Pods-insulin_calculator";
+			productReference = 9CFBD87144078751B7B3938438D22DC7 /* Pods_insulin_calculator.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		E296CBC4AD403B33BE0E55DE07719ED0 /* Pods-insulin_calculatorUITests */ = {
@@ -272,7 +610,7 @@
 			);
 			name = "Pods-insulin_calculatorUITests";
 			productName = "Pods-insulin_calculatorUITests";
-			productReference = 7E3E6B36D806785FB03EBA75CA660C95 /* Pods_insulin_calculatorUITests.framework */;
+			productReference = 4C204181F09A07494EA9121928201D0B /* Pods_insulin_calculatorUITests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -292,19 +630,22 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 23AA3B481F49B9E9A05903A14C3F3043 /* Products */;
+			productRefGroup = 08F2AD2E7E3C3D0A22A508F26623FD0F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7B3C5F8E88EB4B2CE3EC78AFB8232566 /* Pods-insulin_calculator */,
+				3383968E74B5371B20BB519B170DC7FD /* Alamofire */,
+				D6E5DF900EE41AD442F39A20FECB5F83 /* Pods-insulin_calculator */,
 				B0E977557CE0BE856D6F38CBECB97236 /* Pods-insulin_calculatorTests */,
 				E296CBC4AD403B33BE0E55DE07719ED0 /* Pods-insulin_calculatorUITests */,
+				27B613D1018881E8D763E62FC9A13A84 /* SVProgressHUD */,
+				1ECB5F5E114D56979960897809CFEE66 /* SwiftyJSON */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3A37D742F567B21CE355CB097CB6C002 /* Resources */ = {
+		28FF73341543B6F0A7DF3C20CFFEA0AA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -318,7 +659,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7C99B43B771CDB474198D30E993D2706 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		91BFD893D848C30AFFDA1CD31E488098 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		967AC5B55612B030AD10881637BCA247 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3D959E75368A2E4D765B6BC03481E48 /* SVProgressHUD.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF1386A4DF1E516E4AE043236CD132D0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -328,11 +691,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2FF94CE71218E3EC1373292F458013EC /* Sources */ = {
+		1926476C44479091FDB8412553D4F3C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D14623D0699069BBC7B4DB2DE57C3B6C /* Pods-insulin_calculator-dummy.m in Sources */,
+				FA7F7916FDAFF005FC5AC76DD4EBDD26 /* Pods-insulin_calculator-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E920E9F6C6EE52DFF4E9CA6C6530DA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35E01DE61490C61B17AE2DF0EF9DAFFE /* SwiftyJSON-dummy.m in Sources */,
+				B765B9C19A774B517DB5F40B88F6461F /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +713,43 @@
 			buildActionMask = 2147483647;
 			files = (
 				106C0AC1132E8BAB8E6A2F68CE42B53F /* Pods-insulin_calculatorUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1C8B029F600160149A2404C342F6E50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E3538A6992A38276764936A9733493D /* AFError.swift in Sources */,
+				772911DA6E33D1CBBC30131B7C8BDBB3 /* Alamofire-dummy.m in Sources */,
+				0A39AF55285A3A4F7CBABB6D822FA4A3 /* Alamofire.swift in Sources */,
+				3E0749AF6C51BCF0E4A41CF1D6A76FED /* DispatchQueue+Alamofire.swift in Sources */,
+				AEA829AB1A8AF2AD077A808AED6B178A /* MultipartFormData.swift in Sources */,
+				73AB05789A4982944AF68DBD013E3EB7 /* NetworkReachabilityManager.swift in Sources */,
+				1D29D2ACADF961F69D32B06FA6A09E28 /* Notifications.swift in Sources */,
+				700D3D95AF9520CB227846DFD943A2DA /* ParameterEncoding.swift in Sources */,
+				355C18EEC82624A06A6CC93965258E33 /* Request.swift in Sources */,
+				059D92B7BBFBEC53E9A3B6E11C5C3B3A /* Response.swift in Sources */,
+				6EFD003458AE7F689DEA720A2030C261 /* ResponseSerialization.swift in Sources */,
+				EB0DD8CEA1A69867A30267439C970440 /* Result.swift in Sources */,
+				8D2A6A90A6DDAF75EA52D471258545CC /* ServerTrustPolicy.swift in Sources */,
+				A1EC41966B261DCE460BCDE5124A1DBE /* SessionDelegate.swift in Sources */,
+				D3FA0AA634AAEA99AB3FABC36BB4958C /* SessionManager.swift in Sources */,
+				77E8F0EB9FFBE2E3EB0C77095C644606 /* TaskDelegate.swift in Sources */,
+				60B6C2A003864AAD3A426448152F67BE /* Timeline.swift in Sources */,
+				AA56769D8733D3F3E7976742D5ABA998 /* Validation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6E2ED5A769830AE5A5BE8AEC9AF7B67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CB05A9D092C2DA32E9901EBE7CF2DE1 /* SVIndefiniteAnimatedView.m in Sources */,
+				17A4314423731C5ECFA194C368EA9CD6 /* SVProgressAnimatedView.m in Sources */,
+				2FD81864BF1F5CA019F711322688E979 /* SVProgressHUD-dummy.m in Sources */,
+				29B74640E09272D559EB299C1BD64880 /* SVProgressHUD.m in Sources */,
+				E77A0694EF7E6B48454108204EEDA7EF /* SVRadialGradientLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,16 +764,34 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1354DB715890883D6A6188ECA9631FA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = 3383968E74B5371B20BB519B170DC7FD /* Alamofire */;
+			targetProxy = 57BD44B0BBCA3A91901890EA3223D9AE /* PBXContainerItemProxy */;
+		};
 		32CB5A3FF7BBE6021863523FD789BF7F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-insulin_calculator";
-			target = 7B3C5F8E88EB4B2CE3EC78AFB8232566 /* Pods-insulin_calculator */;
+			target = D6E5DF900EE41AD442F39A20FECB5F83 /* Pods-insulin_calculator */;
 			targetProxy = 8B5108EA2A3ACE6D060F50D362DBB860 /* PBXContainerItemProxy */;
+		};
+		368F827F37B36CD7EF46CA22FD88BE5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftyJSON;
+			target = 1ECB5F5E114D56979960897809CFEE66 /* SwiftyJSON */;
+			targetProxy = 5B6137AAFC27E0C1E73BA377C146C357 /* PBXContainerItemProxy */;
+		};
+		765AFA1C45E17FA4F1E30909E7300772 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SVProgressHUD;
+			target = 27B613D1018881E8D763E62FC9A13A84 /* SVProgressHUD */;
+			targetProxy = 1C1BFE180BEEF40EDDDBB2C1E0CA76C6 /* PBXContainerItemProxy */;
 		};
 		D997A9773BE206A984E1D729ADB72095 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-insulin_calculator";
-			target = 7B3C5F8E88EB4B2CE3EC78AFB8232566 /* Pods-insulin_calculator */;
+			target = D6E5DF900EE41AD442F39A20FECB5F83 /* Pods-insulin_calculator */;
 			targetProxy = E9F1A37F725210BF92A02AD9DDC55997 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -372,7 +799,7 @@
 /* Begin XCBuildConfiguration section */
 		01B21D2D14BC2184BAEBBEC9A780D722 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 502AA093F23DE45A64DEDC328E029C4C /* Pods-insulin_calculatorUITests.debug.xcconfig */;
+			baseConfigurationReference = E334F4AEC0900391AF6BB1A6B792D2FA /* Pods-insulin_calculatorUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -468,12 +895,10 @@
 			};
 			name = Release;
 		};
-		287FFF83F46CFAFB431529C1A7D4FCDC /* Debug */ = {
+		1687C783866EB2F304C4E2B20781F63D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5C6E251FFA95D039B605BA48FC73949 /* Pods-insulin_calculator.debug.xcconfig */;
+			baseConfigurationReference = 6F93329809A9AF65FDA84850207B582E /* SwiftyJSON.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -483,23 +908,22 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-insulin_calculator/Pods-insulin_calculator-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-insulin_calculator/Pods-insulin_calculator.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
+				PRODUCT_MODULE_NAME = SwiftyJSON;
+				PRODUCT_NAME = SwiftyJSON;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -508,7 +932,7 @@
 		};
 		48A78621EE3811229A8CE5C2C354E52E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6C8CB6C8FCE39C493AFBB1F756C437E /* Pods-insulin_calculatorTests.debug.xcconfig */;
+			baseConfigurationReference = 6613B5EB9C1D2A2D03CE201E39D1A51F /* Pods-insulin_calculatorTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -544,12 +968,10 @@
 			};
 			name = Debug;
 		};
-		E6E1B7F8599C7717E1BEB071AFF3604F /* Release */ = {
+		4C798A40F55440905C60A6E54723541F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4BE31590E3A6E32F218D94848223D88 /* Pods-insulin_calculatorUITests.release.xcconfig */;
+			baseConfigurationReference = 8D157101A6EF5B04C3989A52E326764C /* SVProgressHUD.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -559,23 +981,22 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-insulin_calculatorUITests/Pods-insulin_calculatorUITests-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-insulin_calculatorUITests/Pods-insulin_calculatorUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
+				PRODUCT_MODULE_NAME = SVProgressHUD;
+				PRODUCT_NAME = SVProgressHUD;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -583,9 +1004,151 @@
 			};
 			name = Release;
 		};
-		E959C41ABCF5BFBB2306EBE6BF00468E /* Release */ = {
+		5158E71F0F56B3AE879A77FD0D019086 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 182ED5D3E82E51769966B038BE7698A0 /* Pods-insulin_calculator.release.xcconfig */;
+			baseConfigurationReference = 8D157101A6EF5B04C3989A52E326764C /* SVProgressHUD.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
+				PRODUCT_MODULE_NAME = SVProgressHUD;
+				PRODUCT_NAME = SVProgressHUD;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		533220A7363132F85843031FA4F2AAAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF781C4911E373F1DBE06758F47A6A1A /* Alamofire.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Alamofire-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				PRODUCT_MODULE_NAME = Alamofire;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7A9C609C7B4A0B3B64E39C43B0A1ED9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F93329809A9AF65FDA84850207B582E /* SwiftyJSON.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
+				PRODUCT_MODULE_NAME = SwiftyJSON;
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9838C58BD1AA67DBD29475983CB12D4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF781C4911E373F1DBE06758F47A6A1A /* Alamofire.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Alamofire-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				PRODUCT_MODULE_NAME = Alamofire;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C145757FF53FEF97760A4620252AF585 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F9B5DB6D3AC782FD4F2DDED40A02981 /* Pods-insulin_calculator.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -608,6 +1171,83 @@
 				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-insulin_calculator/Pods-insulin_calculator.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E5EEB6F1799D8A742BDF7DB2EBA5C4FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 480F319418C313AFB83F8621F54BFA78 /* Pods-insulin_calculator.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-insulin_calculator/Pods-insulin_calculator-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-insulin_calculator/Pods-insulin_calculator.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E6E1B7F8599C7717E1BEB071AFF3604F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0AB520CB661D78CB328B6FD7A903EC2 /* Pods-insulin_calculatorUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-insulin_calculatorUITests/Pods-insulin_calculatorUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-insulin_calculatorUITests/Pods-insulin_calculatorUITests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -688,7 +1328,7 @@
 		};
 		FB1652602B9460D8C6D2968D1FD95F8C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5EB95327A3E2267983393AA377787D34 /* Pods-insulin_calculatorTests.release.xcconfig */;
+			baseConfigurationReference = 84B2FBFE277588273FCB93A18C7D5E9B /* Pods-insulin_calculatorTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -728,20 +1368,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		015B438F4CE79C1589C146B5EE1D47FF /* Build configuration list for PBXNativeTarget "SwiftyJSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1687C783866EB2F304C4E2B20781F63D /* Debug */,
+				7A9C609C7B4A0B3B64E39C43B0A1ED9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ED7888FA6713EABBF66D26A8003AD1CA /* Debug */,
 				1422B121EAEAEA11307496903FA623C6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		784C74C04668E769C31D5F5451AF8611 /* Build configuration list for PBXNativeTarget "Pods-insulin_calculator" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				287FFF83F46CFAFB431529C1A7D4FCDC /* Debug */,
-				E959C41ABCF5BFBB2306EBE6BF00468E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -755,11 +1395,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		A98D52C1140948044C2D2B2CE8B676E4 /* Build configuration list for PBXNativeTarget "SVProgressHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5158E71F0F56B3AE879A77FD0D019086 /* Debug */,
+				4C798A40F55440905C60A6E54723541F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DF84F830D8E30581E55DA8334C272DCB /* Build configuration list for PBXNativeTarget "Pods-insulin_calculatorUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				01B21D2D14BC2184BAEBBEC9A780D722 /* Debug */,
 				E6E1B7F8599C7717E1BEB071AFF3604F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5FC960F430B843FB2A7F03913EC8E09 /* Build configuration list for PBXNativeTarget "Pods-insulin_calculator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5EEB6F1799D8A742BDF7DB2EBA5C4FD /* Debug */,
+				C145757FF53FEF97760A4620252AF585 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E87124444A44B7DB55208E7FEC21D331 /* Build configuration list for PBXNativeTarget "Alamofire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				533220A7363132F85843031FA4F2AAAB /* Debug */,
+				9838C58BD1AA67DBD29475983CB12D4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

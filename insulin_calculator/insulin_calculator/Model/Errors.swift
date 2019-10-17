@@ -12,3 +12,8 @@ import Foundation
 enum ValueError: Error {
     case shapeMismatch
 }
+
+enum NetworkError: Error {
+    case connectionLost
+    case unexpectedResponse
+}

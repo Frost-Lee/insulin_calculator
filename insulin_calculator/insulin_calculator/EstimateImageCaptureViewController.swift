@@ -28,6 +28,9 @@ class EstimateImageCaptureViewController: UIViewController {
     private var estimateImageCaptureManager: EstimateImageCaptureManager!
     private var foodSegmentationManager: FoodSegmentationManager!
     
+    private var dataManager: DataManager = DataManager.shared
+    private var backendConnector: BackendConnector = BackendConnector.shared
+    
     /**
      An array for caching data captured by `EstimateImageCaptureManager`. The elements stands for
      the photo captured, the attitude when capturing the photo, and the crop rect for the photo.
@@ -67,24 +70,54 @@ class EstimateImageCaptureViewController: UIViewController {
         estimateImageCaptureManager.captureImage()
     }
     
-    private func submitCapturedData(photo: AVCapturePhoto, attitude: CMAttitude, rect: CGRect, mask: MLMultiArray) {
+    private func submitCapturedData(
+        photo: AVCapturePhoto,
+        attitude: CMAttitude,
+        rect: CGRect,
+        mask: MLMultiArray
+    ) {
+        var jsonURL: URL?, photoURL: URL?
+        let group = DispatchGroup()
+        group.enter()
         cacheEstimateImageCaptureData(
-            token: "abcd1234",
             depthMap: convertAndCropDepthData(depthData: photo.depthData!, rect: rect),
             foodSegmentationMask: try! convertSegmentMaskData(multiArray: mask),
             calibration: photo.depthData!.cameraCalibrationData!,
             attitude: attitude,
             cropRect: rect
         ) { url in
-            let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
-            self.present(activityViewController, animated: true, completion: nil)
+            jsonURL = url
+            group.leave()
         }
-        UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: try! cropImage(photo: photo, rect: rect)), nil, nil, nil)
-        captureButton.isEnabled = true
+        group.enter()
+        dataManager.saveTemporaryFile(
+            data: UIImage(cgImage: try! cropImage(photo: photo, rect: rect)).jpegData(compressionQuality: 1.0)!,
+            extensionName: "jpg"
+        ) { url in
+            photoURL = url
+            group.leave()
+        }
+        group.notify(queue: .main) {
+            self.backendConnector.getRecognitionResult(
+                token: "abcd1234",
+                jsonURL: jsonURL!,
+                photoURL: photoURL!
+            ) { result, error in
+                self.captureButton.isEnabled = true
+            }
+        }
+//        let activityViewController = UIActivityViewController(activityItems: [jsonURL!], applicationActivities: [])
+//        self.present(activityViewController, animated: true, completion: nil)
+//        UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: try! cropImage(photo: photo, rect: rect)), nil, nil, nil)
 //        SVProgressHUD.dismiss()
     }
     
     // MARK: - Orientation Indicator Configuration
+    /**
+     - TODO:
+        Wripping the orientation indicator as a separate helper `UIView` object instead of initializing it within
+        this view controller.
+     */
     
     private func configureOrientationIndicator() {
         let timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 60.0, repeats: true) { timer in
