@@ -89,7 +89,7 @@ struct RecognitionResult {
     var area: Double
     /// The candidates of the food classification. Once specify a candidate, its properties can be used to conclude
     /// the total nutrition facts about this kind of food.
-    var candidates: RecognitionEntityCandidate
+    var candidates: [RecognitionEntityCandidate]
     
     init(json: JSON) throws {
         guard
@@ -108,7 +108,7 @@ struct RecognitionResult {
         )
         volume = json["volume"].double!
         area = json["area"].double!
-        candidates = try RecognitionEntityCandidate(json: json)
+        candidates = try json["candidates"].arrayValue.map{try RecognitionEntityCandidate(json: $0)}
     }
 }
 

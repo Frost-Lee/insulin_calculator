@@ -84,29 +84,26 @@ def _get_area_volume_map(depth_map, calibration, attitude):
     return area_map, volume_map
 
 
-def get_area_volume(depth_map, calibration, attitude, entity_label):
+def get_area_volume(depth_map, calibration, attitude, label_mask):
     """ Get the estimated top surface area and volume of each object specified by 
-        `entity_label`.
+        `label_mask`.
     
     Args:
         depth_map: The depth map captured by device, represented as a numpy array.
         calibration: The camera calibration data when capturing the depth map.
         attitude: The device attitude data when capturing the image.
-        entity_label: The entity label mask of the depth map, it should be of shape 
+        label_mask: The entity label mask of the depth map, it should be of shape 
             `config.UNIFIED_IMAGE_SIZE`. Within these labels, 0 stands for the 
             background, and other positive integers stands for different objects.
     
     Returns:
-        A dictionary object. The keys are the entity ids except the background in 
-        `entity_label`, and the corresponding value stands for `(area, volume)`, 
-        measured in square meter and cube meter.
+        A area volume list. The values stands for `(area, volume)`, measured in 
+        square meter and cube meter.
     """
     depth_map_regulated = cv2.resize(depth_map, config.UNIFIED_IMAGE_SIZE)
     area_map, volume_map = _get_area_volume_map(depth_map_regulated, calibration, attitude)
-    result_dict = {
-        food_id : (
-            np.sum(area_map[np.where(entity_label == food_id)]),
-            np.sum(volume_map[np.where(entity_label == food_id)])
-        ) for food_id in np.unique(entity_label[1:])
-    }
-    return result_dict
+    area_volume_list = [(
+        np.sum(area_map[np.where(label_mask == food_id)]),
+        np.sum(volume_map[np.where(label_mask == food_id)])
+    )for food_id in np.unique(label_mask[1:])]
+    return area_volume_list

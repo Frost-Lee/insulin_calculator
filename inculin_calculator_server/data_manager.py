@@ -1,6 +1,5 @@
 import os
 import datetime
-import json
 import numpy as np
 from PIL import Image
 
@@ -8,7 +7,7 @@ from PIL import Image
 storage_dir = '/basepath/insulin_calculator_data/recognition_session_data/'
 
 
-class Session_Data_Manager(object):
+class SessionDataManager(object):
     """ The manager that handles file I/O for a session.
 
     Attributes:
@@ -35,8 +34,8 @@ class Session_Data_Manager(object):
         """
         now = datetime.datetime.now()
         session_dir = os.path.join(storage_dir, [
-            '_'.join(map(str, (now.year, now.month))), 
-            '_'.join(map(str, (now.day, now.hour, now.minute, now.second))),
+            '{}_{}'.format(*map(str, (now.year, now.month))),
+            '{}_{}_{}_{}'.format(*map(str, (now.day, now.hour, now.minute, now.second))),
             self.session_id
         ])
         os.makedirs(session_dir)
@@ -67,11 +66,11 @@ class Session_Data_Manager(object):
     
     def save_recognition_file(self, recognition_json):
         """ Store the recognition result for the session, which is represented 
-            as a json object.
+            as a json string.
         
         Args:
-            recognition_json: The recognition result to save. A json object.
+            recognition_json: The recognition result to save. A json string.
         """
-        save_path = os.path.join(self.session_dir, '.'.join(('recognition', 'json')))
+        save_path = os.path.join(self.session_dir, '{}.{}'.format('recognition', 'json'))
         with open(save_path, 'w') as out_file:
-            out_file.write(json.dumps(recognition_json, indent=4, sort_keys=True))
+            out_file.write(recognition_json)

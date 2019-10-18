@@ -5,10 +5,13 @@ import flask
 import fvolume.classification
 import fvolume.estimation
 import fvolume.recognition
+import fdensitylib.density
+
 import data_manager
 
 
 app = flask.Flask(__name__)
+
 
 @app.route('/nutritionestimation', methods=['GET', 'POST'])
 def response_nutrition_estimate():
@@ -17,10 +20,79 @@ def response_nutrition_estimate():
         flask.abort(400, 'Unexpected file attachments.')
     if not (args.get('session_id') and args.get('token')):
         flask.abort(400, 'Request metadata not found.')
-    session_data_manager = data_manager.Session_Data_Manager(args.get('session_id'))
+    session_data_manager = data_manager.SessionDataManager(args.get('session_id'))
     session_data_manager.register_image_file(files['image'])
     session_data_manager.register_peripheral_file(files['peripheral'])
+    response = _get_nutrition_estimate(session_data_manager)
+    return response
 
+
+def _get_nutrition_estimate(session_data_manager):
+    """ Return the nutrition estimate of a session and store the result.
+
+    Args:
+        session_data_manager: The `SessionDataManager` object of this session. 
+            The method assume the `image` and `peripheral` attribute of the 
+            `session_data_manager` exist.
+    """
+    depth_map = np.array(session_data_manager.peripheral['depth_data'])
+    seg_mask = np.array(session_data_manager.peripheral['segmentation_mask'])
+    calibration = session_data_manager.peripheral['calibration_data']
+    attitude = session_data_manager.peripheral['device_attitude']
+    label_mask, boxes, buffers = fvolume.recognition.get_recognition_results(
+        session_data_manager.image, 
+        seg_mask
+    )
+    area_volumes = fvolume.estimation.get_area_volume(
+        depth_map,
+        calibration,
+        attitude,
+        label_mask
+    )
+    classifications = fvolume.classification.get_classification_result(
+        buffers
+    )
+    densities = [[
+        fdensitylib.density.get_density(candidate) for candidate in candidates
+    ] for candidates in classifications]
+    response = _format_estimate_response(classifications, area_volumes, densities, boxes)
+    session_data_manager.save_recognition_file(response)
+    return response
+
+
+def _format_estimate_response(classifications, area_volumes, densities, boxes):
+    """ Format the nutrition estimation returned by the model to a json string.
+
+    Note that all arguments are lists, and they should follow the same object 
+    order.
+
+    Args:
+        classifications: The food classifications. Each classification contains 
+            several candidates, and each candidates object is a json object containing 
+            one specific food information.
+        area_volumes: The area and volume estimation of all objects. Each item 
+            is `(area, volume)`.
+        densities: The density look up of all objects. Each item is 
+            `(area_density, volume_density)`.
+        boxes: A list of object boxes. Each object box is represented as a list 
+            of tuples, which stands for 
+            `[(width min, width max), (height min, height max)]`.
+    """
+    candidates_list = classifications
+    for i, candidates in enumerate(candidates_list):
+        for j, candidate in enumerate(candidates):
+            candidates_list[i][j]['volume_density'] = densities[i][j][0]
+            candidates_list[i][j]['area_density'] = densities[i][j][1]
+    response = {
+        'results' : [{
+            'area' : av[0],
+            'volume' : av[1],
+            'bounding_box' : [item for tp in bb for item in tp],
+            'candidates' : cs
+        } for av, bb, cs in zip(area_volumes, boxes, candidates_list)]
+    }
+    return json.dumps(response, indent=4, sort_keys=True)
+    
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

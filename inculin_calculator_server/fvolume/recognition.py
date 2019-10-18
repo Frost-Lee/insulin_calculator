@@ -113,7 +113,7 @@ def get_recognition_results(image, mask):
         will be considered as food.
         `boxes` is a list of entity boxes having the same order with `label_mask`. 
         Each entity box is represented as a list of tuples, which stands for 
-        `[(min width, max width), (min height, max height)]`. Background is not 
+        `[(width min, width max), (height min, height max)]`. Background is not 
         included in `boxes`.
         `buffers` is a list of image buffers, each image is the cropped food 
         image in `image`, and are all resized to `config.CLASSIFIER_IMAGE_SIZE`.
