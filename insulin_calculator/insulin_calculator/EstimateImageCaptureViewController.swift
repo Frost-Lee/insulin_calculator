@@ -98,18 +98,20 @@ class EstimateImageCaptureViewController: UIViewController {
             group.leave()
         }
         group.notify(queue: .main) {
-            self.backendConnector.getRecognitionResult(
-                token: "abcd1234",
-                jsonURL: jsonURL!,
-                photoURL: photoURL!
-            ) { result, error in
-                self.captureButton.isEnabled = true
-            }
+            let activityViewController = UIActivityViewController(activityItems: [jsonURL!], applicationActivities: [])
+            self.present(activityViewController, animated: true, completion: nil)
+            UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: try! cropImage(photo: photo, rect: rect)), nil, nil, nil)
+            self.captureButton.isEnabled = true
+//            SVProgressHUD.dismiss()
+//            self.backendConnector.getRecognitionResult(
+//                token: "abcd1234",
+//                jsonURL: jsonURL!,
+//                photoURL: photoURL!
+//            ) { result, error in
+//                self.captureButton.isEnabled = true
+//            }
         }
-//        let activityViewController = UIActivityViewController(activityItems: [jsonURL!], applicationActivities: [])
-//        self.present(activityViewController, animated: true, completion: nil)
-//        UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: try! cropImage(photo: photo, rect: rect)), nil, nil, nil)
-//        SVProgressHUD.dismiss()
+
     }
     
     // MARK: - Orientation Indicator Configuration

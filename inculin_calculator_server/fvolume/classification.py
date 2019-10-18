@@ -13,11 +13,15 @@ def _get_raw_classification_result(buffers):
     Returns:
         The list of responses from the classifier of the `buffer`.
     """
-    responses= [requests.post(
-        url=config.CLASSIFIER_URL,
-        headers={'Content-type': 'image/jpeg'},
-        data=buffer.getvalue()
-    ) for buffer in buffers]
+    # TODO(canchen.lee@gmail.com): Control the number of request to Calorie mama 
+    # API, avoid abuse.
+    print(len(buffers))
+    return []
+    # responses= [requests.post(
+    #     url=config.CLASSIFIER_URL,
+    #     headers={'Content-type': 'image/jpeg'},
+    #     data=buffer.getvalue()
+    # ) for buffer in buffers]
 
 
 def get_classification_result(buffers):

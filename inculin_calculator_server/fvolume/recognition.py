@@ -128,6 +128,6 @@ def get_recognition_results(image, mask):
             config.CLASSIFIER_IMAGE_SIZE
         ) for box in boxes
     ]
-    buffers = [io.BytesIO() for _ in range(len(image))]
+    buffers = [io.BytesIO() for _ in range(len(images))]
     [plt.imsave(buffer, image, format='jpeg') for buffer, image in zip(buffers, images)]
     return label_mask, boxes, buffers

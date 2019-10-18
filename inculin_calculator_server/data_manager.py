@@ -1,10 +1,11 @@
 import os
 import datetime
+import json
 import numpy as np
 from PIL import Image
 
 
-storage_dir = '/basepath/insulin_calculator_data/recognition_session_data/'
+STORAGE_DIR = '/Users/Frost/Desktop/insulin_calculator_data/recognition_session_data/'
 
 
 class SessionDataManager(object):
@@ -21,22 +22,22 @@ class SessionDataManager(object):
     """
     def __init__(self, session_id):
         self.session_id = session_id
-        self.session_dir = _make_session_dir()
+        self.session_dir = self._make_session_dir()
         self.image = None
         self.peripheral = None
     
     def _make_session_dir(self):
         """ Create the session directory of this session. The directory is 
-            `/storage_dir/month/time/session_id`.
+            `/STORAGE_DIR/month/time/session_id`.
         
         Returns:
             The created session directory path.
         """
         now = datetime.datetime.now()
-        session_dir = os.path.join(storage_dir, [
+        session_dir = os.path.join(STORAGE_DIR, *[
             '{}_{}'.format(*map(str, (now.year, now.month))),
-            '{}_{}_{}_{}'.format(*map(str, (now.day, now.hour, now.minute, now.second))),
-            self.session_id
+            str(now.day),
+            '{}_{}_{}_{}'.format(*map(str, (now.hour, now.minute, now.second, self.session_id)))
         ])
         os.makedirs(session_dir)
         return session_dir

@@ -15,7 +15,7 @@ app = flask.Flask(__name__)
 
 @app.route('/nutritionestimation', methods=['GET', 'POST'])
 def response_nutrition_estimate():
-    files, args = flask.request.files, flask.request.args
+    files, args = flask.request.files, flask.request.form
     if not (files['image'] and files['peripheral']):
         flask.abort(400, 'Unexpected file attachments.')
     if not (args.get('session_id') and args.get('token')):
