@@ -105,5 +105,5 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     area_volume_list = [(
         np.sum(area_map[np.where(label_mask == food_id)]),
         np.sum(volume_map[np.where(label_mask == food_id)])
-    )for food_id in np.unique(label_mask[1:])]
+    )for food_id in np.unique(label_mask)][1:]
     return area_volume_list

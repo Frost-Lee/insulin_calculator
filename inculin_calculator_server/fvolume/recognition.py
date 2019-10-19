@@ -7,8 +7,6 @@ import keras
 
 from . import config
 
-# segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
-# segmentation_model._make_predict_function()
 segmentation_model = None
 
 
@@ -147,7 +145,6 @@ def get_recognition_results(image):
     """
     resized_image = cv2.resize(image, config.UNIFIED_IMAGE_SIZE)
     mask = _get_segmentation(resized_image)
-    np.save('/Users/Frost/Desktop/a.npy', mask)
     label_mask, boxes = _get_entity_labeling(resized_image, mask)
     multiplier = config.BLOCK_REDUCT_WINDOW[0] * image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
     images = [
