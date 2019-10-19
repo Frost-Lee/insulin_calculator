@@ -26,7 +26,6 @@ class EstimateImageCaptureViewController: UIViewController {
     @IBOutlet weak var indicatorVerticalConstraint: NSLayoutConstraint!
     
     private var estimateImageCaptureManager: EstimateImageCaptureManager!
-    private var foodSegmentationManager: FoodSegmentationManager!
     
     private var dataManager: DataManager = DataManager.shared
     private var backendConnector: BackendConnector = BackendConnector.shared
@@ -43,7 +42,6 @@ class EstimateImageCaptureViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         estimateImageCaptureManager = EstimateImageCaptureManager(delegate: self)
-        foodSegmentationManager = FoodSegmentationManager(delegate: self)
         previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
 //        SVProgressHUD.setDefaultStyle(.dark)
     }
@@ -73,15 +71,13 @@ class EstimateImageCaptureViewController: UIViewController {
     private func submitCapturedData(
         photo: AVCapturePhoto,
         attitude: CMAttitude,
-        rect: CGRect,
-        mask: MLMultiArray
+        rect: CGRect
     ) {
         var jsonURL: URL?, photoURL: URL?
         let group = DispatchGroup()
         group.enter()
         cacheEstimateImageCaptureData(
             depthMap: convertAndCropDepthData(depthData: photo.depthData!, rect: rect),
-            foodSegmentationMask: try! convertSegmentMaskData(multiArray: mask),
             calibration: photo.depthData!.cameraCalibrationData!,
             attitude: attitude,
             cropRect: rect
@@ -162,20 +158,10 @@ extension EstimateImageCaptureViewController: EstimateImageCaptureDelegate {
         guard photo.depthData!.cameraCalibrationData != nil else {return}
         let previewLayer = estimateImageCaptureManager.previewLayer!
         let cropRect = previewLayer.metadataOutputRectConverted(fromLayerRect: previewLayer.bounds)
-        cachedData = (photo, attitude, cropRect)
-        foodSegmentationManager.predict(image: photo.cgImageRepresentation()!.takeUnretainedValue())
-    }
-}
-
-
-extension EstimateImageCaptureViewController: FoodSegmentationDelegate {
-    func maskOutput(multiArray: MLMultiArray) {
         submitCapturedData(
-            photo: cachedData!.0,
-            attitude: cachedData!.1,
-            rect: cachedData!.2,
-            mask: multiArray
+            photo: photo,
+            attitude: attitude,
+            rect: cropRect
         )
-        cachedData = nil
     }
 }

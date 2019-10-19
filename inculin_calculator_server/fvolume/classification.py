@@ -16,12 +16,12 @@ def _get_raw_classification_result(buffers):
     # TODO(canchen.lee@gmail.com): Control the number of request to Calorie mama 
     # API, avoid abuse.
     print(len(buffers))
-    return []
-    # responses= [requests.post(
-    #     url=config.CLASSIFIER_URL,
-    #     headers={'Content-type': 'image/jpeg'},
-    #     data=buffer.getvalue()
-    # ) for buffer in buffers]
+    assert len(buffers) < 10
+    return [requests.post(
+        url=config.CLASSIFIER_URL,
+        headers={'Content-type': 'image/jpeg'},
+        data=buffer.getvalue()
+    ) for buffer in buffers]
 
 
 def get_classification_result(buffers):

@@ -20,8 +20,6 @@
 		273B47FF2350BC630093B7DE /* insulin_calculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */; };
 		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
 		27B30AE22350C48A007347F5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
-		27BF1D632350EA7200087274 /* FoodSegmentationModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D622350EA7200087274 /* FoodSegmentationModel.mlmodel */; };
-		27BF1D652350EB1000087274 /* FoodSegmentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D642350EB1000087274 /* FoodSegmentationManager.swift */; };
 		27BF1D672350FF7700087274 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D662350FF7700087274 /* Errors.swift */; };
 		67D5F1E84B73CD79928CDFAC /* Pods_insulin_calculatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F22E0B47A17051DB3D8877F /* Pods_insulin_calculatorTests.framework */; };
 		6DACAC56ADA1C7A9B6DBF3D8 /* Pods_insulin_calculatorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09ED6C9BD80B7C06F1D81FA /* Pods_insulin_calculatorUITests.framework */; };
@@ -66,8 +64,6 @@
 		273B48002350BC630093B7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		27B30AE12350C48A007347F5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		27BF1D622350EA7200087274 /* FoodSegmentationModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FoodSegmentationModel.mlmodel; sourceTree = "<group>"; };
-		27BF1D642350EB1000087274 /* FoodSegmentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSegmentationManager.swift; sourceTree = "<group>"; };
 		27BF1D662350FF7700087274 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		39B2B8BA27A8ACF35ABC48B6 /* Pods-insulin_calculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorTests.release.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorTests/Pods-insulin_calculatorTests.release.xcconfig"; sourceTree = "<group>"; };
 		3F22E0B47A17051DB3D8877F /* Pods_insulin_calculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_insulin_calculatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,7 +132,6 @@
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
 				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
-				27BF1D612350EA5900087274 /* Resources */,
 				27B30AE32350C491007347F5 /* Model */,
 				273B47E52350BC620093B7DE /* Assets.xcassets */,
 				273B47E72350BC620093B7DE /* LaunchScreen.storyboard */,
@@ -170,19 +165,10 @@
 				27BF1D662350FF7700087274 /* Errors.swift */,
 				2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */,
 				27B30AE12350C48A007347F5 /* DataManager.swift */,
-				27BF1D642350EB1000087274 /* FoodSegmentationManager.swift */,
 				272AF2CB2358B3110053F214 /* BackendConnector.swift */,
 				272AF2CD2358B6400053F214 /* Structures.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		27BF1D612350EA5900087274 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				27BF1D622350EA7200087274 /* FoodSegmentationModel.mlmodel */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		2E373B0639C780AFDDB63912 /* Frameworks */ = {
@@ -440,9 +426,7 @@
 			files = (
 				272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */,
 				273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */,
-				27BF1D652350EB1000087274 /* FoodSegmentationManager.swift in Sources */,
 				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
-				27BF1D632350EA7200087274 /* FoodSegmentationModel.mlmodel in Sources */,
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
 				272AF2CE2358B6400053F214 /* Structures.swift in Sources */,

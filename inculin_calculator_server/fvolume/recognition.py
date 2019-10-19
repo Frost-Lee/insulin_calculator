@@ -3,8 +3,33 @@ import numpy as np
 import cv2
 import io
 import matplotlib.pyplot as plt
+import keras
 
 from . import config
+
+segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
+
+
+def _get_segmentation(image):
+    """ Return the segmentation mask for the image.
+
+    Args:
+        image: The image to predict, represented as a numpy array with shape 
+            `(*configure.UNIFIED_IMAGE_SIZE, 3)`.
+    
+    Returns:
+        The segmentation mask with shape `config.UNIFIED_IMAGE_SIZE`.
+    """
+    global segmentation_model
+    def center_normalize(image):
+        mean_list = np.reshape(np.array([32.768, 32.768, 32.768]), (1, 1, 3))
+        std_list = np.reshape(np.array([72.57518, 66.39548, 61.829777]), (1, 1, 3))
+        return (image - mean_list) / std_list
+    return np.reshape(
+        segmentation_model.predict(np.reshape(center_normalize(image), (1, *config.UNIFIED_IMAGE_SIZE, 3)))[0], 
+        config.UNIFIED_IMAGE_SIZE
+    )
+
 
 def _get_entity_labeling(image, mask):
     """ Getting the entity labeling that cover the food entities in the image.
@@ -92,7 +117,7 @@ def _index_crop(array, i, multiplier):
         ]
 
 
-def get_recognition_results(image, mask):
+def get_recognition_results(image):
     """ Get the recognition result of the color image with corresponding mask.
 
     Get a list of image buffers with the cropped food image in `image`. Images 
@@ -100,10 +125,6 @@ def get_recognition_results(image, mask):
     
     Args:
         image: The raw resolution colored square image, represented as a numpy array.
-        mask: The food segmentation mask. A numpy array with resolution 
-            `config.UNIFIED_IMAGE_SIZE`, and each pixel stands for the probability 
-            of the pixel being food. The `mask` and `image` are basically the same 
-            image with different resolution.
     
     Returns:
         A tuple `(label_mask, boxes, buffers)`.
@@ -120,7 +141,9 @@ def get_recognition_results(image, mask):
         Note that the coordinates of both return values are reduced according to 
         `config.BLOCK_REDUCT_WINDOW` on the basis of `config.UNIFIED_IMAGE_SIZE`.
     """
-    label_mask, boxes = _get_entity_labeling(cv2.resize(image, config.UNIFIED_IMAGE_SIZE), mask)
+    resized_image = cv2.resize(image, config.UNIFIED_IMAGE_SIZE)
+    mask = _get_segmentation(resized_image)
+    label_mask, boxes = _get_entity_labeling(resized_image, mask)
     multiplier = config.BLOCK_REDUCT_WINDOW[0] * image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
     images = [
         cv2.resize(

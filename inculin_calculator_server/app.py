@@ -36,12 +36,10 @@ def _get_nutrition_estimate(session_data_manager):
             `session_data_manager` exist.
     """
     depth_map = np.array(session_data_manager.peripheral['depth_data'])
-    seg_mask = np.array(session_data_manager.peripheral['segmentation_mask'])
     calibration = session_data_manager.peripheral['calibration_data']
     attitude = session_data_manager.peripheral['device_attitude']
     label_mask, boxes, buffers = fvolume.recognition.get_recognition_results(
-        session_data_manager.image, 
-        seg_mask
+        session_data_manager.image
     )
     area_volumes = fvolume.estimation.get_area_volume(
         depth_map,
