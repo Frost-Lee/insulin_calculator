@@ -36,9 +36,13 @@ def get_classification_result(buffers):
         corresponding image, or `None` if not.
     """
     responses = _get_raw_classification_result(buffers)
-    json_contents = [response.content for response in responses]
+    json_contents = [json.loads(response.content.decode('utf8')) for response in responses]
     food_items = [
-        [item for result in content['results'] for item in result['items']][:config.CLASSIFICATION_CANDIDATES] 
+        [item for result in content['results'] for item in sorted(
+            result['items'], 
+            key=lambda x: x['score'], 
+            reverse=True
+        )][:config.CLASSIFICATION_CANDIDATES] 
         if content['is_food'] else None for content in json_contents
     ]
     return food_items

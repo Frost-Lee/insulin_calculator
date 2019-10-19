@@ -85,7 +85,7 @@ def _format_estimate_response(classifications, area_volumes, densities, boxes):
         'results' : [{
             'area' : av[0],
             'volume' : av[1],
-            'bounding_box' : [item for tp in bb for item in tp],
+            'bounding_box' : [int(item) for tp in bb for item in tp],
             'candidates' : cs
         } for av, bb, cs in zip(area_volumes, boxes, candidates_list)]
     }
