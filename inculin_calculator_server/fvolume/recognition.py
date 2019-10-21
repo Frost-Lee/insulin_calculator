@@ -4,31 +4,35 @@ import cv2
 import io
 import matplotlib.pyplot as plt
 import keras
+import tensorflow as tf
 
 from . import config
 
-segmentation_model = None
-
+tf_session = tf.Session()
+tf_graph = tf.get_default_graph()
+tf.keras.backend.set_session(tf_session)
+segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
 
 def _get_segmentation(image):
     """ Return the segmentation mask for the image.
 
     Args:
-        image: The image to predict, represented as a numpy array with shape 
+        image: The image to predict, represented as a numpy array with shape
             `(*configure.UNIFIED_IMAGE_SIZE, 3)`.
-    
+
     Returns:
         The segmentation mask with shape `config.UNIFIED_IMAGE_SIZE`.
     """
-    global segmentation_model
-    if segmentation_model is None:
-        segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
+    global segmentation_model, tf_graph, tf_session
     def center_normalize(image):
         mean_list = np.reshape(np.array([32.768, 32.768, 32.768]), (1, 1, 3))
         std_list = np.reshape(np.array([72.57518, 66.39548, 61.829777]), (1, 1, 3))
         return (image - mean_list) / std_list
+    with tf_graph.as_default():
+        tf.keras.backend.set_session(tf_session)
+        predicted_result = segmentation_model.predict(np.reshape(center_normalize(image), (1, *config.UNIFIED_IMAGE_SIZE, 3)))[0]
     return np.reshape(
-        segmentation_model.predict(np.reshape(center_normalize(image), (1, *config.UNIFIED_IMAGE_SIZE, 3)))[0], 
+        predicted_result,
         config.UNIFIED_IMAGE_SIZE
     )
 
