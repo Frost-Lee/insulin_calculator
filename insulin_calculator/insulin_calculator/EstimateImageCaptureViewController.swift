@@ -29,21 +29,11 @@ class EstimateImageCaptureViewController: UIViewController {
     
     private var dataManager: DataManager = DataManager.shared
     private var backendConnector: BackendConnector = BackendConnector.shared
-    
-    /**
-     An array for caching data captured by `EstimateImageCaptureManager`. The elements stands for
-     the photo captured, the attitude when capturing the photo, and the crop rect for the photo.
-     
-     - TODO:
-        Expecting a better way to achieve this functionality.
-     */
-    private var cachedData: (AVCapturePhoto, CMAttitude, CGRect)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         estimateImageCaptureManager = EstimateImageCaptureManager(delegate: self)
         previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
-//        SVProgressHUD.setDefaultStyle(.dark)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +47,17 @@ class EstimateImageCaptureViewController: UIViewController {
         estimateImageCaptureManager.stopRunning()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        switch segue.identifier {
+        case "showEstimateResultViewController":
+            let destination = (segue.destination as! UINavigationController).topViewController!
+            (destination as! EstimateResultViewController).sessionRecognitionResult = sender as? SessionRecognitionResult
+        default:
+            break
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         estimateImageCaptureManager.previewLayer.frame = previewContainerView.bounds
@@ -64,7 +65,6 @@ class EstimateImageCaptureViewController: UIViewController {
 
     @IBAction func captureButtonTapped(_ sender: UIButton) {
         captureButton.isEnabled = false
-//        SVProgressHUD.show(withStatus: "Processing image data")
         estimateImageCaptureManager.captureImage()
     }
     
@@ -98,14 +98,23 @@ class EstimateImageCaptureViewController: UIViewController {
             self.present(activityViewController, animated: true, completion: nil)
             UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: try! cropImage(photo: photo, rect: rect)), nil, nil, nil)
             self.captureButton.isEnabled = true
-//            SVProgressHUD.dismiss()
-//            self.backendConnector.getRecognitionResult(
-//                token: "abcd1234",
-//                jsonURL: jsonURL!,
-//                photoURL: photoURL!
-//            ) { result, error in
-//                self.captureButton.isEnabled = true
-//            }
+            self.backendConnector.getRecognitionResult(
+                token: "abcd1234",
+                session_id: UUID().uuidString,
+                jsonURL: jsonURL!,
+                photoURL: photoURL!
+            ) { result, error in
+                guard error == nil else {
+                    /**
+                     - TODO:
+                        Error handling steps here
+                     */
+                    self.captureButton.isEnabled = true
+                    return
+                }
+                self.performSegue(withIdentifier: "showEstimateResultViewController", sender: result!)
+                self.captureButton.isEnabled = true
+            }
         }
 
     }

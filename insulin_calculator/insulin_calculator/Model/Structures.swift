@@ -118,8 +118,10 @@ struct RecognitionResult {
 struct SessionRecognitionResult {
     /// The recognition results of different entities in the submitted image.
     var results: [RecognitionResult]
+    var rawJSON: JSON
     
     init(json: JSON) throws {
+        rawJSON = json
         results = try json["results"].arrayValue.map{try RecognitionResult(json: $0)}
     }
 }

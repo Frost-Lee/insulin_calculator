@@ -28,7 +28,7 @@
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orientation_indicator" translatesAutoresizingMaskIntoConstraints="NO" id="d4C-Uz-roE">
                                         <rect key="frame" x="179" y="179" width="16" height="16"/>
-                                        <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="GMP-2u-MLI"/>
                                             <constraint firstAttribute="width" constant="16" id="RQ6-yi-2U0"/>
@@ -46,7 +46,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VkE-Er-OOW">
                                 <rect key="frame" x="20" y="798" width="374" height="64"/>
-                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="F0f-oa-vwT"/>
                                 </constraints>
@@ -76,11 +76,65 @@
                         <outlet property="indicatorVerticalConstraint" destination="jTT-EM-9az" id="Yfh-MO-rcD"/>
                         <outlet property="orientationIndicatorImageView" destination="MIx-Ek-GLJ" id="aek-FH-WVF"/>
                         <outlet property="previewContainerView" destination="U4y-Bu-IfF" id="QDg-w4-ubR"/>
+                        <segue destination="xij-gd-TPe" kind="presentation" identifier="showEstimateResultViewController" id="I8P-sH-7DV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="129.91071428571428"/>
+        </scene>
+        <!--Estimate Result View Controller-->
+        <scene sceneID="fwl-Vq-GZf">
+            <objects>
+                <viewController id="5uu-k4-0Yn" customClass="EstimateResultViewController" customModule="insulin_calculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EQF-wW-U49">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0FF-8h-dk5">
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="0FF-8h-dk5" firstAttribute="leading" secondItem="259-Cf-R6k" secondAttribute="leading" id="N6z-j7-Evl"/>
+                            <constraint firstAttribute="bottom" secondItem="0FF-8h-dk5" secondAttribute="bottom" id="Yed-Q2-biG"/>
+                            <constraint firstItem="0FF-8h-dk5" firstAttribute="trailing" secondItem="259-Cf-R6k" secondAttribute="trailing" id="cYt-F1-4XK"/>
+                            <constraint firstItem="0FF-8h-dk5" firstAttribute="top" secondItem="259-Cf-R6k" secondAttribute="top" id="ifu-bh-HQJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="259-Cf-R6k"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LWp-Pi-eCy"/>
+                    <connections>
+                        <outlet property="responseTextView" destination="0FF-8h-dk5" id="AT2-zG-0CF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o10-13-SOb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2347.826086956522" y="129.91071428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lH0-sI-UZZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xij-gd-TPe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4LY-NJ-gU4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5uu-k4-0Yn" kind="relationship" relationship="rootViewController" id="fbb-t8-TR5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XpF-9N-ZeP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1259" y="130"/>
         </scene>
     </scenes>
     <resources>
