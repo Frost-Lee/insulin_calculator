@@ -94,16 +94,14 @@ class EstimateImageCaptureViewController: UIViewController {
             group.leave()
         }
         group.notify(queue: .main) {
-            let activityViewController = UIActivityViewController(activityItems: [jsonURL!], applicationActivities: [])
-            self.present(activityViewController, animated: true, completion: nil)
-            UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: try! cropImage(photo: photo, rect: rect)), nil, nil, nil)
-            self.captureButton.isEnabled = true
             self.backendConnector.getRecognitionResult(
                 token: "abcd1234",
                 session_id: UUID().uuidString,
                 jsonURL: jsonURL!,
                 photoURL: photoURL!
             ) { result, error in
+                print(result)
+                print(error)
                 guard error == nil else {
                     /**
                      - TODO:

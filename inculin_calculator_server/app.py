@@ -52,7 +52,9 @@ def _get_nutrition_estimate(session_data_manager):
     )
     densities = [[
         fdensitylib.density.get_density(candidate) for candidate in candidates
-    ] for candidates in classifications]
+    ] if candidates is not None else None for candidates in classifications]
+    # For non-food objects, `classifications` and `densities` have `None` values, 
+    # but they still have value in `boxes` and `area_volumes`.
     response = _format_estimate_response(classifications, area_volumes, densities, boxes)
     session_data_manager.save_recognition_file(response)
     return response
@@ -67,11 +69,13 @@ def _format_estimate_response(classifications, area_volumes, densities, boxes):
     Args:
         classifications: The food classifications. Each classification contains 
             several candidates, and each candidates object is a json object containing 
-            one specific food information.
+            one specific food information. A `None` classification indicates the 
+            corresponding item is not food.
         area_volumes: The area and volume estimation of all objects. Each item 
             is `(area, volume)`.
         densities: The density look up of all objects. Each item is 
-            `(area_density, volume_density)`.
+            `(area_density, volume_density)` or `None`, which indicates the item 
+            is not food.
         boxes: A list of object boxes. Each object box is represented as a list 
             of tuples, which stands for 
             `[(width min, width max), (height min, height max)]`.
@@ -85,12 +89,12 @@ def _format_estimate_response(classifications, area_volumes, densities, boxes):
         'results' : [{
             'area' : av[0],
             'volume' : av[1],
-            'bounding_box' : [int(item) for tp in bb for item in tp],
+            'bounding_box' : boxes,
             'candidates' : cs
-        } for av, bb, cs in zip(area_volumes, boxes, candidates_list)]
+        } for av, bb, cs in zip(area_volumes, boxes, candidates_list) if av is not None]
     }
     return json.dumps(response, indent=4, sort_keys=True)
-    
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

@@ -52,17 +52,19 @@ def _get_entity_labeling(image, mask):
         `label_mask` is a 2d numpy array that mark different entities in the image 
         with ascending integers starting from 0, while 0 stand for background. 
         The pixels with a probability greater than `config.FOOD_PROB_THRESHOLD` 
-        will be considered as food.
+        will be considered as food. The size of `label_mask` is reduced from `image`.
         `boxes` is a list of entity boxes having the same order with `label_mask`. 
         Each entity box is represented as a list of tuples, which stands for 
         `[(min width, max width), (min height, max height)]`. Background is not 
-        included in `boxes`.
+        included in `boxes`. The coordinate is relative to `label_mask`.
         Note that the coordinates of both return values are reduced according to 
         `config.BLOCK_REDUCT_WINDOW`. 
     """
     # TODO(canchen.lee@gmail.com): Consider using the colored image along with 
     # the mask to generate entity boxes, which separate enties within one connected 
     # component.
+    # TODO(canchen.lee@gmail.com): Develop a detection algorithm that helps to 
+    # filter too small boxes. Values in `label_mask` should also be changed accordingly.
     bin_func = np.vectorize(lambda x: 0 if x < config.FOOD_PROB_THRESHOLD else 1)
     reduced_mask = bin_func(skimage.measure.block_reduce(mask, config.BLOCK_REDUCT_WINDOW, np.mean))
     label_mask = skimage.measure.label(reduced_mask, neighbors=4, background=0)
@@ -135,17 +137,17 @@ def get_recognition_results(image):
     Returns:
         A tuple `(label_mask, boxes, buffers)`.
         `label_mask` is a 2d numpy array that mark different entities in the image 
-        with ascending integers starting from 0, while 0 stand for background. 
-        The pixels with a probability greater than `config.FOOD_PROB_THRESHOLD` 
-        will be considered as food.
-        `boxes` is a list of entity boxes having the same order with `label_mask`. 
-        Each entity box is represented as a list of tuples, which stands for 
-        `[(width min, width max), (height min, height max)]`. Background is not 
-        included in `boxes`.
+            with ascending integers starting from 0, while 0 stand for background. 
+            The pixels with a probability greater than `config.FOOD_PROB_THRESHOLD` 
+            will be considered as food.
+        `remapped_boxes` is a list of entity boxes. Each entity box is represented 
+            as a list, which stands for `[width min, width max, height min, height max]`. 
+            Background is not included in `boxes`. Values in the list are relative, 
+            that is the value divided by the length of the corresponding edge.
         `buffers` is a list of image buffers, each image is the cropped food 
-        image in `image`, and are all resized to `config.CLASSIFIER_IMAGE_SIZE`.
-        Note that the coordinates of both return values are reduced according to 
-        `config.BLOCK_REDUCT_WINDOW` on the basis of `config.UNIFIED_IMAGE_SIZE`.
+            image in `image`, and are all resized to `config.CLASSIFIER_IMAGE_SIZE`.
+            Note that the coordinates of both return values are reduced according to 
+            `config.BLOCK_REDUCT_WINDOW` on the basis of `config.UNIFIED_IMAGE_SIZE`.
     """
     resized_image = cv2.resize(image, config.UNIFIED_IMAGE_SIZE)
     mask = _get_segmentation(resized_image)
@@ -157,6 +159,7 @@ def get_recognition_results(image):
             config.CLASSIFIER_IMAGE_SIZE
         ) for box in boxes
     ]
+    remapped_boxes = [[float(item / label_mask.shape[0]) for tp in box for item in tp] for box in boxes]
     buffers = [io.BytesIO() for _ in range(len(images))]
     [plt.imsave(buffer, image, format='jpeg') for buffer, image in zip(buffers, images)]
-    return label_mask, boxes, buffers
+    return label_mask, remapped_boxes, buffers

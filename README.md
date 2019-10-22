@@ -55,4 +55,5 @@ Here are some possible ways for improving the performance of this system. They a
 
 ## Copyright
 
-This project is my bachelor thesis project at Massachusetts Institute of Technology (MIT), the copyright terms and conditions should follow [Inventions and Proprietary Information Agreement (IPIA)](https://tlo.mit.edu/learn-about-intellectual-property/ownership/inventions-and-proprietary-information-agreement-ipia) of MIT.
+This project is my bachelor thesis project at Massachusetts Institute of Technology (MIT), the user should not violate terms and conditions specified by [Inventions and Proprietary Information Agreement (IPIA)](https://tlo.mit.edu/learn-about-intellectual-property/ownership/inventions-and-proprietary-information-agreement-ipia) of MIT.
+

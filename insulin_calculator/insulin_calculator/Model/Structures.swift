@@ -14,27 +14,28 @@ import SwiftyJSON
  The nutrition information of a specific kind of food. The units are all kilogram per kilogram.
  */
 struct NutritionInformation {
-    var carbs: Double
-    var calories: Double
-    var fat: Double
-    var sugars: Double
-    var protein: Double
+    var carbs: Double?
+    var calories: Double?
+    var fat: Double?
+    var protein: Double?
     
+    /**
+     - TODO:
+        Not all fields are presented in the response.
+     */
     init(json: JSON) throws {
-        guard
-            json["totalCarbs"].double != nil,
-            json["calories"].double != nil,
-            json["totalFat"].double != nil,
-            json["sugars"].double != nil,
-            json["protein"].double != nil
-        else {
-            throw NetworkError.unexpectedResponse
-        }
-        carbs = json["totalCarbs"].double!
-        calories = json["calories"].double!
-        fat = json["totalFat"].double!
-        sugars = json["sugars"].double!
-        protein = json["protein"].double!
+//        guard
+//            json["totalCarbs"].double != nil,
+//            json["calories"].double != nil,
+//            json["totalFat"].double != nil,
+//            json["protein"].double != nil
+//        else {
+//            throw NetworkError.unexpectedResponse
+//        }
+        carbs = json["totalCarbs"].double
+        calories = json["calories"].double
+        fat = json["totalFat"].double
+        protein = json["protein"].double
     }
 }
 
@@ -64,6 +65,7 @@ struct RecognitionEntityCandidate {
             json["volume_density"].double != nil,
             json["area_density"].double != nil
         else {
+            print("a")
             throw NetworkError.unexpectedResponse
         }
         name = json["name"].string!
@@ -71,6 +73,7 @@ struct RecognitionEntityCandidate {
         score = json["score"].int!
         volumeDensity = json["volume_density"].double!
         areaDensity = json["area_density"].double!
+        print(json["nutrition"])
         nutritionInformation = try NutritionInformation(json: json["nutrition"])
     }
 }
@@ -97,6 +100,7 @@ struct RecognitionResult {
             json["volume"].double != nil,
             json["area"].double != nil
         else {
+            print("b")
             throw NetworkError.unexpectedResponse
         }
         let boundingBoxArray = json["bounding_box"].arrayValue.map{$0.double}.filter{$0 != nil}

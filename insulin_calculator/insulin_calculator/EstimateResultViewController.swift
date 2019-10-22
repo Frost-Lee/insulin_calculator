@@ -14,6 +14,7 @@ class EstimateResultViewController: UIViewController {
     
     var sessionRecognitionResult: SessionRecognitionResult? {
         didSet {
+            guard responseTextView != nil else {return}
             fillTextViewContent(content: sessionRecognitionResult?.rawJSON.rawString())
         }
     }

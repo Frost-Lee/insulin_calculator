@@ -14,7 +14,7 @@ def _get_remapping_intrinsics(depth_map, calibration):
         depth_map: The depth map represented as a numpy array.
         calibration: The camera calibration data when capturing the depth map.
     """
-    # TODO(canchen.lee@gmail.com): The way calculating the optical center might 
+    # FIXME(canchen.lee@gmail.com): The way calculating the optical center might 
     # be errorneous because of the cropping of the image.
     intrinsic_matrix = np.array(calibration['intrinsic_matrix'])
     scale = min(depth_map.shape) / min(calibration['intrinsic_matrix_reference_dimensions'])
