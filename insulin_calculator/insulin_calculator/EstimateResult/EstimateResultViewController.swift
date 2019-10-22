@@ -19,21 +19,25 @@ class EstimateResultViewController: UIViewController {
     @IBOutlet weak var entitySelectCollectionView: UICollectionView!
     @IBOutlet weak var candidateSelectTableView: UITableView!
     
-    var sessionRecognitionResult: SessionRecognitionResult? {
-        didSet {
-            guard sessionRecognitionResult != nil else {return}
-            setRecognitionResult()
-        }
-    }
+    var sessionRecognitionResult: SessionRecognitionResult?
+//    {
+//        didSet {
+//            guard sessionRecognitionResult != nil else {return}
+//            setRecognitionResult()
+//        }
+//    }
     
     private var selectedEntityIndex: Int {
         get {
+            guard entitySelectCollectionView.indexPathsForSelectedItems?.first != nil else {return -1}
             return entitySelectCollectionView.indexPathsForSelectedItems!.first!.row - 1
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        entitySelectCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .left)
         setRecognitionResult()
     }
     
@@ -100,10 +104,12 @@ extension EstimateResultViewController: UITableViewDataSource, UITableViewDelega
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        return tableView.dequeueReusableCell(
+        let cell = tableView.dequeueReusableCell(
             withIdentifier: "candidateTableViewCell",
             for: indexPath
         )
+        cell.selectionStyle = .none
+        return cell
     }
     
     func tableView(
@@ -112,13 +118,21 @@ extension EstimateResultViewController: UITableViewDataSource, UITableViewDelega
         forRowAt indexPath: IndexPath
     ) {
         let cell = cell as! CandidateTableViewCell
-        cell.candidate = sessionRecognitionResult?.results[selectedEntityIndex].candidates[indexPath.row]
+        if selectedEntityIndex == -1 {
+            cell.candidate = sessionRecognitionResult?.results[indexPath.row].selectedCandidate
+        } else {
+            cell.candidate = sessionRecognitionResult?.results[selectedEntityIndex].candidates[indexPath.row]
+        }
     }
     
     func tableView(
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
+        if selectedEntityIndex == -1 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
         for path in tableView.indexPathsForSelectedRows! {
             if path != indexPath {
                 tableView.deselectRow(at: path, animated: true)
@@ -130,7 +144,7 @@ extension EstimateResultViewController: UITableViewDataSource, UITableViewDelega
     }
 }
 
-extension EstimateResultViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension EstimateResultViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
@@ -172,5 +186,13 @@ extension EstimateResultViewController: UICollectionViewDataSource, UICollection
         }
         candidateSelectTableView.reloadData()
         setInfoPanel()
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        return CGSize(width: 128, height: 60)
     }
 }

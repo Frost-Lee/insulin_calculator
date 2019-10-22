@@ -42,13 +42,14 @@ class EstimateImageCaptureViewController: UIViewController {
             orientationIndicateView.leadingAnchor.constraint(equalTo: previewContainerView.leadingAnchor, constant: 0),
             orientationIndicateView.trailingAnchor.constraint(equalTo: previewContainerView.trailingAnchor, constant: 0),
         ])
-        orientationIndicateView.prepare()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         estimateImageCaptureManager.startRunning()
-        orientationIndicateView.startRunning(attitudeSource: estimateImageCaptureManager.deviceAttitude)
+        orientationIndicateView.startRunning() {
+            return self.estimateImageCaptureManager.deviceAttitude
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

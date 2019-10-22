@@ -138,7 +138,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="AvG-PS-XyG"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="T4n-Mc-rdX">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="T4n-Mc-rdX">
                                     <size key="itemSize" width="103" height="64"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -146,14 +146,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="entitySelectCollectionViewCell" id="4uF-Do-Qd1" customClass="EntitySelectCollectionViewCell" customModule="insulin_calculator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="103" height="64"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="64"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FCF-6I-6Gz">
-                                            <rect key="frame" x="0.0" y="0.0" width="103" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOL-d3-bbi">
-                                                    <rect key="frame" x="8" y="8" width="87" height="48"/>
+                                                    <rect key="frame" x="8" y="8" width="112" height="48"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
@@ -166,7 +166,7 @@
                                                 <constraint firstItem="jOL-d3-bbi" firstAttribute="top" secondItem="FCF-6I-6Gz" secondAttribute="top" constant="8" id="Wgr-V1-Jdw"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="103" height="64"/>
+                                        <size key="customSize" width="128" height="64"/>
                                         <connections>
                                             <outlet property="indexLabel" destination="jOL-d3-bbi" id="YUc-EM-RcL"/>
                                         </connections>

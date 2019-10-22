@@ -82,6 +82,8 @@ def _format_estimate_response(classifications, area_volumes, densities, boxes):
     """
     candidates_list = classifications
     for i, candidates in enumerate(candidates_list):
+        if candidates is None:
+            continue
         for j, candidate in enumerate(candidates):
             candidates_list[i][j]['volume_density'] = densities[i][j][0]
             candidates_list[i][j]['area_density'] = densities[i][j][1]
@@ -89,9 +91,9 @@ def _format_estimate_response(classifications, area_volumes, densities, boxes):
         'results' : [{
             'area' : av[0],
             'volume' : av[1],
-            'bounding_box' : boxes,
+            'bounding_box' : bb,
             'candidates' : cs
-        } for av, bb, cs in zip(area_volumes, boxes, candidates_list) if av is not None]
+        } for av, bb, cs in zip(area_volumes, boxes, candidates_list) if cs is not None]
     }
     return json.dumps(response, indent=4, sort_keys=True)
 

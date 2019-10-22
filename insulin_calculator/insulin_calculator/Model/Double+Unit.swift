@@ -11,11 +11,11 @@ import Foundation
 extension Double {
     
     func areaString() -> String {
-        return String(format: "%.1f ", self * pow(10, -4)) + "cm2"
+        return String(format: "%.1f ", self * pow(10, 4)) + "cm2"
     }
     
     func volumeString() -> String {
-        return String(format: "%.1f ", self * pow(10, -6)) + "cm3"
+        return String(format: "%.1f ", self * pow(10, 6)) + "cm3"
     }
     
     func weightString() -> String {

@@ -54,12 +54,16 @@ class BackendConnector: NSObject {
                 switch encodingResult {
                 case .success(let upload, _, _):
                     upload.responseData() { dataResponse in
+                        print(dataResponse)
+                        print(dataResponse.data)
                         guard dataResponse.data != nil else {completion?(nil, NetworkError.unexpectedResponse);return}
                         do {
                             let json = try JSON(data: dataResponse.data!)
+                            print("d")
                             let result = try SessionRecognitionResult(json: json)
                             completion?(result, nil)
                         } catch {
+                            print("c")
                             completion?(nil, NetworkError.unexpectedResponse)
                             return
                         }
