@@ -19,30 +19,8 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4y-Bu-IfF">
                                 <rect key="frame" x="20" y="44" width="374" height="374"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orientation_indicator" translatesAutoresizingMaskIntoConstraints="NO" id="MIx-Ek-GLJ">
-                                        <rect key="frame" x="171" y="171" width="32" height="32"/>
-                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="EIP-Ah-Ioa"/>
-                                            <constraint firstAttribute="width" constant="32" id="Vsu-tJ-7DG"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orientation_indicator" translatesAutoresizingMaskIntoConstraints="NO" id="d4C-Uz-roE">
-                                        <rect key="frame" x="179" y="179" width="16" height="16"/>
-                                        <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="GMP-2u-MLI"/>
-                                            <constraint firstAttribute="width" constant="16" id="RQ6-yi-2U0"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="d4C-Uz-roE" firstAttribute="centerX" secondItem="U4y-Bu-IfF" secondAttribute="centerX" id="8qb-cS-Hy4"/>
-                                    <constraint firstItem="MIx-Ek-GLJ" firstAttribute="centerY" secondItem="U4y-Bu-IfF" secondAttribute="centerY" id="hiW-Yv-6f3"/>
-                                    <constraint firstItem="d4C-Uz-roE" firstAttribute="centerY" secondItem="U4y-Bu-IfF" secondAttribute="centerY" id="jTT-EM-9az"/>
-                                    <constraint firstItem="MIx-Ek-GLJ" firstAttribute="centerX" secondItem="U4y-Bu-IfF" secondAttribute="centerX" id="smj-L6-Rc0"/>
                                     <constraint firstAttribute="width" secondItem="U4y-Bu-IfF" secondAttribute="height" multiplier="1:1" id="zbh-d0-115"/>
                                 </constraints>
                             </view>
@@ -74,9 +52,6 @@
                     </view>
                     <connections>
                         <outlet property="captureButton" destination="VkE-Er-OOW" id="SL3-Qw-DQS"/>
-                        <outlet property="indicatorHorizontalConstraint" destination="8qb-cS-Hy4" id="9JF-iC-O4c"/>
-                        <outlet property="indicatorVerticalConstraint" destination="jTT-EM-9az" id="Yfh-MO-rcD"/>
-                        <outlet property="orientationIndicatorImageView" destination="MIx-Ek-GLJ" id="aek-FH-WVF"/>
                         <outlet property="previewContainerView" destination="U4y-Bu-IfF" id="QDg-w4-ubR"/>
                         <segue destination="xij-gd-TPe" kind="presentation" identifier="showEstimateResultViewController" id="I8P-sH-7DV"/>
                     </connections>
@@ -307,7 +282,4 @@
             <point key="canvasLocation" x="1259" y="130"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="orientation_indicator" width="100" height="100"/>
-    </resources>
 </document>
