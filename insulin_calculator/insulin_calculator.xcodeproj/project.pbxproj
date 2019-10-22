@@ -25,6 +25,7 @@
 		27BE0ED4235E3C57006F19FB /* EstimateResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE0ED3235E3C57006F19FB /* EstimateResultViewController.swift */; };
 		27BF1D672350FF7700087274 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D662350FF7700087274 /* Errors.swift */; };
 		27FA4729235F6EC600D233C3 /* Double+Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FA4728235F6EC600D233C3 /* Double+Unit.swift */; };
+		27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */; };
 		67D5F1E84B73CD79928CDFAC /* Pods_insulin_calculatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F22E0B47A17051DB3D8877F /* Pods_insulin_calculatorTests.framework */; };
 		6DACAC56ADA1C7A9B6DBF3D8 /* Pods_insulin_calculatorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09ED6C9BD80B7C06F1D81FA /* Pods_insulin_calculatorUITests.framework */; };
 		7044597C48B3B558D67DB6EE /* Pods_insulin_calculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E2AF2B7B5F6F9125AC2446 /* Pods_insulin_calculator.framework */; };
@@ -73,6 +74,7 @@
 		27BE0ED3235E3C57006F19FB /* EstimateResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateResultViewController.swift; sourceTree = "<group>"; };
 		27BF1D662350FF7700087274 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		27FA4728235F6EC600D233C3 /* Double+Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Unit.swift"; sourceTree = "<group>"; };
+		27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceOrientationIndicateView.swift; sourceTree = "<group>"; };
 		39B2B8BA27A8ACF35ABC48B6 /* Pods-insulin_calculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorTests.release.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorTests/Pods-insulin_calculatorTests.release.xcconfig"; sourceTree = "<group>"; };
 		3F22E0B47A17051DB3D8877F /* Pods_insulin_calculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_insulin_calculatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69004E0383F63A5A3BD3DC1E /* Pods-insulin_calculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculator.debug.xcconfig"; path = "Target Support Files/Pods-insulin_calculator/Pods-insulin_calculator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
 				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
+				27FA472C235F799500D233C3 /* SupportViews */,
 				273DB184235F64FE0009DC4E /* EstimateResult */,
 				27B30AE32350C491007347F5 /* Model */,
 				273B47E52350BC620093B7DE /* Assets.xcassets */,
@@ -189,6 +192,14 @@
 				27FA4728235F6EC600D233C3 /* Double+Unit.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		27FA472C235F799500D233C3 /* SupportViews */ = {
+			isa = PBXGroup;
+			children = (
+				27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */,
+			);
+			path = SupportViews;
 			sourceTree = "<group>";
 		};
 		2E373B0639C780AFDDB63912 /* Frameworks */ = {
@@ -448,6 +459,7 @@
 				27BE0ED4235E3C57006F19FB /* EstimateResultViewController.swift in Sources */,
 				273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */,
 				273DB188235F65A30009DC4E /* EntitySelectCollectionViewCell.swift in Sources */,
+				27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */,
 				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
 				27FA4729235F6EC600D233C3 /* Double+Unit.swift in Sources */,
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,

@@ -10,8 +10,6 @@ import UIKit
 import AVFoundation
 import CoreMotion
 import Photos
-import CoreML
-//import SVProgressHUD
 
 class EstimateImageCaptureViewController: UIViewController {
 
@@ -21,9 +19,12 @@ class EstimateImageCaptureViewController: UIViewController {
             captureButton.layer.cornerRadius = 8.0
         }
     }
-    @IBOutlet weak var orientationIndicatorImageView: UIImageView!
-    @IBOutlet weak var indicatorHorizontalConstraint: NSLayoutConstraint!
-    @IBOutlet weak var indicatorVerticalConstraint: NSLayoutConstraint!
+    
+    var orientationIndicateView: DeviceOrientationIndicateView = {
+        let view = DeviceOrientationIndicateView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     private var estimateImageCaptureManager: EstimateImageCaptureManager!
     
@@ -34,16 +35,18 @@ class EstimateImageCaptureViewController: UIViewController {
         super.viewDidLoad()
         estimateImageCaptureManager = EstimateImageCaptureManager(delegate: self)
         previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
+        orientationIndicateView.prepare()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         estimateImageCaptureManager.startRunning()
-        configureOrientationIndicator()
+        orientationIndicateView.startRunning(attitudeSource: estimateImageCaptureManager.deviceAttitude)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        orientationIndicateView.stopRunning()
         estimateImageCaptureManager.stopRunning()
     }
     
@@ -100,8 +103,6 @@ class EstimateImageCaptureViewController: UIViewController {
                 jsonURL: jsonURL!,
                 photoURL: photoURL!
             ) { result, error in
-                print(result)
-                print(error)
                 guard error == nil else {
                     /**
                      - TODO:
@@ -115,46 +116,6 @@ class EstimateImageCaptureViewController: UIViewController {
             }
         }
 
-    }
-    
-    // MARK: - Orientation Indicator Configuration
-    /**
-     - TODO:
-        Wripping the orientation indicator as a separate helper `UIView` object instead of initializing it within
-        this view controller.
-     */
-    
-    private func configureOrientationIndicator() {
-        let timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 60.0, repeats: true) { timer in
-            let attitude = self.estimateImageCaptureManager.deviceAttitude
-            let roll = attitude.roll
-            let pitch = attitude.pitch
-            var horizontalOffset = CGFloat(roll * 50.0)
-            if abs(roll) > Double.pi / 2.0 {
-                horizontalOffset = CGFloat((Double.pi - abs(roll)) * 50 * sign(roll) )
-            }
-            let verticalOffset = CGFloat(pitch * 50.0)
-            UIView.animate(
-                withDuration: 1.0 / 5.0,
-                delay: 0,
-                options: .curveEaseInOut,
-                animations: {
-                    self.indicatorHorizontalConstraint.constant = horizontalOffset
-                    self.indicatorVerticalConstraint.constant = verticalOffset
-                    self.view.layoutIfNeeded()
-                }, completion: nil
-            )
-            if abs(horizontalOffset) <= 8 && abs(verticalOffset) <= 6 {
-                UIView.animate(withDuration: 1.0 / 5.0) {
-                    self.orientationIndicatorImageView.tintColor = .green
-                }
-            } else {
-                UIView.animate(withDuration: 1.0 / 5.0) {
-                    self.orientationIndicatorImageView.tintColor = .gray
-                }
-            }
-        }
-        timer.fire()
     }
 
 }
