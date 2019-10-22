@@ -80,6 +80,42 @@ struct RecognitionResult {
     /// the total nutrition facts about this kind of food.
     var candidates: [RecognitionEntityCandidate]
     
+    /// The selected candidate, can be specified by the user.
+    var selectedCandidateIndex: Int
+    /// The selected recognition result by the user.
+    var selectedCandidate: RecognitionEntityCandidate {
+        get {
+            return candidates[selectedCandidateIndex]
+        }
+    }
+    /**
+     The weight of the recognition result, in kilograms. Negative value means the weight is not available in the
+     current status.
+     - TODO:
+        Make it possible for the user to manually specify the weight if the weight data is not available.
+     */
+    var weight: Double {
+        get {
+            if selectedCandidate.volumeDensity != 0 {
+                return volume * selectedCandidate.volumeDensity
+            } else if selectedCandidate.areaDensity != 0 {
+                return area * selectedCandidate.areaDensity
+            } else {
+                return -1
+            }
+        }
+    }
+    /**
+     The carbon hydrate weight of the recognition result, in kilograms. Negative value means the carbon hydrate
+     weight is not available in the current status.
+     */
+    var carbs: Double {
+        get {
+            guard selectedCandidate.nutritionInformation.carbs != nil else {return -1}
+            return selectedCandidate.nutritionInformation.carbs!
+        }
+    }
+    
     init(json: JSON) throws {
         guard
             (json["bounding_box"].arrayValue.map{$0.double}.filter{$0 != nil}.count) == 4,
@@ -98,6 +134,7 @@ struct RecognitionResult {
         volume = json["volume"].double!
         area = json["area"].double!
         candidates = try json["candidates"].arrayValue.map{try RecognitionEntityCandidate(json: $0)}
+        selectedCandidateIndex = 0
     }
 }
 
@@ -107,10 +144,8 @@ struct RecognitionResult {
 struct SessionRecognitionResult {
     /// The recognition results of different entities in the submitted image.
     var results: [RecognitionResult]
-    var rawJSON: JSON
     
     init(json: JSON) throws {
-        rawJSON = json
         results = try json["results"].arrayValue.map{try RecognitionResult(json: $0)}
     }
 }
