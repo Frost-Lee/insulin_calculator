@@ -102,14 +102,18 @@ func convertAndCropDepthData(depthData: AVDepthData, rect: CGRect) -> [[Float32]
         CVPixelBufferGetBaseAddress(disparityData.depthDataMap),
         to: UnsafeMutablePointer<Float32>.self
     )
-    var realRow = 0, realCol = 0
+    var realRow = 0
     for row in startRow ..< endRow {
-        for col in startCol ..< endCol {
-            depthMap[realRow][realCol] = 1.0 / floatBuffer[width * row + col]
-            realCol += 1
+//        for col in startCol ..< endCol {
+//            depthMap[realRow][realCol] = 1.0 / floatBuffer[width * row + col]
+//            realCol += 1
+//        }
+//        realRow += 1
+//        realCol = 0
+        DispatchQueue.concurrentPerform(iterations: endCol - startCol) { index in
+            depthMap[realRow][index] = 1.0 / floatBuffer[width * row + index + startCol]
         }
         realRow += 1
-        realCol = 0
     }
     CVPixelBufferUnlockBaseAddress(
         disparityData.depthDataMap,

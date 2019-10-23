@@ -118,9 +118,9 @@ class EstimateImageCaptureViewController: UIViewController {
                     SVProgressHUD.showError(withStatus: "Server Error")
                     return
                 }
-                self.performSegue(withIdentifier: "showEstimateResultViewController", sender: result!)
                 self.captureButton.isEnabled = true
                 SVProgressHUD.showSuccess(withStatus: "Done")
+                self.performSegue(withIdentifier: "showEstimateResultViewController", sender: result!)
             }
         }
 
