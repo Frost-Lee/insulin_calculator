@@ -77,7 +77,7 @@ class EstimateImageCaptureViewController: UIViewController {
 
     @IBAction func captureButtonTapped(_ sender: UIButton) {
         captureButton.isEnabled = false
-        SVProgressHUD.show(withStatus: "Fetching Estimation Result")
+        SVProgressHUD.show(withStatus: "Processing Calculation Data")
         estimateImageCaptureManager.captureImage()
     }
     
@@ -107,23 +107,20 @@ class EstimateImageCaptureViewController: UIViewController {
             group.leave()
         }
         group.notify(queue: .main) {
-            self.backendConnector.getRecognitionResult(
-                token: "abcd1234",
-                session_id: UUID().uuidString,
+            self.dataManager.saveEstimateCapture(capture: EstimateCapture(
                 jsonURL: jsonURL!,
-                photoURL: photoURL!
-            ) { result, error in
-                guard error == nil else {
-                    self.captureButton.isEnabled = true
-                    SVProgressHUD.showError(withStatus: "Server Error")
-                    return
+                photoURL: photoURL!,
+                timestamp: Date(),
+                sessionId: UUID(),
+                isSubmitted: false
+            )) { error in
+                if error != nil {
+                    SVProgressHUD.showError(withStatus: "Error occurred when saving the estimate.")
+                } else {
+                    SVProgressHUD.showSuccess(withStatus: "Data Captured, you can submit it later.")
                 }
-                self.performSegue(withIdentifier: "showEstimateResultViewController", sender: result!)
-                self.captureButton.isEnabled = true
-                SVProgressHUD.showSuccess(withStatus: "Done")
             }
         }
-
     }
 
 }

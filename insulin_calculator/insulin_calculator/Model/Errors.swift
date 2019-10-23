@@ -17,3 +17,8 @@ enum NetworkError: Error {
     case connectionLost
     case unexpectedResponse
 }
+
+enum DataStorageError: Error {
+    case saveFailure
+    case fetchFailure
+}

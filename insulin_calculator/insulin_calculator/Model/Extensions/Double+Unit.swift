@@ -9,7 +9,6 @@
 import Foundation
 
 extension Double {
-    
     func areaString() -> String {
         return String(format: "%.1f ", self * pow(10, 4)) + "cm2"
     }

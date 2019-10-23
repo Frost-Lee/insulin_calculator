@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */; };
+		27286A4823609DCC0026DE57 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27286A4623609DCC0026DE57 /* DataModel.xcdatamodeld */; };
+		27286A8A2360A5310026DE57 /* ManagedEstimateCapture+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27286A882360A5310026DE57 /* ManagedEstimateCapture+CoreDataClass.swift */; };
+		27286A8B2360A5310026DE57 /* ManagedEstimateCapture+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27286A892360A5310026DE57 /* ManagedEstimateCapture+CoreDataProperties.swift */; };
 		272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AF2CB2358B3110053F214 /* BackendConnector.swift */; };
 		272AF2CE2358B6400053F214 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AF2CD2358B6400053F214 /* Structures.swift */; };
+		272AFE022360C3440072EC14 /* EstimateCaptureSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AFE012360C3440072EC14 /* EstimateCaptureSubmissionViewController.swift */; };
 		273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DC2350BC5C0093B7DE /* AppDelegate.swift */; };
 		273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */; };
 		273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */; };
@@ -20,6 +24,9 @@
 		273B47FF2350BC630093B7DE /* insulin_calculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */; };
 		273DB186235F65200009DC4E /* CandidateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273DB185235F65200009DC4E /* CandidateTableViewCell.swift */; };
 		273DB188235F65A30009DC4E /* EntitySelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273DB187235F65A30009DC4E /* EntitySelectCollectionViewCell.swift */; };
+		2798F9782360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798F9772360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift */; };
+		2798F97A2360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798F9792360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift */; };
+		2798F97C2360B22000A917CF /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798F97B2360B22000A917CF /* Date+Format.swift */; };
 		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
 		27B30AE22350C48A007347F5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
 		27BE0ED4235E3C57006F19FB /* EstimateResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE0ED3235E3C57006F19FB /* EstimateResultViewController.swift */; };
@@ -51,8 +58,12 @@
 /* Begin PBXFileReference section */
 		2097F940CCC8ED3EDA137AA2 /* Pods-insulin_calculatorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorUITests.release.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorUITests/Pods-insulin_calculatorUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureManager.swift; sourceTree = "<group>"; };
+		27286A4723609DCC0026DE57 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		27286A882360A5310026DE57 /* ManagedEstimateCapture+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedEstimateCapture+CoreDataClass.swift"; sourceTree = "<group>"; };
+		27286A892360A5310026DE57 /* ManagedEstimateCapture+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedEstimateCapture+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		272AF2CB2358B3110053F214 /* BackendConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendConnector.swift; sourceTree = "<group>"; };
 		272AF2CD2358B6400053F214 /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
+		272AFE012360C3440072EC14 /* EstimateCaptureSubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateCaptureSubmissionViewController.swift; sourceTree = "<group>"; };
 		273B47D92350BC5C0093B7DE /* insulin_calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = insulin_calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		273B47DC2350BC5C0093B7DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +80,9 @@
 		273B48002350BC630093B7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		273DB185235F65200009DC4E /* CandidateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateTableViewCell.swift; sourceTree = "<group>"; };
 		273DB187235F65A30009DC4E /* EntitySelectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitySelectCollectionViewCell.swift; sourceTree = "<group>"; };
+		2798F9772360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateCaptureHistoryTableViewController.swift; sourceTree = "<group>"; };
+		2798F9792360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateCaptureHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		2798F97B2360B22000A917CF /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		27B30AE12350C48A007347F5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		27BE0ED3235E3C57006F19FB /* EstimateResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateResultViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +127,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27286A8C2360A5670026DE57 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				272AF2CD2358B6400053F214 /* Structures.swift */,
+				27B30AE12350C48A007347F5 /* DataManager.swift */,
+				27286A4623609DCC0026DE57 /* DataModel.xcdatamodeld */,
+				27286A882360A5310026DE57 /* ManagedEstimateCapture+CoreDataClass.swift */,
+				27286A892360A5310026DE57 /* ManagedEstimateCapture+CoreDataProperties.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 		273B47D02350BC5B0093B7DE = {
 			isa = PBXGroup;
 			children = (
@@ -142,8 +168,9 @@
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
 				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
-				27FA472C235F799500D233C3 /* SupportViews */,
 				273DB184235F64FE0009DC4E /* EstimateResult */,
+				2798F9762360AD5E00A917CF /* EstimateCaptureHistory */,
+				27FA472C235F799500D233C3 /* SupportViews */,
 				27B30AE32350C491007347F5 /* Model */,
 				273B47E52350BC620093B7DE /* Assets.xcassets */,
 				273B47E72350BC620093B7DE /* LaunchScreen.storyboard */,
@@ -180,16 +207,34 @@
 			path = EstimateResult;
 			sourceTree = "<group>";
 		};
+		2798F9762360AD5E00A917CF /* EstimateCaptureHistory */ = {
+			isa = PBXGroup;
+			children = (
+				2798F9772360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift */,
+				2798F9792360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift */,
+				272AFE012360C3440072EC14 /* EstimateCaptureSubmissionViewController.swift */,
+			);
+			path = EstimateCaptureHistory;
+			sourceTree = "<group>";
+		};
+		2798F97D2360B23800A917CF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				27FA4728235F6EC600D233C3 /* Double+Unit.swift */,
+				2798F97B2360B22000A917CF /* Date+Format.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		27B30AE32350C491007347F5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				27B30ADF2350C432007347F5 /* utils.swift */,
 				27BF1D662350FF7700087274 /* Errors.swift */,
 				2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */,
-				27B30AE12350C48A007347F5 /* DataManager.swift */,
 				272AF2CB2358B3110053F214 /* BackendConnector.swift */,
-				272AF2CD2358B6400053F214 /* Structures.swift */,
-				27FA4728235F6EC600D233C3 /* Double+Unit.swift */,
+				2798F97D2360B23800A917CF /* Extensions */,
+				27286A8C2360A5670026DE57 /* DataModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -461,10 +506,17 @@
 				273DB188235F65A30009DC4E /* EntitySelectCollectionViewCell.swift in Sources */,
 				27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */,
 				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
+				2798F97C2360B22000A917CF /* Date+Format.swift in Sources */,
+				27286A8A2360A5310026DE57 /* ManagedEstimateCapture+CoreDataClass.swift in Sources */,
+				27286A4823609DCC0026DE57 /* DataModel.xcdatamodeld in Sources */,
 				27FA4729235F6EC600D233C3 /* Double+Unit.swift in Sources */,
+				272AFE022360C3440072EC14 /* EstimateCaptureSubmissionViewController.swift in Sources */,
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
+				27286A8B2360A5310026DE57 /* ManagedEstimateCapture+CoreDataProperties.swift in Sources */,
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
 				272AF2CE2358B6400053F214 /* Structures.swift in Sources */,
+				2798F9782360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift in Sources */,
+				2798F97A2360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift in Sources */,
 				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
 				27BF1D672350FF7700087274 /* Errors.swift in Sources */,
 				27B30AE02350C432007347F5 /* utils.swift in Sources */,
@@ -803,6 +855,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		27286A4623609DCC0026DE57 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				27286A4723609DCC0026DE57 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 27286A4723609DCC0026DE57 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 273B47D12350BC5B0093B7DE /* Project object */;
 }

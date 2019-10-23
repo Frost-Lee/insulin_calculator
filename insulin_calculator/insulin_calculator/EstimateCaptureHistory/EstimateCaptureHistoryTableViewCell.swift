@@ -9,16 +9,28 @@
 import UIKit
 
 class EstimateCaptureHistoryTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    @IBOutlet weak var captureTitleLabel: UILabel!
+    @IBOutlet weak var captureSubmitStatusLabel: UILabel!
+    @IBOutlet weak var captureImageView: UIImageView!
+    
+    var estimateCapture: EstimateCapture? {
+        didSet {
+            guard estimateCapture != nil else {return}
+            setEstimateCapture()
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    private func setEstimateCapture() {
+        captureTitleLabel.text = estimateCapture!.timestamp.formattedString(with: "yyyy.MM.dd hh:mm")
+        if estimateCapture!.isSubmitted {
+            captureSubmitStatusLabel.text = "submitted"
+            captureSubmitStatusLabel.textColor = .green
+        } else {
+            captureSubmitStatusLabel.text = "not submitted"
+            captureSubmitStatusLabel.textColor = .secondaryLabel
+        }
+        captureImageView.image = UIImage(data: try! Data(contentsOf: estimateCapture!.photoURL))
     }
 
 }

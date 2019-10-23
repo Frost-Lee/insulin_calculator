@@ -9,82 +9,93 @@
 import UIKit
 
 class EstimateCaptureHistoryTableViewController: UITableViewController {
+    
+    var estimateCaptures: [EstimateCapture]? {
+        didSet {
+            guard estimateCaptures != nil else {return}
+            tableView.reloadData()
+        }
+    }
+    
+    private let dataManager: DataManager = DataManager.shared
+    
+    private var editingIndexPath: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        dataManager.getAllEstimateCaptures() { captures, error in
+            self.estimateCaptures = captures
+        }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        guard segue.identifier != nil else {return}
+        switch segue.identifier! {
+        case "showEstimateCaptureSubmissionViewController":
+            let nc = segue.destination as! UINavigationController
+            let destination = nc.topViewController as! EstimateCaptureSubmissionViewController
+            destination.delegate = self
+        default:
+            break
+        }
+    }
+    
+}
 
-    // MARK: - Table view data source
 
+extension EstimateCaptureHistoryTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    override func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
+        guard estimateCaptures != nil else {return 0}
+        return estimateCaptures!.count
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+    
+    override func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "estimateCaptureHistoryTableViewCell",
+            for: indexPath
+        )
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(
+        _ tableView: UITableView,
+        willDisplay cell: UITableViewCell,
+        forRowAt indexPath: IndexPath
+    ) {
+        let cell = cell as! EstimateCaptureHistoryTableViewCell
+        cell.estimateCapture = estimateCaptures?[indexPath.row]
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        editingIndexPath = indexPath
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "showEstimateCaptureSubmissionViewController", sender: nil)
     }
-    */
+}
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
+extension EstimateCaptureHistoryTableViewController: EstimateCaptureSubmissionDelegate {
+    func submissionViewControllerClosed(submitted: Bool) {
+        guard editingIndexPath != nil else {return}
+        if submitted {
+            estimateCaptures?[editingIndexPath!.row].isSubmitted = true
+            dataManager.updateEstimateCapture(capture: estimateCaptures![editingIndexPath!.row]) { error in
+                self.tableView.reloadRows(at: [self.editingIndexPath!], with: .automatic)
+                self.editingIndexPath = nil
+            }
+        } else {
+            editingIndexPath = nil
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

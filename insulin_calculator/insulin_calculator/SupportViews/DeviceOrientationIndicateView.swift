@@ -66,9 +66,8 @@ class DeviceOrientationIndicateView: UIView {
      Start updating the view.
      
      - Parameters:
-        - attitudeSource: The source of the device attitude, pass by reference since `CMAttitude` is
-            a class object. This view will keep this reference and call the reference when necessary to layout
-            the indicator.
+        - attitudeSource: A closure that provides the `CMAttitude` object. This closure will be called
+            when `DeviceOrientationIndicateView` needs to update itself.
      */
     func startRunning(attitudeSource: @escaping () -> (CMAttitude)) {
         let timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 60.0, repeats: true) { timer in

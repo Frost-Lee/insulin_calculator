@@ -17,7 +17,8 @@ class BackendConnector: NSObject {
      */
     static var shared: BackendConnector = BackendConnector()
     
-    private let backendURLString: String = "http://104.198.163.62:5000/nutritionestimation"
+    private let backendRecognitionURLString: String = "http://104.198.163.62:5000/nutritionestimation"
+    private let backendCollectionURLString: String = "http://104.198.163.62:5000/densitycollect"
     
     /**
      Getting the session's recognition result.
@@ -49,7 +50,7 @@ class BackendConnector: NSObject {
                 multipartFormData.append(session_id.data(using: .utf8)!, withName: "session_id")
                 multipartFormData.append(token.data(using: .utf8)!, withName: "token")
             },
-            to: backendURLString,
+            to: backendRecognitionURLString,
             encodingCompletion: { encodingResult in
                 switch encodingResult {
                 case .success(let upload, _, _):
@@ -57,17 +58,60 @@ class BackendConnector: NSObject {
                         guard dataResponse.data != nil else {completion?(nil, NetworkError.unexpectedResponse);return}
                         do {
                             let json = try JSON(data: dataResponse.data!)
-                            print("d")
                             let result = try SessionRecognitionResult(json: json)
                             completion?(result, nil)
                         } catch {
-                            print("c")
                             completion?(nil, NetworkError.unexpectedResponse)
                             return
                         }
                     }
                 case .failure(let encodingError):
                     completion?(nil, encodingError)
+                }
+            }
+        )
+    }
+    
+    func getDensityCollectionResult(
+        token: String,
+        session_id: String,
+        jsonURL: URL,
+        photoURL: URL,
+        name: String,
+        weight: String,
+        completion: ((Error?) -> ())?
+    ) {
+        let jsonData = try! Data(contentsOf: jsonURL)
+        let photoData = try! Data(contentsOf: photoURL)
+        Alamofire.upload(
+            multipartFormData: { multipartFormData in
+                multipartFormData.append(photoData, withName: "image", fileName: "image.jpg", mimeType: "image/jpg")
+                multipartFormData.append(jsonData, withName: "peripheral", fileName: "peripheral.json", mimeType: "text/plain")
+                multipartFormData.append(session_id.data(using: .utf8)!, withName: "session_id")
+                multipartFormData.append(token.data(using: .utf8)!, withName: "token")
+                multipartFormData.append(name.data(using: .utf8)!, withName: "name")
+                multipartFormData.append(weight.data(using: .utf8)!, withName: "weight")
+            },
+            to: backendCollectionURLString,
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseData() { dataResponse in
+                        guard dataResponse.data != nil else {completion?(NetworkError.unexpectedResponse);return}
+                        do {
+                            let json = try JSON(data: dataResponse.data!)
+                            if json["status"].string! == "OK" {
+                                completion?(nil)
+                            } else {
+                                completion?(NetworkError.unexpectedResponse)
+                            }
+                        } catch {
+                            completion?(NetworkError.unexpectedResponse)
+                            return
+                        }
+                    }
+                case .failure(let encodingError):
+                    completion?(encodingError)
                 }
             }
         )

@@ -155,4 +155,12 @@ struct SessionRecognitionResult {
 }
 
 
-// MARK: - 
+// MARK: - Capture Raw Data Structures
+
+struct EstimateCapture {
+    var jsonURL: URL
+    var photoURL: URL
+    var timestamp: Date
+    var sessionId: UUID
+    var isSubmitted: Bool
+}

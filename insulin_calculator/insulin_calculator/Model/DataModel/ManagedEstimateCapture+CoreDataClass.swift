@@ -12,5 +12,21 @@ import CoreData
 
 @objc(ManagedEstimateCapture)
 public class ManagedEstimateCapture: NSManagedObject {
-
+    func initialize(with capture: EstimateCapture) {
+        self.jsonURL = capture.jsonURL
+        self.photoURL = capture.photoURL
+        self.timestamp = capture.timestamp
+        self.sessionId = capture.sessionId
+        self.isSubmitted = capture.isSubmitted
+    }
+    
+    func export() -> EstimateCapture {
+        return EstimateCapture(
+            jsonURL: jsonURL!,
+            photoURL: photoURL!,
+            timestamp: timestamp!,
+            sessionId: sessionId!,
+            isSubmitted: isSubmitted
+        )
+    }
 }

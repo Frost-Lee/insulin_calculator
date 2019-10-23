@@ -8,23 +8,49 @@
 
 import UIKit
 
-class EstimateCaptureSubmissionViewController: UIViewController {
 
+protocol EstimateCaptureSubmissionDelegate {
+    func submissionViewControllerClosed(submitted: Bool)
+}
+
+
+class EstimateCaptureSubmissionViewController: UIViewController {
+    
+    @IBOutlet weak var submitButton: UIBarButtonItem!
+    
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var weightTextField: UITextField!
+    
+    var delegate: EstimateCaptureSubmissionDelegate?
+    
+    private var isSubmitted: Bool = false
+    
+    private var backendConnector = BackendConnector.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        delegate?.submissionViewControllerClosed(submitted: isSubmitted)
     }
-    */
-
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    @IBAction func textFieldChanged(_ sender: UITextField) {
+        submitButton.isEnabled = nameTextField.hasText && weightTextField.hasText
+    }
+    
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func submitButtonTapped(_ sender: UIBarButtonItem) {
+        
+    }
+    
 }
