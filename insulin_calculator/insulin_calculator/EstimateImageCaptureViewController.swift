@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import CoreMotion
 import Photos
+import SVProgressHUD
 
 class EstimateImageCaptureViewController: UIViewController {
 
@@ -76,6 +77,7 @@ class EstimateImageCaptureViewController: UIViewController {
 
     @IBAction func captureButtonTapped(_ sender: UIButton) {
         captureButton.isEnabled = false
+        SVProgressHUD.show(withStatus: "Fetching Estimation Result")
         estimateImageCaptureManager.captureImage()
     }
     
@@ -112,15 +114,13 @@ class EstimateImageCaptureViewController: UIViewController {
                 photoURL: photoURL!
             ) { result, error in
                 guard error == nil else {
-                    /**
-                     - TODO:
-                        Error handling steps here
-                     */
                     self.captureButton.isEnabled = true
+                    SVProgressHUD.showError(withStatus: "Server Error")
                     return
                 }
                 self.performSegue(withIdentifier: "showEstimateResultViewController", sender: result!)
                 self.captureButton.isEnabled = true
+                SVProgressHUD.showSuccess(withStatus: "Done")
             }
         }
 

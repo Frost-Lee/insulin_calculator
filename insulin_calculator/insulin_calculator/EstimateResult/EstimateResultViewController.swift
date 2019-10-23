@@ -20,12 +20,6 @@ class EstimateResultViewController: UIViewController {
     @IBOutlet weak var candidateSelectTableView: UITableView!
     
     var sessionRecognitionResult: SessionRecognitionResult?
-//    {
-//        didSet {
-//            guard sessionRecognitionResult != nil else {return}
-//            setRecognitionResult()
-//        }
-//    }
     
     private var selectedEntityIndex: Int {
         get {
@@ -44,7 +38,6 @@ class EstimateResultViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-    
     
     @IBAction func dismissButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -185,6 +178,13 @@ extension EstimateResultViewController: UICollectionViewDataSource, UICollection
             }
         }
         candidateSelectTableView.reloadData()
+        if selectedEntityIndex != -1 {
+            candidateSelectTableView.selectRow(
+                at: IndexPath(row: sessionRecognitionResult!.results[selectedEntityIndex].selectedCandidateIndex, section: 0),
+                animated: false,
+                scrollPosition: .none
+            )
+        }
         setInfoPanel()
     }
     
@@ -193,6 +193,6 @@ extension EstimateResultViewController: UICollectionViewDataSource, UICollection
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return CGSize(width: 128, height: 60)
+        return CGSize(width: 100, height: 40)
     }
 }
