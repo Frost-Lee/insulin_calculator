@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
 
 class DataManager: NSObject {
     
@@ -25,7 +27,11 @@ class DataManager: NSObject {
         - completion: The completion handler. This closure will be called once the saving process finished, the parameter
             is the URL of the saved temporary file.
      */
-    func saveTemporaryFile(data: Data, extensionName: String, completion: ((URL) -> ())?) {
+    func saveTemporaryFile(
+        data: Data,
+        extensionName: String,
+        completion: ((URL) -> ())?
+    ) {
         let temporaryURL = FileManager.default.urls(
             for: .cachesDirectory,
             in: .userDomainMask
@@ -33,5 +39,24 @@ class DataManager: NSObject {
         try! data.write(to: temporaryURL)
         completion?(temporaryURL)
     }
+    
+    func saveEstimateCaptureData(
+        jsonURL: URL,
+        photoURL: URL,
+        sessionId: UUID,
+        completion: ((Error?) -> ())
+    ) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "EstimateCapture", in: context)
+        let newEstimateCapture = NSManagedObject(entity: entity!, insertInto: context)
+        newEstimateCapture.setValue(jsonURL, forKey: "jsonURL")
+        newEstimateCapture.setValue(photoURL, forKey: "photoURL")
+        newEstimateCapture.setValue(false, forKey: "isSubmitted")
+        newEstimateCapture.setValue(Date(), forKey: "timestamp")
+        newEstimateCapture.setValue(sessionId, forKey: "sessionId")
+    }
+    
+    
     
 }

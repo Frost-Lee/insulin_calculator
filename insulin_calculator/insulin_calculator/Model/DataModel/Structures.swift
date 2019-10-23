@@ -10,6 +10,8 @@ import Foundation
 import SwiftyJSON
 
 
+// MARK: - Server Response Structures
+
 /**
  The nutrition information of a specific kind of food. The units are all kilogram per kilogram.
  */
@@ -151,3 +153,6 @@ struct SessionRecognitionResult {
         results = try json["results"].arrayValue.map{try RecognitionResult(json: $0)}
     }
 }
+
+
+// MARK: - 
