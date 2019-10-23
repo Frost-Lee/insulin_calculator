@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 
 protocol EstimateCaptureSubmissionDelegate {
@@ -22,6 +23,7 @@ class EstimateCaptureSubmissionViewController: UIViewController {
     @IBOutlet weak var weightTextField: UITextField!
     
     var delegate: EstimateCaptureSubmissionDelegate?
+    var estimateCapture: EstimateCapture?
     
     private var isSubmitted: Bool = false
     
@@ -50,7 +52,24 @@ class EstimateCaptureSubmissionViewController: UIViewController {
     }
     
     @IBAction func submitButtonTapped(_ sender: UIBarButtonItem) {
-        
+        SVProgressHUD.show(withStatus: "Submitting")
+        backendConnector.getDensityCollectionResult(
+            token: "abcd1234",
+            session_id: estimateCapture!.sessionId.uuidString,
+            jsonURL: estimateCapture!.jsonURL,
+            photoURL: estimateCapture!.photoURL,
+            name: nameTextField.text!,
+            weight: weightTextField.text!
+        ) { error in
+            guard error != nil else {
+                SVProgressHUD.showError(withStatus: "Submisstion Failed")
+                self.dismiss(animated: true, completion: nil)
+                return
+            }
+            SVProgressHUD.showSuccess(withStatus: "Submitted")
+            self.isSubmitted = true
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
 }
