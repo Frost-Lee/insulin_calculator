@@ -119,6 +119,7 @@ class EstimateImageCaptureViewController: UIViewController {
                 } else {
                     SVProgressHUD.showSuccess(withStatus: "Data Captured, you can submit it later.")
                 }
+                self.captureButton.isEnabled = true
             }
         }
     }

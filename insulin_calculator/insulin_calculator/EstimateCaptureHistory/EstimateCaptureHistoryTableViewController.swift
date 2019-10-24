@@ -23,6 +23,10 @@ class EstimateCaptureHistoryTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         dataManager.getAllEstimateCaptures() { captures, error in
             self.estimateCaptures = captures
         }
@@ -36,6 +40,7 @@ class EstimateCaptureHistoryTableViewController: UITableViewController {
             let nc = segue.destination as! UINavigationController
             let destination = nc.topViewController as! EstimateCaptureSubmissionViewController
             destination.delegate = self
+            destination.estimateCapture = estimateCaptures![editingIndexPath!.row]
         default:
             break
         }
@@ -89,7 +94,7 @@ extension EstimateCaptureHistoryTableViewController: EstimateCaptureSubmissionDe
     func submissionViewControllerClosed(submitted: Bool) {
         guard editingIndexPath != nil else {return}
         if submitted {
-            estimateCaptures?[editingIndexPath!.row].isSubmitted = true
+            estimateCaptures![editingIndexPath!.row].isSubmitted = true
             dataManager.updateEstimateCapture(capture: estimateCaptures![editingIndexPath!.row]) { error in
                 self.tableView.reloadRows(at: [self.editingIndexPath!], with: .automatic)
                 self.editingIndexPath = nil

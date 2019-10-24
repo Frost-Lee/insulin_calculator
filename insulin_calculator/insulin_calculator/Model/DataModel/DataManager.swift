@@ -36,7 +36,7 @@ class DataManager: NSObject {
         completion: ((URL) -> ())?
     ) {
         let temporaryURL = FileManager.default.urls(
-            for: .cachesDirectory,
+            for: .documentDirectory,
             in: .userDomainMask
         )[0].appendingPathComponent(UUID().uuidString).appendingPathExtension(extensionName)
         try! data.write(to: temporaryURL)
@@ -73,7 +73,7 @@ class DataManager: NSObject {
         let fetchRequest: NSFetchRequest = ManagedEstimateCapture.fetchRequest()
         do {
             let managedCaptures = (try context.fetch(fetchRequest)) as [ManagedEstimateCapture]
-            completion?(managedCaptures.map({$0.export()}), nil)
+            completion?(managedCaptures.map({$0.export()}).sorted(by: {$0.timestamp > $1.timestamp}), nil)
         } catch {
             completion?(nil, DataStorageError.fetchFailure)
         }

@@ -31,6 +31,7 @@ class EstimateCaptureSubmissionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        submitButton.isEnabled = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
