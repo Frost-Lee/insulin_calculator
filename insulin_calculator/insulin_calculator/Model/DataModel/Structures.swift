@@ -163,4 +163,5 @@ struct EstimateCapture {
     var timestamp: Date
     var sessionId: UUID
     var isSubmitted: Bool
+    var initialWeight: Double
 }

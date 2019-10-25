@@ -19,6 +19,9 @@ class EstimateCaptureSubmissionViewController: UIViewController {
     
     @IBOutlet weak var submitButton: UIBarButtonItem!
     
+    @IBOutlet weak var capturedImageView: UIImageView!
+    @IBOutlet weak var initialWeightLabel: UILabel!
+    @IBOutlet weak var netWeightLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
     
@@ -32,6 +35,7 @@ class EstimateCaptureSubmissionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         submitButton.isEnabled = false
+        setEstimateCapture()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -44,8 +48,18 @@ class EstimateCaptureSubmissionViewController: UIViewController {
         view.endEditing(true)
     }
     
+    private func setEstimateCapture() {
+        guard estimateCapture != nil else {return}
+        capturedImageView.image = UIImage(data: try! Data(contentsOf: estimateCapture!.photoURL))!
+        initialWeightLabel.text = estimateCapture?.initialWeight.collectWeightString()
+        netWeightLabel.text = "-"
+    }
+    
     @IBAction func textFieldChanged(_ sender: UITextField) {
-        submitButton.isEnabled = nameTextField.hasText && weightTextField.hasText
+        submitButton.isEnabled = nameTextField.hasText && Double(weightTextField.text ?? "na") != nil
+        guard weightTextField.hasText else {return}
+        guard estimateCapture!.initialWeight - Double(weightTextField.text!)! >= 0 else {submitButton.isEnabled = false;return}
+        netWeightLabel.text = (estimateCapture!.initialWeight - Double(weightTextField.text!)!).collectWeightString()
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
@@ -61,7 +75,7 @@ class EstimateCaptureSubmissionViewController: UIViewController {
             jsonURL: estimateCapture!.jsonURL,
             photoURL: estimateCapture!.photoURL,
             name: nameTextField.text!,
-            weight: weightTextField.text!
+            weight: String(estimateCapture!.initialWeight - Double(weightTextField.text!)!)
         ) { error in
             guard error == nil else {
                 print("Error")

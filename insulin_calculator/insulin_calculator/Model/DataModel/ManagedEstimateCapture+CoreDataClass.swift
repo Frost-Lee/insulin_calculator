@@ -18,6 +18,7 @@ public class ManagedEstimateCapture: NSManagedObject {
         self.timestamp = capture.timestamp
         self.sessionId = capture.sessionId
         self.isSubmitted = capture.isSubmitted
+        self.initialWeight = capture.initialWeight
     }
     
     func export() -> EstimateCapture {
@@ -26,7 +27,8 @@ public class ManagedEstimateCapture: NSManagedObject {
             photoURL: photoURL!,
             timestamp: timestamp!,
             sessionId: sessionId!,
-            isSubmitted: isSubmitted
+            isSubmitted: isSubmitted,
+            initialWeight: initialWeight
         )
     }
 }

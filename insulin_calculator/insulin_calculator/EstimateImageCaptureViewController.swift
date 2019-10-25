@@ -123,21 +123,52 @@ class EstimateImageCaptureViewController: UIViewController {
             group.leave()
         }
         group.notify(queue: .main) {
-            self.dataManager.saveEstimateCapture(capture: EstimateCapture(
-                jsonURL: jsonURL!,
-                photoURL: photoURL!,
-                timestamp: Date(),
-                sessionId: UUID(),
-                isSubmitted: false
-            )) { error in
-                if error != nil {
-                    SVProgressHUD.showError(withStatus: "Error occurred when saving the estimate.")
-                } else {
-                    SVProgressHUD.showSuccess(withStatus: "Data Captured, you can submit it later.")
+            self.launchWeightInputAlert() { input in
+                self.dataManager.saveEstimateCapture(capture: EstimateCapture(
+                    jsonURL: jsonURL!,
+                    photoURL: photoURL!,
+                    timestamp: Date(),
+                    sessionId: UUID(),
+                    isSubmitted: false,
+                    initialWeight: Double(input!) ?? 0.0
+                )) { error in
+                    if error != nil {
+                        SVProgressHUD.showError(withStatus: "Error occurred when saving the estimate.")
+                    } else {
+                        SVProgressHUD.showSuccess(withStatus: "Data Captured, you can submit it later.")
+                    }
+                    self.isBusy = false
                 }
-                self.isBusy = false
             }
         }
+    }
+    
+    private func launchWeightInputAlert(saveAction: ((String?) -> ())?) {
+        let alertController = UIAlertController(
+            title: "Weight of the Food?",
+            message: "The weight of the food including its plate.",
+            preferredStyle: .alert
+        )
+        let saveAction = UIAlertAction(title: "Save", style: .default) { alert in
+            saveAction?(alertController.textFields?.first?.text)
+        }
+        saveAction.isEnabled = false
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { alert in
+        }
+        alertController.addTextField() { textField in
+            textField.placeholder = "Weight digits (in pound)"
+            textField.keyboardType = .decimalPad
+        }
+        NotificationCenter.default.addObserver(
+            forName: UITextField.textDidChangeNotification,
+            object: alertController.textFields!.first!,
+            queue: .main
+        ) { notification in
+            saveAction.isEnabled = Double(alertController.textFields!.first!.text ?? "na") != nil
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+        present(alertController, animated: true, completion: nil)
     }
 
 }
