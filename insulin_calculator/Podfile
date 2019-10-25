@@ -9,6 +9,7 @@ target 'insulin_calculator' do
   pod 'SVProgressHUD'
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod "Haptica"
 
   target 'insulin_calculatorTests' do
     inherit! :search_paths
