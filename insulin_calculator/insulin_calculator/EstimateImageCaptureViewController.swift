@@ -45,7 +45,6 @@ class EstimateImageCaptureViewController: UIViewController {
             orientationIndicateView.leadingAnchor.constraint(equalTo: previewContainerView.leadingAnchor, constant: 0),
             orientationIndicateView.trailingAnchor.constraint(equalTo: previewContainerView.trailingAnchor, constant: 0),
         ])
-        setupVolumeButtonListener()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +53,7 @@ class EstimateImageCaptureViewController: UIViewController {
         orientationIndicateView.startRunning() {
             return self.estimateImageCaptureManager.deviceAttitude
         }
+        setupVolumeButtonListener()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -80,11 +80,11 @@ class EstimateImageCaptureViewController: UIViewController {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "outputVolume" {
-            captureButtonTapped(UIButton())
+            captureButtonTapped(nil)
         }
     }
 
-    @IBAction func captureButtonTapped(_ sender: UIButton) {
+    @IBAction func captureButtonTapped(_ sender: Any?) {
         guard !isBusy else {return}
         isBusy = true
         SVProgressHUD.show(withStatus: "Processing Calculation Data")
@@ -124,6 +124,7 @@ class EstimateImageCaptureViewController: UIViewController {
         }
         group.notify(queue: .main) {
             self.launchWeightInputAlert() { input in
+                guard input != nil else {SVProgressHUD.dismiss();self.isBusy=false;return}
                 self.dataManager.saveEstimateCapture(capture: EstimateCapture(
                     jsonURL: jsonURL!,
                     photoURL: photoURL!,
@@ -143,17 +144,18 @@ class EstimateImageCaptureViewController: UIViewController {
         }
     }
     
-    private func launchWeightInputAlert(saveAction: ((String?) -> ())?) {
+    private func launchWeightInputAlert(savedAction: ((String?) -> ())?) {
         let alertController = UIAlertController(
             title: "Weight of the Food?",
             message: "The weight of the food including its plate.",
             preferredStyle: .alert
         )
         let saveAction = UIAlertAction(title: "Save", style: .default) { alert in
-            saveAction?(alertController.textFields?.first?.text)
+            savedAction?(alertController.textFields?.first?.text)
         }
         saveAction.isEnabled = false
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { alert in
+            savedAction?(nil)
         }
         alertController.addTextField() { textField in
             textField.placeholder = "Weight digits (in pound)"
