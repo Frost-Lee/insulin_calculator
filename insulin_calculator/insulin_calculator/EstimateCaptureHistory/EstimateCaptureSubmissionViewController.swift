@@ -54,6 +54,7 @@ class EstimateCaptureSubmissionViewController: UIViewController {
     
     @IBAction func submitButtonTapped(_ sender: UIBarButtonItem) {
         SVProgressHUD.show(withStatus: "Submitting")
+        print("Tapped")
         backendConnector.getDensityCollectionResult(
             token: "abcd1234",
             session_id: estimateCapture!.sessionId.uuidString,
@@ -62,7 +63,8 @@ class EstimateCaptureSubmissionViewController: UIViewController {
             name: nameTextField.text!,
             weight: weightTextField.text!
         ) { error in
-            guard error != nil else {
+            guard error == nil else {
+                print("Error")
                 SVProgressHUD.showError(withStatus: "Submisstion Failed")
                 self.dismiss(animated: true, completion: nil)
                 return

@@ -5,7 +5,8 @@ import numpy as np
 from PIL import Image
 
 
-STORAGE_DIR = '/Users/Frost/Desktop/insulin_calculator_data/recognition_session_data/'
+RECOGNITION_STORAGE_DIR = '/Users/Frost/Desktop/insulin_calculator_data/recognition_session_data/'
+COLLECTION_STORAGE_DIR = '/Users/Frost/Desktop/insulin_calculator_data/collection_session_data/'
 
 
 class SessionDataManager(object):
@@ -16,25 +17,28 @@ class SessionDataManager(object):
             `str`.
         session_dir: The storage directory path of this session.
         image: The color image input of the corresponding session, represented 
-            as a numpy array.
+            as a fnumpy array.
         peripheral: The peripheral data input of the corresponding session, 
             represented as a json object
     """
-    def __init__(self, session_id):
+    def __init__(self, session_id, collection_session=False):
         self.session_id = session_id
-        self.session_dir = self._make_session_dir()
+        self.session_dir = self._make_session_dir(COLLECTION_STORAGE_DIR if collection_session else RECOGNITION_STORAGE_DIR)
         self.image = None
         self.peripheral = None
     
-    def _make_session_dir(self):
+    def _make_session_dir(self, root_dir):
         """ Create the session directory of this session. The directory is 
-            `/STORAGE_DIR/month/time/session_id`.
+            `/root_dir/month/time/session_id`.
         
+        Args:
+            root_dir: The root directory of the stored data.
+
         Returns:
             The created session directory path.
         """
         now = datetime.datetime.now()
-        session_dir = os.path.join(STORAGE_DIR, *[
+        session_dir = os.path.join(root_dir, *[
             '{}_{}'.format(*map(str, (now.year, now.month))),
             str(now.day),
             '{}_{}_{}_{}'.format(*map(str, (now.hour, now.minute, now.second, self.session_id)))

@@ -82,10 +82,20 @@ extension EstimateCaptureHistoryTableViewController {
         cell.estimateCapture = estimateCaptures?[indexPath.row]
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
         editingIndexPath = indexPath
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "showEstimateCaptureSubmissionViewController", sender: nil)
+    }
+    
+    override func tableView(
+        _ tableView: UITableView,
+        heightForRowAt indexPath: IndexPath
+    ) -> CGFloat {
+        return 100
     }
 }
 

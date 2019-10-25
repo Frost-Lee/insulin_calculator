@@ -22,5 +22,6 @@ extension ManagedEstimateCapture {
     @NSManaged public var isSubmitted: Bool
     @NSManaged public var sessionId: UUID?
     @NSManaged public var timestamp: Date?
+    @NSManaged public var initialWeight: Double
 
 }
