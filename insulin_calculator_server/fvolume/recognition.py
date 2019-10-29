@@ -70,7 +70,7 @@ def _get_entity_labeling(image, mask):
             *map(lambda x: (min(x), max(x) + 1), np.where(label_mask == entity))
         ] for entity in np.unique(label_mask)
     ]
-    invalid_entity_indices = [index for index, box in enumerate(boxes) if min(box[0][1] - box[0][0], box[1][1] - box[1, 0]) < config.FOOD_MIN_SIZE_THRESHOLD]
+    invalid_entity_indices = [index for index, box in enumerate(boxes) if min(box[0][1] - box[0][0], box[1][1] - box[1][0]) < config.FOOD_MIN_SIZE_THRESHOLD]
     label_mask[np.isin(label_mask, invalid_entity_indices)] = 0
     boxes = [box for index, box in enumerate(boxes) if index not in invalid_entity_indices]
     return label_mask, boxes[1:]
