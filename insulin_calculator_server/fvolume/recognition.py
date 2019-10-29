@@ -63,8 +63,6 @@ def _get_entity_labeling(image, mask):
     # TODO(canchen.lee@gmail.com): Consider using the colored image along with 
     # the mask to generate entity boxes, which separate enties within one connected 
     # component.
-    # TODO(canchen.lee@gmail.com): Develop a detection algorithm that helps to 
-    # filter too small boxes. Values in `label_mask` should also be changed accordingly.
     bin_func = np.vectorize(lambda x: 0 if x < config.FOOD_PROB_THRESHOLD else 1)
     reduced_mask = bin_func(skimage.measure.block_reduce(mask, config.BLOCK_REDUCT_WINDOW, np.mean))
     label_mask = skimage.measure.label(reduced_mask, neighbors=4, background=0)
@@ -72,6 +70,9 @@ def _get_entity_labeling(image, mask):
             *map(lambda x: (min(x), max(x) + 1), np.where(label_mask == entity))
         ] for entity in np.unique(label_mask)
     ]
+    invalid_entity_indices = [index for index, box in enumerate(boxes) if min(box[0][1] - box[0][0], box[1][1] - box[1, 0]) < config.FOOD_MIN_SIZE_THRESHOLD]
+    label_mask[np.isin(label_mask, invalid_entity_indices)] = 0
+    boxes = [box for index, box in enumerate(boxes) if index not in invalid_entity_indices]
     return label_mask, boxes[1:]
 
 
