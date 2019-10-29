@@ -10,7 +10,7 @@ CLASSIFIER_IMAGE_SIZE = (544, 544)
 
 CLASSIFICATION_CANDIDATES = 5
 
-RANSAC_THRESHOLD = 0.01
+RANSAC_THRESHOLD = 0.002
 
 SEG_MODEL_PATH = '/home/Frost/insulin_calculator/insulin_calculator_server/fvolume/model.hdf5'
 
