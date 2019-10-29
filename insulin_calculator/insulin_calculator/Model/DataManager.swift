@@ -16,7 +16,7 @@ class DataManager: NSObject {
     static var shared: DataManager = DataManager()
     
     /**
-     Save `data` as a temporary file in `cachesDirectory` with extension name `extensionName`.
+     Save `data` as a user file in `documentDirectory` with extension name `extensionName`.
      The file name would be a UUID string.
      
      - Parameters:

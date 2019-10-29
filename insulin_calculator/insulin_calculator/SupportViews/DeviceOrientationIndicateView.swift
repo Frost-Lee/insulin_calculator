@@ -9,6 +9,7 @@
 import UIKit
 import CoreMotion
 import simd
+import Haptica
 
 class DeviceOrientationIndicateView: UIView {
     
@@ -28,13 +29,42 @@ class DeviceOrientationIndicateView: UIView {
     private var flexibleIndicatorXConstraint: NSLayoutConstraint?
     private var flexibleIndicatorYConstraint: NSLayoutConstraint?
     
-    private let thresholdConstant = 8.0
+    private let thresholdConstant: CGFloat = 4.0
     
     private var timer: Timer?
     
+    private var isHorizontal: Bool = false {
+        didSet {
+            if isHorizontal {
+                Haptic.impact(.light).generate()
+            }
+            if oldValue != isHorizontal {
+                if isHorizontal {
+//                    Haptic.play(".-O", delay: 0.15)
+                    UIView.animate(withDuration: 1.0 / 5.0) {
+                        self.referenceIndicatorImageView.tintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+                    }
+                } else {
+//                    Haptic.play("O-.", delay: 0.15)
+                    UIView.animate(withDuration: 1.0 / 5.0) {
+                        self.referenceIndicatorImageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                    }
+                }
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        setLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setLayout()
+    }
+    
+    private func setLayout() {
         backgroundColor = .clear
         addSubview(referenceIndicatorImageView)
 
@@ -58,20 +88,15 @@ class DeviceOrientationIndicateView: UIView {
         ])
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     /**
      Start updating the view.
      
      - Parameters:
-        - attitudeSource: The source of the device attitude, pass by reference since `CMAttitude` is
-            a class object. This view will keep this reference and call the reference when necessary to layout
-            the indicator.
+        - attitudeSource: A closure that provides the `CMAttitude` object. This closure will be called
+            when `DeviceOrientationIndicateView` needs to update itself.
      */
     func startRunning(attitudeSource: @escaping () -> (CMAttitude)) {
-        let timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 60.0, repeats: true) { timer in
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 15.0, repeats: true) { timer in
             let attitude = attitudeSource()
             let roll = attitude.roll
             let pitch = attitude.pitch
@@ -85,19 +110,16 @@ class DeviceOrientationIndicateView: UIView {
                 delay: 0,
                 options: .curveEaseInOut,
                 animations: {
-                    self.flexibleIndicatorYConstraint!.constant = horizontalOffset
-                    self.flexibleIndicatorXConstraint!.constant = verticalOffset
+                    self.flexibleIndicatorYConstraint!.constant = verticalOffset
+                    self.flexibleIndicatorXConstraint!.constant = horizontalOffset
                     self.layoutIfNeeded()
                 }, completion: nil
             )
-            if abs(horizontalOffset) <= 8 && abs(verticalOffset) <= 6 {
-                UIView.animate(withDuration: 1.0 / 5.0) {
-                    self.referenceIndicatorImageView.tintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-                }
+            if abs(horizontalOffset) <= self.thresholdConstant
+                && abs(verticalOffset) <= self.thresholdConstant {
+                self.isHorizontal = true
             } else {
-                UIView.animate(withDuration: 1.0 / 5.0) {
-                    self.referenceIndicatorImageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-                }
+                self.isHorizontal = false
             }
         }
         self.timer = timer

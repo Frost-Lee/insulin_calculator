@@ -1,24 +1,28 @@
 PODS:
   - Alamofire (4.8.2)
+  - Haptica (3.0.0)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
+  - Haptica
   - SVProgressHUD
   - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Haptica
     - SVProgressHUD
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Haptica: ee4abaf262f456fe3854b493f506debe421ddf2c
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: d6fe34c1d035b1c1dfc95de4ea2cb0817ff5e262
+PODFILE CHECKSUM: 7612a47c20dc263ead1c4e8c58eaf28e6a4c808e
 
 COCOAPODS: 1.6.2

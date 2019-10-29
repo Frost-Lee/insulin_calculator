@@ -21,6 +21,10 @@ class EstimateImageCaptureViewController: UIViewController {
         }
     }
     
+    /**
+     - TODO:
+        Instantiate `orientationIndicateView` on storyboard.
+     */
     var orientationIndicateView: DeviceOrientationIndicateView = {
         let view = DeviceOrientationIndicateView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +55,7 @@ class EstimateImageCaptureViewController: UIViewController {
         orientationIndicateView.startRunning() {
             return self.estimateImageCaptureManager.deviceAttitude
         }
+        setupVolumeButtonListener()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,11 +79,23 @@ class EstimateImageCaptureViewController: UIViewController {
         super.viewDidLayoutSubviews()
         estimateImageCaptureManager.previewLayer.frame = previewContainerView.bounds
     }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "outputVolume" {
+            captureButtonTapped(nil)
+        }
+    }
 
-    @IBAction func captureButtonTapped(_ sender: UIButton) {
+    @IBAction func captureButtonTapped(_ sender: Any?) {
         captureButton.isEnabled = false
         SVProgressHUD.show(withStatus: "Fetching Estimation Result")
         estimateImageCaptureManager.captureImage()
+    }
+    
+    private func setupVolumeButtonListener() {
+        let audioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setActive(true)
+        audioSession.addObserver(self, forKeyPath: "outputVolume", options: .new, context: nil)
     }
     
     private func submitCapturedData(
