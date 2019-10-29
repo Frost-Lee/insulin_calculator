@@ -26,10 +26,23 @@ def response_nutrition_estimate():
     response = _get_nutrition_estimate(session_data_manager)
     return response
 
-
+@app.route('/densitycollect', methods=['GET', 'POST'])
+def response_density_collect():
+    files, args = flask.request.files, flask.request.form
+    if not (files['image'] and files['peripheral']):
+        flask.abort(400, 'Unexpected file attachments.')
+    if not (args.get('session_id') and args.get('token')):
+        flask.abort(400, 'Request metadata not found.')
+    if not (args.get('name') and args.get('weight')):
+        flask.abort(400, 'Request metadata not found.')
+    session_data_manager = data_manager.SessionDataManager(args.get('session_id'), collection_session=True)
+    session_data_manager.register_image_file(files['image'])
+    session_data_manager.register_peripheral_file(files['peripheral'])
+    session_data_manager.register_collection_label(args.get('name'), args.get('weight'))
+    return '{"status": "OK"}'
+ 
 def _get_nutrition_estimate(session_data_manager):
     """ Return the nutrition estimate of a session and store the result.
-
     Args:
         session_data_manager: The `SessionDataManager` object of this session. 
             The method assume the `image` and `peripheral` attribute of the 
@@ -62,10 +75,8 @@ def _get_nutrition_estimate(session_data_manager):
 
 def _format_estimate_response(classifications, area_volumes, densities, boxes):
     """ Format the nutrition estimation returned by the model to a json string.
-
     Note that all arguments are lists, and they should follow the same object 
     order.
-
     Args:
         classifications: The food classifications. Each classification contains 
             several candidates, and each candidates object is a json object containing 
