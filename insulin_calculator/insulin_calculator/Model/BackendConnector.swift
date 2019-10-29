@@ -17,7 +17,7 @@ class BackendConnector: NSObject {
      */
     static var shared: BackendConnector = BackendConnector()
     
-    private let backendURLString: String = "http://104.198.163.62:5000/nutritionestimation"
+    private let backendURLString: String = "http://35.223.152.194:5000/nutritionestimation"
     
     /**
      Getting the session's recognition result.
@@ -57,12 +57,12 @@ class BackendConnector: NSObject {
                         guard dataResponse.data != nil else {completion?(nil, NetworkError.unexpectedResponse);return}
                         do {
                             let json = try JSON(data: dataResponse.data!)
-                            print("d")
+                            print(try JSON(data: dataResponse.data!))
                             let result = try SessionRecognitionResult(json: json)
                             completion?(result, nil)
                         } catch {
-                            print("c")
                             completion?(nil, NetworkError.unexpectedResponse)
+                            print("a")
                             return
                         }
                     }

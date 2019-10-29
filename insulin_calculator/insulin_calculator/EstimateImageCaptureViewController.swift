@@ -64,7 +64,7 @@ class EstimateImageCaptureViewController: UIViewController {
         switch segue.identifier {
         case "showEstimateResultViewController":
             let destination = (segue.destination as! UINavigationController).topViewController!
-            (destination as! EstimateResultViewController).sessionRecognitionResult = sender as? SessionRecognitionResult
+            (destination as! EstimateResultViewController).sessionRecord = sender as? SessionRecord
         default:
             break
         }
@@ -88,8 +88,9 @@ class EstimateImageCaptureViewController: UIViewController {
     ) {
         var jsonURL: URL?, photoURL: URL?
         let group = DispatchGroup()
+        let sessionId: UUID = UUID()
         group.enter()
-        cacheEstimateImageCaptureData(
+        saveEstimateImageCaptureData(
             depthMap: convertAndCropDepthData(depthData: photo.depthData!, rect: rect),
             calibration: photo.depthData!.cameraCalibrationData!,
             attitude: attitude,
@@ -99,7 +100,7 @@ class EstimateImageCaptureViewController: UIViewController {
             group.leave()
         }
         group.enter()
-        dataManager.saveTemporaryFile(
+        dataManager.saveFile(
             data: UIImage(cgImage: try! cropImage(photo: photo, rect: rect)).jpegData(compressionQuality: 1.0)!,
             extensionName: "jpg"
         ) { url in
@@ -109,7 +110,7 @@ class EstimateImageCaptureViewController: UIViewController {
         group.notify(queue: .main) {
             self.backendConnector.getRecognitionResult(
                 token: "abcd1234",
-                session_id: UUID().uuidString,
+                session_id: sessionId.uuidString,
                 jsonURL: jsonURL!,
                 photoURL: photoURL!
             ) { result, error in
@@ -118,9 +119,18 @@ class EstimateImageCaptureViewController: UIViewController {
                     SVProgressHUD.showError(withStatus: "Server Error")
                     return
                 }
-                self.captureButton.isEnabled = true
-                SVProgressHUD.showSuccess(withStatus: "Done")
-                self.performSegue(withIdentifier: "showEstimateResultViewController", sender: result!)
+                self.dataManager.saveFile(data: result!.rawJSON.rawString()!.data(using: .utf8)!, extensionName: "json") { url in
+                    self.captureButton.isEnabled = true
+                    SVProgressHUD.showSuccess(withStatus: "Done")
+                    let sessionRecord = SessionRecord(
+                        photoURL: photoURL!,
+                        captureJSONURL: jsonURL!,
+                        recognitionJSONURL: url,
+                        timestamp: Date(),
+                        sessionId: sessionId
+                    )
+                    self.performSegue(withIdentifier: "showEstimateResultViewController", sender: sessionRecord)
+                }
             }
         }
     }

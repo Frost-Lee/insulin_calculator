@@ -25,9 +25,9 @@ class DataManager: NSObject {
         - completion: The completion handler. This closure will be called once the saving process finished, the parameter
             is the URL of the saved temporary file.
      */
-    func saveTemporaryFile(data: Data, extensionName: String, completion: ((URL) -> ())?) {
+    func saveFile(data: Data, extensionName: String, completion: ((URL) -> ())?) {
         let temporaryURL = FileManager.default.urls(
-            for: .cachesDirectory,
+            for: .documentDirectory,
             in: .userDomainMask
         )[0].appendingPathComponent(UUID().uuidString).appendingPathExtension(extensionName)
         try! data.write(to: temporaryURL)

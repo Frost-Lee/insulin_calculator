@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SVProgressHUD
+import SwiftyJSON
 
 class EstimateResultViewController: UIViewController {
 
@@ -19,6 +21,9 @@ class EstimateResultViewController: UIViewController {
     @IBOutlet weak var entitySelectCollectionView: UICollectionView!
     @IBOutlet weak var candidateSelectTableView: UITableView!
     
+    /// The primary data content of the view. Passed from `EstimateImageCaptureViewController`.
+    var sessionRecord: SessionRecord?
+    /// The derived data from `sessionRecord`.
     var sessionRecognitionResult: SessionRecognitionResult?
     
     private var selectedEntityIndex: Int {
@@ -44,6 +49,19 @@ class EstimateResultViewController: UIViewController {
     }
     
     private func setRecognitionResult() {
+        do {
+            sessionRecognitionResult = try SessionRecognitionResult(
+                json: try JSON(
+                    data: try Data(
+                        contentsOf: sessionRecord!.recognitionJSONURL
+                    )
+                )
+            )
+            capturedImageView.image = UIImage(data: try Data(contentsOf: sessionRecord!.photoURL))
+        } catch {
+            SVProgressHUD.showError(withStatus: "Data Storage Error")
+            dismiss(animated: true, completion: nil)
+        }
         entitySelectCollectionView.reloadData()
         candidateSelectTableView.reloadData()
         setInfoPanel()
@@ -57,7 +75,7 @@ class EstimateResultViewController: UIViewController {
                 Use some ways to estimate the size of all dishes, combine volume and area, the result could
                 be "large size", "medium size" or some similar terms.
              */
-            sizeLabel.text = "Not Available"
+            sizeLabel.text = "-"
             weightLabel.text = sessionRecognitionResult?.results.filter({$0.weight > 0}).map({$0.weight}).reduce(0.0, +).weightString()
             carbsLabel.text = sessionRecognitionResult?.results.filter({$0.carbs > 0}).map({$0.carbs}).reduce(0.0, +).weightString()
         } else {
@@ -142,6 +160,7 @@ extension EstimateResultViewController: UICollectionViewDataSource, UICollection
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
+        guard sessionRecognitionResult != nil else {return 0}
         return sessionRecognitionResult!.results.count + 1
     }
     

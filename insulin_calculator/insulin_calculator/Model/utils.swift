@@ -12,7 +12,7 @@ import CoreMotion
 import CoreML
 
 /**
- Save the peripheral objects captured along with image as a temporary JSON file. The data includes session token
+ Save the peripheral objects captured along with image as a JSON file. The data includes session token
  of a capture, the depth map, food segmentation mask, camera calibration data, device attitude, and the image crop
  rect.
  
@@ -25,7 +25,7 @@ import CoreML
     - completion: The completion handler. This closure will be called once the saving process finished, the
         parameter is the URL of the saved temporary file.
  */
-func cacheEstimateImageCaptureData(
+func saveEstimateImageCaptureData(
     depthMap: [[Float32]],
     calibration: AVCameraCalibrationData,
     attitude: CMAttitude,
@@ -69,7 +69,7 @@ func cacheEstimateImageCaptureData(
         withJSONObject: jsonDict,
         options: .prettyPrinted
     )
-    dataManager.saveTemporaryFile(data: jsonStringData, extensionName: "json", completion: completion)
+    dataManager.saveFile(data: jsonStringData, extensionName: "json", completion: completion)
 }
 
 
@@ -102,18 +102,18 @@ func convertAndCropDepthData(depthData: AVDepthData, rect: CGRect) -> [[Float32]
         CVPixelBufferGetBaseAddress(disparityData.depthDataMap),
         to: UnsafeMutablePointer<Float32>.self
     )
-    var realRow = 0
+    var realRow = 0, realCol = 0
     for row in startRow ..< endRow {
-//        for col in startCol ..< endCol {
-//            depthMap[realRow][realCol] = 1.0 / floatBuffer[width * row + col]
-//            realCol += 1
-//        }
-//        realRow += 1
-//        realCol = 0
-        DispatchQueue.concurrentPerform(iterations: endCol - startCol) { index in
-            depthMap[realRow][index] = 1.0 / floatBuffer[width * row + index + startCol]
+        for col in startCol ..< endCol {
+            depthMap[realRow][realCol] = 1.0 / floatBuffer[width * row + col]
+            realCol += 1
         }
         realRow += 1
+        realCol = 0
+//        DispatchQueue.concurrentPerform(iterations: endCol - startCol) { index in
+//            depthMap[realRow][index] = 1.0 / floatBuffer[width * row + index + startCol]
+//        }
+//        realRow += 1
     }
     CVPixelBufferUnlockBaseAddress(
         disparityData.depthDataMap,
