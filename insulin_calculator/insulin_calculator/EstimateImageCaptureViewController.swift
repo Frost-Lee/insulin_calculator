@@ -158,7 +158,7 @@ class EstimateImageCaptureViewController: UIViewController {
             savedAction?(nil)
         }
         alertController.addTextField() { textField in
-            textField.placeholder = "Weight digits (in pound)"
+            textField.placeholder = "Weight digits (in gram)"
             textField.keyboardType = .decimalPad
         }
         NotificationCenter.default.addObserver(
