@@ -63,12 +63,12 @@ class EstimateResultViewController: UIViewController {
         } else {
             let selectedEntity = sessionRecognitionResult!.results[selectedEntityIndex]
             nameLabel.text = selectedEntity.selectedCandidate.name
-            if selectedEntity.area > 0 {
+            if selectedEntity.selectedCandidate.areaDensity > 0 {
                 sizeLabel.text = selectedEntity.area.areaString()
-            } else if selectedEntity.volume > 0 {
+            } else if selectedEntity.selectedCandidate.volumeDensity > 0 {
                 sizeLabel.text = selectedEntity.volume.volumeString()
             } else {
-                sizeLabel.text = "Not Available"
+                sizeLabel.text = selectedEntity.volume.volumeString()
             }
             /**
             - TODO:

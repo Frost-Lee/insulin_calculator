@@ -123,7 +123,6 @@ class EstimateImageCaptureViewController: UIViewController {
                 self.performSegue(withIdentifier: "showEstimateResultViewController", sender: result!)
             }
         }
-
     }
 
 }
