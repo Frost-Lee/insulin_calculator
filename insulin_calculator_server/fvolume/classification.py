@@ -15,7 +15,6 @@ def _get_raw_classification_result(buffers):
     """
     # TODO(canchen.lee@gmail.com): Control the number of request to Calorie mama 
     # API, avoid abuse.
-    print(len(buffers))
     assert len(buffers) < 10
     return [requests.post(
         url=config.CLASSIFIER_URL,
@@ -35,14 +34,15 @@ def get_classification_result(buffers):
         of candidates (represented as json format) if the object is food in the 
         corresponding image, or `None` if not.
     """
-    responses = _get_raw_classification_result(buffers)
-    json_contents = [json.loads(response.content.decode('utf8')) for response in responses]
-    food_items = [
-        [item for result in content['results'] for item in sorted(
-            result['items'], 
-            key=lambda x: x['score'], 
-            reverse=True
-        )][:config.CLASSIFICATION_CANDIDATES] 
-        if content['is_food'] else None for content in json_contents
-    ]
+    food_items = [None for _ in buffers]
+    # responses = _get_raw_classification_result(buffers)
+    # json_contents = [json.loads(response.content.decode('utf8')) for response in responses]
+    # food_items = [
+    #     [item for result in content['results'] for item in sorted(
+    #         result['items'], 
+    #         key=lambda x: x['score'], 
+    #         reverse=True
+    #     )][:config.CLASSIFICATION_CANDIDATES] 
+    #     if content['is_food'] else None for content in json_contents
+    # ]
     return food_items
