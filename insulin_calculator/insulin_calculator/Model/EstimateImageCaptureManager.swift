@@ -23,9 +23,10 @@ protocol EstimateImageCaptureDelegate {
         - attitude: The device attitude when capturing the image.
         - error: See [photoOutput(_:didFinishProcessingPhoto:error:)](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate/2873949-photooutput)
      */
-    func photoOutput(
-        _ output: AVCapturePhotoOutput,
-        didFinishProcessingPhoto photo: AVCapturePhoto,
+    func captureOutput(
+        image: CVPixelBuffer,
+        depthMap: CVPixelBuffer,
+        calibration: AVCameraCalibrationData,
         attitude: CMAttitude,
         error: Error?
     )
@@ -94,7 +95,9 @@ class EstimateImageCaptureManager: NSObject {
      are recorded. The processed data is passed to the delegate.
      */
     func captureImage() {
-        let photoSettings = AVCapturePhotoSettings()
+        let photoSettings = AVCapturePhotoSettings(format:[
+            kCVPixelBufferPixelFormatTypeKey as String : kCVPixelFormatType_32BGRA
+        ])
         photoSettings.isDepthDataDeliveryEnabled = true
         photoSettings.isDepthDataFiltered = true
         photoOutput.capturePhoto(with: photoSettings, delegate: self)
@@ -142,9 +145,16 @@ extension EstimateImageCaptureManager: AVCapturePhotoCaptureDelegate {
         didFinishProcessingPhoto photo: AVCapturePhoto,
         error: Error?
     ) {
-        delegate.photoOutput(
-            output,
-            didFinishProcessingPhoto: photo,
+        print("Rectifying image")
+        let rectifiedImage = rectifyImage(from: photo.pixelBuffer!, using: photo.depthData!.cameraCalibrationData!)
+        print("Image rectified")
+        photo.depthData!.converting(toDepthDataType: kCVPixelFormatType_DisparityFloat32)
+        let rectifiedDepth = rectifyImage(from: photo.depthData!.depthDataMap, using: photo.depthData!.cameraCalibrationData!)
+        print("Depth rectified")
+        delegate.captureOutput(
+            image: rectifiedImage,
+            depthMap: rectifiedDepth,
+            calibration: photo.depthData!.cameraCalibrationData!,
             attitude: attitude!,
             error: error
         )

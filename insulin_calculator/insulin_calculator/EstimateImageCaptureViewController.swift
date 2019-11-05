@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import CoreMotion
 import Photos
+import CoreImage
 import SVProgressHUD
 
 class EstimateImageCaptureViewController: UIViewController {
@@ -99,56 +100,60 @@ class EstimateImageCaptureViewController: UIViewController {
     }
     
     private func submitCapturedData(
-        photo: AVCapturePhoto,
-        attitude: CMAttitude,
-        rect: CGRect
+        imageData: Data,
+        depthMap: [[Float]],
+        calibration: AVCameraCalibrationData,
+        attitude: CMAttitude
     ) {
         var jsonURL: URL?, photoURL: URL?
         let group = DispatchGroup()
         let sessionId: UUID = UUID()
         group.enter()
         saveEstimateImageCaptureData(
-            depthMap: convertAndCropDepthData(depthData: photo.depthData!, rect: rect),
-            calibration: photo.depthData!.cameraCalibrationData!,
-            attitude: attitude,
-            cropRect: rect
+            depthMap: depthMap,
+            calibration: calibration,
+            attitude: attitude
         ) { url in
             jsonURL = url
             group.leave()
         }
         group.enter()
         dataManager.saveFile(
-            data: UIImage(cgImage: try! cropImage(photo: photo, rect: rect)).jpegData(compressionQuality: 1.0)!,
+            data: imageData,
             extensionName: "jpg"
         ) { url in
             photoURL = url
             group.leave()
         }
         group.notify(queue: .main) {
-            self.backendConnector.getRecognitionResult(
-                token: "abcd1234",
-                session_id: sessionId.uuidString,
-                jsonURL: jsonURL!,
-                photoURL: photoURL!
-            ) { result, error in
-                guard error == nil else {
-                    self.captureButton.isEnabled = true
-                    SVProgressHUD.showError(withStatus: "Server Error")
-                    return
-                }
-                self.dataManager.saveFile(data: result!.rawJSON.rawString()!.data(using: .utf8)!, extensionName: "json") { url in
-                    self.captureButton.isEnabled = true
-                    SVProgressHUD.showSuccess(withStatus: "Done")
-                    let sessionRecord = SessionRecord(
-                        photoURL: photoURL!,
-                        captureJSONURL: jsonURL!,
-                        recognitionJSONURL: url,
-                        timestamp: Date(),
-                        sessionId: sessionId
-                    )
-                    self.performSegue(withIdentifier: "showEstimateResultViewController", sender: sessionRecord)
-                }
-            }
+            UIImageWriteToSavedPhotosAlbum(UIImage(data: try! Data(contentsOf: photoURL!))!, nil, nil, nil)
+            SVProgressHUD.dismiss()
+            let activityViewController = UIActivityViewController(activityItems: [jsonURL!], applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: nil)
+//            self.backendConnector.getRecognitionResult(
+//                token: "abcd1234",
+//                session_id: sessionId.uuidString,
+//                jsonURL: jsonURL!,
+//                photoURL: photoURL!
+//            ) { result, error in
+//                guard error == nil else {
+//                    self.captureButton.isEnabled = true
+//                    SVProgressHUD.showError(withStatus: "Server Error")
+//                    return
+//                }
+//                self.dataManager.saveFile(data: result!.rawJSON.rawString()!.data(using: .utf8)!, extensionName: "json") { url in
+//                    self.captureButton.isEnabled = true
+//                    SVProgressHUD.showSuccess(withStatus: "Done")
+//                    let sessionRecord = SessionRecord(
+//                        photoURL: photoURL!,
+//                        captureJSONURL: jsonURL!,
+//                        recognitionJSONURL: url,
+//                        timestamp: Date(),
+//                        sessionId: sessionId
+//                    )
+//                    self.performSegue(withIdentifier: "showEstimateResultViewController", sender: sessionRecord)
+//                }
+//            }
         }
     }
 
@@ -156,14 +161,14 @@ class EstimateImageCaptureViewController: UIViewController {
 
 
 extension EstimateImageCaptureViewController: EstimateImageCaptureDelegate {
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, attitude: CMAttitude, error: Error?) {
-        guard photo.depthData!.cameraCalibrationData != nil else {return}
-        let previewLayer = estimateImageCaptureManager.previewLayer!
-        let cropRect = previewLayer.metadataOutputRectConverted(fromLayerRect: previewLayer.bounds)
+    func captureOutput(image: CVPixelBuffer, depthMap: CVPixelBuffer, calibration: AVCameraCalibrationData, attitude: CMAttitude, error: Error?) {
+        let jpegData = UIImage(ciImage: CIImage(cvImageBuffer: image)).jpegData(compressionQuality: 1.0)!
+        let convertedDepthMap = convertDepthData(depthMap: depthMap)
         submitCapturedData(
-            photo: photo,
-            attitude: attitude,
-            rect: cropRect
+            imageData: jpegData,
+            depthMap: convertedDepthMap,
+            calibration: calibration,
+            attitude: attitude
         )
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 import AVFoundation
 import CoreMotion
 import CoreML
+import UIKit
 
 /**
  Save the peripheral objects captured along with image as a JSON file. The data includes session token
@@ -20,8 +21,6 @@ import CoreML
     - depthMap: The depth map captured along with the image, represente as `[[Float32]]`.
     - calibration: The calibration data of the camera when capturing the image.
     - attitude: The device attitude when capturing the image.
-    - cropRect: The rect that represents how the image is cropped. See [metadataOutputRectConverted](https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/1623495-metadataoutputrectconverted)
-        for details.
     - completion: The completion handler. This closure will be called once the saving process finished, the
         parameter is the URL of the saved temporary file.
  */
@@ -29,7 +28,6 @@ func saveEstimateImageCaptureData(
     depthMap: [[Float32]],
     calibration: AVCameraCalibrationData,
     attitude: CMAttitude,
-    cropRect: CGRect,
     completion: @escaping ((URL) -> ())
 ) {
     let dataManager = DataManager.shared
@@ -53,16 +51,6 @@ func saveEstimateImageCaptureData(
             "roll" : attitude.roll,
             "yaw" : attitude.yaw
         ],
-        "crop_rect" : [
-            "origin" : [
-                "x" : cropRect.origin.x,
-                "y" : cropRect.origin.y
-            ],
-            "size" : [
-                "width" : cropRect.size.width,
-                "height" : cropRect.size.height
-            ]
-        ],
         "depth_data" : depthMap
     ]
     let jsonStringData = try! JSONSerialization.data(
@@ -74,52 +62,166 @@ func saveEstimateImageCaptureData(
 
 
 /**
- Convert the depth data from `AVDepthData` to `[[Float32]]`, then crop the data with `rect` to obtain
- a square depth map.
+ Convert the depth data from `CVPixelBuffer` to `[[Float32]]`.
  
  - Parameters:
-    - depthData: The captured depth data.
-    - rect: The rect that represents the region to preserve in the image. See [metadataOutputRectConverted](https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/1623495-metadataoutputrectconverted)
-    for details.
+    - depthMap: The pixel buffer containing the depth data.
+ 
+ - Returns:
+    The type casted depth data, represented as `[[Float32]]`.
  */
-func convertAndCropDepthData(depthData: AVDepthData, rect: CGRect) -> [[Float32]] {
-    let disparityData = depthData.converting(toDepthDataType: kCVPixelFormatType_DisparityFloat32)
-    let width = CVPixelBufferGetWidth(disparityData.depthDataMap)
-    let height = CVPixelBufferGetHeight(disparityData.depthDataMap)
-    let startRow = Int(rect.origin.y * CGFloat(height))
-    let endRow = Int((rect.origin.y + rect.size.height) * CGFloat(height))
-    let startCol = Int(rect.origin.x * CGFloat(width))
-    let endCol = Int((rect.origin.x + rect.size.width) * CGFloat(width))
-    var depthMap: [[Float32]] = Array(
-        repeating: Array(repeating: 0, count: endCol - startCol),
-        count: endRow - startRow
+func convertDepthData(depthMap: CVPixelBuffer) -> [[Float32]] {
+    let width = CVPixelBufferGetWidth(depthMap)
+    let height = CVPixelBufferGetHeight(depthMap)
+    var convertedDepthMap: [[Float32]] = Array(
+        repeating: Array(repeating: 0, count: width),
+        count: height
     )
     CVPixelBufferLockBaseAddress(
-        disparityData.depthDataMap,
+        depthMap,
         CVPixelBufferLockFlags(rawValue: 0)
     )
     let floatBuffer = unsafeBitCast(
-        CVPixelBufferGetBaseAddress(disparityData.depthDataMap),
+        CVPixelBufferGetBaseAddress(depthMap),
         to: UnsafeMutablePointer<Float32>.self
     )
-    var realRow = 0, realCol = 0
-    for row in startRow ..< endRow {
-        for col in startCol ..< endCol {
-            depthMap[realRow][realCol] = 1.0 / floatBuffer[width * row + col]
-            realCol += 1
+    for row in 0 ..< height {
+        for col in 0 ..< width {
+            if floatBuffer[width * row + col].isNaN || floatBuffer[width * row + col] == 0.0 || floatBuffer[width * row + col].isInfinite {
+                convertedDepthMap[row][col] = 0
+            } else {
+                convertedDepthMap[row][col] = floatBuffer[width * row + col]
+            }
         }
-        realRow += 1
-        realCol = 0
 //        DispatchQueue.concurrentPerform(iterations: endCol - startCol) { index in
 //            depthMap[realRow][index] = 1.0 / floatBuffer[width * row + index + startCol]
 //        }
 //        realRow += 1
     }
     CVPixelBufferUnlockBaseAddress(
-        disparityData.depthDataMap,
+        depthMap,
         CVPixelBufferLockFlags(rawValue: 0)
     )
-    return depthMap
+    return convertedDepthMap
+}
+
+
+func lensDistortionPoint(for point: CGPoint, lookupTable: Data, distortionOpticalCenter opticalCenter: CGPoint, imageSize: CGSize) -> CGPoint {
+    // The lookup table holds the relative radial magnification for n linearly spaced radii.
+    // The first position corresponds to radius = 0
+    // The last position corresponds to the largest radius found in the image.
+      
+    // Determine the maximum radius.
+    let delta_ocx_max = Float(max(opticalCenter.x, imageSize.width  - opticalCenter.x))
+    let delta_ocy_max = Float(max(opticalCenter.y, imageSize.height - opticalCenter.y))
+    let r_max = sqrt(delta_ocx_max * delta_ocx_max + delta_ocy_max * delta_ocy_max)
+      
+    // Determine the vector from the optical center to the given point.
+    let v_point_x = Float(point.x - opticalCenter.x)
+    let v_point_y = Float(point.y - opticalCenter.y)
+      
+    // Determine the radius of the given point.
+    let r_point = sqrt(v_point_x * v_point_x + v_point_y * v_point_y)
+      
+    // Look up the relative radial magnification to apply in the provided lookup table
+    let magnification: Float = lookupTable.withUnsafeBytes { (lookupTableValues: UnsafePointer<Float>) in
+        let lookupTableCount = lookupTable.count / MemoryLayout<Float>.size
+          
+        if r_point < r_max {
+            // Linear interpolation
+            let val   = r_point * Float(lookupTableCount - 1) / r_max
+            let idx   = Int(val)
+            let frac  = val - Float(idx)
+              
+            let mag_1 = lookupTableValues[idx]
+            let mag_2 = lookupTableValues[idx + 1]
+              
+            return (1.0 - frac) * mag_1 + frac * mag_2
+        } else {
+            return lookupTableValues[lookupTableCount - 1]
+        }
+    }
+    
+    // Apply radial magnification
+    let new_v_point_x = v_point_x + magnification * v_point_x
+    let new_v_point_y = v_point_y + magnification * v_point_y
+      
+    // Construct output
+    return CGPoint(x: opticalCenter.x + CGFloat(new_v_point_x), y: opticalCenter.y + CGFloat(new_v_point_y))
+}
+
+func buffer(from image: UIImage) -> CVPixelBuffer? {
+    let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary
+    var pixelBuffer : CVPixelBuffer?
+    let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(image.size.width), Int(image.size.height), kCVPixelFormatType_32ARGB, attrs, &pixelBuffer)
+    guard (status == kCVReturnSuccess) else {
+        return nil
+    }
+    CVPixelBufferLockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
+    let pixelData = CVPixelBufferGetBaseAddress(pixelBuffer!)
+    let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
+    let context = CGContext(data: pixelData, width: Int(image.size.width), height: Int(image.size.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer!), space: rgbColorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
+    context?.translateBy(x: 0, y: image.size.height)
+    context?.scaleBy(x: 1.0, y: -1.0)
+    UIGraphicsPushContext(context!)
+    image.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+    UIGraphicsPopContext()
+    CVPixelBufferUnlockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
+    return pixelBuffer
+}
+
+
+/**
+ Rectify the image from the lens distortion using calibration data.
+ 
+ - Parameters:
+    - buffer: The `CVPixelBuffer` object containing the image.
+    - calibration: The camera calibration data of the image.
+ 
+ - Returns:
+    The image buffer of the rectified image.
+ */
+func rectifyImage(
+    from buffer: CVPixelBuffer,
+    using calibration: AVCameraCalibrationData
+) -> CVPixelBuffer {
+    let width = CVPixelBufferGetWidth(buffer)
+    let height = CVPixelBufferGetHeight(buffer)
+    print(width, height)
+    let pixelType = CVPixelBufferGetPixelFormatType(buffer)
+    var rectifiedBuffer: CVPixelBuffer? = nil
+    CVPixelBufferCreate(kCFAllocatorDefault, width, height, pixelType, nil, &rectifiedBuffer)
+    CVPixelBufferLockBaseAddress(rectifiedBuffer!, CVPixelBufferLockFlags(rawValue: 0))
+    CVPixelBufferLockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: 1))
+    let bytesPerRow = CVPixelBufferGetBytesPerRow(buffer)
+    let bytesPerPixel = bytesPerRow / width
+    let rectifiedBufferBaseAddress = CVPixelBufferGetBaseAddress(rectifiedBuffer!)!
+    let originalBufferBaseAddress = CVPixelBufferGetBaseAddress(buffer)!
+    print(calibration.lensDistortionCenter)
+    for row in 0 ..< height {
+        let rectifiedRowBaseAddress = rectifiedBufferBaseAddress + row * bytesPerRow
+        let rectifiedRowData = UnsafeMutableBufferPointer(start: rectifiedRowBaseAddress.assumingMemoryBound(to: UInt8.self), count: bytesPerRow)
+        for col in 0 ..< width {
+            let rectifiedPoint = CGPoint(x: row, y: col)
+            let originalPoint = lensDistortionPoint(
+                for: rectifiedPoint,
+                lookupTable: calibration.lensDistortionLookupTable!,
+                distortionOpticalCenter: calibration.lensDistortionCenter,
+                imageSize: CGSize(width: width, height: height)
+            )
+            if originalPoint.x < 0.0 || Int(originalPoint.x) >= width || originalPoint.y < 0 || Int(originalPoint.y) >= height {
+                continue
+            }
+            let originalRowBaseAddress = originalBufferBaseAddress + Int(originalPoint.y) * bytesPerRow
+            let originalRowData = UnsafeBufferPointer(start: originalRowBaseAddress.assumingMemoryBound(to: UInt8.self), count: bytesPerRow)
+            for byteIndex in 0 ..< bytesPerPixel {
+                rectifiedRowData[col * bytesPerPixel + byteIndex] = originalRowData[Int(originalPoint.x) * bytesPerPixel + byteIndex]
+            }
+        }
+    }
+    CVPixelBufferUnlockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: 1))
+    CVPixelBufferUnlockBaseAddress(rectifiedBuffer!, CVPixelBufferLockFlags(rawValue: 0))
+    return rectifiedBuffer!
 }
 
 
@@ -134,6 +236,7 @@ func convertAndCropDepthData(depthData: AVDepthData, rect: CGRect) -> [[Float32]
  - Returns:
     The `CGImage` object cropped from `photo` with `rect`.
  */
+@available(*, deprecated, message: "It's better to submit raw data to the server.")
 func cropImage(photo: AVCapturePhoto, rect: CGRect) throws -> CGImage {
     let image = photo.cgImageRepresentation()!.takeUnretainedValue()
     let croppedImage = image.cropping(to: CGRect(
@@ -157,6 +260,7 @@ func cropImage(photo: AVCapturePhoto, rect: CGRect) throws -> CGImage {
  - Returns:
     A 2d `Float32` array converted from `multiArray` with shape w * h.
  */
+@available(*, deprecated, message: "No ML model running on front end currently.")
 func convertSegmentMaskData(multiArray: MLMultiArray) throws -> [[Float32]] {
     let totalValues = multiArray.count
     let area = Int(truncating: multiArray.shape[1]) * Int(truncating: multiArray.shape[2])
