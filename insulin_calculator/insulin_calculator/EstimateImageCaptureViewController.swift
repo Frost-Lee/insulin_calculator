@@ -96,18 +96,12 @@ class EstimateImageCaptureViewController: UIViewController {
         dataManager.saveFile(
             data: wrapEstimateImageData(depthMap: depthMap, calibration: calibration, attitude: attitude),
             extensionName: "json"
-        ) { url in
-            jsonURL = url
-            group.leave()
-        }
+        ) { url in jsonURL = url; group.leave()}
         group.enter()
         dataManager.saveFile(
             data: imageData,
             extensionName: "jpg"
-        ) { url in
-            photoURL = url
-            group.leave()
-        }
+        ) { url in photoURL = url; group.leave()}
         group.notify(queue: .main) {
             UIImageWriteToSavedPhotosAlbum(UIImage(data: try! Data(contentsOf: photoURL!))!, nil, nil, nil)
             SVProgressHUD.dismiss()
