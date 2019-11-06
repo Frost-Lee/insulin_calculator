@@ -13,6 +13,8 @@ protocol EstimateImageCaptureDelegate {
     /**
      Providing the delegate with the captured image data, including `AVCapturePhoto` object and an attitude
      measurement.
+     - TODO:
+        Document update.
      
      - Parameters:
         - output: See [photoOutput(_:didFinishProcessingPhoto:error:)](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate/2873949-photooutput)
@@ -153,7 +155,7 @@ extension EstimateImageCaptureManager: AVCapturePhotoCaptureDelegate {
         print("Depth rectified")
         delegate.captureOutput(
             image: rectifiedImage,
-            depthMap: rectifiedDepth,
+            depthMap: photo.depthData!.depthDataMap,
             calibration: photo.depthData!.cameraCalibrationData!,
             attitude: attitude!,
             error: error

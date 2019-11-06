@@ -10,7 +10,6 @@ import Foundation
 import AVFoundation
 import CoreMotion
 import CoreML
-import UIKit
 
 /**
  Wrap the depth map, calibration data, and attitude data as a `Data` object. The object is in JSON format.
@@ -72,10 +71,7 @@ func convertDepthData(depthMap: CVPixelBuffer) -> [[Float32]] {
         repeating: Array(repeating: 0, count: width),
         count: height
     )
-    CVPixelBufferLockBaseAddress(
-        depthMap,
-        CVPixelBufferLockFlags(rawValue: 0)
-    )
+    CVPixelBufferLockBaseAddress(depthMap, CVPixelBufferLockFlags(rawValue: 2))
     let floatBuffer = unsafeBitCast(
         CVPixelBufferGetBaseAddress(depthMap),
         to: UnsafeMutablePointer<Float32>.self
@@ -93,10 +89,7 @@ func convertDepthData(depthMap: CVPixelBuffer) -> [[Float32]] {
 //        }
 //        realRow += 1
     }
-    CVPixelBufferUnlockBaseAddress(
-        depthMap,
-        CVPixelBufferLockFlags(rawValue: 0)
-    )
+    CVPixelBufferUnlockBaseAddress(depthMap, CVPixelBufferLockFlags(rawValue: 2))
     return convertedDepthMap
 }
 
@@ -172,14 +165,20 @@ func rectifyImage(
     CVPixelBufferLockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: 1))
     let bytesPerRow = CVPixelBufferGetBytesPerRow(buffer)
     let bytesPerPixel = bytesPerRow / width
-    let rectifiedBufferBaseAddress = CVPixelBufferGetBaseAddress(rectifiedBuffer!)!
-    let originalBufferBaseAddress = CVPixelBufferGetBaseAddress(buffer)!
+    let rectifiedBufferData = UnsafeMutableBufferPointer(
+        start: CVPixelBufferGetBaseAddress(rectifiedBuffer!)!.assumingMemoryBound(to: UInt8.self),
+        count: bytesPerRow * height
+    )
+    let originalBufferData = UnsafeBufferPointer(
+        start: CVPixelBufferGetBaseAddress(buffer)!.assumingMemoryBound(to: UInt8.self),
+        count: bytesPerRow * height
+    )
     let imageScale = CGFloat(width) / calibration.intrinsicMatrixReferenceDimensions.width
-    print(imageScale)
-    let distortionCenter = CGPoint(x: calibration.lensDistortionCenter.x * imageScale , y: calibration.lensDistortionCenter.y * imageScale)
+    let distortionCenter = CGPoint(
+        x: calibration.lensDistortionCenter.x * imageScale ,
+        y: calibration.lensDistortionCenter.y * imageScale
+    )
     for row in 0 ..< height {
-        let rectifiedRowBaseAddress = rectifiedBufferBaseAddress + row * bytesPerRow
-        let rectifiedRowData = UnsafeMutableBufferPointer(start: rectifiedRowBaseAddress.assumingMemoryBound(to: UInt8.self), count: bytesPerRow)
         for col in 0 ..< width {
             let rectifiedPoint = CGPoint(x: col, y: row)
             let originalPoint = lensDistortionPoint(
@@ -188,13 +187,13 @@ func rectifyImage(
                 distortionOpticalCenter: distortionCenter,
                 imageSize: CGSize(width: width, height: height)
             )
-            if !((0 ..< width).contains(Int(originalPoint.x))) || !((0 ..< height).contains(Int(originalPoint.y))) {
+            if !CGRect(x: 0, y: 0, width: width, height: height).contains(originalPoint) {
                 continue
             }
-            let originalRowBaseAddress = originalBufferBaseAddress + Int(originalPoint.y) * bytesPerRow
-            let originalRowData = UnsafeBufferPointer(start: originalRowBaseAddress.assumingMemoryBound(to: UInt8.self), count: bytesPerRow)
             for byteIndex in 0 ..< bytesPerPixel {
-                rectifiedRowData[col * bytesPerPixel + byteIndex] = originalRowData[Int(originalPoint.x) * bytesPerPixel + byteIndex]
+                let rectifiedAddress = (row * width + col) * bytesPerPixel + byteIndex
+                let originalAddress = Int(originalPoint.y * CGFloat(width) + originalPoint.x) * bytesPerPixel + byteIndex
+                rectifiedBufferData[rectifiedAddress] = originalBufferData[originalAddress]
             }
         }
     }
