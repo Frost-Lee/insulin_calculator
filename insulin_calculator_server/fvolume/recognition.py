@@ -7,6 +7,7 @@ import keras
 import tensorflow as tf
 
 from . import config
+from . import utils
 
 tf_session = tf.Session()
 tf_graph = tf.get_default_graph()
@@ -150,9 +151,10 @@ def get_recognition_results(image):
             Note that the coordinates of both return values are reduced according to 
             `config.BLOCK_REDUCT_WINDOW` on the basis of `config.UNIFIED_IMAGE_SIZE`.
     """
-    resized_image = cv2.resize(image, config.UNIFIED_IMAGE_SIZE)
-    mask = _get_segmentation(resized_image)
-    label_mask, boxes = _get_entity_labeling(resized_image, mask)
+    center_cropped_image = utils.center_crop(image)
+    regulated_image = cv2.resize(center_cropped_image, config.UNIFIED_IMAGE_SIZE)
+    mask = _get_segmentation(regulated_image)
+    label_mask, boxes = _get_entity_labeling(regulated_image, mask)
     multiplier = config.BLOCK_REDUCT_WINDOW[0] * image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
     images = [
         cv2.resize(

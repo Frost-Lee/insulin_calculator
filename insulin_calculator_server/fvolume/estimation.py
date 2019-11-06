@@ -1,10 +1,14 @@
 import numpy as np
 import cv2
+import math
 import skimage.measure
 from sklearn import linear_model
+from scipy.spatial.transform import Rotation
 
 from . import config
+from . import utils
 
+intrinsics = None
 
 def _get_remapping_intrinsics(depth_map, calibration):
     """ Returning the focal length, horizontal optical center, and vertical optical 
@@ -16,72 +20,64 @@ def _get_remapping_intrinsics(depth_map, calibration):
     """
     # FIXME(canchen.lee@gmail.com): The way calculating the optical center might 
     # be errorneous because of the cropping of the image.
-    intrinsic_matrix = np.array(calibration['intrinsic_matrix'])
-    scale = min(depth_map.shape) / min(calibration['intrinsic_matrix_reference_dimensions'])
-    fl = intrinsic_matrix[0, 0] * scale     # focal length
-    oc_x = intrinsic_matrix[0, 2] * scale   # horizontal optical center
-    oc_y = intrinsic_matrix[1, 2] * scale   # vertical optical center
-    return fl, oc_x, oc_y
+    global intrinsics
+    if intrinsics is None:
+        intrinsic_matrix = np.array(calibration['intrinsic_matrix'])
+        scale = min(depth_map.shape) / min(calibration['intrinsic_matrix_reference_dimensions'])
+        fl = intrinsic_matrix[0, 0] * scale     # focal length
+        oc_x = intrinsic_matrix[0, 2] * scale   # horizontal optical center
+        oc_y = intrinsic_matrix[1, 2] * scale   # vertical optical center
+        intrinsics = fl, oc_x, oc_y
+    return intrinsics
 
 
-def _get_plane_mask(point_cloud):
-    """ Returning the inlier mask of the base plane in a point cloud.
-
+def _get_plane_recognition(point_cloud):
+    """ Recognize the base plane in `point_cloud`. The plane mask and the 
+        rotation to make the plane parallel to xOy surface is provided.
     Args:
         point_cloud: A point cloud represented as an numpy array with shape `(n, 3)`.
     
     Returns:
-        An inlier mask of the base plane, corresponding to the point cloud. The 
-        value if `True` if the point lies in the plane, `False` otherwise.
+        inlier_mask, rotation
+        `inlier_mask` is the mask of the base plane, corresponding to the point 
+        cloud. The value if `True` if the point lies in the plane, `False` otherwise.
+        `rotation` can help to rotate the plane parallel to xOy surface in the 
+        coordinate system of `point_cloud`
     """
     ransac = linear_model.RANSACRegressor(
         linear_model.LinearRegression(),
         residual_threshold=config.RANSAC_THRESHOLD
     )
     ransac.fit(point_cloud[:,:2], point_cloud[:,2])
-    return ransac.inlier_mask_
+    coef_a, coef_b = ransac.estimator_.coef_
+    normal_len_square = coef_a ** 2 + coef_b ** 2 + 1
+    normal_len = np.sqrt(normal_len_square)
+    regularizer = np.arccos(1.0 / normal_len) / np.sqrt((coef_b ** 2 + coef_a ** 2) * normal_len_square)
+    rotvec = np.array([
+        - coef_b * normal_len * regularizer,
+        coef_a * normal_len * regularizer,
+        0
+    ])
+    rotation = Rotation.from_rotvec(rotvec)
+    return ransac.inlier_mask_, rotation
 
 
-def _get_point_cloud(depth_map, focal_length, oc_x, oc_y, attitude):
-    """ Getting the point cloud with a depth map as well as related calibration data.
-
-    Args:
-        depth_map: The depth map represented as a numpy array.
-        focal_length: The focal length of the camera taking the depth map. Measured 
-            in pixel.
-        oc_x: The optical center coordinates of the depth map. Measured in pixel.
-        oc_y: The optical center coordinates of the depth map. Measured in pixel.
-        attitude: The device attitude data when capturing the image.
-    
-    Returns:
-        The point cloud represented as numpy array. The shape is supposed to be 
-        `(n, 3)`, where `n` stands for the number of elements in the depth map.
-    """
-    point_cloud = np.array(
-        [np.array([(i[0] - oc_x) * v / focal_length, (i[1] - oc_y) * v / focal_length, v]
-    ) for i, v in np.ndenumerate(depth_map)])
-    return point_cloud
+def _get_xoy_grid_lookup(point_cloud):
+    xoy_grid_lookup = {}
+    x_min, y_min = np.min(point_cloud[:,0]), np.min(point_cloud[:,1])
+    for point in point_cloud:
+        x_index = math.floor((point[0] - x_min) / config.GRID_LEN)
+        y_index = math.floor((point[1] - y_min) / config.GRID_LEN)
+        if x_index not in xoy_grid_lookup:
+            xoy_grid_lookup[x_index] = {}
+        if y_index not in xoy_grid_lookup[x_index]:
+            xoy_grid_lookup[x_index][y_index] = []
+        xoy_grid_lookup[x_index][y_index].append(point)
+    return xoy_grid_lookup
 
 
-def _get_area_volume_map(depth_map, calibration, attitude):
-    """ Returning the reduced area map and volume map of the given depth map. Both 
-        maps will be reduced according to `config.BLOCK_REDUCT_WINDOW`.
-
-    Args:
-        depth_map: The depth map represented as a numpy array.
-        calibration: The camera calibration data when capturing the depth map.
-        attitude: The device attitude data when capturing the image.
-    """
-    fl, oc_x, oc_y = _get_remapping_intrinsics(depth_map, calibration)
-    point_cloud = _get_point_cloud(depth_map, fl, oc_x, oc_y, attitude)
-    inlier_mask = _get_plane_mask(point_cloud)
-    background_depth = np.mean(point_cloud[inlier_mask][:,2])
-    depth_map_reduced = skimage.measure.block_reduce(depth_map, config.BLOCK_REDUCT_WINDOW, np.mean)
-    area_map = np.vectorize(
-        lambda x: np.product(config.BLOCK_REDUCT_WINDOW) * (x / fl) ** 2
-    )(depth_map_reduced)
-    volume_map = area_map * (- depth_map_reduced + background_depth)
-    return area_map, volume_map
+def _get_3d_coordinate(row, col, fl, oc_x, oc_y, depth):
+    return np.array([(row - oc_x) * depth / fl, (col - oc_y) * depth / fl, depth])
 
 
 def get_area_volume(depth_map, calibration, attitude, label_mask):
@@ -100,10 +96,30 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
         A area volume list. The values stands for `(area, volume)`, measured in 
         square meter and cube meter.
     """
-    depth_map_regulated = cv2.resize(depth_map, config.UNIFIED_IMAGE_SIZE)
-    area_map, volume_map = _get_area_volume_map(depth_map_regulated, calibration, attitude)
+    center_cropped_depth_map = utils.center_crop(depth_map)
+    regulated_depth_map = cv2.resize(depth_map, config.UNIFIED_IMAGE_SIZE)
+    intrinsics = _get_remapping_intrinsics(regulated_depth_map, calibration)
+    full_point_cloud = np.array([
+        _get_3d_coordinate(
+            i[0], i[1], *intrinsics, v
+        ) for i, v in np.ndenumerate(regulated_depth_map)
+    ])
+    food_point_clouds = [np.array([
+        _get_3d_coordinate(
+            row, col, *intrinsics, regulated_depth_map[row, col]
+        ) for row, col in zip(*np.where(label_mask == food_id))
+    ]) for food_id in np.unique(label_mask)[1:]]
+    plane_inlier_mask, rotation = _get_plane_recognition(full_point_cloud)
+    full_point_cloud = rotation.apply(full_point_cloud)
+    food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
+    background_depth = np.mean(full_point_cloud[plane_inlier_mask][:,2])
+    food_grid_lookups = [_get_xoy_grid_lookup(pc) for pc in food_point_clouds]
     area_volume_list = [(
-        np.sum(area_map[np.where(label_mask == food_id)]),
-        np.sum(volume_map[np.where(label_mask == food_id)])
-    )for food_id in np.unique(label_mask)][1:]
+        sum([sum([
+            config.GRID_LEN ** 2 for y_value in x_value.values()
+        ]) for x_value in lookup.values()]),
+        sum([sum([
+            (np.mean(background_depth - np.array(y_value), axis=0)[2]) * config.GRID_LEN ** 2 for y_value in x_value.values()
+        ]) for x_value in lookup.values()])
+    ) for lookup in food_grid_lookups]
     return area_volume_list
