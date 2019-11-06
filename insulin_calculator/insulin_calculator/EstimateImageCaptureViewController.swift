@@ -21,16 +21,7 @@ class EstimateImageCaptureViewController: UIViewController {
             captureButton.layer.cornerRadius = 8.0
         }
     }
-    
-    /**
-     - TODO:
-        Instantiate `orientationIndicateView` on storyboard.
-     */
-    var orientationIndicateView: DeviceOrientationIndicateView = {
-        let view = DeviceOrientationIndicateView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    @IBOutlet weak var deviceOrientationIndicatorView: DeviceOrientationIndicateView!
     
     private var estimateImageCaptureManager: EstimateImageCaptureManager!
     
@@ -41,19 +32,12 @@ class EstimateImageCaptureViewController: UIViewController {
         super.viewDidLoad()
         estimateImageCaptureManager = EstimateImageCaptureManager(delegate: self)
         previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
-        view.addSubview(orientationIndicateView)
-        NSLayoutConstraint.activate([
-            orientationIndicateView.topAnchor.constraint(equalTo: previewContainerView.topAnchor, constant: 0),
-            orientationIndicateView.bottomAnchor.constraint(equalTo: previewContainerView.bottomAnchor, constant: 0),
-            orientationIndicateView.leadingAnchor.constraint(equalTo: previewContainerView.leadingAnchor, constant: 0),
-            orientationIndicateView.trailingAnchor.constraint(equalTo: previewContainerView.trailingAnchor, constant: 0),
-        ])
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         estimateImageCaptureManager.startRunning()
-        orientationIndicateView.startRunning() {
+        deviceOrientationIndicatorView.startRunning() {
             return self.estimateImageCaptureManager.deviceAttitude
         }
         setupVolumeButtonListener()
@@ -61,7 +45,7 @@ class EstimateImageCaptureViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        orientationIndicateView.stopRunning()
+        deviceOrientationIndicatorView.stopRunning()
         estimateImageCaptureManager.stopRunning()
     }
     

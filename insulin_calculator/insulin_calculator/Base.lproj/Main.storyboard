@@ -19,8 +19,18 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4y-Bu-IfF">
                                 <rect key="frame" x="20" y="44.000000000000028" width="335" height="446.66666666666674"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4FF-3K-rs0" customClass="DeviceOrientationIndicateView" customModule="insulin_calculator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="446.66666666666669"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="4FF-3K-rs0" firstAttribute="top" secondItem="U4y-Bu-IfF" secondAttribute="top" id="1K9-PQ-eml"/>
+                                    <constraint firstItem="4FF-3K-rs0" firstAttribute="leading" secondItem="U4y-Bu-IfF" secondAttribute="leading" id="9PY-yf-Ooc"/>
+                                    <constraint firstAttribute="trailing" secondItem="4FF-3K-rs0" secondAttribute="trailing" id="XJI-lm-1CF"/>
+                                    <constraint firstAttribute="bottom" secondItem="4FF-3K-rs0" secondAttribute="bottom" id="l2c-Mx-EJW"/>
                                     <constraint firstAttribute="width" secondItem="U4y-Bu-IfF" secondAttribute="height" multiplier="3:4" id="zbh-d0-115"/>
                                 </constraints>
                             </view>
@@ -52,13 +62,14 @@
                     </view>
                     <connections>
                         <outlet property="captureButton" destination="VkE-Er-OOW" id="SL3-Qw-DQS"/>
+                        <outlet property="deviceOrientationIndicatorView" destination="4FF-3K-rs0" id="SvV-2W-532"/>
                         <outlet property="previewContainerView" destination="U4y-Bu-IfF" id="QDg-w4-ubR"/>
                         <segue destination="xij-gd-TPe" kind="presentation" identifier="showEstimateResultViewController" id="I8P-sH-7DV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="129.91071428571428"/>
+            <point key="canvasLocation" x="136.80000000000001" y="129.31034482758622"/>
         </scene>
         <!--Estimate Result View Controller-->
         <scene sceneID="fwl-Vq-GZf">
