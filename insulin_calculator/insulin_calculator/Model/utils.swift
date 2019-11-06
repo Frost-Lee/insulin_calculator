@@ -13,24 +13,18 @@ import CoreML
 import UIKit
 
 /**
- Save the peripheral objects captured along with image as a JSON file. The data includes session token
- of a capture, the depth map, food segmentation mask, camera calibration data, device attitude, and the image crop
- rect.
+ Wrap the depth map, calibration data, and attitude data as a `Data` object. The object is in JSON format.
  
  - Parameters:
     - depthMap: The depth map captured along with the image, represente as `[[Float32]]`.
     - calibration: The calibration data of the camera when capturing the image.
     - attitude: The device attitude when capturing the image.
-    - completion: The completion handler. This closure will be called once the saving process finished, the
-        parameter is the URL of the saved temporary file.
  */
-func saveEstimateImageCaptureData(
+func wrapEstimateImageData(
     depthMap: [[Float32]],
     calibration: AVCameraCalibrationData,
-    attitude: CMAttitude,
-    completion: @escaping ((URL) -> ())
-) {
-    let dataManager = DataManager.shared
+    attitude: CMAttitude
+) -> Data {
     let jsonDict: [String : Any] = [
         "calibration_data" : [
             "intrinsic_matrix" : (0 ..< 3).map{ x in
@@ -57,7 +51,8 @@ func saveEstimateImageCaptureData(
         withJSONObject: jsonDict,
         options: .prettyPrinted
     )
-    dataManager.saveFile(data: jsonStringData, extensionName: "json", completion: completion)
+    return jsonStringData
+//    dataManager.saveFile(data: jsonStringData, extensionName: "json", completion: completion)
 }
 
 
@@ -106,6 +101,9 @@ func convertDepthData(depthMap: CVPixelBuffer) -> [[Float32]] {
 }
 
 
+/**
+ Get the matched point after applying a distortion specified by a distortion lookup table. Reference [here](https://github.com/shu223/iOS-Depth-Sampler/issues/5).
+ */
 func lensDistortionPoint(for point: CGPoint, lookupTable: Data, distortionOpticalCenter opticalCenter: CGPoint, imageSize: CGSize) -> CGPoint {
     // The lookup table holds the relative radial magnification for n linearly spaced radii.
     // The first position corresponds to radius = 0
@@ -167,7 +165,6 @@ func rectifyImage(
 ) -> CVPixelBuffer {
     let width = CVPixelBufferGetWidth(buffer)
     let height = CVPixelBufferGetHeight(buffer)
-    print(width, height)
     let pixelType = CVPixelBufferGetPixelFormatType(buffer)
     var rectifiedBuffer: CVPixelBuffer? = nil
     CVPixelBufferCreate(kCFAllocatorDefault, width, height, pixelType, nil, &rectifiedBuffer)
@@ -177,7 +174,9 @@ func rectifyImage(
     let bytesPerPixel = bytesPerRow / width
     let rectifiedBufferBaseAddress = CVPixelBufferGetBaseAddress(rectifiedBuffer!)!
     let originalBufferBaseAddress = CVPixelBufferGetBaseAddress(buffer)!
-    print(calibration.lensDistortionCenter)
+    let imageScale = CGFloat(width) / calibration.intrinsicMatrixReferenceDimensions.width
+    print(imageScale)
+    let distortionCenter = CGPoint(x: calibration.lensDistortionCenter.x * imageScale , y: calibration.lensDistortionCenter.y * imageScale)
     for row in 0 ..< height {
         let rectifiedRowBaseAddress = rectifiedBufferBaseAddress + row * bytesPerRow
         let rectifiedRowData = UnsafeMutableBufferPointer(start: rectifiedRowBaseAddress.assumingMemoryBound(to: UInt8.self), count: bytesPerRow)
@@ -186,10 +185,10 @@ func rectifyImage(
             let originalPoint = lensDistortionPoint(
                 for: rectifiedPoint,
                 lookupTable: calibration.lensDistortionLookupTable!,
-                distortionOpticalCenter: calibration.lensDistortionCenter,
+                distortionOpticalCenter: distortionCenter,
                 imageSize: CGSize(width: width, height: height)
             )
-            if originalPoint.x < 0.0 || Int(originalPoint.x) >= width || originalPoint.y < 0 || Int(originalPoint.y) >= height {
+            if !((0 ..< width).contains(Int(originalPoint.x))) || !((0 ..< height).contains(Int(originalPoint.y))) {
                 continue
             }
             let originalRowBaseAddress = originalBufferBaseAddress + Int(originalPoint.y) * bytesPerRow

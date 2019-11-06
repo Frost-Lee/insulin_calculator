@@ -109,10 +109,9 @@ class EstimateImageCaptureViewController: UIViewController {
         let group = DispatchGroup()
         let sessionId: UUID = UUID()
         group.enter()
-        saveEstimateImageCaptureData(
-            depthMap: depthMap,
-            calibration: calibration,
-            attitude: attitude
+        dataManager.saveFile(
+            data: wrapEstimateImageData(depthMap: depthMap, calibration: calibration, attitude: attitude),
+            extensionName: "json"
         ) { url in
             jsonURL = url
             group.leave()
