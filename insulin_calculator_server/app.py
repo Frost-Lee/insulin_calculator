@@ -52,7 +52,8 @@ def _get_nutrition_estimate(session_data_manager):
     calibration = session_data_manager.peripheral['calibration_data']
     attitude = session_data_manager.peripheral['device_attitude']
     label_mask, boxes, buffers = fvolume.recognition.get_recognition_results(
-        session_data_manager.image
+        session_data_manager.image,
+        calibration
     )
     area_volumes = fvolume.estimation.get_area_volume(
         depth_map,

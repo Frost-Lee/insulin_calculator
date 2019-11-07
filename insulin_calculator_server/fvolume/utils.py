@@ -17,7 +17,7 @@ def center_crop(array):
     assert len(array.shape) >= 2
     if array.shape[0] == array.shape[1]:
         return array
-    shape_difference = np.absolute(array.shape[0], array.shape[1])
+    shape_difference = abs(array.shape[0] - array.shape[1])
     offset = shape_difference // 2
     if array.shape[0] > array.shape[1]:
         return array[offset:array.shape[1] + offset, :]
@@ -37,8 +37,8 @@ def regulate_image(image, calibration):
         The regulated image with shape specified by `config.UNIFIED_IMAGE_SIZE`.
     """
     scale = min(config.UNIFIED_IMAGE_SIZE) / min(image.shape[:2])
-    resized_image = cv2.resize(image, (image.shape[0] * scale, image.shape[1] * scale))
-    rectified_image = rectified_image(
+    resized_image = cv2.resize(image, (int(image.shape[0] * scale), int(image.shape[1] * scale)))
+    rectified_image = rectify_image(
         resized_image,
         np.array(calibration['lens_distortion_lookup_table']),
         np.array(calibration['lens_distortion_center']) * scale

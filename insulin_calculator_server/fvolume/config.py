@@ -12,6 +12,7 @@ CLASSIFICATION_CANDIDATES = 5
 
 RANSAC_THRESHOLD = 0.002
 
-SEG_MODEL_PATH = '/home/Frost/insulin_calculator/insulin_calculator_server/fvolume/model.hdf5'
+# SEG_MODEL_PATH = '/home/Frost/insulin_calculator/insulin_calculator_server/fvolume/model.hdf5'
+SEG_MODEL_PATH = '/Users/Frost/Desktop/model_checkpoint_02_2.hdf5'
 
 CLASSIFIER_URL = 'https://api-2445582032290.production.gw.apicast.io/v1/foodrecognition?user_key=cf1ba06a7dcb3385b2347316408a74e8'
