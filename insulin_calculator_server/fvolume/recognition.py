@@ -127,7 +127,7 @@ def _index_crop(array, i, multiplier):
         ]
 
 
-def get_recognition_results(image):
+def get_recognition_results(image, calibration):
     """ Get the recognition result of the color image with corresponding mask.
 
     Get a list of image buffers with the cropped food image in `image`. Images 
@@ -135,6 +135,7 @@ def get_recognition_results(image):
     
     Args:
         image: The raw resolution colored square image, represented as a numpy array.
+        calibration: The camera calibration data when capturing the image.
     
     Returns:
         A tuple `(label_mask, boxes, buffers)`.
@@ -151,8 +152,7 @@ def get_recognition_results(image):
             Note that the coordinates of both return values are reduced according to 
             `config.BLOCK_REDUCT_WINDOW` on the basis of `config.UNIFIED_IMAGE_SIZE`.
     """
-    center_cropped_image = utils.center_crop(image)
-    regulated_image = cv2.resize(center_cropped_image, config.UNIFIED_IMAGE_SIZE)
+    regulated_image = utils.regulate_image(image, calibration)
     mask = _get_segmentation(regulated_image)
     label_mask, boxes = _get_entity_labeling(regulated_image, mask)
     multiplier = config.BLOCK_REDUCT_WINDOW[0] * image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
@@ -162,6 +162,7 @@ def get_recognition_results(image):
             config.CLASSIFIER_IMAGE_SIZE
         ) for box in boxes
     ]
+    # TODO(canchen.lee@gmail.com): Map the boxes back to match the undistorted coordinate.
     remapped_boxes = [[float(item / label_mask.shape[0]) for tp in box for item in tp] for box in boxes]
     buffers = [io.BytesIO() for _ in range(len(images))]
     [plt.imsave(buffer, image, format='jpeg') for buffer, image in zip(buffers, images)]

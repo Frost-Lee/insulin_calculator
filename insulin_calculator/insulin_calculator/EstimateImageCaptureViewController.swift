@@ -85,7 +85,7 @@ class EstimateImageCaptureViewController: UIViewController {
     
     private func submitCapturedData(
         imageData: Data,
-        depthMap: [[Float]],
+        depthMap: CVPixelBuffer,
         calibration: AVCameraCalibrationData,
         attitude: CMAttitude
     ) {
@@ -138,12 +138,11 @@ class EstimateImageCaptureViewController: UIViewController {
 
 
 extension EstimateImageCaptureViewController: EstimateImageCaptureDelegate {
-    func captureOutput(image: CVPixelBuffer, depthMap: CVPixelBuffer, calibration: AVCameraCalibrationData, attitude: CMAttitude, error: Error?) {
-        let jpegData = UIImage(ciImage: CIImage(cvImageBuffer: image)).jpegData(compressionQuality: 1.0)!
-        let convertedDepthMap = convertDepthData(depthMap: depthMap)
+    func captureOutput(image: CGImage, depthMap: CVPixelBuffer, calibration: AVCameraCalibrationData, attitude: CMAttitude, error: Error?) {
+        let jpegData = UIImage(cgImage: image).jpegData(compressionQuality: 1.0)!
         submitCapturedData(
             imageData: jpegData,
-            depthMap: convertedDepthMap,
+            depthMap: depthMap,
             calibration: calibration,
             attitude: attitude
         )

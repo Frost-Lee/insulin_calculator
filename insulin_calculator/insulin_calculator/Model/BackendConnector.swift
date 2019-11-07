@@ -57,12 +57,10 @@ class BackendConnector: NSObject {
                         guard dataResponse.data != nil else {completion?(nil, NetworkError.unexpectedResponse);return}
                         do {
                             let json = try JSON(data: dataResponse.data!)
-                            print(try JSON(data: dataResponse.data!))
                             let result = try SessionRecognitionResult(json: json)
                             completion?(result, nil)
                         } catch {
                             completion?(nil, NetworkError.unexpectedResponse)
-                            print("a")
                             return
                         }
                     }

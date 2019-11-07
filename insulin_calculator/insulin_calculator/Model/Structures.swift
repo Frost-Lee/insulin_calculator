@@ -53,7 +53,6 @@ struct RecognitionEntityCandidate {
             json["volume_density"].double != nil,
             json["area_density"].double != nil
         else {
-            print("a")
             throw NetworkError.unexpectedResponse
         }
         name = json["name"].string!
@@ -123,7 +122,6 @@ struct RecognitionResult {
             json["volume"].double != nil,
             json["area"].double != nil
         else {
-            print("b")
             throw NetworkError.unexpectedResponse
         }
         let boundingBoxArray = json["bounding_box"].arrayValue.map{$0.double}.filter{$0 != nil}

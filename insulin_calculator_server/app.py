@@ -40,7 +40,7 @@ def response_density_collect():
     session_data_manager.register_peripheral_file(files['peripheral'])
     session_data_manager.register_collection_label(args.get('name'), args.get('weight'))
     return '{"status": "OK"}'
- 
+
 def _get_nutrition_estimate(session_data_manager):
     """ Return the nutrition estimate of a session and store the result.
     Args:

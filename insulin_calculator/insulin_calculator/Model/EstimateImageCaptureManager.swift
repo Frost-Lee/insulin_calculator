@@ -26,7 +26,7 @@ protocol EstimateImageCaptureDelegate {
         - error: See [photoOutput(_:didFinishProcessingPhoto:error:)](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate/2873949-photooutput)
      */
     func captureOutput(
-        image: CVPixelBuffer,
+        image: CGImage,
         depthMap: CVPixelBuffer,
         calibration: AVCameraCalibrationData,
         attitude: CMAttitude,
@@ -97,9 +97,7 @@ class EstimateImageCaptureManager: NSObject {
      are recorded. The processed data is passed to the delegate.
      */
     func captureImage() {
-        let photoSettings = AVCapturePhotoSettings(format:[
-            kCVPixelBufferPixelFormatTypeKey as String : kCVPixelFormatType_32BGRA
-        ])
+        let photoSettings = AVCapturePhotoSettings()
         photoSettings.isDepthDataDeliveryEnabled = true
         photoSettings.isDepthDataFiltered = true
         photoOutput.capturePhoto(with: photoSettings, delegate: self)
@@ -113,7 +111,7 @@ class EstimateImageCaptureManager: NSObject {
     private func configureCaptureDevices() {
         imageCaptureDevice = AVCaptureDevice.default(
             .builtInTrueDepthCamera,
-            for: .video,
+            for: .depthData,
             position: .unspecified
         )
     }
@@ -147,15 +145,10 @@ extension EstimateImageCaptureManager: AVCapturePhotoCaptureDelegate {
         didFinishProcessingPhoto photo: AVCapturePhoto,
         error: Error?
     ) {
-        print("Rectifying image")
-        let rectifiedImage = rectifyImage(from: photo.pixelBuffer!, using: photo.depthData!.cameraCalibrationData!)
-        print("Image rectified")
-        photo.depthData!.converting(toDepthDataType: kCVPixelFormatType_DepthFloat32)
-//        let rectifiedDepth = rectifyImage(from: photo.depthData!.depthDataMap, using: photo.depthData!.cameraCalibrationData!)
-        print("Depth rectified")
+        
         delegate.captureOutput(
-            image: rectifiedImage,
-            depthMap: photo.depthData!.depthDataMap,
+            image: photo.cgImageRepresentation()!.takeUnretainedValue(),
+            depthMap: photo.depthData!.converting(toDepthDataType: kCVPixelFormatType_DepthFloat32).depthDataMap,
             calibration: photo.depthData!.cameraCalibrationData!,
             attitude: attitude!,
             error: error

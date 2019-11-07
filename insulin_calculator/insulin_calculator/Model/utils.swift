@@ -11,6 +11,8 @@ import AVFoundation
 import CoreMotion
 import CoreML
 
+// MARK: Data Wrapping.
+
 /**
  Wrap the depth map, calibration data, and attitude data as a `Data` object. The object is in JSON format.
  
@@ -20,7 +22,7 @@ import CoreML
     - attitude: The device attitude when capturing the image.
  */
 func wrapEstimateImageData(
-    depthMap: [[Float32]],
+    depthMap: CVPixelBuffer,
     calibration: AVCameraCalibrationData,
     attitude: CMAttitude
 ) -> Data {
@@ -37,23 +39,27 @@ func wrapEstimateImageData(
             "lens_distortion_center" : [
                 calibration.lensDistortionCenter.x,
                 calibration.lensDistortionCenter.y
-            ]
+            ],
+            "lens_distortion_lookup_table" : convertLensDistortionLookupTable(
+                lookupTable: calibration.lensDistortionLookupTable!
+            )
         ],
         "device_attitude" : [
             "pitch" : attitude.pitch,
             "roll" : attitude.roll,
             "yaw" : attitude.yaw
         ],
-        "depth_data" : depthMap
+        "depth_data" : convertDepthData(depthMap: depthMap)
     ]
     let jsonStringData = try! JSONSerialization.data(
         withJSONObject: jsonDict,
         options: .prettyPrinted
     )
     return jsonStringData
-//    dataManager.saveFile(data: jsonStringData, extensionName: "json", completion: completion)
 }
 
+
+// MARK: Data Convertion.
 
 /**
  Convert the depth data from `CVPixelBuffer` to `[[Float32]]`.
@@ -78,19 +84,30 @@ func convertDepthData(depthMap: CVPixelBuffer) -> [[Float32]] {
     )
     for row in 0 ..< height {
         for col in 0 ..< width {
-            if floatBuffer[width * row + col].isNaN || floatBuffer[width * row + col].isInfinite {
-                convertedDepthMap[row][col] = 0
-            } else {
-                convertedDepthMap[row][col] = floatBuffer[width * row + col]
-            }
+            convertedDepthMap[row][col] = floatBuffer[width * row + col]
         }
-//        DispatchQueue.concurrentPerform(iterations: endCol - startCol) { index in
-//            depthMap[realRow][index] = 1.0 / floatBuffer[width * row + index + startCol]
-//        }
-//        realRow += 1
     }
     CVPixelBufferUnlockBaseAddress(depthMap, CVPixelBufferLockFlags(rawValue: 2))
     return convertedDepthMap
+}
+
+
+/**
+ Convert the `lensDistortionLookupTable` or `inverseLensDistortionLookupTable` to a `Float` array.
+ 
+ - Parameters:
+    - lookupTable: The `lensDistortionLookupTable` or `inverseLensDistortionLookupTable`,
+        see [AVCameraCalibrationData](https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata)
+        for details.
+ 
+ - Returns:
+    A `Float` array that contains numbers in the lookup table.
+ */
+func convertLensDistortionLookupTable(lookupTable: Data) -> [Float] {
+    let tableLength = lookupTable.count / MemoryLayout<Float>.size
+    var floatArray: [Float] = Array(repeating: 0, count: tableLength)
+    _ = floatArray.withUnsafeMutableBytes{lookupTable.copyBytes(to: $0)}
+    return floatArray
 }
 
 
@@ -168,7 +185,6 @@ func rectifyImage(
     let rectifiedBufferBaseAddress = CVPixelBufferGetBaseAddress(rectifiedBuffer!)!
     let originalBufferBaseAddress = CVPixelBufferGetBaseAddress(buffer)!
     let imageScale = CGFloat(width) / calibration.intrinsicMatrixReferenceDimensions.width
-    print(imageScale)
     let distortionCenter = CGPoint(x: calibration.lensDistortionCenter.x * imageScale , y: calibration.lensDistortionCenter.y * imageScale)
     for row in 0 ..< height {
         let rectifiedRowBaseAddress = rectifiedBufferBaseAddress + row * bytesPerRow
