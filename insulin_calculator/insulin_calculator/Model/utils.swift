@@ -78,7 +78,7 @@ func convertDepthData(depthMap: CVPixelBuffer) -> [[Float32]] {
     )
     for row in 0 ..< height {
         for col in 0 ..< width {
-            if floatBuffer[width * row + col].isNaN || floatBuffer[width * row + col] == 0.0 || floatBuffer[width * row + col].isInfinite {
+            if floatBuffer[width * row + col].isNaN || floatBuffer[width * row + col].isInfinite {
                 convertedDepthMap[row][col] = 0
             } else {
                 convertedDepthMap[row][col] = floatBuffer[width * row + col]
@@ -165,20 +165,31 @@ func rectifyImage(
     CVPixelBufferLockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: 1))
     let bytesPerRow = CVPixelBufferGetBytesPerRow(buffer)
     let bytesPerPixel = bytesPerRow / width
-    let rectifiedBufferData = UnsafeMutableBufferPointer(
-        start: CVPixelBufferGetBaseAddress(rectifiedBuffer!)!.assumingMemoryBound(to: UInt8.self),
-        count: bytesPerRow * height
-    )
-    let originalBufferData = UnsafeBufferPointer(
-        start: CVPixelBufferGetBaseAddress(buffer)!.assumingMemoryBound(to: UInt8.self),
-        count: bytesPerRow * height
-    )
+    let rectifiedBufferBaseAddress = CVPixelBufferGetBaseAddress(rectifiedBuffer!)!
+    let originalBufferBaseAddress = CVPixelBufferGetBaseAddress(buffer)!
     let imageScale = CGFloat(width) / calibration.intrinsicMatrixReferenceDimensions.width
-    let distortionCenter = CGPoint(
-        x: calibration.lensDistortionCenter.x * imageScale ,
-        y: calibration.lensDistortionCenter.y * imageScale
-    )
+    print(imageScale)
+    let distortionCenter = CGPoint(x: calibration.lensDistortionCenter.x * imageScale , y: calibration.lensDistortionCenter.y * imageScale)
     for row in 0 ..< height {
+        let rectifiedRowBaseAddress = rectifiedBufferBaseAddress + row * bytesPerRow
+        let rectifiedRowData = UnsafeMutableBufferPointer(start: rectifiedRowBaseAddress.assumingMemoryBound(to: UInt8.self), count: bytesPerRow)
+//        DispatchQueue.concurrentPerform(iterations: width) { col in
+//            let rectifiedPoint = CGPoint(x: col, y: row)
+//            let originalPoint = lensDistortionPoint(
+//                for: rectifiedPoint,
+//                lookupTable: calibration.lensDistortionLookupTable!,
+//                distortionOpticalCenter: distortionCenter,
+//                imageSize: CGSize(width: width, height: height)
+//            )
+//            if !((0 ..< width).contains(Int(originalPoint.x))) || !((0 ..< height).contains(Int(originalPoint.y))) {
+//            } else {
+//                let originalRowBaseAddress = originalBufferBaseAddress + Int(originalPoint.y) * bytesPerRow
+//                let originalRowData = UnsafeBufferPointer(start: originalRowBaseAddress.assumingMemoryBound(to: UInt8.self), count: bytesPerRow)
+//                for byteIndex in 0 ..< bytesPerPixel {
+//                    rectifiedRowData[col * bytesPerPixel + byteIndex] = originalRowData[Int(originalPoint.x) * bytesPerPixel + byteIndex]
+//                }
+//            }
+//        }
         for col in 0 ..< width {
             let rectifiedPoint = CGPoint(x: col, y: row)
             let originalPoint = lensDistortionPoint(
@@ -187,13 +198,13 @@ func rectifyImage(
                 distortionOpticalCenter: distortionCenter,
                 imageSize: CGSize(width: width, height: height)
             )
-            if !CGRect(x: 0, y: 0, width: width, height: height).contains(originalPoint) {
+            if !((0 ..< width).contains(Int(originalPoint.x))) || !((0 ..< height).contains(Int(originalPoint.y))) {
                 continue
             }
+            let originalRowBaseAddress = originalBufferBaseAddress + Int(originalPoint.y) * bytesPerRow
+            let originalRowData = UnsafeBufferPointer(start: originalRowBaseAddress.assumingMemoryBound(to: UInt8.self), count: bytesPerRow)
             for byteIndex in 0 ..< bytesPerPixel {
-                let rectifiedAddress = (row * width + col) * bytesPerPixel + byteIndex
-                let originalAddress = Int(originalPoint.y * CGFloat(width) + originalPoint.x) * bytesPerPixel + byteIndex
-                rectifiedBufferData[rectifiedAddress] = originalBufferData[originalAddress]
+                rectifiedRowData[col * bytesPerPixel + byteIndex] = originalRowData[Int(originalPoint.x) * bytesPerPixel + byteIndex]
             }
         }
     }

@@ -113,7 +113,7 @@ class EstimateImageCaptureManager: NSObject {
     private func configureCaptureDevices() {
         imageCaptureDevice = AVCaptureDevice.default(
             .builtInTrueDepthCamera,
-            for: .depthData,
+            for: .video,
             position: .unspecified
         )
     }
@@ -150,8 +150,8 @@ extension EstimateImageCaptureManager: AVCapturePhotoCaptureDelegate {
         print("Rectifying image")
         let rectifiedImage = rectifyImage(from: photo.pixelBuffer!, using: photo.depthData!.cameraCalibrationData!)
         print("Image rectified")
-        photo.depthData!.converting(toDepthDataType: kCVPixelFormatType_DisparityFloat32)
-        let rectifiedDepth = rectifyImage(from: photo.depthData!.depthDataMap, using: photo.depthData!.cameraCalibrationData!)
+        photo.depthData!.converting(toDepthDataType: kCVPixelFormatType_DepthFloat32)
+//        let rectifiedDepth = rectifyImage(from: photo.depthData!.depthDataMap, using: photo.depthData!.cameraCalibrationData!)
         print("Depth rectified")
         delegate.captureOutput(
             image: rectifiedImage,
