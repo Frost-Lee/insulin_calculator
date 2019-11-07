@@ -42,6 +42,9 @@ func wrapEstimateImageData(
             ],
             "lens_distortion_lookup_table" : convertLensDistortionLookupTable(
                 lookupTable: calibration.lensDistortionLookupTable!
+            ),
+            "inverse_lens_distortion_lookup_table" : convertLensDistortionLookupTable(
+                lookupTable: calibration.inverseLensDistortionLookupTable!
             )
         ],
         "device_attitude" : [
@@ -189,23 +192,6 @@ func rectifyImage(
     for row in 0 ..< height {
         let rectifiedRowBaseAddress = rectifiedBufferBaseAddress + row * bytesPerRow
         let rectifiedRowData = UnsafeMutableBufferPointer(start: rectifiedRowBaseAddress.assumingMemoryBound(to: UInt8.self), count: bytesPerRow)
-//        DispatchQueue.concurrentPerform(iterations: width) { col in
-//            let rectifiedPoint = CGPoint(x: col, y: row)
-//            let originalPoint = lensDistortionPoint(
-//                for: rectifiedPoint,
-//                lookupTable: calibration.lensDistortionLookupTable!,
-//                distortionOpticalCenter: distortionCenter,
-//                imageSize: CGSize(width: width, height: height)
-//            )
-//            if !((0 ..< width).contains(Int(originalPoint.x))) || !((0 ..< height).contains(Int(originalPoint.y))) {
-//            } else {
-//                let originalRowBaseAddress = originalBufferBaseAddress + Int(originalPoint.y) * bytesPerRow
-//                let originalRowData = UnsafeBufferPointer(start: originalRowBaseAddress.assumingMemoryBound(to: UInt8.self), count: bytesPerRow)
-//                for byteIndex in 0 ..< bytesPerPixel {
-//                    rectifiedRowData[col * bytesPerPixel + byteIndex] = originalRowData[Int(originalPoint.x) * bytesPerPixel + byteIndex]
-//                }
-//            }
-//        }
         for col in 0 ..< width {
             let rectifiedPoint = CGPoint(x: col, y: row)
             let originalPoint = lensDistortionPoint(
