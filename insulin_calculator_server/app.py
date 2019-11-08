@@ -23,7 +23,8 @@ def response_nutrition_estimate():
     session_data_manager = data_manager.SessionDataManager(args.get('session_id'))
     session_data_manager.register_image_file(files['image'])
     session_data_manager.register_peripheral_file(files['peripheral'])
-    response = _get_nutrition_estimate(session_data_manager)
+    # response = _get_nutrition_estimate(session_data_manager)
+    response = '{"results": []}'
     return response
 
 @app.route('/densitycollect', methods=['GET', 'POST'])
