@@ -10,6 +10,8 @@ CLASSIFICATION_CANDIDATES = 5
 
 RANSAC_THRESHOLD = 0.002
 
+GRID_LEN = 2e-3
+
 PACKAGE_ROOT_PATH = '/home/Frost/insulin_calculator/insulin_calculator_server/fvolume/'
 
 SEG_MODEL_PATH = PACKAGE_ROOT_PATH + 'model.hdf5'
