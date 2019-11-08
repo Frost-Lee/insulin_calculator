@@ -15,7 +15,8 @@ tf.keras.backend.set_session(tf_session)
 segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
 
 def _get_segmentation(image):
-    """ Return the segmentation mask for the image.
+    """ Returning the raw segmentation mask for the image. Each pixel's value 
+        stands for the probability of this pixel being food.
 
     Args:
         image: The image to predict, represented as a numpy array with shape
@@ -31,7 +32,9 @@ def _get_segmentation(image):
         return (image - mean_list) / std_list
     with tf_graph.as_default():
         tf.keras.backend.set_session(tf_session)
-        predicted_result = segmentation_model.predict(np.reshape(center_normalize(image), (1, *config.UNIFIED_IMAGE_SIZE, 3)))[0]
+        predicted_result = segmentation_model.predict(
+            np.reshape(center_normalize(image), (1, *config.UNIFIED_IMAGE_SIZE, 3))
+        )[0]
     return np.reshape(
         predicted_result,
         config.UNIFIED_IMAGE_SIZE
@@ -42,24 +45,24 @@ def _get_entity_labeling(image, mask):
     """ Getting the entity labeling that cover the food entities in the image.
 
     Args:
-        image: The colored image, represented as a numpy array with shape `(width, 
-            height, 3)`.
+        image: The colored image, represented as a numpy array with shape 
+            `(width, height, 3)`.
         mask: The food segmentation mask. A numpy array with the same resolution 
-            with `image`, and each pixel stands for the probability of the 
+            with `image`, each pixel stands for the probability of the 
             corresponding pixel in `image` being food.
     
     Returns:
-        A tuple, `(label_mask, boxes)`.
+        `(label_mask, boxes)`
         `label_mask` is a 2d numpy array that mark different entities in the image 
-        with ascending integers starting from 0, while 0 stand for background. 
-        The pixels with a probability greater than `config.FOOD_PROB_THRESHOLD` 
-        will be considered as food. The size of `label_mask` is reduced from `image`.
+            with positive integers starting from 0, while 0 stand for background. 
+            The pixels with a probability greater than `config.FOOD_PROB_THRESHOLD` 
+            will be considered as food. The size of `label_mask` is reduced from `image`.
         `boxes` is a list of entity boxes having the same order with `label_mask`. 
-        Each entity box is represented as a list of tuples, which stands for 
-        `[(min width, max width), (min height, max height)]`. Background is not 
-        included in `boxes`. The coordinate is relative to `label_mask`.
-        Note that the coordinates of both return values are reduced according to 
-        `config.BLOCK_REDUCT_WINDOW`. 
+            Each entity box is represented as a 2x2 2d list, which stands for 
+            `[[min width, max width], [min height, max height]]`. Background is not 
+            included in `boxes`. The coordinate is relative to `label_mask`.
+            Note that the coordinates of both return values are reduced according to 
+            `config.BLOCK_REDUCT_WINDOW`. 
     """
     # TODO(canchen.lee@gmail.com): Consider using the colored image along with 
     # the mask to generate entity boxes, which separate enties within one connected 
@@ -84,9 +87,8 @@ def _index_crop(array, i, multiplier):
 
     Args:
         array: A 3d numpy array with shape (width, height, 3).
-        i: The crop index, represented as a list of tuples, such as 
-            `[(1, 2), (3, 4)]`, which stands for `[(min width, max width), 
-            (min height, max height)]`.
+        i: The crop index, represented as a 2x2 2d list, such as which stands for 
+            `[[min width, max width], [min height, max height]]`.
         multiplier: The multiplier of the index. Considering the index is calculated 
             on an image which might have different resolution with the original 
             image, this parameter is used to compensate the gap. The value should 

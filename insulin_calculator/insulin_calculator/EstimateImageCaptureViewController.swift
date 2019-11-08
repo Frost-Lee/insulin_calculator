@@ -103,34 +103,34 @@ class EstimateImageCaptureViewController: UIViewController {
             extensionName: "jpg"
         ) { url in photoURL = url; group.leave()}
         group.notify(queue: .main) {
-            UIImageWriteToSavedPhotosAlbum(UIImage(data: try! Data(contentsOf: photoURL!))!, nil, nil, nil)
-            SVProgressHUD.dismiss()
-            let activityViewController = UIActivityViewController(activityItems: [jsonURL!], applicationActivities: nil)
-            self.present(activityViewController, animated: true, completion: nil)
-//            self.backendConnector.getRecognitionResult(
-//                token: "abcd1234",
-//                session_id: sessionId.uuidString,
-//                jsonURL: jsonURL!,
-//                photoURL: photoURL!
-//            ) { result, error in
-//                guard error == nil else {
-//                    self.captureButton.isEnabled = true
-//                    SVProgressHUD.showError(withStatus: "Server Error")
-//                    return
-//                }
-//                self.dataManager.saveFile(data: result!.rawJSON.rawString()!.data(using: .utf8)!, extensionName: "json") { url in
-//                    self.captureButton.isEnabled = true
-//                    SVProgressHUD.showSuccess(withStatus: "Done")
-//                    let sessionRecord = SessionRecord(
-//                        photoURL: photoURL!,
-//                        captureJSONURL: jsonURL!,
-//                        recognitionJSONURL: url,
-//                        timestamp: Date(),
-//                        sessionId: sessionId
-//                    )
-//                    self.performSegue(withIdentifier: "showEstimateResultViewController", sender: sessionRecord)
-//                }
-//            }
+//            UIImageWriteToSavedPhotosAlbum(UIImage(data: try! Data(contentsOf: photoURL!))!, nil, nil, nil)
+//            SVProgressHUD.dismiss()
+//            let activityViewController = UIActivityViewController(activityItems: [jsonURL!], applicationActivities: nil)
+//            self.present(activityViewController, animated: true, completion: nil)
+            self.backendConnector.getRecognitionResult(
+                token: "abcd1234",
+                session_id: sessionId.uuidString,
+                jsonURL: jsonURL!,
+                photoURL: photoURL!
+            ) { result, error in
+                guard error == nil else {
+                    self.captureButton.isEnabled = true
+                    SVProgressHUD.showError(withStatus: "Server Error")
+                    return
+                }
+                self.dataManager.saveFile(data: result!.rawJSON.rawString()!.data(using: .utf8)!, extensionName: "json") { url in
+                    self.captureButton.isEnabled = true
+                    SVProgressHUD.showSuccess(withStatus: "Done")
+                    let sessionRecord = SessionRecord(
+                        photoURL: photoURL!,
+                        captureJSONURL: jsonURL!,
+                        recognitionJSONURL: url,
+                        timestamp: Date(),
+                        sessionId: sessionId
+                    )
+                    self.performSegue(withIdentifier: "showEstimateResultViewController", sender: sessionRecord)
+                }
+            }
         }
     }
 

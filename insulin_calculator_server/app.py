@@ -78,6 +78,7 @@ def _format_estimate_response(classifications, area_volumes, densities, boxes):
     """ Format the nutrition estimation returned by the model to a json string.
     Note that all arguments are lists, and they should follow the same object 
     order.
+    
     Args:
         classifications: The food classifications. Each classification contains 
             several candidates, and each candidates object is a json object containing 

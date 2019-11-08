@@ -117,6 +117,7 @@ func convertLensDistortionLookupTable(lookupTable: Data) -> [Float] {
 /**
  Get the matched point after applying a distortion specified by a distortion lookup table. Reference [here](https://github.com/shu223/iOS-Depth-Sampler/issues/5).
  */
+@available(*, deprecated, message: "Rectifying images is done on the server.")
 func lensDistortionPoint(for point: CGPoint, lookupTable: Data, distortionOpticalCenter opticalCenter: CGPoint, imageSize: CGSize) -> CGPoint {
     // The lookup table holds the relative radial magnification for n linearly spaced radii.
     // The first position corresponds to radius = 0
@@ -172,6 +173,7 @@ func lensDistortionPoint(for point: CGPoint, lookupTable: Data, distortionOptica
  - Returns:
     The image buffer of the rectified image.
  */
+@available(*, deprecated, message: "Rectifying images is done on the server.")
 func rectifyImage(
     from buffer: CVPixelBuffer,
     using calibration: AVCameraCalibrationData

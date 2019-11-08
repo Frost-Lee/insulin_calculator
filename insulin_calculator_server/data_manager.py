@@ -11,14 +11,15 @@ COLLECTION_STORAGE_DIR = '/home/Frost/insulin_calculator_data/collection_session
 
 class SessionDataManager(object):
     """ The manager that handles file I/O for a session.
+
     Attributes:
         session_id: The id of the session. This value is supposed to be of type 
             `str`.
         session_dir: The storage directory path of this session.
         image: The color image input of the corresponding session, represented 
-            as a fnumpy array.
+            as a numpy array.
         peripheral: The peripheral data input of the corresponding session, 
-            represented as a json object
+            represented as a json object.
     """
     def __init__(self, session_id, collection_session=False):
         self.session_id = session_id
@@ -32,6 +33,7 @@ class SessionDataManager(object):
         
         Args:
             root_dir: The root directory of the stored data.
+        
         Returns:
             The created session directory path.
         """
@@ -47,6 +49,7 @@ class SessionDataManager(object):
     def register_image_file(self, image):
         """ Save the image to the session directory, then load it to memory as 
             a numpy array.
+        
         Args:
             image: A `werkzeug.datastructures.FileStorage` object.
         """
@@ -57,6 +60,7 @@ class SessionDataManager(object):
     def register_peripheral_file(self, peripheral):
         """ Save the peripheral json to the session directory, then load it to 
             memory as a json object.
+        
         Args:
             peripheral: A `werkzeug.datastructures.FileStorage` object.
         """

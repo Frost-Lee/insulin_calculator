@@ -34,15 +34,16 @@ def _get_remapping_intrinsics(depth_map, calibration):
 def _get_plane_recognition(point_cloud):
     """ Recognize the base plane in `point_cloud`. The plane mask and the 
         rotation to make the plane parallel to xOy surface is provided.
+    
     Args:
         point_cloud: A point cloud represented as an numpy array with shape `(n, 3)`.
     
     Returns:
-        inlier_mask, rotation
+        (inlier_mask, rotation)
         `inlier_mask` is the mask of the base plane, corresponding to the point 
         cloud. The value if `True` if the point lies in the plane, `False` otherwise.
         `rotation` can help to rotate the plane parallel to xOy surface in the 
-        coordinate system of `point_cloud`
+        coordinate system of `point_cloud`.
     """
     ransac = linear_model.RANSACRegressor(
         linear_model.LinearRegression(),
@@ -63,6 +64,20 @@ def _get_plane_recognition(point_cloud):
 
 
 def _get_xoy_grid_lookup(point_cloud):
+    """ Returning the grid lookup of a point cloud.
+
+    A grid lookup is a dictionary for looking up the points fall in a specific 
+    grid. When querying points in a grid with index `x_index, y_index`, 
+    `lookup[x_index][y_index]` is the list containing points in this grid. Each 
+    point is represented as a numpy array with shape `(3,)`.
+    In this method, the coordinate of the grid is built by projecting all points 
+    in `point_cloud` to XOY surface, the axis parallels to x-axis and y-axis of 
+    the world coordinate.
+
+    Args:
+        point_cloud: The point cloud to build a grid lookup upon, represented as 
+            a numpy array with shape `(n, 3)`.
+    """
     xoy_grid_lookup = {}
     x_min, y_min = np.min(point_cloud[:,0]), np.min(point_cloud[:,1])
     for point in point_cloud:
@@ -77,6 +92,17 @@ def _get_xoy_grid_lookup(point_cloud):
 
 
 def _get_3d_coordinate(row, col, fl, oc_x, oc_y, depth):
+    """ Returning the 3D coordinate of a pixel, the coordinate is represented in 
+        a numpy array with shape `(3,)`.
+    
+    Args:
+        row: The row index of the pixel in the image.
+        col: The column index of the pixel in the image.
+        fl: The focal length when taking the image.
+        oc_x: The x coordinate of the optical center.
+        oc_y: The y coordinate of the optical center.
+        depth: The depth value of the corresponding pixel, measured in meter.
+    """
     return np.array([(row - oc_x) * depth / fl, (col - oc_y) * depth / fl, depth])
 
 

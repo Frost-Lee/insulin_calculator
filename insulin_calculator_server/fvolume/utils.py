@@ -58,11 +58,11 @@ def rectify_image_c(image, lookup_table, distortion_center):
 
     Args:
         image: The image to be rectified. Represented as a numpy array with shape 
-            `(width, height, channel)`.
+            `(width, height, channel)`. The dtype is `uint_8`.
         lookup_table: The lookuptable to rectify the image, represented as a one 
-            dimensional array.
+            dimensional array. The dtype is `c_double` equivalent.
         distortion_center: The distortion center of the image, numpy array with shape 
-            `(2,)`.
+            `(2,)`. The dtype is `c_double` equivalent.
     
     Returns:
         The rectified image as numpy array with shape `(width, height, channel)`.
@@ -90,12 +90,13 @@ def get_lens_distortion_point_c(point, lookup_table, distortion_center, image_si
         implemented in C.
 
     Args:
-        point: The point position before distortion. numpy array with shape `(2,)`.
+        point: The point position before distortion. numpy array with shape `(2,)`, 
+            the dtype is `int`.
         lookup_table: The lookuptable to rectify the image, represented as a one 
-            dimensional array.
+            dimensional array. The dtype is `c_double` equivalent.
         distortion_center: The distortion center of the image, numpy array with shape 
-            `(2,)`.
-        image_size: The size of the image, `(width, height)`.
+            `(2,)`. The dtype is `c_double` equivalent.
+        image_size: The size of the image, `(width, height)`. The dtype is `int`.
     """
     global undistort_dll
     c_get_lens_distortion_point = undistort_dll.get_lens_distortion_point
