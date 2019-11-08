@@ -40,9 +40,7 @@ def regulate_image(image, calibration):
         The regulated image with shape specified by `config.UNIFIED_IMAGE_SIZE`.
     """
     scale = min(config.UNIFIED_IMAGE_SIZE) / min(image.shape[:2])
-    print(image.shape)
-    resized_image = cv2.resize(image, (int(image.shape[0] * scale), int(image.shape[1] * scale)))
-    print(resized_image.shape)
+    resized_image = cv2.resize(image, (int(image.shape[1] * scale), int(image.shape[0] * scale)))
     rectified_image = rectify_image_c(
         resized_image,
         np.array(calibration['lens_distortion_lookup_table']),
@@ -73,11 +71,12 @@ def rectify_image_c(image, lookup_table, distortion_center):
     c_rectify_image.restype = ctypes.POINTER(ctypes.c_uint8 * functools.reduce(lambda x, y: x * y, image.shape))
     c_free_double_pointer = undistort_dll.free_double_pointer
     c_free_double_pointer.restype = None
+    channel = 1 if len(image.shape) < 3 else image.shape[2]
     raw_result = c_rectify_image(
         image.ctypes.data_as(ctypes.POINTER(ctypes.c_uint8)),
         image.shape[0],
         image.shape[1],
-        image.shape[2],
+        channel,
         (ctypes.c_double * len(lookup_table))(*lookup_table),
         len(lookup_table),
         (ctypes.c_double * 2)(*distortion_center)
