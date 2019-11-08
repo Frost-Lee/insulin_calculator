@@ -61,20 +61,22 @@ def _get_entity_labeling(image, mask):
             Each entity box is represented as a 2x2 2d list, which stands for 
             `[[min width, max width], [min height, max height]]`. Background is not 
             included in `boxes`. The coordinate is relative to `label_mask`.
-            Note that the coordinates of both return values are reduced according to 
-            `config.BLOCK_REDUCT_WINDOW`. 
     """
     # TODO(canchen.lee@gmail.com): Consider using the colored image along with 
     # the mask to generate entity boxes, which separate enties within one connected 
     # component.
     bin_func = np.vectorize(lambda x: 0 if x < config.FOOD_PROB_THRESHOLD else 1)
-    reduced_mask = bin_func(skimage.measure.block_reduce(mask, config.BLOCK_REDUCT_WINDOW, np.mean))
-    label_mask = skimage.measure.label(reduced_mask, neighbors=4, background=0)
+    binary_mask = bin_func(mask)
+    label_mask = skimage.measure.label(binary_mask, neighbors=4, background=0)
     boxes = [[
             *map(lambda x: (min(x), max(x) + 1), np.where(label_mask == entity))
         ] for entity in np.unique(label_mask)
     ]
-    invalid_entity_indices = [index for index, box in enumerate(boxes) if min(box[0][1] - box[0][0], box[1][1] - box[1][0]) < config.FOOD_MIN_SIZE_THRESHOLD]
+    invalid_entity_indices = [
+        index 
+        for index, box in enumerate(boxes) 
+        if min(box[0][1] - box[0][0], box[1][1] - box[1][0]) < config.FOOD_MIN_SIZE_THRESHOLD
+    ]
     label_mask[np.isin(label_mask, invalid_entity_indices)] = 0
     boxes = [box for index, box in enumerate(boxes) if index not in invalid_entity_indices]
     return label_mask, boxes[1:]
@@ -151,13 +153,11 @@ def get_recognition_results(image, calibration):
             that is the value divided by the length of the corresponding edge.
         `buffers` is a list of image buffers, each image is the cropped food 
             image in `image`, and are all resized to `config.CLASSIFIER_IMAGE_SIZE`.
-            Note that the coordinates of both return values are reduced according to 
-            `config.BLOCK_REDUCT_WINDOW` on the basis of `config.UNIFIED_IMAGE_SIZE`.
     """
     regulated_image = utils.regulate_image(image, calibration)
     mask = _get_segmentation(regulated_image)
     label_mask, boxes = _get_entity_labeling(regulated_image, mask)
-    multiplier = config.BLOCK_REDUCT_WINDOW[0] * image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
+    multiplier = image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
     images = [
         cv2.resize(
             _index_crop(image, box, multiplier),
