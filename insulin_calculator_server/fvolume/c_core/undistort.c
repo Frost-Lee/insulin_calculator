@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-// Command to compile this file into a .so file:
-// cc -fPIC -shared -o undistort.so undistort.c
-
 double* get_lens_distortion_point(
     int* point, 
     double* lookup_table, 
