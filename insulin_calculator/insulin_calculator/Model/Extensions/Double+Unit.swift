@@ -22,6 +22,6 @@ extension Double {
     }
     
     func collectWeightString() -> String {
-        return String(format: "%.1f", self) + " lb"
+        return String(format: "%.1f", self) + " g"
     }
 }
