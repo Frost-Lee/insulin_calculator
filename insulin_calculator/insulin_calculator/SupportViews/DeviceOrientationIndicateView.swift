@@ -35,14 +35,25 @@ class DeviceOrientationIndicateView: UIView {
     
     private var isHorizontal: Bool = false {
         didSet {
+<<<<<<< HEAD
             if oldValue != isHorizontal {
                 if isHorizontal {
                     Haptic.play(".-O", delay: 0.15)
+=======
+            if isHorizontal {
+                Haptic.impact(.light).generate()
+            }
+            if oldValue != isHorizontal {
+                if isHorizontal {
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
                     UIView.animate(withDuration: 1.0 / 5.0) {
                         self.referenceIndicatorImageView.tintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
                     }
                 } else {
+<<<<<<< HEAD
                     Haptic.play("O-.", delay: 0.15)
+=======
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
                     UIView.animate(withDuration: 1.0 / 5.0) {
                         self.referenceIndicatorImageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                     }
@@ -93,7 +104,7 @@ class DeviceOrientationIndicateView: UIView {
             when `DeviceOrientationIndicateView` needs to update itself.
      */
     func startRunning(attitudeSource: @escaping () -> (CMAttitude)) {
-        let timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 60.0, repeats: true) { timer in
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 15.0, repeats: true) { timer in
             let attitude = attitudeSource()
             let roll = attitude.roll
             let pitch = attitude.pitch

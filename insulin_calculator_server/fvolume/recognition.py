@@ -7,6 +7,7 @@ import keras
 import tensorflow as tf
 
 from . import config
+from . import utils
 
 tf_session = tf.Session()
 tf_graph = tf.get_default_graph()
@@ -14,7 +15,8 @@ tf.keras.backend.set_session(tf_session)
 segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
 
 def _get_segmentation(image):
-    """ Return the segmentation mask for the image.
+    """ Returning the raw segmentation mask for the image. Each pixel's value 
+        stands for the probability of this pixel being food.
 
     Args:
         image: The image to predict, represented as a numpy array with shape
@@ -30,7 +32,9 @@ def _get_segmentation(image):
         return (image - mean_list) / std_list
     with tf_graph.as_default():
         tf.keras.backend.set_session(tf_session)
-        predicted_result = segmentation_model.predict(np.reshape(center_normalize(image), (1, *config.UNIFIED_IMAGE_SIZE, 3)))[0]
+        predicted_result = segmentation_model.predict(
+            np.reshape(center_normalize(image), (1, *config.UNIFIED_IMAGE_SIZE, 3))
+        )[0]
     return np.reshape(
         predicted_result,
         config.UNIFIED_IMAGE_SIZE
@@ -41,37 +45,40 @@ def _get_entity_labeling(image, mask):
     """ Getting the entity labeling that cover the food entities in the image.
 
     Args:
-        image: The colored image, represented as a numpy array with shape `(width, 
-            height, 3)`.
+        image: The colored image, represented as a numpy array with shape 
+            `(width, height, 3)`.
         mask: The food segmentation mask. A numpy array with the same resolution 
-            with `image`, and each pixel stands for the probability of the 
+            with `image`, each pixel stands for the probability of the 
             corresponding pixel in `image` being food.
     
     Returns:
-        A tuple, `(label_mask, boxes)`.
+        `(label_mask, boxes)`
         `label_mask` is a 2d numpy array that mark different entities in the image 
-        with ascending integers starting from 0, while 0 stand for background. 
-        The pixels with a probability greater than `config.FOOD_PROB_THRESHOLD` 
-        will be considered as food. The size of `label_mask` is reduced from `image`.
+            with positive integers starting from 0, while 0 stand for background. 
+            The pixels with a probability greater than `config.FOOD_PROB_THRESHOLD` 
+            will be considered as food. The size of `label_mask` is reduced from `image`.
         `boxes` is a list of entity boxes having the same order with `label_mask`. 
-        Each entity box is represented as a list of tuples, which stands for 
-        `[(min width, max width), (min height, max height)]`. Background is not 
-        included in `boxes`. The coordinate is relative to `label_mask`.
-        Note that the coordinates of both return values are reduced according to 
-        `config.BLOCK_REDUCT_WINDOW`. 
+            Each entity box is represented as a 2x2 2d list, which stands for 
+            `[[min width, max width], [min height, max height]]`. Background is not 
+            included in `boxes`. The coordinate is relative to `label_mask`.
     """
     # TODO(canchen.lee@gmail.com): Consider using the colored image along with 
     # the mask to generate entity boxes, which separate enties within one connected 
     # component.
-    # TODO(canchen.lee@gmail.com): Develop a detection algorithm that helps to 
-    # filter too small boxes. Values in `label_mask` should also be changed accordingly.
     bin_func = np.vectorize(lambda x: 0 if x < config.FOOD_PROB_THRESHOLD else 1)
-    reduced_mask = bin_func(skimage.measure.block_reduce(mask, config.BLOCK_REDUCT_WINDOW, np.mean))
-    label_mask = skimage.measure.label(reduced_mask, neighbors=4, background=0)
+    binary_mask = bin_func(mask)
+    label_mask = skimage.measure.label(binary_mask, neighbors=4, background=0)
     boxes = [[
             *map(lambda x: (min(x), max(x) + 1), np.where(label_mask == entity))
         ] for entity in np.unique(label_mask)
     ]
+    invalid_entity_indices = [
+        index 
+        for index, box in enumerate(boxes) 
+        if min(box[0][1] - box[0][0], box[1][1] - box[1][0]) < config.FOOD_MIN_SIZE_THRESHOLD
+    ]
+    label_mask[np.isin(label_mask, invalid_entity_indices)] = 0
+    boxes = [box for index, box in enumerate(boxes) if index not in invalid_entity_indices]
     return label_mask, boxes[1:]
 
 
@@ -82,9 +89,8 @@ def _index_crop(array, i, multiplier):
 
     Args:
         array: A 3d numpy array with shape (width, height, 3).
-        i: The crop index, represented as a list of tuples, such as 
-            `[(1, 2), (3, 4)]`, which stands for `[(min width, max width), 
-            (min height, max height)]`.
+        i: The crop index, represented as a 2x2 2d list, such as which stands for 
+            `[[min width, max width], [min height, max height]]`.
         multiplier: The multiplier of the index. Considering the index is calculated 
             on an image which might have different resolution with the original 
             image, this parameter is used to compensate the gap. The value should 
@@ -125,7 +131,7 @@ def _index_crop(array, i, multiplier):
         ]
 
 
-def get_recognition_results(image):
+def get_recognition_results(image, calibration):
     """ Get the recognition result of the color image with corresponding mask.
 
     Get a list of image buffers with the cropped food image in `image`. Images 
@@ -133,6 +139,7 @@ def get_recognition_results(image):
     
     Args:
         image: The raw resolution colored square image, represented as a numpy array.
+        calibration: The camera calibration data when capturing the image.
     
     Returns:
         A tuple `(label_mask, boxes, buffers)`.
@@ -146,19 +153,18 @@ def get_recognition_results(image):
             that is the value divided by the length of the corresponding edge.
         `buffers` is a list of image buffers, each image is the cropped food 
             image in `image`, and are all resized to `config.CLASSIFIER_IMAGE_SIZE`.
-            Note that the coordinates of both return values are reduced according to 
-            `config.BLOCK_REDUCT_WINDOW` on the basis of `config.UNIFIED_IMAGE_SIZE`.
     """
-    resized_image = cv2.resize(image, config.UNIFIED_IMAGE_SIZE)
-    mask = _get_segmentation(resized_image)
-    label_mask, boxes = _get_entity_labeling(resized_image, mask)
-    multiplier = config.BLOCK_REDUCT_WINDOW[0] * image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
+    regulated_image = utils.regulate_image(image, calibration)
+    mask = _get_segmentation(regulated_image)
+    label_mask, boxes = _get_entity_labeling(regulated_image, mask)
+    multiplier = image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
     images = [
         cv2.resize(
             _index_crop(image, box, multiplier),
             config.CLASSIFIER_IMAGE_SIZE
         ) for box in boxes
     ]
+    # TODO(canchen.lee@gmail.com): Map the boxes back to match the undistorted coordinate.
     remapped_boxes = [[float(item / label_mask.shape[0]) for tp in box for item in tp] for box in boxes]
     buffers = [io.BytesIO() for _ in range(len(images))]
     [plt.imsave(buffer, image, format='jpeg') for buffer, image in zip(buffers, images)]

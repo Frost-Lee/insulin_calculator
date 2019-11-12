@@ -4,10 +4,7 @@ import json
 import numpy as np
 from PIL import Image
 
-
-RECOGNITION_STORAGE_DIR = '/Users/Frost/Desktop/insulin_calculator_data/recognition_session_data/'
-COLLECTION_STORAGE_DIR = '/Users/Frost/Desktop/insulin_calculator_data/collection_session_data/'
-
+import config
 
 class SessionDataManager(object):
     """ The manager that handles file I/O for a session.
@@ -19,17 +16,22 @@ class SessionDataManager(object):
         image: The color image input of the corresponding session, represented 
             as a fnumpy array.
         peripheral: The peripheral data input of the corresponding session, 
-            represented as a json object
+            represented as a json object.
     """
     def __init__(self, session_id, collection_session=False):
         self.session_id = session_id
-        self.session_dir = self._make_session_dir(COLLECTION_STORAGE_DIR if collection_session else RECOGNITION_STORAGE_DIR)
+        self.session_dir = self._make_session_dir(
+            config.COLLECTION_STORAGE_DIR if collection_session else config.RECOGNITION_STORAGE_DIR
+        )
         self.image = None
         self.peripheral = None
     
     def _make_session_dir(self, root_dir):
         """ Create the session directory of this session. The directory is 
             `/root_dir/month/time/session_id`.
+        
+        Args:
+            root_dir: The root directory of the stored data.
         
         Args:
             root_dir: The root directory of the stored data.
@@ -49,7 +51,7 @@ class SessionDataManager(object):
     def register_image_file(self, image):
         """ Save the image to the session directory, then load it to memory as 
             a numpy array.
-
+        
         Args:
             image: A `werkzeug.datastructures.FileStorage` object.
         """
@@ -60,7 +62,7 @@ class SessionDataManager(object):
     def register_peripheral_file(self, peripheral):
         """ Save the peripheral json to the session directory, then load it to 
             memory as a json object.
-
+        
         Args:
             peripheral: A `werkzeug.datastructures.FileStorage` object.
         """

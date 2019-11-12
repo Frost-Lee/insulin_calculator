@@ -10,11 +10,19 @@ import Foundation
 
 extension Double {
     func areaString() -> String {
+<<<<<<< HEAD:insulin_calculator/insulin_calculator/Model/Extensions/Double+Unit.swift
         return String(format: "%.1f ", self * pow(10, 4)) + " cm2"
     }
     
     func volumeString() -> String {
         return String(format: "%.1f ", self * pow(10, 6)) + " cm3"
+=======
+        return String(format: "%.2f ", self * pow(10, 4)) + "cm2"
+    }
+    
+    func volumeString() -> String {
+        return String(format: "%.2f ", self * pow(10, 6)) + "cm3"
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149:insulin_calculator/insulin_calculator/Model/Double+Unit.swift
     }
     
     func weightString() -> String {

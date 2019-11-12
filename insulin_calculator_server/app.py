@@ -23,7 +23,8 @@ def response_nutrition_estimate():
     session_data_manager = data_manager.SessionDataManager(args.get('session_id'))
     session_data_manager.register_image_file(files['image'])
     session_data_manager.register_peripheral_file(files['peripheral'])
-    response = _get_nutrition_estimate(session_data_manager)
+    # response = _get_nutrition_estimate(session_data_manager)
+    response = '{"results": []}'
     return response
 
 @app.route('/densitycollect', methods=['GET', 'POST'])
@@ -40,10 +41,9 @@ def response_density_collect():
     session_data_manager.register_peripheral_file(files['peripheral'])
     session_data_manager.register_collection_label(args.get('name'), args.get('weight'))
     return '{"status": "OK"}'
- 
+
 def _get_nutrition_estimate(session_data_manager):
     """ Return the nutrition estimate of a session and store the result.
-
     Args:
         session_data_manager: The `SessionDataManager` object of this session. 
             The method assume the `image` and `peripheral` attribute of the 
@@ -53,7 +53,8 @@ def _get_nutrition_estimate(session_data_manager):
     calibration = session_data_manager.peripheral['calibration_data']
     attitude = session_data_manager.peripheral['device_attitude']
     label_mask, boxes, buffers = fvolume.recognition.get_recognition_results(
-        session_data_manager.image
+        session_data_manager.image,
+        calibration
     )
     area_volumes = fvolume.estimation.get_area_volume(
         depth_map,
@@ -76,10 +77,9 @@ def _get_nutrition_estimate(session_data_manager):
 
 def _format_estimate_response(classifications, area_volumes, densities, boxes):
     """ Format the nutrition estimation returned by the model to a json string.
-
     Note that all arguments are lists, and they should follow the same object 
     order.
-
+    
     Args:
         classifications: The food classifications. Each classification contains 
             several candidates, and each candidates object is a json object containing 

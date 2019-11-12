@@ -130,6 +130,7 @@
 		22D8D5801122D6743C1B1210E36D3352 /* Haptica-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Haptica-prefix.pch"; sourceTree = "<group>"; };
 		254A12B74A64D9F2A219A4B9DF104559 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		260275EE0AEAE6B2E3EEA0189DFDA40C /* Hapticable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Hapticable.swift; path = Sources/Hapticable.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		2890298072F72426DBCF6CE7157BFFEF /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B1D5E0C4C5FE6258BE86CE1874D865E /* Pods-insulin_calculator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-insulin_calculator-umbrella.h"; sourceTree = "<group>"; };
 		2BA4C6FDA585460EE9A04CBA1AFBBCAA /* Haptic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Haptic.swift; path = Sources/Haptic.swift; sourceTree = "<group>"; };
@@ -138,6 +139,16 @@
 		3BC024B5DFB0D087B809047D286239CA /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
 		3FBC8D8BF52B7B103C7135FC9E46C6B2 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		426DCEBC87A14F24EB6187BE2FB73E06 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyJSON.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+=======
+		2890298072F72426DBCF6CE7157BFFEF /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B1D5E0C4C5FE6258BE86CE1874D865E /* Pods-insulin_calculator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-insulin_calculator-umbrella.h"; sourceTree = "<group>"; };
+		2BA4C6FDA585460EE9A04CBA1AFBBCAA /* Haptic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Haptic.swift; path = Sources/Haptic.swift; sourceTree = "<group>"; };
+		2BD6217DB9F7AAFB42941B5DF1920C5E /* Pods_insulin_calculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_insulin_calculatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A154983DBCC28D2ED94AFA7EA40D3D8 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
+		3BC024B5DFB0D087B809047D286239CA /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
+		3FBC8D8BF52B7B103C7135FC9E46C6B2 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		426DCEBC87A14F24EB6187BE2FB73E06 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 		4568496F0FDBF5B9849EF8737239A68A /* Haptica-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Haptica-dummy.m"; sourceTree = "<group>"; };
 		480F319418C313AFB83F8621F54BFA78 /* Pods-insulin_calculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculator.debug.xcconfig"; sourceTree = "<group>"; };
 		4F916E74B9C401D885D9208EE6CFD324 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
@@ -150,7 +161,11 @@
 		6320D94EF33047762C1B8818ADFE1035 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
 		6613B5EB9C1D2A2D03CE201E39D1A51F /* Pods-insulin_calculatorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculatorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		69140F97135FC409E2B80D2835F316E8 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		699C2F39E8956998915739D42010006F /* Pods_insulin_calculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_insulin_calculator.framework; path = "Pods-insulin_calculator.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+=======
+		699C2F39E8956998915739D42010006F /* Pods_insulin_calculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_insulin_calculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 		69A02289BAB60F81657A6A402E1296E2 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		6CD0DD5ABDF23AADF76A191D656533D7 /* SVProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
 		6FFE18A586A2F779F363F8A53FFFA41E /* Pods-insulin_calculator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-insulin_calculator.modulemap"; sourceTree = "<group>"; };
@@ -169,8 +184,13 @@
 		8D7C1CA70D1904BB1837C54FB1A02921 /* Pods-insulin_calculatorTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-insulin_calculatorTests-umbrella.h"; sourceTree = "<group>"; };
 		92E6E343D45263287B61350977C29192 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Sources/Extensions.swift; sourceTree = "<group>"; };
 		9B9C4D893C298549B4EFABFA87EFB107 /* Pattern.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Pattern.swift; path = Sources/Pattern.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A05DEBF19B7551B63CF5550173799F5B /* Pods_insulin_calculatorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_insulin_calculatorUITests.framework; path = "Pods-insulin_calculatorUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+=======
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A05DEBF19B7551B63CF5550173799F5B /* Pods_insulin_calculatorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_insulin_calculatorUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 		A952AEAA22BA23045216123BE4E2AC32 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
 		ABA1D007F1C502358E22315F98A294DF /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
 		AC193AA49CAE1867AA292198DBC228C4 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
@@ -180,7 +200,11 @@
 		B6DC63C138B46C9074D7A234329373B8 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		B7872786248CAB4E9DD65D1E7A9F3E9F /* Pods-insulin_calculator-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-insulin_calculator-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B9D85216DC97827C22BB360A48C45642 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		C6B25B6ACDBF1FDDCAA57FE7F0C3845D /* Haptica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Haptica.framework; path = Haptica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+=======
+		C6B25B6ACDBF1FDDCAA57FE7F0C3845D /* Haptica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Haptica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 		C765C987A7B9CB3BC424A3E772EAA7E9 /* Pods-insulin_calculatorUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-insulin_calculatorUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		C99AFD8F496244990C861C00DFA24ED6 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		CB6193BDF9256B1B2DC71E7CF8BFFB3D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -190,7 +214,11 @@
 		DFD7023ED502EE4F600F1007EEC2DACD /* Associated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Associated.swift; path = Sources/Associated.swift; sourceTree = "<group>"; };
 		E0AB520CB661D78CB328B6FD7A903EC2 /* Pods-insulin_calculatorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculatorUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E334F4AEC0900391AF6BB1A6B792D2FA /* Pods-insulin_calculatorUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-insulin_calculatorUITests.debug.xcconfig"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		EACE0EBE1C78DD1C76431048FC74C730 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+=======
+		EACE0EBE1C78DD1C76431048FC74C730 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 		EB0D5F5B08C6571D780AE588A5CE50A0 /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
 		EB0F1732A2D4DBA41714F9E205837D34 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		EB2E842D2A761DBBF9952A6B66009E2F /* SVProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
@@ -338,7 +366,10 @@
 				085D873797195130DE3024D14A8ADF27 /* Validation.swift */,
 				05D39AB59F127028A1DC59F34909A58E /* Support Files */,
 			);
+<<<<<<< HEAD
 			name = Alamofire;
+=======
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -362,7 +393,10 @@
 				9B9C4D893C298549B4EFABFA87EFB107 /* Pattern.swift */,
 				1917152C5656B43D8DB80353BDACFF52 /* Support Files */,
 			);
+<<<<<<< HEAD
 			name = Haptica;
+=======
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 			path = Haptica;
 			sourceTree = "<group>";
 		};
@@ -395,7 +429,10 @@
 				8A1E925BE079492B96258245F98E9D5D /* SwiftyJSON.swift */,
 				BF2A416188355A2F995536F0DA5E3D56 /* Support Files */,
 			);
+<<<<<<< HEAD
 			name = SwiftyJSON;
+=======
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
@@ -441,7 +478,10 @@
 				DB9382EE32A5E1A5298336C2D0986736 /* Resources */,
 				6924E44A52ED6666CE4B9196AF8CC1AD /* Support Files */,
 			);
+<<<<<<< HEAD
 			name = SVProgressHUD;
+=======
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -527,6 +567,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2F0667437D060DB6994C294C5FEAB682 /* Headers */ = {
+<<<<<<< HEAD
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -542,6 +583,23 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+=======
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECBA0D70F5A90E3E550CAFCF8195CA07 /* SVIndefiniteAnimatedView.h in Headers */,
+				4A6BF6906566C06853DA5503152B3712 /* SVProgressAnimatedView.h in Headers */,
+				B75FA41004BC94D2AD34B9D7F3193C30 /* SVProgressHUD-umbrella.h in Headers */,
+				646E22987E23E1C447E0AA877D21670C /* SVProgressHUD.h in Headers */,
+				306D270DC3EC014144675D17835C02C7 /* SVRadialGradientLayer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		395692AD480B128E851FAF72643DF8BC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 				386E60036E53E21183A55F6AC8A4D508 /* Pods-insulin_calculator-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -761,6 +819,8 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4A9942A037C133968B72431338C6E487 /* Resources */ = {
+<<<<<<< HEAD
+=======
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -768,12 +828,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5944CAF4AB91EB8F0E83DB742C78154F /* Resources */ = {
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+<<<<<<< HEAD
+		5944CAF4AB91EB8F0E83DB742C78154F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+=======
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 		91BFD893D848C30AFFDA1CD31E488098 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;

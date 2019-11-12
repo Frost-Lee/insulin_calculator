@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import CoreMotion
 import Photos
+import CoreImage
 import SVProgressHUD
 
 class EstimateImageCaptureViewController: UIViewController {
@@ -20,12 +21,7 @@ class EstimateImageCaptureViewController: UIViewController {
             captureButton.layer.cornerRadius = 8.0
         }
     }
-    
-    var orientationIndicateView: DeviceOrientationIndicateView = {
-        let view = DeviceOrientationIndicateView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    @IBOutlet weak var deviceOrientationIndicatorView: DeviceOrientationIndicateView!
     
     private var estimateImageCaptureManager: EstimateImageCaptureManager!
     
@@ -38,19 +34,12 @@ class EstimateImageCaptureViewController: UIViewController {
         super.viewDidLoad()
         estimateImageCaptureManager = EstimateImageCaptureManager(delegate: self)
         previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
-        view.addSubview(orientationIndicateView)
-        NSLayoutConstraint.activate([
-            orientationIndicateView.topAnchor.constraint(equalTo: previewContainerView.topAnchor, constant: 0),
-            orientationIndicateView.bottomAnchor.constraint(equalTo: previewContainerView.bottomAnchor, constant: 0),
-            orientationIndicateView.leadingAnchor.constraint(equalTo: previewContainerView.leadingAnchor, constant: 0),
-            orientationIndicateView.trailingAnchor.constraint(equalTo: previewContainerView.trailingAnchor, constant: 0),
-        ])
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         estimateImageCaptureManager.startRunning()
-        orientationIndicateView.startRunning() {
+        deviceOrientationIndicatorView.startRunning() {
             return self.estimateImageCaptureManager.deviceAttitude
         }
         setupVolumeButtonListener()
@@ -58,7 +47,7 @@ class EstimateImageCaptureViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        orientationIndicateView.stopRunning()
+        deviceOrientationIndicatorView.stopRunning()
         estimateImageCaptureManager.stopRunning()
     }
     
@@ -67,7 +56,7 @@ class EstimateImageCaptureViewController: UIViewController {
         switch segue.identifier {
         case "showEstimateResultViewController":
             let destination = (segue.destination as! UINavigationController).topViewController!
-            (destination as! EstimateResultViewController).sessionRecognitionResult = sender as? SessionRecognitionResult
+            (destination as! EstimateResultViewController).sessionRecord = sender as? SessionRecord
         default:
             break
         }
@@ -85,9 +74,14 @@ class EstimateImageCaptureViewController: UIViewController {
     }
 
     @IBAction func captureButtonTapped(_ sender: Any?) {
+<<<<<<< HEAD
         guard !isBusy else {return}
         isBusy = true
         SVProgressHUD.show(withStatus: "Processing Calculation Data")
+=======
+        captureButton.isEnabled = false
+        SVProgressHUD.show(withStatus: "Fetching Estimation Result")
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
         estimateImageCaptureManager.captureImage()
     }
     
@@ -98,31 +92,26 @@ class EstimateImageCaptureViewController: UIViewController {
     }
     
     private func submitCapturedData(
-        photo: AVCapturePhoto,
-        attitude: CMAttitude,
-        rect: CGRect
+        imageData: Data,
+        depthMap: CVPixelBuffer,
+        calibration: AVCameraCalibrationData,
+        attitude: CMAttitude
     ) {
         var jsonURL: URL?, photoURL: URL?
         let group = DispatchGroup()
+        let sessionId: UUID = UUID()
         group.enter()
-        cacheEstimateImageCaptureData(
-            depthMap: convertAndCropDepthData(depthData: photo.depthData!, rect: rect),
-            calibration: photo.depthData!.cameraCalibrationData!,
-            attitude: attitude,
-            cropRect: rect
-        ) { url in
-            jsonURL = url
-            group.leave()
-        }
+        dataManager.saveFile(
+            data: wrapEstimateImageData(depthMap: depthMap, calibration: calibration, attitude: attitude),
+            extensionName: "json"
+        ) { url in jsonURL = url; group.leave()}
         group.enter()
-        dataManager.saveTemporaryFile(
-            data: UIImage(cgImage: try! cropImage(photo: photo, rect: rect)).jpegData(compressionQuality: 1.0)!,
+        dataManager.saveFile(
+            data: imageData,
             extensionName: "jpg"
-        ) { url in
-            photoURL = url
-            group.leave()
-        }
+        ) { url in photoURL = url; group.leave()}
         group.notify(queue: .main) {
+<<<<<<< HEAD
             self.launchWeightInputAlert() { input in
                 guard input != nil else {SVProgressHUD.dismiss();self.isBusy=false;return}
                 self.dataManager.saveEstimateCapture(capture: EstimateCapture(
@@ -171,20 +160,50 @@ class EstimateImageCaptureViewController: UIViewController {
         alertController.addAction(cancelAction)
         alertController.addAction(saveAction)
         present(alertController, animated: true, completion: nil)
+=======
+//            UIImageWriteToSavedPhotosAlbum(UIImage(data: try! Data(contentsOf: photoURL!))!, nil, nil, nil)
+//            SVProgressHUD.dismiss()
+//            let activityViewController = UIActivityViewController(activityItems: [jsonURL!], applicationActivities: nil)
+//            self.present(activityViewController, animated: true, completion: nil)
+            self.backendConnector.getRecognitionResult(
+                token: "abcd1234",
+                session_id: sessionId.uuidString,
+                jsonURL: jsonURL!,
+                photoURL: photoURL!
+            ) { result, error in
+                guard error == nil else {
+                    self.captureButton.isEnabled = true
+                    SVProgressHUD.showError(withStatus: "Server Error")
+                    return
+                }
+                self.dataManager.saveFile(data: result!.rawJSON.rawString()!.data(using: .utf8)!, extensionName: "json") { url in
+                    self.captureButton.isEnabled = true
+                    SVProgressHUD.showSuccess(withStatus: "Done")
+                    let sessionRecord = SessionRecord(
+                        photoURL: photoURL!,
+                        captureJSONURL: jsonURL!,
+                        recognitionJSONURL: url,
+                        timestamp: Date(),
+                        sessionId: sessionId
+                    )
+                    self.performSegue(withIdentifier: "showEstimateResultViewController", sender: sessionRecord)
+                }
+            }
+        }
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
     }
 
 }
 
 
 extension EstimateImageCaptureViewController: EstimateImageCaptureDelegate {
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, attitude: CMAttitude, error: Error?) {
-        guard photo.depthData!.cameraCalibrationData != nil else {return}
-        let previewLayer = estimateImageCaptureManager.previewLayer!
-        let cropRect = previewLayer.metadataOutputRectConverted(fromLayerRect: previewLayer.bounds)
+    func captureOutput(image: CGImage, depthMap: CVPixelBuffer, calibration: AVCameraCalibrationData, attitude: CMAttitude, error: Error?) {
+        let jpegData = UIImage(cgImage: image).jpegData(compressionQuality: 1.0)!
         submitCapturedData(
-            photo: photo,
-            attitude: attitude,
-            rect: cropRect
+            imageData: jpegData,
+            depthMap: depthMap,
+            calibration: calibration,
+            attitude: attitude
         )
     }
 }

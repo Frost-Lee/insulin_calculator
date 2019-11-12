@@ -13,6 +13,7 @@ class EntitySelectCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var indexLabel: UILabel! {
         didSet {
             indexLabel.layer.cornerRadius = 8.0
+            indexLabel.clipsToBounds = true
         }
     }
     

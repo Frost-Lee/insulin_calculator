@@ -55,7 +55,6 @@ struct RecognitionEntityCandidate {
             json["volume_density"].double != nil,
             json["area_density"].double != nil
         else {
-            print("a")
             throw NetworkError.unexpectedResponse
         }
         name = json["name"].string!
@@ -125,7 +124,6 @@ struct RecognitionResult {
             json["volume"].double != nil,
             json["area"].double != nil
         else {
-            print("b")
             throw NetworkError.unexpectedResponse
         }
         let boundingBoxArray = json["bounding_box"].arrayValue.map{$0.double}.filter{$0 != nil}
@@ -148,13 +146,16 @@ struct RecognitionResult {
 struct SessionRecognitionResult {
     /// The recognition results of different entities in the submitted image.
     var results: [RecognitionResult]
+    var rawJSON: JSON
     
     init(json: JSON) throws {
+        rawJSON = json
         results = try json["results"].arrayValue.map{try RecognitionResult(json: $0)}
     }
 }
 
 
+<<<<<<< HEAD:insulin_calculator/insulin_calculator/Model/DataModel/Structures.swift
 // MARK: - Capture Raw Data Structures
 
 struct EstimateCapture {
@@ -164,4 +165,12 @@ struct EstimateCapture {
     var sessionId: UUID
     var isSubmitted: Bool
     var initialWeight: Double
+=======
+struct SessionRecord {
+    var photoURL: URL
+    var captureJSONURL: URL
+    var recognitionJSONURL: URL
+    var timestamp: Date
+    var sessionId: UUID
+>>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149:insulin_calculator/insulin_calculator/Model/Structures.swift
 }

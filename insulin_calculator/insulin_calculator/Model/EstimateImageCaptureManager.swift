@@ -11,21 +11,21 @@ import CoreMotion
 
 protocol EstimateImageCaptureDelegate {
     /**
-     Providing the delegate with the captured image data, including `AVCapturePhoto` object and an attitude
-     measurement.
+     Providing the delegate with the captured data, including colored image, depth map, calibration and device
+     device attitude when capturing the image.
      
      - Parameters:
-        - output: See [photoOutput(_:didFinishProcessingPhoto:error:)](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate/2873949-photooutput)
-        - photo: The captured photo. [depthData](https://developer.apple.com/documentation/avfoundation/avcapturephoto/2873909-depthdata)
-        and [cameraCalibrationData](https://developer.apple.com/documentation/avfoundation/avcapturephoto/2890249-cameracalibrationdata)
-        are included. See [photoOutput(_:didFinishProcessingPhoto:error:)](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate/2873949-photooutput)
-        for more details.
+        - image: The colored image.
+        - depthMap: The depth map captured along with the image. The data type has been converted to
+            `kCVPixelFormatType_DepthFloat32`.
+        - calibration: The camera calibration data when capturing the image.
         - attitude: The device attitude when capturing the image.
         - error: See [photoOutput(_:didFinishProcessingPhoto:error:)](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate/2873949-photooutput)
      */
-    func photoOutput(
-        _ output: AVCapturePhotoOutput,
-        didFinishProcessingPhoto photo: AVCapturePhoto,
+    func captureOutput(
+        image: CGImage,
+        depthMap: CVPixelBuffer,
+        calibration: AVCameraCalibrationData,
         attitude: CMAttitude,
         error: Error?
     )
@@ -88,10 +88,7 @@ class EstimateImageCaptureManager: NSObject {
     }
     
     /**
-     Capture an image, the recorded data includes a `AVCapturePhoto` output and a `CMAttitude` output.
-     In the `AVCapturePhoto` output, [depthData](https://developer.apple.com/documentation/avfoundation/avcapturephoto/2873909-depthdata)
-     and [cameraCalibrationData](https://developer.apple.com/documentation/avfoundation/avcapturephoto/2890249-cameracalibrationdata)
-     are recorded. The processed data is passed to the delegate.
+     Capture an image, the depth map and the device attitude are recorded. The result will be passed to the delegate.
      */
     func captureImage() {
         let photoSettings = AVCapturePhotoSettings()
@@ -142,9 +139,10 @@ extension EstimateImageCaptureManager: AVCapturePhotoCaptureDelegate {
         didFinishProcessingPhoto photo: AVCapturePhoto,
         error: Error?
     ) {
-        delegate.photoOutput(
-            output,
-            didFinishProcessingPhoto: photo,
+        delegate.captureOutput(
+            image: photo.cgImageRepresentation()!.takeUnretainedValue(),
+            depthMap: photo.depthData!.converting(toDepthDataType: kCVPixelFormatType_DepthFloat32).depthDataMap,
+            calibration: photo.depthData!.cameraCalibrationData!,
             attitude: attitude!,
             error: error
         )
