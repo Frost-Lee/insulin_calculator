@@ -51,17 +51,6 @@ class EstimateImageCaptureViewController: UIViewController {
         estimateImageCaptureManager.stopRunning()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        switch segue.identifier {
-        case "showEstimateResultViewController":
-            let destination = (segue.destination as! UINavigationController).topViewController!
-            (destination as! EstimateResultViewController).sessionRecord = sender as? SessionRecord
-        default:
-            break
-        }
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         estimateImageCaptureManager.previewLayer.frame = previewContainerView.bounds
@@ -74,14 +63,9 @@ class EstimateImageCaptureViewController: UIViewController {
     }
 
     @IBAction func captureButtonTapped(_ sender: Any?) {
-<<<<<<< HEAD
         guard !isBusy else {return}
         isBusy = true
         SVProgressHUD.show(withStatus: "Processing Calculation Data")
-=======
-        captureButton.isEnabled = false
-        SVProgressHUD.show(withStatus: "Fetching Estimation Result")
->>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
         estimateImageCaptureManager.captureImage()
     }
     
@@ -99,7 +83,6 @@ class EstimateImageCaptureViewController: UIViewController {
     ) {
         var jsonURL: URL?, photoURL: URL?
         let group = DispatchGroup()
-        let sessionId: UUID = UUID()
         group.enter()
         dataManager.saveFile(
             data: wrapEstimateImageData(depthMap: depthMap, calibration: calibration, attitude: attitude),
@@ -111,7 +94,6 @@ class EstimateImageCaptureViewController: UIViewController {
             extensionName: "jpg"
         ) { url in photoURL = url; group.leave()}
         group.notify(queue: .main) {
-<<<<<<< HEAD
             self.launchWeightInputAlert() { input in
                 guard input != nil else {SVProgressHUD.dismiss();self.isBusy=false;return}
                 self.dataManager.saveEstimateCapture(capture: EstimateCapture(
@@ -160,37 +142,6 @@ class EstimateImageCaptureViewController: UIViewController {
         alertController.addAction(cancelAction)
         alertController.addAction(saveAction)
         present(alertController, animated: true, completion: nil)
-=======
-//            UIImageWriteToSavedPhotosAlbum(UIImage(data: try! Data(contentsOf: photoURL!))!, nil, nil, nil)
-//            SVProgressHUD.dismiss()
-//            let activityViewController = UIActivityViewController(activityItems: [jsonURL!], applicationActivities: nil)
-//            self.present(activityViewController, animated: true, completion: nil)
-            self.backendConnector.getRecognitionResult(
-                token: "abcd1234",
-                session_id: sessionId.uuidString,
-                jsonURL: jsonURL!,
-                photoURL: photoURL!
-            ) { result, error in
-                guard error == nil else {
-                    self.captureButton.isEnabled = true
-                    SVProgressHUD.showError(withStatus: "Server Error")
-                    return
-                }
-                self.dataManager.saveFile(data: result!.rawJSON.rawString()!.data(using: .utf8)!, extensionName: "json") { url in
-                    self.captureButton.isEnabled = true
-                    SVProgressHUD.showSuccess(withStatus: "Done")
-                    let sessionRecord = SessionRecord(
-                        photoURL: photoURL!,
-                        captureJSONURL: jsonURL!,
-                        recognitionJSONURL: url,
-                        timestamp: Date(),
-                        sessionId: sessionId
-                    )
-                    self.performSegue(withIdentifier: "showEstimateResultViewController", sender: sessionRecord)
-                }
-            }
-        }
->>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
     }
 
 }

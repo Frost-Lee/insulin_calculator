@@ -155,7 +155,6 @@ struct SessionRecognitionResult {
 }
 
 
-<<<<<<< HEAD:insulin_calculator/insulin_calculator/Model/DataModel/Structures.swift
 // MARK: - Capture Raw Data Structures
 
 struct EstimateCapture {
@@ -165,12 +164,4 @@ struct EstimateCapture {
     var sessionId: UUID
     var isSubmitted: Bool
     var initialWeight: Double
-=======
-struct SessionRecord {
-    var photoURL: URL
-    var captureJSONURL: URL
-    var recognitionJSONURL: URL
-    var timestamp: Date
-    var sessionId: UUID
->>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149:insulin_calculator/insulin_calculator/Model/Structures.swift
 }

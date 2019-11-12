@@ -22,14 +22,11 @@
 		273B47E92350BC620093B7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E72350BC620093B7DE /* LaunchScreen.storyboard */; };
 		273B47F42350BC630093B7DE /* insulin_calculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47F32350BC630093B7DE /* insulin_calculatorTests.swift */; };
 		273B47FF2350BC630093B7DE /* insulin_calculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */; };
-		273DB186235F65200009DC4E /* CandidateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273DB185235F65200009DC4E /* CandidateTableViewCell.swift */; };
-		273DB188235F65A30009DC4E /* EntitySelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273DB187235F65A30009DC4E /* EntitySelectCollectionViewCell.swift */; };
 		2798F9782360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798F9772360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift */; };
 		2798F97A2360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798F9792360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift */; };
 		2798F97C2360B22000A917CF /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798F97B2360B22000A917CF /* Date+Format.swift */; };
 		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
 		27B30AE22350C48A007347F5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
-		27BE0ED4235E3C57006F19FB /* EstimateResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE0ED3235E3C57006F19FB /* EstimateResultViewController.swift */; };
 		27BF1D672350FF7700087274 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D662350FF7700087274 /* Errors.swift */; };
 		27FA4729235F6EC600D233C3 /* Double+Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FA4728235F6EC600D233C3 /* Double+Unit.swift */; };
 		27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */; };
@@ -78,14 +75,11 @@
 		273B47FA2350BC630093B7DE /* insulin_calculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = insulin_calculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insulin_calculatorUITests.swift; sourceTree = "<group>"; };
 		273B48002350BC630093B7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		273DB185235F65200009DC4E /* CandidateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateTableViewCell.swift; sourceTree = "<group>"; };
-		273DB187235F65A30009DC4E /* EntitySelectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitySelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		2798F9772360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateCaptureHistoryTableViewController.swift; sourceTree = "<group>"; };
 		2798F9792360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateCaptureHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		2798F97B2360B22000A917CF /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		27B30AE12350C48A007347F5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		27BE0ED3235E3C57006F19FB /* EstimateResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateResultViewController.swift; sourceTree = "<group>"; };
 		27BF1D662350FF7700087274 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		27FA4728235F6EC600D233C3 /* Double+Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Unit.swift"; sourceTree = "<group>"; };
 		27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceOrientationIndicateView.swift; sourceTree = "<group>"; };
@@ -168,7 +162,6 @@
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
 				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
-				273DB184235F64FE0009DC4E /* EstimateResult */,
 				2798F9762360AD5E00A917CF /* EstimateCaptureHistory */,
 				27FA472C235F799500D233C3 /* SupportViews */,
 				27B30AE32350C491007347F5 /* Model */,
@@ -195,16 +188,6 @@
 				273B48002350BC630093B7DE /* Info.plist */,
 			);
 			path = insulin_calculatorUITests;
-			sourceTree = "<group>";
-		};
-		273DB184235F64FE0009DC4E /* EstimateResult */ = {
-			isa = PBXGroup;
-			children = (
-				27BE0ED3235E3C57006F19FB /* EstimateResultViewController.swift */,
-				273DB185235F65200009DC4E /* CandidateTableViewCell.swift */,
-				273DB187235F65A30009DC4E /* EntitySelectCollectionViewCell.swift */,
-			);
-			path = EstimateResult;
 			sourceTree = "<group>";
 		};
 		2798F9762360AD5E00A917CF /* EstimateCaptureHistory */ = {
@@ -503,9 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */,
-				27BE0ED4235E3C57006F19FB /* EstimateResultViewController.swift in Sources */,
 				273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */,
-				273DB188235F65A30009DC4E /* EntitySelectCollectionViewCell.swift in Sources */,
 				27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */,
 				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
 				2798F97C2360B22000A917CF /* Date+Format.swift in Sources */,
@@ -522,7 +503,6 @@
 				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
 				27BF1D672350FF7700087274 /* Errors.swift in Sources */,
 				27B30AE02350C432007347F5 /* utils.swift in Sources */,
-				273DB186235F65200009DC4E /* CandidateTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

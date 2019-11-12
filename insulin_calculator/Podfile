@@ -9,11 +9,7 @@ target 'insulin_calculator' do
   pod 'SVProgressHUD'
   pod 'Alamofire'
   pod 'SwiftyJSON'
-<<<<<<< HEAD
   pod "Haptica"
-=======
-  pod 'Haptica'
->>>>>>> c6b3090c2dd5038697662d57cbcb1cec98ba3149
 
   target 'insulin_calculatorTests' do
     inherit! :search_paths
