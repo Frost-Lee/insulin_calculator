@@ -4,10 +4,7 @@ import json
 import numpy as np
 from PIL import Image
 
-
-RECOGNITION_STORAGE_DIR = '/home/Frost/insulin_calculator_data/recognition_session_data/'
-COLLECTION_STORAGE_DIR = '/home/Frost/insulin_calculator_data/collection_session_data/'
-
+import config
 
 class SessionDataManager(object):
     """ The manager that handles file I/O for a session.
@@ -23,7 +20,9 @@ class SessionDataManager(object):
     """
     def __init__(self, session_id, collection_session=False):
         self.session_id = session_id
-        self.session_dir = self._make_session_dir(COLLECTION_STORAGE_DIR if collection_session else RECOGNITION_STORAGE_DIR)
+        self.session_dir = self._make_session_dir(
+            config.COLLECTION_STORAGE_DIR if collection_session else config.RECOGNITION_STORAGE_DIR
+        )
         self.image = None
         self.peripheral = None
     
