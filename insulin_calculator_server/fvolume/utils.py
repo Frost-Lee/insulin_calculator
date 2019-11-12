@@ -68,12 +68,14 @@ def rectify_image_c(image, lookup_table, distortion_center):
         The rectified image as numpy array with shape `(width, height, channel)`.
     """
     c_rectify_image = undistort_dll.rectify_image
-    c_rectify_image.restype = ctypes.POINTER(ctypes.c_uint8 * functools.reduce(lambda x, y: x * y, image.shape))
+    c_rectify_image.restype = ctypes.POINTER(ctypes.c_double * functools.reduce(lambda x, y: x * y, image.shape))
     c_free_double_pointer = undistort_dll.free_double_pointer
     c_free_double_pointer.restype = None
     channel = 1 if len(image.shape) < 3 else image.shape[2]
+    original_datatype = image.dtype
+    image = image.astype('double')
     raw_result = c_rectify_image(
-        image.ctypes.data_as(ctypes.POINTER(ctypes.c_uint8)),
+        image.ctypes.data_as(ctypes.POINTER(ctypes.c_double)),
         image.shape[0],
         image.shape[1],
         channel,
@@ -81,7 +83,7 @@ def rectify_image_c(image, lookup_table, distortion_center):
         len(lookup_table),
         (ctypes.c_double * 2)(*distortion_center)
     ).contents
-    reshaped_result = np.reshape(raw_result, image.shape)
+    reshaped_result = np.reshape(raw_result, image.shape).astype(original_datatype)
     c_free_double_pointer(raw_result)
     return reshaped_result
 

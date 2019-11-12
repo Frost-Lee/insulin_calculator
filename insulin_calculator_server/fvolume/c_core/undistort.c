@@ -40,8 +40,8 @@ double* get_lens_distortion_point(
     return mapped_point;
 }
 
-char* rectify_image(
-    char* image, 
+double* rectify_image(
+    double* image, 
     int width, 
     int height, 
     int channel, 
@@ -50,7 +50,7 @@ char* rectify_image(
     double* distortion_center
 ) {
     int image_size[2] = {width, height};
-    char* rectified_image = (char*)malloc(sizeof(char) * width * height * channel);
+    double* rectified_image = (double*)malloc(sizeof(double) * width * height * channel);
     for (int i = 0; i < width; i ++) {
         for (int j = 0; j < height; j ++) {
             int rectified_index[2] = {i, j};

@@ -25,12 +25,12 @@ def get_area_volume_estimate(image, peripheral):
     print(area_volumes)
 
 if __name__ == '__main__':
-    # for root, dirs, files in os.walk('/Users/Frost/Desktop/biscuit'):
+    # for root, dirs, files in os.walk('/Users/Frost/Desktop/pizza'):
     #     for dir in dirs:
-    #         print(dir)
+    #         # print(dir)
     #         image = np.array(Image.open(os.path.join(root, dir, 'image.jpg')))
     #         peripheral = json.loads(open(os.path.join(root, dir, 'peripheral.json')).read())
     #         get_area_volume_estimate(image, peripheral)
-    with open('/Users/Frost/Desktop/1.json') as in_file:
-        image = Image.open('/Users/Frost/Desktop/1.jpg')
+    with open('/Users/Frost/Desktop/pizza/22_8_11_4BFF6449-E75D-4DBA-ADBE-5425942DFDD9/peripheral.json') as in_file:
+        image = Image.open('/Users/Frost/Desktop/pizza/22_8_11_4BFF6449-E75D-4DBA-ADBE-5425942DFDD9/image.jpg')
         get_area_volume_estimate(np.array(image), json.loads(in_file.read()))
