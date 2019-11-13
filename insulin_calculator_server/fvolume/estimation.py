@@ -138,6 +138,7 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     full_point_cloud = rotation.apply(full_point_cloud)
     food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
     background_depth = np.mean(full_point_cloud[plane_inlier_mask][:,2])
+    print(background_depth)
     food_grid_lookups = [_get_xoy_grid_lookup(pc) for pc in food_point_clouds]
     area_volume_list = [(
         sum([sum([

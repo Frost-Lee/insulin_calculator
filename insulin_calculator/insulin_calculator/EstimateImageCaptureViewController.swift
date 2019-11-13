@@ -22,9 +22,28 @@ class EstimateImageCaptureViewController: UIViewController {
         }
     }
     @IBOutlet weak var deviceOrientationIndicatorView: DeviceOrientationIndicateView!
+    @IBOutlet weak var previewBlurView: UIVisualEffectView!
+    
+    private var isAvailable: Bool = false {
+        didSet {
+            guard oldValue != isAvailable else {return}
+            if isAvailable {
+                captureButton.isEnabled = true
+                UIView.animate(withDuration: 0.2, delay: 0, options:
+                    UIView.AnimationOptions.curveEaseInOut, animations: {
+                        self.previewBlurView.alpha = 0
+                }, completion: nil)
+            } else {
+                captureButton.isEnabled = false
+                UIView.animate(withDuration: 0.2, delay: 0, options:
+                    UIView.AnimationOptions.curveEaseInOut, animations: {
+                        self.previewBlurView.alpha = 1
+                }, completion: nil)
+            }
+        }
+    }
     
     private var estimateImageCaptureManager: EstimateImageCaptureManager!
-    
     private var dataManager: DataManager = DataManager.shared
     private var backendConnector: BackendConnector = BackendConnector.shared
 
@@ -36,15 +55,17 @@ class EstimateImageCaptureViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupVolumeButtonListener()
         estimateImageCaptureManager.startRunning()
         deviceOrientationIndicatorView.startRunning() {
             return self.estimateImageCaptureManager.deviceAttitude
         }
-        setupVolumeButtonListener()
+        isAvailable = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        isAvailable = false
         deviceOrientationIndicatorView.stopRunning()
         estimateImageCaptureManager.stopRunning()
     }
@@ -72,7 +93,7 @@ class EstimateImageCaptureViewController: UIViewController {
     }
 
     @IBAction func captureButtonTapped(_ sender: Any?) {
-        captureButton.isEnabled = false
+        isAvailable = false
         SVProgressHUD.show(withStatus: "Fetching Estimation Result")
         estimateImageCaptureManager.captureImage()
     }
@@ -103,10 +124,6 @@ class EstimateImageCaptureViewController: UIViewController {
             extensionName: "jpg"
         ) { url in photoURL = url; group.leave()}
         group.notify(queue: .main) {
-//            UIImageWriteToSavedPhotosAlbum(UIImage(data: try! Data(contentsOf: photoURL!))!, nil, nil, nil)
-//            SVProgressHUD.dismiss()
-//            let activityViewController = UIActivityViewController(activityItems: [jsonURL!], applicationActivities: nil)
-//            self.present(activityViewController, animated: true, completion: nil)
             self.backendConnector.getRecognitionResult(
                 token: "abcd1234",
                 session_id: sessionId.uuidString,
@@ -114,12 +131,12 @@ class EstimateImageCaptureViewController: UIViewController {
                 photoURL: photoURL!
             ) { result, error in
                 guard error == nil else {
-                    self.captureButton.isEnabled = true
+                    self.isAvailable = true
                     SVProgressHUD.showError(withStatus: "Server Error")
                     return
                 }
                 self.dataManager.saveFile(data: result!.rawJSON.rawString()!.data(using: .utf8)!, extensionName: "json") { url in
-                    self.captureButton.isEnabled = true
+                    self.isAvailable = true
                     SVProgressHUD.showSuccess(withStatus: "Done")
                     let sessionRecord = SessionRecord(
                         photoURL: photoURL!,

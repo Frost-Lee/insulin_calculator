@@ -22,7 +22,41 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4FF-3K-rs0" customClass="DeviceOrientationIndicateView" customModule="insulin_calculator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="446.66666666666669"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <subviews>
+                                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJu-ru-Cg2">
+                                                <rect key="frame" x="0.0" y="56" width="335" height="335"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="QrB-IN-EMr">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="335"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="wJu-ru-Cg2" secondAttribute="height" multiplier="1:1" id="CYx-zP-zlc"/>
+                                                </constraints>
+                                                <blurEffect style="regular"/>
+                                            </visualEffectView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VzQ-hx-7IY">
+                                                <rect key="frame" x="0.0" y="391" width="335" height="55.666666666666686"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ggf-di-pPE">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="56"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="VzQ-hx-7IY" secondAttribute="trailing" id="8el-o6-LYn"/>
+                                            <constraint firstItem="wJu-ru-Cg2" firstAttribute="leading" secondItem="4FF-3K-rs0" secondAttribute="leading" id="DR6-pS-hc3"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ggf-di-pPE" secondAttribute="trailing" id="GI4-IZ-Qup"/>
+                                            <constraint firstItem="Ggf-di-pPE" firstAttribute="leading" secondItem="4FF-3K-rs0" secondAttribute="leading" id="Ien-nx-A0S"/>
+                                            <constraint firstItem="Ggf-di-pPE" firstAttribute="top" secondItem="4FF-3K-rs0" secondAttribute="top" id="OP6-wt-n8E"/>
+                                            <constraint firstAttribute="trailing" secondItem="wJu-ru-Cg2" secondAttribute="trailing" id="OcE-qC-433"/>
+                                            <constraint firstItem="VzQ-hx-7IY" firstAttribute="top" secondItem="wJu-ru-Cg2" secondAttribute="bottom" id="dG9-1g-Z7N"/>
+                                            <constraint firstItem="wJu-ru-Cg2" firstAttribute="centerY" secondItem="4FF-3K-rs0" secondAttribute="centerY" id="e7t-J0-YPo"/>
+                                            <constraint firstAttribute="bottom" secondItem="VzQ-hx-7IY" secondAttribute="bottom" id="gIk-CM-mh3"/>
+                                            <constraint firstItem="wJu-ru-Cg2" firstAttribute="top" secondItem="Ggf-di-pPE" secondAttribute="bottom" id="kq9-Vn-Hq4"/>
+                                            <constraint firstItem="VzQ-hx-7IY" firstAttribute="leading" secondItem="4FF-3K-rs0" secondAttribute="leading" id="nyU-pf-3Q8"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -63,6 +97,7 @@
                     <connections>
                         <outlet property="captureButton" destination="VkE-Er-OOW" id="SL3-Qw-DQS"/>
                         <outlet property="deviceOrientationIndicatorView" destination="4FF-3K-rs0" id="SvV-2W-532"/>
+                        <outlet property="previewBlurView" destination="wJu-ru-Cg2" id="gQn-jX-jgW"/>
                         <outlet property="previewContainerView" destination="U4y-Bu-IfF" id="QDg-w4-ubR"/>
                         <segue destination="xij-gd-TPe" kind="presentation" identifier="showEstimateResultViewController" id="I8P-sH-7DV"/>
                     </connections>
