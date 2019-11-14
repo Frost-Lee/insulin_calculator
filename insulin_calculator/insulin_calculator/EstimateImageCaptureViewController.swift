@@ -22,13 +22,30 @@ class EstimateImageCaptureViewController: UIViewController {
         }
     }
     @IBOutlet weak var deviceOrientationIndicatorView: DeviceOrientationIndicateView!
+    @IBOutlet weak var previewBlurView: UIVisualEffectView!
     
     private var estimateImageCaptureManager: EstimateImageCaptureManager!
-    
     private var dataManager: DataManager = DataManager.shared
     private var backendConnector: BackendConnector = BackendConnector.shared
     
-    private var isBusy: Bool = false
+    private var isAvailable: Bool = false {
+        didSet {
+            guard oldValue != isAvailable else {return}
+            if isAvailable {
+                captureButton.isEnabled = true
+                UIView.animate(withDuration: 0.2, delay: 0, options:
+                    UIView.AnimationOptions.curveEaseInOut, animations: {
+                        self.previewBlurView.alpha = 0
+                }, completion: nil)
+            } else {
+                captureButton.isEnabled = false
+                UIView.animate(withDuration: 0.2, delay: 0, options:
+                    UIView.AnimationOptions.curveEaseInOut, animations: {
+                        self.previewBlurView.alpha = 1
+                }, completion: nil)
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +60,12 @@ class EstimateImageCaptureViewController: UIViewController {
             return self.estimateImageCaptureManager.deviceAttitude
         }
         setupVolumeButtonListener()
+        isAvailable = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        isAvailable = false
         deviceOrientationIndicatorView.stopRunning()
         estimateImageCaptureManager.stopRunning()
     }
@@ -63,8 +82,8 @@ class EstimateImageCaptureViewController: UIViewController {
     }
 
     @IBAction func captureButtonTapped(_ sender: Any?) {
-        guard !isBusy else {return}
-        isBusy = true
+        guard isAvailable else {return}
+        isAvailable = false
         SVProgressHUD.show(withStatus: "Processing Calculation Data")
         estimateImageCaptureManager.captureImage()
     }
@@ -95,7 +114,7 @@ class EstimateImageCaptureViewController: UIViewController {
         ) { url in photoURL = url; group.leave()}
         group.notify(queue: .main) {
             self.launchWeightInputAlert() { input in
-                guard input != nil else {SVProgressHUD.dismiss();self.isBusy=false;return}
+                guard input != nil else {SVProgressHUD.dismiss();self.isAvailable=true;return}
                 self.dataManager.saveEstimateCapture(capture: EstimateCapture(
                     jsonURL: jsonURL!,
                     photoURL: photoURL!,
@@ -109,7 +128,7 @@ class EstimateImageCaptureViewController: UIViewController {
                     } else {
                         SVProgressHUD.showSuccess(withStatus: "Data Captured, you can submit it later.")
                     }
-                    self.isBusy = false
+                    self.isAvailable = true
                 }
             }
         }
