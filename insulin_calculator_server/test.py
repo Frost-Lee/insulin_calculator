@@ -22,10 +22,10 @@ def get_area_volume_estimate(image, peripheral):
         attitude,
         label_mask
     )
-    # print(area_volumes)
+    print(area_volumes)
 
 if __name__ == '__main__':
-    for root, dirs, files in os.walk('/Users/Frost/Desktop/mealbox'):
+    for root, dirs, files in os.walk('/Users/Frost/Desktop/testcases/mealbox'):
         for dir in dirs:
             print(dir)
             image = np.array(Image.open(os.path.join(root, dir, 'image.jpg')))

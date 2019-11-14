@@ -27,9 +27,9 @@ def _get_segmentation(image):
     """
     global segmentation_model, tf_graph, tf_session
     def center_normalize(image):
-        mean_list = np.reshape(np.array([32.768, 32.768, 32.768]), (1, 1, 3))
-        std_list = np.reshape(np.array([72.57518, 66.39548, 61.829777]), (1, 1, 3))
-        return (image - mean_list) / std_list
+        mean = np.mean(cv2.resize(image, (512, 512)), axis=(0, 1))
+        std = np.std(cv2.resize(image, (512, 512)), axis=(0, 1))
+        return (image - mean) / std
     with tf_graph.as_default():
         tf.keras.backend.set_session(tf_session)
         predicted_result = segmentation_model.predict(

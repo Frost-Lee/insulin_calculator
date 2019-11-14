@@ -77,8 +77,6 @@ class SessionDataManager(object):
             weight: A string stand for the weight of the food, measured in pound.
         """
         save_path = os.path.join(self.session_dir, 'collection_label.txt')
-        print(name)
-        print(weight)
         with open(save_path, 'w') as in_file:
             in_file.write('{}: {}\n{}: {}'.format('name', name, 'weight', weight))
     
