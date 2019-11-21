@@ -25,7 +25,7 @@ def get_area_volume_estimate(image, peripheral):
     print(area_volumes)
 
 if __name__ == '__main__':
-    for root, dirs, files in os.walk('/Users/Frost/Desktop/testcases/mealbox'):
+    for root, dirs, files in os.walk('/Users/Frost/Desktop/sandwich'):
         for dir in dirs:
             print(dir)
             image = np.array(Image.open(os.path.join(root, dir, 'image.jpg')))
