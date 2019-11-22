@@ -25,6 +25,8 @@
 		2798F9782360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798F9772360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift */; };
 		2798F97A2360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798F9792360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift */; };
 		2798F97C2360B22000A917CF /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798F97B2360B22000A917CF /* Date+Format.swift */; };
+		27A44AE0238870AA004CBDC9 /* VolumeButtonListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44ADF238870AA004CBDC9 /* VolumeButtonListener.swift */; };
+		27A44AE223887841004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE123887841004CBDC9 /* MPVolumeView+VolumeListener.swift */; };
 		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
 		27B30AE22350C48A007347F5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
 		27BF1D672350FF7700087274 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D662350FF7700087274 /* Errors.swift */; };
@@ -78,6 +80,8 @@
 		2798F9772360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateCaptureHistoryTableViewController.swift; sourceTree = "<group>"; };
 		2798F9792360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateCaptureHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		2798F97B2360B22000A917CF /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
+		27A44ADF238870AA004CBDC9 /* VolumeButtonListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeButtonListener.swift; sourceTree = "<group>"; };
+		27A44AE123887841004CBDC9 /* MPVolumeView+VolumeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MPVolumeView+VolumeListener.swift"; sourceTree = "<group>"; };
 		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		27B30AE12350C48A007347F5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		27BF1D662350FF7700087274 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -205,17 +209,27 @@
 			children = (
 				27FA4728235F6EC600D233C3 /* Double+Unit.swift */,
 				2798F97B2360B22000A917CF /* Date+Format.swift */,
+				27A44AE123887841004CBDC9 /* MPVolumeView+VolumeListener.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		27A44ADE2388707E004CBDC9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				27B30ADF2350C432007347F5 /* utils.swift */,
+				27A44ADF238870AA004CBDC9 /* VolumeButtonListener.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		27B30AE32350C491007347F5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				27B30ADF2350C432007347F5 /* utils.swift */,
 				27BF1D662350FF7700087274 /* Errors.swift */,
 				2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */,
 				272AF2CB2358B3110053F214 /* BackendConnector.swift */,
+				27A44ADE2388707E004CBDC9 /* Utils */,
 				2798F97D2360B23800A917CF /* Extensions */,
 				27286A8C2360A5670026DE57 /* DataModel */,
 			);
@@ -496,11 +510,13 @@
 				272AFE022360C3440072EC14 /* EstimateCaptureSubmissionViewController.swift in Sources */,
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
 				27286A8B2360A5310026DE57 /* ManagedEstimateCapture+CoreDataProperties.swift in Sources */,
+				27A44AE223887841004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */,
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
 				272AF2CE2358B6400053F214 /* Structures.swift in Sources */,
 				2798F9782360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift in Sources */,
 				2798F97A2360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift in Sources */,
 				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
+				27A44AE0238870AA004CBDC9 /* VolumeButtonListener.swift in Sources */,
 				27BF1D672350FF7700087274 /* Errors.swift in Sources */,
 				27B30AE02350C432007347F5 /* utils.swift in Sources */,
 			);
