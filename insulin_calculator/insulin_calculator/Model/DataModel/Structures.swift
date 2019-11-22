@@ -157,7 +157,7 @@ struct SessionRecognitionResult {
 
 // MARK: - Capture Raw Data Structures
 
-struct EstimateCapture {
+struct EstimateCapture: Equatable {
     var jsonURL: URL
     var photoURL: URL
     var timestamp: Date

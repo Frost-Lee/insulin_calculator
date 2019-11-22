@@ -13,7 +13,16 @@ class EstimateCaptureHistoryTableViewController: UITableViewController {
     var estimateCaptures: [EstimateCapture]? {
         didSet {
             guard estimateCaptures != nil else {return}
-            tableView.reloadData()
+            if oldValue == nil {
+                tableView.reloadData()
+            } else {
+                guard estimateCaptures!.count == oldValue!.count else {return}
+                let changedIndices = zip(estimateCaptures!, oldValue!).map{$0.0 != $0.1}.enumerated().filter{$1}.map{$0.0}
+                guard changedIndices.count == 1 else {return}
+                dataManager.updateEstimateCapture(capture: estimateCaptures![changedIndices.first!]) { error in
+                    self.tableView.reloadRows(at: [self.editingIndexPath!], with: .automatic)
+                }
+            }
         }
     }
     
@@ -88,6 +97,7 @@ extension EstimateCaptureHistoryTableViewController {
     ) {
         editingIndexPath = indexPath
         tableView.deselectRow(at: indexPath, animated: true)
+        if estimateCaptures![indexPath.row].isSubmitted {return}
         performSegue(withIdentifier: "showEstimateCaptureSubmissionViewController", sender: nil)
     }
     
@@ -105,12 +115,7 @@ extension EstimateCaptureHistoryTableViewController: EstimateCaptureSubmissionDe
         guard editingIndexPath != nil else {return}
         if submitted {
             estimateCaptures![editingIndexPath!.row].isSubmitted = true
-            dataManager.updateEstimateCapture(capture: estimateCaptures![editingIndexPath!.row]) { error in
-                self.tableView.reloadRows(at: [self.editingIndexPath!], with: .automatic)
-                self.editingIndexPath = nil
-            }
-        } else {
-            editingIndexPath = nil
         }
+        self.editingIndexPath = nil
     }
 }

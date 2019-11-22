@@ -137,7 +137,7 @@ class EstimateImageCaptureViewController: UIViewController {
     private func launchWeightInputAlert(savedAction: ((String?) -> ())?) {
         let alertController = UIAlertController(
             title: "Weight of the Food?",
-            message: "The weight of the food including its plate.",
+            message: "The weight of the food including its plate in grams (g).",
             preferredStyle: .alert
         )
         let saveAction = UIAlertAction(title: "Save", style: .default) { alert in
@@ -148,7 +148,7 @@ class EstimateImageCaptureViewController: UIViewController {
             savedAction?(nil)
         }
         alertController.addTextField() { textField in
-            textField.placeholder = "Weight digits (in gram)"
+            textField.placeholder = "42.9"
             textField.keyboardType = .decimalPad
         }
         NotificationCenter.default.addObserver(
