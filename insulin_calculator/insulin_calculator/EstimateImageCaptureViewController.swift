@@ -24,6 +24,8 @@ class EstimateImageCaptureViewController: UIViewController {
     @IBOutlet weak var deviceOrientationIndicatorView: DeviceOrientationIndicateView!
     @IBOutlet weak var previewBlurView: UIVisualEffectView!
     
+    private var volumeButtonListener: VolumeButtonListener?
+    
     private var isAvailable: Bool = false {
         didSet {
             guard oldValue != isAvailable else {return}
