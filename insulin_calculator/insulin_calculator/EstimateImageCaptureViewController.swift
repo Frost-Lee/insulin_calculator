@@ -85,12 +85,6 @@ class EstimateImageCaptureViewController: UIViewController {
         super.viewDidLayoutSubviews()
         estimateImageCaptureManager.previewLayer.frame = previewContainerView.bounds
     }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "outputVolume" {
-            captureButtonTapped(nil)
-        }
-    }
 
     @IBAction func captureButtonTapped(_ sender: Any?) {
         isAvailable = false
@@ -99,9 +93,9 @@ class EstimateImageCaptureViewController: UIViewController {
     }
     
     private func setupVolumeButtonListener() {
-        let audioSession = AVAudioSession.sharedInstance()
-        try! audioSession.setActive(true)
-        audioSession.addObserver(self, forKeyPath: "outputVolume", options: .new, context: nil)
+        volumeButtonListener = VolumeButtonListener()
+        volumeButtonListener?.delegate = self
+        volumeButtonListener?.startListening()
     }
     
     private func submitCapturedData(
@@ -163,5 +157,12 @@ extension EstimateImageCaptureViewController: EstimateImageCaptureDelegate {
             calibration: calibration,
             attitude: attitude
         )
+    }
+}
+
+
+extension EstimateImageCaptureViewController: VolumeButtonListenerDelegate {
+    func volumeButtonClicked(isUpperButton: Bool) {
+        captureButtonTapped(nil)
     }
 }

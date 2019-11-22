@@ -20,6 +20,8 @@
 		273B47FF2350BC630093B7DE /* insulin_calculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */; };
 		273DB186235F65200009DC4E /* CandidateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273DB185235F65200009DC4E /* CandidateTableViewCell.swift */; };
 		273DB188235F65A30009DC4E /* EntitySelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273DB187235F65A30009DC4E /* EntitySelectCollectionViewCell.swift */; };
+		27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */; };
+		27A44AE823888E53004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */; };
 		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
 		27B30AE22350C48A007347F5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
 		27BE0ED4235E3C57006F19FB /* EstimateResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE0ED3235E3C57006F19FB /* EstimateResultViewController.swift */; };
@@ -69,6 +71,8 @@
 		273B48002350BC630093B7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		273DB185235F65200009DC4E /* CandidateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateTableViewCell.swift; sourceTree = "<group>"; };
 		273DB187235F65A30009DC4E /* EntitySelectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitySelectCollectionViewCell.swift; sourceTree = "<group>"; };
+		27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeButtonListener.swift; sourceTree = "<group>"; };
+		27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MPVolumeView+VolumeListener.swift"; sourceTree = "<group>"; };
 		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		27B30AE12350C48A007347F5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		27BE0ED3235E3C57006F19FB /* EstimateResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateResultViewController.swift; sourceTree = "<group>"; };
@@ -180,16 +184,34 @@
 			path = EstimateResult;
 			sourceTree = "<group>";
 		};
-		27B30AE32350C491007347F5 /* Model */ = {
+		27A44AE323888E15004CBDC9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				27B30ADF2350C432007347F5 /* utils.swift */,
+				27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		27A44AE623888E46004CBDC9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				27FA4728235F6EC600D233C3 /* Double+Unit.swift */,
+				27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		27B30AE32350C491007347F5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				27BF1D662350FF7700087274 /* Errors.swift */,
+				27A44AE323888E15004CBDC9 /* Utils */,
 				2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */,
 				27B30AE12350C48A007347F5 /* DataManager.swift */,
 				272AF2CB2358B3110053F214 /* BackendConnector.swift */,
 				272AF2CD2358B6400053F214 /* Structures.swift */,
-				27FA4728235F6EC600D233C3 /* Double+Unit.swift */,
+				27A44AE623888E46004CBDC9 /* Extensions */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -458,6 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */,
+				27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */,
 				27BE0ED4235E3C57006F19FB /* EstimateResultViewController.swift in Sources */,
 				273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */,
 				273DB188235F65A30009DC4E /* EntitySelectCollectionViewCell.swift in Sources */,
@@ -471,6 +494,7 @@
 				27BF1D672350FF7700087274 /* Errors.swift in Sources */,
 				27B30AE02350C432007347F5 /* utils.swift in Sources */,
 				273DB186235F65200009DC4E /* CandidateTableViewCell.swift in Sources */,
+				27A44AE823888E53004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
