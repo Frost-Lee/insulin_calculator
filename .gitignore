@@ -2,3 +2,5 @@
 *.so
 *.pyc
 *.o
+*.xcuserstate
+
