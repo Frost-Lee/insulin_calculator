@@ -11,10 +11,21 @@ import AVFoundation
 import MediaPlayer
 
 protocol VolumeButtonListenerDelegate {
+    /**
+     Indicating the volume button is clicked by the user.
+     
+     - Parameters:
+        - isUpperButton: Whether the upper volume button is clicked by the user.
+     */
     func volumeButtonClicked(isUpperButton: Bool)
 }
 
 class VolumeButtonListener: NSObject {
+    
+    /**
+     - TODO:
+        Fixing the problem that triggering control center will make the listener invalid.
+     */
     
     override init() {
         super.init()
@@ -32,7 +43,9 @@ class VolumeButtonListener: NSObject {
         )
     }
     
+    /// The delegate for receiving volume button click events.
     var delegate: VolumeButtonListenerDelegate?
+    /// Whether the volume button listener is listening
     private(set) var isListening: Bool = false
     
     private var shouldRecoverListening: Bool = false
@@ -66,6 +79,9 @@ class VolumeButtonListener: NSObject {
         }
     }
     
+    /**
+     Start listening the volume button click events
+     */
     func startListening() {
         audioSession = AVAudioSession.sharedInstance()
         try! audioSession!.setActive(true)

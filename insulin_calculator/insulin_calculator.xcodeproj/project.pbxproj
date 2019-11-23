@@ -206,11 +206,11 @@
 			isa = PBXGroup;
 			children = (
 				27BF1D662350FF7700087274 /* Errors.swift */,
-				27A44AE323888E15004CBDC9 /* Utils */,
 				2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */,
 				27B30AE12350C48A007347F5 /* DataManager.swift */,
 				272AF2CB2358B3110053F214 /* BackendConnector.swift */,
 				272AF2CD2358B6400053F214 /* Structures.swift */,
+				27A44AE323888E15004CBDC9 /* Utils */,
 				27A44AE623888E46004CBDC9 /* Extensions */,
 			);
 			path = Model;
