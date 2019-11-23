@@ -80,7 +80,7 @@ class VolumeButtonListener: NSObject {
     }
     
     /**
-     Start listening the volume button click events
+     Start listening the volume button click events.
      */
     func startListening() {
         audioSession = AVAudioSession.sharedInstance()
@@ -90,6 +90,9 @@ class VolumeButtonListener: NSObject {
         originalVolume = AVAudioSession.sharedInstance().outputVolume
     }
     
+    /**
+     Stop listening the events.
+     */
     func stopListening() {
         audioSession?.removeObserver(self, forKeyPath: observerKey)
         try! audioSession?.setActive(false)
