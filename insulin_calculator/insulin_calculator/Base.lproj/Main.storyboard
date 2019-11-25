@@ -68,8 +68,8 @@
                                     <constraint firstAttribute="width" secondItem="U4y-Bu-IfF" secondAttribute="height" multiplier="3:4" id="zbh-d0-115"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VkE-Er-OOW">
-                                <rect key="frame" x="20" y="714" width="335" height="64"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VkE-Er-OOW">
+                                <rect key="frame" x="20" y="698" width="335" height="64"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="F0f-oa-vwT"/>
@@ -83,7 +83,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J16-NC-rvK">
-                                <rect key="frame" x="20" y="490.66666666666669" width="335" height="207.33333333333331"/>
+                                <rect key="frame" x="20" y="490.66666666666669" width="335" height="191.33333333333331"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <string key="text">Place the dish on the table and hold the device horizontally upside down to your dish, tap the button or click the volume button to take picture. You should see the table in the picture, the distance between the device and table should be 25 to 50 cm.</string>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -98,7 +98,7 @@
                             <constraint firstItem="U4y-Bu-IfF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Hcy-X1-YVw"/>
                             <constraint firstItem="U4y-Bu-IfF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="LVq-5P-Zex"/>
                             <constraint firstItem="VkE-Er-OOW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="UCS-sg-fSL"/>
-                            <constraint firstItem="VkE-Er-OOW" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ZHg-nW-0Bh"/>
+                            <constraint firstItem="VkE-Er-OOW" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-16" id="ZHg-nW-0Bh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VkE-Er-OOW" secondAttribute="trailing" constant="20" id="dgl-cN-4vl"/>
                             <constraint firstItem="J16-NC-rvK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ejX-lP-fao"/>
                             <constraint firstItem="VkE-Er-OOW" firstAttribute="top" secondItem="J16-NC-rvK" secondAttribute="bottom" constant="16" id="hLe-8g-CkK"/>
