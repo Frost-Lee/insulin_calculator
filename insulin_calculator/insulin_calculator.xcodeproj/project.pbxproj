@@ -25,6 +25,7 @@
 		2798F9782360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798F9772360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift */; };
 		2798F97A2360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798F9792360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift */; };
 		2798F97C2360B22000A917CF /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798F97B2360B22000A917CF /* Date+Format.swift */; };
+		279B4E5C238C2F9200A45A6A /* DeviceUnsupportInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279B4E5B238C2F9200A45A6A /* DeviceUnsupportInformationViewController.swift */; };
 		27A44AE0238870AA004CBDC9 /* VolumeButtonListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44ADF238870AA004CBDC9 /* VolumeButtonListener.swift */; };
 		27A44AE223887841004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE123887841004CBDC9 /* MPVolumeView+VolumeListener.swift */; };
 		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
@@ -80,6 +81,7 @@
 		2798F9772360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateCaptureHistoryTableViewController.swift; sourceTree = "<group>"; };
 		2798F9792360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateCaptureHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		2798F97B2360B22000A917CF /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
+		279B4E5B238C2F9200A45A6A /* DeviceUnsupportInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUnsupportInformationViewController.swift; sourceTree = "<group>"; };
 		27A44ADF238870AA004CBDC9 /* VolumeButtonListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeButtonListener.swift; sourceTree = "<group>"; };
 		27A44AE123887841004CBDC9 /* MPVolumeView+VolumeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MPVolumeView+VolumeListener.swift"; sourceTree = "<group>"; };
 		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
@@ -165,9 +167,9 @@
 				273B47DC2350BC5C0093B7DE /* AppDelegate.swift */,
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
-				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
+				279B4E5D238C300200A45A6A /* Main */,
 				2798F9762360AD5E00A917CF /* EstimateCaptureHistory */,
-				27FA472C235F799500D233C3 /* SupportViews */,
+				27FA472C235F799500D233C3 /* Utils */,
 				27B30AE32350C491007347F5 /* Model */,
 				273B47E52350BC620093B7DE /* Assets.xcassets */,
 				273B47E72350BC620093B7DE /* LaunchScreen.storyboard */,
@@ -214,13 +216,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		27A44ADE2388707E004CBDC9 /* Utils */ = {
+		279B4E5D238C300200A45A6A /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				27B30ADF2350C432007347F5 /* utils.swift */,
-				27A44ADF238870AA004CBDC9 /* VolumeButtonListener.swift */,
+				279B4E5B238C2F9200A45A6A /* DeviceUnsupportInformationViewController.swift */,
+				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
 			);
-			path = Utils;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		27B30AE32350C491007347F5 /* Model */ = {
@@ -229,19 +231,20 @@
 				27BF1D662350FF7700087274 /* Errors.swift */,
 				2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */,
 				272AF2CB2358B3110053F214 /* BackendConnector.swift */,
-				27A44ADE2388707E004CBDC9 /* Utils */,
+				27B30ADF2350C432007347F5 /* utils.swift */,
 				2798F97D2360B23800A917CF /* Extensions */,
 				27286A8C2360A5670026DE57 /* DataModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		27FA472C235F799500D233C3 /* SupportViews */ = {
+		27FA472C235F799500D233C3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */,
+				27A44ADF238870AA004CBDC9 /* VolumeButtonListener.swift */,
 			);
-			path = SupportViews;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		2E373B0639C780AFDDB63912 /* Frameworks */ = {
@@ -511,6 +514,7 @@
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
 				27286A8B2360A5310026DE57 /* ManagedEstimateCapture+CoreDataProperties.swift in Sources */,
 				27A44AE223887841004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */,
+				279B4E5C238C2F9200A45A6A /* DeviceUnsupportInformationViewController.swift in Sources */,
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
 				272AF2CE2358B6400053F214 /* Structures.swift in Sources */,
 				2798F9782360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift in Sources */,

@@ -9,7 +9,6 @@
 import Foundation
 import AVFoundation
 import CoreMotion
-import CoreML
 
 // MARK: Data Wrapping.
 

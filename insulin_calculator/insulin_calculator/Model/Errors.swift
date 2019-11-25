@@ -22,3 +22,7 @@ enum DataStorageError: Error {
     case saveFailure
     case fetchFailure
 }
+
+enum DeviceSupportError: Error {
+    case deviceUnsupported
+}

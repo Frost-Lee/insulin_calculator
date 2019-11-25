@@ -59,12 +59,16 @@ class EstimateImageCaptureManager: NSObject {
         }
     }
     
-    init(delegate: EstimateImageCaptureDelegate) {
+    init(delegate: EstimateImageCaptureDelegate) throws {
         super.init()
         self.delegate = delegate
         createCaptureSession()
         configureCaptureDevices()
-        configureDeviceInputs()
+        do {
+            try configureDeviceInputs()
+        } catch {
+            throw DeviceSupportError.deviceUnsupported
+        }
         configurePhotoOutput()
         configurePreviewOutput()
     }
@@ -110,8 +114,9 @@ class EstimateImageCaptureManager: NSObject {
         )
     }
 
-    private func configureDeviceInputs() {
-        deviceInput = try! AVCaptureDeviceInput(device: imageCaptureDevice)
+    private func configureDeviceInputs() throws {
+        guard imageCaptureDevice != nil else {throw DeviceSupportError.deviceUnsupported}
+        deviceInput = try AVCaptureDeviceInput(device: imageCaptureDevice)
         captureSession.beginConfiguration()
         captureSession.sessionPreset = .photo
         captureSession.addInput(deviceInput)

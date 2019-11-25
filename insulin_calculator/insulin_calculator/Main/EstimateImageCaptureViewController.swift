@@ -48,15 +48,15 @@ class EstimateImageCaptureViewController: UIViewController {
             }
         }
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        estimateImageCaptureManager = EstimateImageCaptureManager(delegate: self)
-        previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
-    }
+    private var isDeviceSupported: Bool = true
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard isDeviceSupported else {return}
+        do {
+            estimateImageCaptureManager = try EstimateImageCaptureManager(delegate: self)
+        } catch {isDeviceSupported = false;return}
+        previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
         estimateImageCaptureManager.startRunning()
         deviceOrientationIndicatorView.startRunning() {
             return self.estimateImageCaptureManager.deviceAttitude
@@ -65,8 +65,16 @@ class EstimateImageCaptureViewController: UIViewController {
         isAvailable = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !isDeviceSupported {
+            performSegue(withIdentifier: "showDeviceUnsupportInformationViewController", sender: nil)
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        guard isDeviceSupported else {return}
         isAvailable = false
         deviceOrientationIndicatorView.stopRunning()
         estimateImageCaptureManager.stopRunning()
@@ -74,6 +82,7 @@ class EstimateImageCaptureViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        guard isDeviceSupported else {return}
         estimateImageCaptureManager.previewLayer.frame = previewContainerView.bounds
     }
 
@@ -173,6 +182,7 @@ extension EstimateImageCaptureViewController: EstimateImageCaptureDelegate {
         )
     }
 }
+
 
 extension EstimateImageCaptureViewController: VolumeButtonListenerDelegate {
     func volumeButtonClicked(isUpperButton: Bool) {

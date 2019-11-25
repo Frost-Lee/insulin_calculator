@@ -28,7 +28,7 @@
         <!--Estimate Image Capture View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="EstimateImageCaptureViewController" customModule="insulin_calculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="EstimateImageCaptureViewController" customModule="insulin_calculator_collect" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,7 +36,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4y-Bu-IfF">
                                 <rect key="frame" x="20" y="44.000000000000028" width="335" height="446.66666666666674"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TuD-s5-mKA" customClass="DeviceOrientationIndicateView" customModule="insulin_calculator" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TuD-s5-mKA" customClass="DeviceOrientationIndicateView" customModule="insulin_calculator_collect" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="446.66666666666669"/>
                                         <subviews>
                                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WeO-Bf-RSb">
@@ -98,15 +98,27 @@
                                     <action selector="captureButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bkh-DF-mye"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="330-xe-74K">
+                                <rect key="frame" x="20" y="490.66666666666669" width="335" height="150.33333333333331"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Place the dish on the table and hold the device horizontally upside down to your dish, tap the button or click the volume button to take picture. You should see the table in the picture, the distance between the device and table should be 25 to 50 cm.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="330-xe-74K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="6nk-Em-sxe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="U4y-Bu-IfF" secondAttribute="trailing" constant="20" id="DK3-go-ikZ"/>
                             <constraint firstItem="U4y-Bu-IfF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Hcy-X1-YVw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="330-xe-74K" secondAttribute="trailing" constant="20" id="JZu-9x-NmH"/>
                             <constraint firstItem="U4y-Bu-IfF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="LVq-5P-Zex"/>
+                            <constraint firstItem="VkE-Er-OOW" firstAttribute="top" secondItem="330-xe-74K" secondAttribute="bottom" constant="16" id="TXL-sg-408"/>
                             <constraint firstItem="VkE-Er-OOW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="UCS-sg-fSL"/>
                             <constraint firstItem="VkE-Er-OOW" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-8" id="ZHg-nW-0Bh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VkE-Er-OOW" secondAttribute="trailing" constant="20" id="dgl-cN-4vl"/>
+                            <constraint firstItem="330-xe-74K" firstAttribute="top" secondItem="U4y-Bu-IfF" secondAttribute="bottom" id="qU1-w1-eNs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -116,22 +128,73 @@
                         <outlet property="deviceOrientationIndicatorView" destination="TuD-s5-mKA" id="JZY-ip-4kh"/>
                         <outlet property="previewBlurView" destination="WeO-Bf-RSb" id="h7B-q5-8z7"/>
                         <outlet property="previewContainerView" destination="U4y-Bu-IfF" id="QDg-w4-ubR"/>
+                        <segue destination="9rj-8Y-XAx" kind="presentation" identifier="showDeviceUnsupportInformationViewController" id="K4u-3j-tRT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="129.31034482758622"/>
         </scene>
+        <!--Device Unsupport Information View Controller-->
+        <scene sceneID="ja8-m4-oUL">
+            <objects>
+                <viewController id="8zK-9B-ABC" customClass="DeviceUnsupportInformationViewController" customModule="insulin_calculator_collect" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U1P-uy-tVl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, but your device is unsupported." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAI-eo-9KQ">
+                                <rect key="frame" x="20" y="72" width="335" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="dgr-4f-6ha"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y7N-g9-Zsj">
+                                <rect key="frame" x="20" y="125" width="335" height="599"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">This application will use the TrueDepth camera in order to capture a color map along with a high accuracy depth map, in order to estimate the volume of food accurately. This means only iPhone models with TrueDepah camera are supported, including iPhone 11 Pro Max, iPhone 11 Pro, iPhone 11, iPhone Xs Max, iPhone Xs, iPhone XR, and iPhone X.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="A4k-ap-zVo" firstAttribute="trailing" secondItem="Y7N-g9-Zsj" secondAttribute="trailing" constant="20" id="0K9-3D-Shq"/>
+                            <constraint firstItem="RAI-eo-9KQ" firstAttribute="leading" secondItem="A4k-ap-zVo" secondAttribute="leading" constant="20" id="3e4-kg-Vle"/>
+                            <constraint firstItem="RAI-eo-9KQ" firstAttribute="top" secondItem="A4k-ap-zVo" secondAttribute="top" constant="16" id="CUj-cI-lPD"/>
+                            <constraint firstItem="Y7N-g9-Zsj" firstAttribute="leading" secondItem="A4k-ap-zVo" secondAttribute="leading" constant="20" id="I9J-jQ-Ukl"/>
+                            <constraint firstItem="Y7N-g9-Zsj" firstAttribute="top" secondItem="RAI-eo-9KQ" secondAttribute="bottom" constant="16" id="LZl-eO-qal"/>
+                            <constraint firstItem="A4k-ap-zVo" firstAttribute="trailing" secondItem="RAI-eo-9KQ" secondAttribute="trailing" constant="20" id="RlF-h6-PqE"/>
+                            <constraint firstItem="A4k-ap-zVo" firstAttribute="bottom" secondItem="Y7N-g9-Zsj" secondAttribute="bottom" id="ePW-NP-EC0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="A4k-ap-zVo"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EbA-p2-4DT">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="xfJ-jF-ust">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="8zK-9B-ABC" id="fuq-rD-eLI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dDo-ah-izI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2344.8000000000002" y="128.57142857142858"/>
+        </scene>
         <!--Capture History-->
         <scene sceneID="pg6-42-9A8">
             <objects>
-                <tableViewController id="FJZ-13-vin" customClass="EstimateCaptureHistoryTableViewController" customModule="insulin_calculator" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="FJZ-13-vin" customClass="EstimateCaptureHistoryTableViewController" customModule="insulin_calculator_collect" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="EVx-4w-8Xc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="estimateCaptureHistoryTableViewCell" rowHeight="100" id="6QU-5j-fzE" customClass="EstimateCaptureHistoryTableViewCell" customModule="insulin_calculator" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="estimateCaptureHistoryTableViewCell" rowHeight="100" id="6QU-5j-fzE" customClass="EstimateCaptureHistoryTableViewCell" customModule="insulin_calculator_collect" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6QU-5j-fzE" id="d5P-d2-waG">
@@ -195,7 +258,7 @@
         <!--Estimate Capture Submission View Controller-->
         <scene sceneID="rfO-EF-yxf">
             <objects>
-                <viewController id="tWX-ht-bwb" customClass="EstimateCaptureSubmissionViewController" customModule="insulin_calculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tWX-ht-bwb" customClass="EstimateCaptureSubmissionViewController" customModule="insulin_calculator_collect" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nnw-qY-NkY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -343,6 +406,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9cQ-Bj-v4Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2347.826086956522" y="1301.7857142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iSG-Ou-VWP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9rj-8Y-XAx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ujA-YA-PC4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8zK-9B-ABC" kind="relationship" relationship="rootViewController" id="hbd-ho-ice"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ag4-z8-kHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1257" y="129"/>
         </scene>
     </scenes>
 </document>
