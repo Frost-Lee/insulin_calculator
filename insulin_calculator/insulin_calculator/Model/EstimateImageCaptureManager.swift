@@ -59,12 +59,26 @@ class EstimateImageCaptureManager: NSObject {
         }
     }
     
-    init(delegate: EstimateImageCaptureDelegate) {
+    /**
+     Initialize a `EstimateImageCaptureManager` instance.
+     
+     - parameters:
+        - delegate: The delegate for handling output of the `EstimateImageCaptureManager` instance.
+     
+     - throws:
+        `DeviceSupportError`: If the user's device don't have TrueDepth module, this error will be thrown.
+            If the method produce this error, you should no longer call `startRunning()` or `stopRunning()`.
+     */
+    init(delegate: EstimateImageCaptureDelegate) throws {
         super.init()
         self.delegate = delegate
         createCaptureSession()
         configureCaptureDevices()
-        configureDeviceInputs()
+        do {
+            try configureDeviceInputs()
+        } catch {
+            throw DeviceSupportError.deviceUnsupported
+        }
         configurePhotoOutput()
         configurePreviewOutput()
     }
@@ -110,8 +124,9 @@ class EstimateImageCaptureManager: NSObject {
         )
     }
 
-    private func configureDeviceInputs() {
-        deviceInput = try! AVCaptureDeviceInput(device: imageCaptureDevice)
+    private func configureDeviceInputs() throws {
+        guard imageCaptureDevice != nil else {throw DeviceSupportError.deviceUnsupported}
+        deviceInput = try AVCaptureDeviceInput(device: imageCaptureDevice)
         captureSession.beginConfiguration()
         captureSession.sessionPreset = .photo
         captureSession.addInput(deviceInput)

@@ -11,15 +11,19 @@ import CoreMotion
 import simd
 import Haptica
 
+/**
+ A view that indicates the orientation of the device. When the device is hold horizontally, it will provide visual and haptic
+ feedbacks.
+ */
 class DeviceOrientationIndicateView: UIView {
     
-    var referenceIndicatorImageView: UIImageView = {
+    private var referenceIndicatorImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "orientation_indicator")!)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         return imageView
     }()
-    var flexibleIndicatorImageView: UIImageView = {
+    private var flexibleIndicatorImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "orientation_indicator")!)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
@@ -35,18 +39,17 @@ class DeviceOrientationIndicateView: UIView {
     
     private var isHorizontal: Bool = false {
         didSet {
-            if isHorizontal {
-                Haptic.impact(.light).generate()
-            }
             if oldValue != isHorizontal {
                 if isHorizontal {
                     UIView.animate(withDuration: 1.0 / 5.0) {
                         self.referenceIndicatorImageView.tintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
                     }
+                    ImpactGenerator.shared.startRunning()
                 } else {
                     UIView.animate(withDuration: 1.0 / 5.0) {
                         self.referenceIndicatorImageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                     }
+                    ImpactGenerator.shared.stopRunning()
                 }
             }
         }

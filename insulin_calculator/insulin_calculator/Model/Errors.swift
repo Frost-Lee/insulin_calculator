@@ -17,3 +17,7 @@ enum NetworkError: Error {
     case connectionLost
     case unexpectedResponse
 }
+
+enum DeviceSupportError: Error {
+    case deviceUnsupported
+}

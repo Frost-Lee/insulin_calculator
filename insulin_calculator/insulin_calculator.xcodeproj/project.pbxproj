@@ -10,6 +10,8 @@
 		270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */; };
 		272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AF2CB2358B3110053F214 /* BackendConnector.swift */; };
 		272AF2CE2358B6400053F214 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AF2CD2358B6400053F214 /* Structures.swift */; };
+		2730F67E238C3B98005E025F /* ImpactGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730F67D238C3B98005E025F /* ImpactGenerator.swift */; };
+		2730F680238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */; };
 		273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DC2350BC5C0093B7DE /* AppDelegate.swift */; };
 		273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */; };
 		273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */; };
@@ -55,6 +57,8 @@
 		2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureManager.swift; sourceTree = "<group>"; };
 		272AF2CB2358B3110053F214 /* BackendConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendConnector.swift; sourceTree = "<group>"; };
 		272AF2CD2358B6400053F214 /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
+		2730F67D238C3B98005E025F /* ImpactGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactGenerator.swift; sourceTree = "<group>"; };
+		2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUnsupportInformationViewController.swift; sourceTree = "<group>"; };
 		273B47D92350BC5C0093B7DE /* insulin_calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = insulin_calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		273B47DC2350BC5C0093B7DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,8 +150,9 @@
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
 				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
-				27FA472C235F799500D233C3 /* SupportViews */,
+				2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */,
 				273DB184235F64FE0009DC4E /* EstimateResult */,
+				27A44AE323888E15004CBDC9 /* Utils */,
 				27B30AE32350C491007347F5 /* Model */,
 				273B47E52350BC620093B7DE /* Assets.xcassets */,
 				273B47E72350BC620093B7DE /* LaunchScreen.storyboard */,
@@ -187,7 +192,8 @@
 		27A44AE323888E15004CBDC9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				27B30ADF2350C432007347F5 /* utils.swift */,
+				27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */,
+				2730F67D238C3B98005E025F /* ImpactGenerator.swift */,
 				27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */,
 			);
 			path = Utils;
@@ -210,18 +216,10 @@
 				27B30AE12350C48A007347F5 /* DataManager.swift */,
 				272AF2CB2358B3110053F214 /* BackendConnector.swift */,
 				272AF2CD2358B6400053F214 /* Structures.swift */,
-				27A44AE323888E15004CBDC9 /* Utils */,
+				27B30ADF2350C432007347F5 /* utils.swift */,
 				27A44AE623888E46004CBDC9 /* Extensions */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		27FA472C235F799500D233C3 /* SupportViews */ = {
-			isa = PBXGroup;
-			children = (
-				27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */,
-			);
-			path = SupportViews;
 			sourceTree = "<group>";
 		};
 		2E373B0639C780AFDDB63912 /* Frameworks */ = {
@@ -484,6 +482,8 @@
 				27BE0ED4235E3C57006F19FB /* EstimateResultViewController.swift in Sources */,
 				273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */,
 				273DB188235F65A30009DC4E /* EntitySelectCollectionViewCell.swift in Sources */,
+				2730F67E238C3B98005E025F /* ImpactGenerator.swift in Sources */,
+				2730F680238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift in Sources */,
 				27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */,
 				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
 				27FA4729235F6EC600D233C3 /* Double+Unit.swift in Sources */,
@@ -669,13 +669,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99PQ6PW48F;
+				DEVELOPMENT_TEAM = 4C47ZVS5JD;
 				INFOPLIST_FILE = insulin_calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Frostlee.insulin-calculator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.langerlab.insulin-calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -688,13 +688,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99PQ6PW48F;
+				DEVELOPMENT_TEAM = 4C47ZVS5JD;
 				INFOPLIST_FILE = insulin_calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Frostlee.insulin-calculator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.langerlab.insulin-calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

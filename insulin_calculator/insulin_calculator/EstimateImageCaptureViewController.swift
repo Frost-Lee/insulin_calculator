@@ -26,6 +26,10 @@ class EstimateImageCaptureViewController: UIViewController {
     
     private var volumeButtonListener: VolumeButtonListener?
     
+    private var estimateImageCaptureManager: EstimateImageCaptureManager!
+    private var dataManager: DataManager = DataManager.shared
+    private var backendConnector: BackendConnector = BackendConnector.shared
+    
     private var isAvailable: Bool = false {
         didSet {
             guard oldValue != isAvailable else {return}
@@ -44,29 +48,38 @@ class EstimateImageCaptureViewController: UIViewController {
             }
         }
     }
+    private var isDeviceSupported: Bool = true
     
-    private var estimateImageCaptureManager: EstimateImageCaptureManager!
-    private var dataManager: DataManager = DataManager.shared
-    private var backendConnector: BackendConnector = BackendConnector.shared
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        estimateImageCaptureManager = EstimateImageCaptureManager(delegate: self)
+        do {
+            estimateImageCaptureManager = try EstimateImageCaptureManager(delegate: self)
+        } catch {isDeviceSupported = false;return}
         previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
+        setupVolumeButtonListener()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupVolumeButtonListener()
+        guard isDeviceSupported else {return}
         estimateImageCaptureManager.startRunning()
         deviceOrientationIndicatorView.startRunning() {
             return self.estimateImageCaptureManager.deviceAttitude
         }
+        
         isAvailable = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !isDeviceSupported {
+            performSegue(withIdentifier: "showDeviceUnsupportInformationViewController", sender: nil)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        guard isDeviceSupported else {return}
         isAvailable = false
         deviceOrientationIndicatorView.stopRunning()
         estimateImageCaptureManager.stopRunning()
@@ -85,6 +98,7 @@ class EstimateImageCaptureViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        guard isDeviceSupported else {return}
         estimateImageCaptureManager.previewLayer.frame = previewContainerView.bounds
     }
 
