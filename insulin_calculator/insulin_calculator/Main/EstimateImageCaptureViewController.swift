@@ -49,19 +49,24 @@ class EstimateImageCaptureViewController: UIViewController {
         }
     }
     private var isDeviceSupported: Bool = true
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard isDeviceSupported else {return}
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         do {
             estimateImageCaptureManager = try EstimateImageCaptureManager(delegate: self)
         } catch {isDeviceSupported = false;return}
         previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
+        setupVolumeButtonListener()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard isDeviceSupported else {return}
         estimateImageCaptureManager.startRunning()
         deviceOrientationIndicatorView.startRunning() {
             return self.estimateImageCaptureManager.deviceAttitude
         }
-        setupVolumeButtonListener()
+        
         isAvailable = true
     }
     

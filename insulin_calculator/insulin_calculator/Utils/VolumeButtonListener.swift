@@ -20,8 +20,8 @@ class VolumeButtonListener: NSObject {
         super.init()
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(applicationEnteredForeground),
-            name: UIApplication.willEnterForegroundNotification,
+            selector: #selector(applicationBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
             object: nil
         )
         NotificationCenter.default.addObserver(
@@ -80,7 +80,7 @@ class VolumeButtonListener: NSObject {
         isListening = false
     }
     
-    @objc func applicationEnteredForeground() {
+    @objc func applicationBecomeActive() {
         if shouldRecoverListening {
             startListening()
             shouldRecoverListening = false
