@@ -59,6 +59,16 @@ class EstimateImageCaptureManager: NSObject {
         }
     }
     
+    /**
+     Initialize a `EstimateImageCaptureManager` instance.
+     
+     - parameters:
+        - delegate: The delegate for handling output of the `EstimateImageCaptureManager` instance.
+     
+     - throws:
+        `DeviceSupportError`: If the user's device don't have TrueDepth module, this error will be thrown.
+            If the method produce this error, you should no longer call `startRunning()` or `stopRunning()`.
+     */
     init(delegate: EstimateImageCaptureDelegate) throws {
         super.init()
         self.delegate = delegate
