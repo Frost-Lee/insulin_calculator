@@ -9,13 +9,20 @@
 import Foundation
 import Haptica
 
+/**
+ An regular impack generator.
+ */
 class ImpactGenerator: NSObject {
     
     private var timer: Timer?
     private let period: TimeInterval = 1.0 / 3.0
     
-    static var sharedInstance: ImpactGenerator = ImpactGenerator()
+    /// The shared instance of object `ImpactGenerator`.
+    static var shared: ImpactGenerator = ImpactGenerator()
     
+    /**
+     Start generating regular impacts.
+     */
     func startRunning() {
         timer = Timer.scheduledTimer(withTimeInterval: period, repeats: true) { timer in
             Haptic.impact(.light).generate()
@@ -23,6 +30,9 @@ class ImpactGenerator: NSObject {
         timer?.fire()
     }
     
+    /**
+     Stop generating regular impacts.
+     */
     func stopRunning() {
         timer?.invalidate()
     }
