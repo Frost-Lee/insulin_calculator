@@ -68,6 +68,11 @@ class VolumeButtonListener: NSObject {
     ) {
         switch keyPath {
         case observerKey:
+            /**
+             - TODO:
+                Obserbed situation when click a volume button, then click another volume button, the latter click
+                will not change the device volume.
+             */
             if abs(currentVolume - originalVolume) < minimumVolumeChange {return}
             delegate?.volumeButtonClicked(isUpperButton: currentVolume > originalVolume)
             currentVolume = originalVolume
