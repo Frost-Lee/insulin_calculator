@@ -707,7 +707,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.langerlab.insulin-calculator-collect";
 				PRODUCT_NAME = insulin_calculator_collect;
 				SWIFT_VERSION = 5.0;
@@ -727,7 +727,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.langerlab.insulin-calculator-collect";
 				PRODUCT_NAME = insulin_calculator_collect;
 				SWIFT_VERSION = 5.0;
