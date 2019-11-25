@@ -3,6 +3,7 @@ import io
 import json
 
 from . import config
+from . import config_secure
 
 def _get_raw_classification_result(buffers):
     """ Fetching the response of the image classification from the classifier.
@@ -17,7 +18,7 @@ def _get_raw_classification_result(buffers):
     # API, avoid abuse.
     assert len(buffers) < 10
     return [requests.post(
-        url=config.CLASSIFIER_URL,
+        url=config_secure.CLASSIFIER_URL,
         headers={'Content-type': 'image/jpeg'},
         data=buffer.getvalue()
     ) for buffer in buffers]

@@ -3,4 +3,5 @@
 *.pyc
 *.o
 *.xcuserstate
+config_secure.py
 
