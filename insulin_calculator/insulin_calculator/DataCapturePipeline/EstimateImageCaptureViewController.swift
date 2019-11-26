@@ -9,8 +9,6 @@
 import UIKit
 import AVFoundation
 import CoreMotion
-import Photos
-import CoreImage
 import SVProgressHUD
 
 class EstimateImageCaptureViewController: UIViewController {
@@ -77,7 +75,6 @@ class EstimateImageCaptureViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         guard isDeviceSupported else {return}
-        isAvailable = false
         deviceOrientationIndicatorView.stopRunning()
         estimateImageCaptureManager.stopRunning()
     }
@@ -102,7 +99,7 @@ class EstimateImageCaptureViewController: UIViewController {
     @IBAction func captureButtonTapped(_ sender: Any?) {
         guard isAvailable else {return}
         isAvailable = false
-        SVProgressHUD.show(withStatus: "Processing Calculation Data")
+        SVProgressHUD.show(withStatus: "Processing Data")
         estimateImageCaptureManager.captureImage()
     }
     
