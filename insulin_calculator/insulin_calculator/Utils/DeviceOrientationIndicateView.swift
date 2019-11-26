@@ -132,6 +132,7 @@ class DeviceOrientationIndicateView: UIView {
      */
     func stopRunning() {
         timer?.invalidate()
+        ImpactGenerator.shared.stopRunning()
         timer = nil
     }
 
