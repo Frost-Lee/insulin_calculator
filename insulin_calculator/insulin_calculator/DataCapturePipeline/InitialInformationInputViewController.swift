@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class InitialInformationInputViewController: UIViewController {
     
@@ -44,6 +45,7 @@ class InitialInformationInputViewController: UIViewController {
     
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         shouldSave = true
+        SVProgressHUD.showSuccess(withStatus: "Data saved. You can submit it in History later.")
         dismiss(animated: true, completion: nil)
     }
     

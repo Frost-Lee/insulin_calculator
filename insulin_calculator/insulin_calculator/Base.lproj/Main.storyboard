@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-1068" y="733"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="IBa-Cl-1Ct">
             <objects>
-                <viewController id="Y72-Uj-Uci" sceneMemberID="viewController">
+                <viewController id="Y72-Uj-Uci" customClass="HomeViewController" customModule="insulin_calculator_collect" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GYs-bj-xRg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,7 +61,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="RTk-0g-PGe" kind="presentation" id="GG8-7o-iz7"/>
+                                    <action selector="startCaptureButtonTapped:" destination="Y72-Uj-Uci" eventType="touchUpInside" id="yHQ-g1-Nab"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xC3-Nd-m22">
@@ -70,6 +70,9 @@
                                     <constraint firstAttribute="height" constant="32" id="NXH-mZ-xt4"/>
                                 </constraints>
                                 <state key="normal" title="Rules for Capture"/>
+                                <connections>
+                                    <action selector="showRulesButtonTapped:" destination="Y72-Uj-Uci" eventType="touchUpInside" id="6WX-xb-fyJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -87,6 +90,9 @@
                         <viewLayoutGuide key="safeArea" id="CG7-Fi-g0r"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="sfx-er-gr5"/>
+                    <connections>
+                        <segue destination="RTk-0g-PGe" kind="presentation" identifier="showEstimateImageCaptureViewController" id="2fB-wL-fmh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="whn-r9-ZyF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

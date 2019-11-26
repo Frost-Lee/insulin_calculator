@@ -113,6 +113,7 @@ extension EstimateCaptureHistoryTableViewController {
 extension EstimateCaptureHistoryTableViewController: EstimateCaptureSubmissionDelegate {
     func submissionViewControllerClosed(submitted: Bool) {
         guard editingIndexPath != nil else {return}
+        print(submitted)
         if submitted {
             estimateCaptures![editingIndexPath!.row].isSubmitted = true
         }

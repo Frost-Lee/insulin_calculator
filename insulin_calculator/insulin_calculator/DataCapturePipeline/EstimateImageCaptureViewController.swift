@@ -64,7 +64,6 @@ class EstimateImageCaptureViewController: UIViewController {
         deviceOrientationIndicatorView.startRunning() {
             return self.estimateImageCaptureManager.deviceAttitude
         }
-        
         isAvailable = true
     }
     
