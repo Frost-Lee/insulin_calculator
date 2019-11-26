@@ -16,19 +16,20 @@ import SVProgressHUD
 class EstimateImageCaptureViewController: UIViewController {
 
     @IBOutlet weak var previewContainerView: UIView!
-    @IBOutlet weak var captureButton: UIButton! {
-        didSet {
-            captureButton.layer.cornerRadius = 8.0
-        }
-    }
+    @IBOutlet weak var captureButton: UIButton!
     @IBOutlet weak var deviceOrientationIndicatorView: DeviceOrientationIndicateView!
     @IBOutlet weak var previewBlurView: UIVisualEffectView!
     
     private var volumeButtonListener: VolumeButtonListener?
     
+    /**
+     - TODO:
+        remove the cached data when dismissed by user.
+     */
+    var estimateCapture: EstimateCapture?
+    
     private var estimateImageCaptureManager: EstimateImageCaptureManager!
     private var dataManager: DataManager = DataManager.shared
-    private var backendConnector: BackendConnector = BackendConnector.shared
     
     private var isAvailable: Bool = false {
         didSet {
@@ -52,6 +53,7 @@ class EstimateImageCaptureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.isModalInPresentation = true
         do {
             estimateImageCaptureManager = try EstimateImageCaptureManager(delegate: self)
         } catch {isDeviceSupported = false;return}
@@ -90,6 +92,17 @@ class EstimateImageCaptureViewController: UIViewController {
         guard isDeviceSupported else {return}
         estimateImageCaptureManager.previewLayer.frame = previewContainerView.bounds
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        switch segue.identifier {
+        case "showAdditionalImageCaptureViewController":
+            let destination = segue.destination as! AdditionalImageCaptureViewController
+            destination.estimateCapture = sender as? EstimateCapture
+        default:
+            break
+        }
+    }
 
     @IBAction func captureButtonTapped(_ sender: Any?) {
         guard isAvailable else {return}
@@ -98,13 +111,17 @@ class EstimateImageCaptureViewController: UIViewController {
         estimateImageCaptureManager.captureImage()
     }
     
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     private func setupVolumeButtonListener() {
         volumeButtonListener = VolumeButtonListener()
         volumeButtonListener?.delegate = self
         volumeButtonListener?.startListening()
     }
     
-    private func submitCapturedData(
+    private func processCapturedData(
         imageData: Data,
         depthMap: CVPixelBuffer,
         calibration: AVCameraCalibrationData,
@@ -123,24 +140,19 @@ class EstimateImageCaptureViewController: UIViewController {
             extensionName: "jpg"
         ) { url in photoURL = url; group.leave()}
         group.notify(queue: .main) {
-            self.launchWeightInputAlert() { input in
-                guard input != nil else {SVProgressHUD.dismiss();self.isAvailable=true;return}
-                self.dataManager.saveEstimateCapture(capture: EstimateCapture(
-                    jsonURL: jsonURL!,
-                    photoURL: photoURL!,
-                    timestamp: Date(),
-                    sessionId: UUID(),
-                    isSubmitted: false,
-                    initialWeight: Double(input!) ?? 0.0
-                )) { error in
-                    if error != nil {
-                        SVProgressHUD.showError(withStatus: "Error occurred when saving the estimate.")
-                    } else {
-                        SVProgressHUD.showSuccess(withStatus: "Data Captured, you can submit it later.")
-                    }
-                    self.isAvailable = true
-                }
-            }
+            self.estimateCapture = EstimateCapture(
+                jsonURL: jsonURL,
+                photoURL: photoURL,
+                timestamp: Date(),
+                sessionId: UUID(),
+                isSubmitted: false,
+                plateWeight: 0
+            )
+            SVProgressHUD.dismiss()
+            self.performSegue(
+                withIdentifier: "showAdditionalImageCaptureViewController",
+                sender: self.estimateCapture!
+            )
         }
     }
     
@@ -177,9 +189,15 @@ class EstimateImageCaptureViewController: UIViewController {
 
 
 extension EstimateImageCaptureViewController: EstimateImageCaptureDelegate {
-    func captureOutput(image: CGImage, depthMap: CVPixelBuffer, calibration: AVCameraCalibrationData, attitude: CMAttitude, error: Error?) {
+    func captureOutput(
+        image: CGImage,
+        depthMap: CVPixelBuffer,
+        calibration: AVCameraCalibrationData,
+        attitude: CMAttitude,
+        error: Error?
+    ) {
         let jpegData = UIImage(cgImage: image).jpegData(compressionQuality: 1.0)!
-        submitCapturedData(
+        processCapturedData(
             imageData: jpegData,
             depthMap: depthMap,
             calibration: calibration,

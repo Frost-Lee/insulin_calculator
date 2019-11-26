@@ -22,7 +22,6 @@ class EstimateCaptureSubmissionViewController: UIViewController {
     @IBOutlet weak var capturedImageView: UIImageView!
     @IBOutlet weak var initialWeightLabel: UILabel!
     @IBOutlet weak var netWeightLabel: UILabel!
-    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
     
     var delegate: EstimateCaptureSubmissionDelegate?
@@ -38,6 +37,11 @@ class EstimateCaptureSubmissionViewController: UIViewController {
         setEstimateCapture()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        weightTextField.becomeFirstResponder()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         delegate?.submissionViewControllerClosed(submitted: isSubmitted)
@@ -50,16 +54,20 @@ class EstimateCaptureSubmissionViewController: UIViewController {
     
     private func setEstimateCapture() {
         guard estimateCapture != nil else {return}
-        capturedImageView.image = UIImage(data: try! Data(contentsOf: estimateCapture!.photoURL))!
-        initialWeightLabel.text = estimateCapture?.initialWeight.collectWeightString()
+        capturedImageView.image = UIImage(data: try! Data(contentsOf: estimateCapture!.photoURL!))!
+        initialWeightLabel.text = estimateCapture?.initialWeight!.collectWeightString()
         netWeightLabel.text = "-"
     }
     
     @IBAction func textFieldChanged(_ sender: UITextField) {
-        submitButton.isEnabled = nameTextField.hasText && Double(weightTextField.text ?? "na") != nil
-        guard weightTextField.hasText else {return}
-        guard estimateCapture!.initialWeight - Double(weightTextField.text!)! >= 0 else {submitButton.isEnabled = false;return}
-        netWeightLabel.text = (estimateCapture!.initialWeight - Double(weightTextField.text!)!).collectWeightString()
+        guard
+            Double(weightTextField.text ?? "na") != nil &&
+            Double(weightTextField.text ?? "na")! >= 0 &&
+            estimateCapture!.initialWeight! - Double(weightTextField.text ?? "na")! > 0
+        else {submitButton.isEnabled = false; return}
+        submitButton.isEnabled = true
+        estimateCapture?.plateWeight = Double(weightTextField.text ?? "na")!
+        netWeightLabel.text = (estimateCapture!.initialWeight! - estimateCapture!.plateWeight!).collectWeightString()
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
@@ -68,17 +76,15 @@ class EstimateCaptureSubmissionViewController: UIViewController {
     
     @IBAction func submitButtonTapped(_ sender: UIBarButtonItem) {
         SVProgressHUD.show(withStatus: "Submitting")
-        print("Tapped")
         backendConnector.getDensityCollectionResult(
             token: "abcd1234",
-            session_id: estimateCapture!.sessionId.uuidString,
-            jsonURL: estimateCapture!.jsonURL,
-            photoURL: estimateCapture!.photoURL,
-            name: nameTextField.text!,
-            weight: String(estimateCapture!.initialWeight - Double(weightTextField.text!)!)
+            session_id: estimateCapture!.sessionId!.uuidString,
+            jsonURL: estimateCapture!.jsonURL!,
+            photoURL: estimateCapture!.photoURL!,
+            name: estimateCapture!.foodName!,
+            weight: String(estimateCapture!.initialWeight! - estimateCapture!.plateWeight!)
         ) { error in
             guard error == nil else {
-                print("Error")
                 SVProgressHUD.showError(withStatus: "Submisstion Failed")
                 self.dismiss(animated: true, completion: nil)
                 return

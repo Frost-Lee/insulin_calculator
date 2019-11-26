@@ -97,7 +97,7 @@ extension EstimateCaptureHistoryTableViewController {
     ) {
         editingIndexPath = indexPath
         tableView.deselectRow(at: indexPath, animated: true)
-        if estimateCaptures![indexPath.row].isSubmitted {return}
+        if estimateCaptures![indexPath.row].isSubmitted! {return}
         performSegue(withIdentifier: "showEstimateCaptureSubmissionViewController", sender: nil)
     }
     

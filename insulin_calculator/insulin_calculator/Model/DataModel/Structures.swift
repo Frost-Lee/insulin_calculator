@@ -158,10 +158,13 @@ struct SessionRecognitionResult {
 // MARK: - Capture Raw Data Structures
 
 struct EstimateCapture: Equatable {
-    var jsonURL: URL
-    var photoURL: URL
-    var timestamp: Date
-    var sessionId: UUID
-    var isSubmitted: Bool
-    var initialWeight: Double
+    var jsonURL: URL?
+    var photoURL: URL?
+    var additionalPhotoURL: URL?
+    var timestamp: Date?
+    var sessionId: UUID?
+    var isSubmitted: Bool?
+    var initialWeight: Double?
+    var plateWeight: Double?
+    var foodName: String?
 }

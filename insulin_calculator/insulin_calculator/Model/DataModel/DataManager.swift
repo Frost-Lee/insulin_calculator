@@ -24,7 +24,7 @@ class DataManager: NSObject {
      Save `data` as a temporary file in `documentDirectory` with extension name `extensionName`.
      The file name would be a UUID string.
      
-     - Parameters:
+     - parameters:
         - data: The data to be saved. Callers are responsible for converting objects to `Data` with proper encoding.
         - extensionName: The extension name of the saved file.
         - completion: The completion handler. This closure will be called once the saving process finished, the parameter
@@ -35,18 +35,18 @@ class DataManager: NSObject {
         extensionName: String,
         completion: ((URL) -> ())?
     ) {
-        let temporaryURL = FileManager.default.urls(
+        let url = FileManager.default.urls(
             for: .documentDirectory,
             in: .userDomainMask
         )[0].appendingPathComponent(UUID().uuidString).appendingPathExtension(extensionName)
-        try! data.write(to: temporaryURL)
-        completion?(temporaryURL)
+        try! data.write(to: url)
+        completion?(url)
     }
     
     /**
      Save an `EstimateCapture` object with CoreData.
      
-     - Parameters:
+     - parameters:
         - capture: The `EstimateCapture` object to be saved.
         - completion: The completion handler. `Error` will be `nil` if the data is saved successfully.
      */
@@ -73,7 +73,7 @@ class DataManager: NSObject {
         let fetchRequest: NSFetchRequest = ManagedEstimateCapture.fetchRequest()
         do {
             let managedCaptures = (try context.fetch(fetchRequest)) as [ManagedEstimateCapture]
-            completion?(managedCaptures.map({$0.export()}).sorted(by: {$0.timestamp > $1.timestamp}), nil)
+            completion?(managedCaptures.map({$0.export()}).sorted(by: {$0.timestamp! > $1.timestamp!}), nil)
         } catch {
             completion?(nil, DataStorageError.fetchFailure)
         }
@@ -82,9 +82,12 @@ class DataManager: NSObject {
     /**
      Remove a stored `EstimateCapture` object with its `sessionId`.
      
-     - Parameters:
+     - parameters:
         - sessionId: The `sessionId` attribute of the `EstimateCapture` object to be removed.
         - completion: The completion handler. `Error` will be `nil` if the data is removed successfully.
+     
+     - TODO:
+        remove the saved file with their url.
      */
     func removeEstimateCapture(sessionId: UUID, completion: ((Error?) -> ())?) {
         let fetchRequest: NSFetchRequest = ManagedEstimateCapture.fetchRequest()
@@ -106,12 +109,12 @@ class DataManager: NSObject {
      Update a stored `EstimateCapture` object. Note that the `sessionId` of the capture must not be
      changed, or this method will save another object instead of modifying it.
      
-     - Parameters:
+     - parameters:
         - capture: The updated `EstimateCapture` object that needs to be saved.
         - completion: The completion handler. `Error` will be `nil` if the data is updated successfully.
      */
     func updateEstimateCapture(capture: EstimateCapture, completion: ((Error?) -> ())?) {
-        removeEstimateCapture(sessionId: capture.sessionId) { error in
+        removeEstimateCapture(sessionId: capture.sessionId!) { error in
             guard error == nil else {completion?(error);return}
             self.saveEstimateCapture(capture: capture) { anotherError in
                 guard anotherError == nil else {completion?(anotherError);return}

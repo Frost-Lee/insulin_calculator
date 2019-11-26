@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="19A602" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ManagedEstimateCapture" representedClassName="ManagedEstimateCapture" syncable="YES">
+        <attribute name="additionalPhotoURL" optional="YES" attributeType="URI"/>
+        <attribute name="foodName" optional="YES" attributeType="String"/>
         <attribute name="initialWeight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="isSubmitted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="jsonURL" optional="YES" attributeType="URI"/>
         <attribute name="photoURL" optional="YES" attributeType="URI"/>
+        <attribute name="plateWeight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="sessionId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="ManagedEstimateCapture" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="ManagedEstimateCapture" positionX="-63" positionY="-18" width="128" height="178"/>
     </elements>
 </model>

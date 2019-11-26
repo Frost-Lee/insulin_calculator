@@ -22,15 +22,15 @@ class EstimateCaptureHistoryTableViewCell: UITableViewCell {
     }
     
     private func setEstimateCapture() {
-        captureTitleLabel.text = estimateCapture!.timestamp.formattedString(with: "yyyy.MM.dd hh:mm")
-        if estimateCapture!.isSubmitted {
+        captureTitleLabel.text = estimateCapture!.timestamp!.formattedString(with: "yyyy.MM.dd hh:mm")
+        if estimateCapture!.isSubmitted! {
             captureSubmitStatusLabel.text = "submitted"
             captureSubmitStatusLabel.textColor = .green
         } else {
             captureSubmitStatusLabel.text = "not submitted"
             captureSubmitStatusLabel.textColor = .secondaryLabel
         }
-        captureImageView.image = UIImage(data: try! Data(contentsOf: estimateCapture!.photoURL))
+        captureImageView.image = UIImage(data: try! Data(contentsOf: estimateCapture!.photoURL!))
     }
 
 }
