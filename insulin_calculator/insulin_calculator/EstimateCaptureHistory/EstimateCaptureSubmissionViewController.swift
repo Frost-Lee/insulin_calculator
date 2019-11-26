@@ -78,9 +78,10 @@ class EstimateCaptureSubmissionViewController: UIViewController {
         SVProgressHUD.show(withStatus: "Submitting")
         backendConnector.getDensityCollectionResult(
             token: "abcd1234",
-            session_id: estimateCapture!.sessionId!.uuidString,
+            sessionId: estimateCapture!.sessionId!.uuidString,
             jsonURL: estimateCapture!.jsonURL!,
-            photoURL: estimateCapture!.photoURL!,
+            imageURL: estimateCapture!.photoURL!,
+            additionalImageURL: estimateCapture!.additionalPhotoURL!,
             name: estimateCapture!.foodName!,
             weight: String(estimateCapture!.initialWeight! - estimateCapture!.plateWeight!)
         ) { error in

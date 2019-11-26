@@ -22,10 +22,6 @@ class EstimateImageCaptureViewController: UIViewController {
     
     private var volumeButtonListener: VolumeButtonListener?
     
-    /**
-     - TODO:
-        remove the cached data when dismissed by user.
-     */
     var estimateCapture: EstimateCapture?
     
     private var estimateImageCaptureManager: EstimateImageCaptureManager!
