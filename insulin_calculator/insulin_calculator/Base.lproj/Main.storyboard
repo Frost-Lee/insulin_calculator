@@ -470,37 +470,37 @@
                                     <rect key="frame" x="0.0" y="0.0" width="348" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GXR-tR-qdB">
-                                            <rect key="frame" x="16" y="11" width="78" height="78"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="GXR-tR-qdB" secondAttribute="height" multiplier="1:1" id="GSb-NK-pBa"/>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="VBO-IE-EGx"/>
-                                            </constraints>
-                                        </imageView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="y73-fR-uw5">
-                                            <rect key="frame" x="102" y="22.666666666666668" width="206" height="54.666666666666657"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="y73-fR-uw5">
+                                            <rect key="frame" x="102" y="15" width="230" height="70"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019.10.23 11:56" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhE-ae-mqv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="206" height="26.333333333333332"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="230" height="31"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="not submitted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mh3-yf-udb">
-                                                    <rect key="frame" x="0.0" y="34.333333333333329" width="206" height="20.333333333333329"/>
+                                                    <rect key="frame" x="0.0" y="39" width="230" height="31"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GXR-tR-qdB">
+                                            <rect key="frame" x="24" y="15" width="70" height="70"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="GXR-tR-qdB" secondAttribute="height" multiplier="1:1" id="4hs-DT-Yt6"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="GXR-tR-qdB" firstAttribute="top" secondItem="d5P-d2-waG" secondAttribute="topMargin" id="7L6-c6-TDT"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="y73-fR-uw5" secondAttribute="trailing" constant="32" id="7j4-CY-UWN"/>
-                                        <constraint firstItem="y73-fR-uw5" firstAttribute="leading" secondItem="GXR-tR-qdB" secondAttribute="trailing" constant="8" id="Nw4-4L-fUI"/>
-                                        <constraint firstItem="y73-fR-uw5" firstAttribute="centerY" secondItem="d5P-d2-waG" secondAttribute="centerY" id="fYg-tl-WGi"/>
-                                        <constraint firstItem="GXR-tR-qdB" firstAttribute="leading" secondItem="d5P-d2-waG" secondAttribute="leadingMargin" id="nuJ-Zy-VXg"/>
-                                        <constraint firstItem="GXR-tR-qdB" firstAttribute="bottom" secondItem="d5P-d2-waG" secondAttribute="bottomMargin" id="q35-dX-k02"/>
+                                        <constraint firstItem="GXR-tR-qdB" firstAttribute="leading" secondItem="d5P-d2-waG" secondAttribute="leadingMargin" constant="8" id="FaO-jS-Pds"/>
+                                        <constraint firstItem="GXR-tR-qdB" firstAttribute="top" secondItem="d5P-d2-waG" secondAttribute="topMargin" constant="4" id="Wac-IT-M1w"/>
+                                        <constraint firstItem="y73-fR-uw5" firstAttribute="top" secondItem="d5P-d2-waG" secondAttribute="topMargin" constant="4" id="cDD-bh-fqT"/>
+                                        <constraint firstItem="y73-fR-uw5" firstAttribute="leading" secondItem="GXR-tR-qdB" secondAttribute="trailing" constant="8" id="g9z-D1-AZa"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="y73-fR-uw5" secondAttribute="trailing" constant="8" id="gUE-X4-9lM"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="y73-fR-uw5" secondAttribute="bottom" constant="4" id="qXf-jh-tV9"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="GXR-tR-qdB" secondAttribute="bottom" constant="4" id="swg-el-4H7"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -522,7 +522,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pev-zv-j3H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1257.9710144927537" y="1301.7857142857142"/>
+            <point key="canvasLocation" x="1256.8" y="1301.231527093596"/>
         </scene>
         <!--Estimate Capture Submission View Controller-->
         <scene sceneID="rfO-EF-yxf">
