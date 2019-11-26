@@ -68,18 +68,6 @@ class SessionDataManager(object):
         with open(save_path) as in_file:
             self.peripheral = json.loads(in_file.read())
     
-    def register_collection_label(self, name, weight):
-        """ Save a file to record the collection label, which includes the name 
-            and weight of the food.
-        
-        Args:
-            name: A string stand for the name of the food.
-            weight: A string stand for the weight of the food, measured in pound.
-        """
-        save_path = os.path.join(self.session_dir, 'collection_label.txt')
-        with open(save_path, 'w') as in_file:
-            in_file.write('{}: {}\n{}: {}'.format('name', name, 'weight', weight))
-    
     def save_recognition_file(self, recognition_json):
         """ Store the recognition result for the session, which is represented 
             as a json string.
@@ -90,3 +78,28 @@ class SessionDataManager(object):
         save_path = os.path.join(self.session_dir, '{}.{}'.format('recognition', 'json'))
         with open(save_path, 'w') as out_file:
             out_file.write(recognition_json)
+    
+    def register_collection_additional_image(self, image):
+        """ Save the image to the session directory.
+
+        This method is only used for collection sessions.
+
+        Args:
+            image: A `werkzeug.datastructures.FileStorage` object.
+        """
+        save_path = os.path.join(self.session_dir, 'additional.jpg')
+        image.save(save_path)
+    
+    def register_collection_label(self, name, weight):
+        """ Save a file to record the collection label, which includes the name 
+            and weight of the food.
+        
+        This method is only used for collection sessions.
+        
+        Args:
+            name: A string stand for the name of the food.
+            weight: A string stand for the weight of the food, measured in pound.
+        """
+        save_path = os.path.join(self.session_dir, 'collection_label.txt')
+        with open(save_path, 'w') as in_file:
+            in_file.write('{}: {}\n{}: {}\n'.format('name', name, 'weight', weight))
