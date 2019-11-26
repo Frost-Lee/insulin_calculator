@@ -13,10 +13,9 @@ class EstimateCaptureHistoryTableViewController: UITableViewController {
     var estimateCaptures: [EstimateCapture]? {
         didSet {
             guard estimateCaptures != nil else {return}
-            if oldValue == nil {
+            if oldValue == nil || estimateCaptures!.count != oldValue!.count {
                 tableView.reloadData()
             } else {
-                guard estimateCaptures!.count == oldValue!.count else {return}
                 let changedIndices = zip(estimateCaptures!, oldValue!).map{$0.0 != $0.1}.enumerated().filter{$1}.map{$0.0}
                 guard changedIndices.count == 1 else {return}
                 dataManager.updateEstimateCapture(capture: estimateCaptures![changedIndices.first!]) { error in
