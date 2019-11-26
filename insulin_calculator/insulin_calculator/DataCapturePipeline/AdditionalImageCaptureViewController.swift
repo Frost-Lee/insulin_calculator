@@ -51,6 +51,7 @@ class AdditionalImageCaptureViewController: UIViewController {
     
     private func processCapturedData(imageData: Data) {
         dataManager.saveFile(data: imageData, extensionName: "jpg") { url in
+            self.dataManager.removeFile(url: self.estimateCapture?.additionalPhotoURL)
             self.estimateCapture.additionalPhotoURL = url
             self.performSegue(withIdentifier: "showInitialInformationInputViewController", sender: self.estimateCapture)
         }

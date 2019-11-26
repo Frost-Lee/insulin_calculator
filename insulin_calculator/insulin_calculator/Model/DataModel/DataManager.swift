@@ -44,6 +44,18 @@ class DataManager: NSObject {
     }
     
     /**
+     Remove the file with the given URL.
+     
+     - parameters:
+        - url: The url of the file to be removed.
+     */
+    func removeFile(url: URL?) {
+        guard url != nil else {return}
+        guard FileManager.default.fileExists(atPath: url!.path) else {return}
+        try! FileManager.default.removeItem(at: url!)
+    }
+    
+    /**
      Save an `EstimateCapture` object with CoreData.
      
      - parameters:
@@ -84,17 +96,21 @@ class DataManager: NSObject {
      
      - parameters:
         - sessionId: The `sessionId` attribute of the `EstimateCapture` object to be removed.
+        - withFile: Whether the attached files should also be removed. `true` to remove the files specified
+            by the urls.
         - completion: The completion handler. `Error` will be `nil` if the data is removed successfully.
-     
-     - TODO:
-        remove the saved file with their url.
      */
-    func removeEstimateCapture(sessionId: UUID, completion: ((Error?) -> ())?) {
+    func removeEstimateCapture(sessionId: UUID, withFile: Bool, completion: ((Error?) -> ())?) {
         let fetchRequest: NSFetchRequest = ManagedEstimateCapture.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "sessionId == \"\(sessionId)\"")
         let results = try? context.fetch(fetchRequest)
         guard results != nil else {completion?(DataStorageError.fetchFailure);return}
         for item in results! {
+            if withFile {
+                DataManager.shared.removeFile(url: item.jsonURL)
+                DataManager.shared.removeFile(url: item.photoURL)
+                DataManager.shared.removeFile(url: item.additionalPhotoURL)
+            }
             context.delete(item)
         }
         do {
@@ -114,7 +130,7 @@ class DataManager: NSObject {
         - completion: The completion handler. `Error` will be `nil` if the data is updated successfully.
      */
     func updateEstimateCapture(capture: EstimateCapture, completion: ((Error?) -> ())?) {
-        removeEstimateCapture(sessionId: capture.sessionId!) { error in
+        removeEstimateCapture(sessionId: capture.sessionId!, withFile: false) { error in
             guard error == nil else {completion?(error);return}
             self.saveEstimateCapture(capture: capture) { anotherError in
                 guard anotherError == nil else {completion?(anotherError);return}

@@ -112,6 +112,7 @@ class EstimateImageCaptureViewController: UIViewController {
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        removeEstimateCaptureFiles()
         dismiss(animated: true, completion: nil)
     }
     
@@ -140,6 +141,7 @@ class EstimateImageCaptureViewController: UIViewController {
             extensionName: "jpg"
         ) { url in photoURL = url; group.leave()}
         group.notify(queue: .main) {
+            self.removeEstimateCaptureFiles()
             self.estimateCapture = EstimateCapture(
                 jsonURL: jsonURL,
                 photoURL: photoURL,
@@ -156,33 +158,10 @@ class EstimateImageCaptureViewController: UIViewController {
         }
     }
     
-    private func launchWeightInputAlert(savedAction: ((String?) -> ())?) {
-        let alertController = UIAlertController(
-            title: "Weight of the Food?",
-            message: "The weight of the food including its plate in grams (g).",
-            preferredStyle: .alert
-        )
-        let saveAction = UIAlertAction(title: "Save", style: .default) { alert in
-            savedAction?(alertController.textFields?.first?.text)
-        }
-        saveAction.isEnabled = false
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { alert in
-            savedAction?(nil)
-        }
-        alertController.addTextField() { textField in
-            textField.placeholder = "42.9"
-            textField.keyboardType = .decimalPad
-        }
-        NotificationCenter.default.addObserver(
-            forName: UITextField.textDidChangeNotification,
-            object: alertController.textFields!.first!,
-            queue: .main
-        ) { notification in
-            saveAction.isEnabled = Double(alertController.textFields!.first!.text ?? "na") != nil
-        }
-        alertController.addAction(cancelAction)
-        alertController.addAction(saveAction)
-        present(alertController, animated: true, completion: nil)
+    private func removeEstimateCaptureFiles() {
+        self.dataManager.removeFile(url: self.estimateCapture?.jsonURL)
+        self.dataManager.removeFile(url: self.estimateCapture?.photoURL)
+        self.dataManager.removeFile(url: self.estimateCapture?.additionalPhotoURL)
     }
 
 }
