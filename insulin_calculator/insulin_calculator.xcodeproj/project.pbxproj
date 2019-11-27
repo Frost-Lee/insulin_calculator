@@ -20,15 +20,11 @@
 		273B47E92350BC620093B7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E72350BC620093B7DE /* LaunchScreen.storyboard */; };
 		273B47F42350BC630093B7DE /* insulin_calculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47F32350BC630093B7DE /* insulin_calculatorTests.swift */; };
 		273B47FF2350BC630093B7DE /* insulin_calculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */; };
-		273DB186235F65200009DC4E /* CandidateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273DB185235F65200009DC4E /* CandidateTableViewCell.swift */; };
-		273DB188235F65A30009DC4E /* EntitySelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273DB187235F65A30009DC4E /* EntitySelectCollectionViewCell.swift */; };
 		27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */; };
 		27A44AE823888E53004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */; };
 		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
 		27B30AE22350C48A007347F5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
-		27BE0ED4235E3C57006F19FB /* EstimateResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE0ED3235E3C57006F19FB /* EstimateResultViewController.swift */; };
 		27BF1D672350FF7700087274 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D662350FF7700087274 /* Errors.swift */; };
-		27FA4729235F6EC600D233C3 /* Double+Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FA4728235F6EC600D233C3 /* Double+Unit.swift */; };
 		27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */; };
 		67D5F1E84B73CD79928CDFAC /* Pods_insulin_calculatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F22E0B47A17051DB3D8877F /* Pods_insulin_calculatorTests.framework */; };
 		6DACAC56ADA1C7A9B6DBF3D8 /* Pods_insulin_calculatorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09ED6C9BD80B7C06F1D81FA /* Pods_insulin_calculatorUITests.framework */; };
@@ -73,15 +69,11 @@
 		273B47FA2350BC630093B7DE /* insulin_calculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = insulin_calculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insulin_calculatorUITests.swift; sourceTree = "<group>"; };
 		273B48002350BC630093B7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		273DB185235F65200009DC4E /* CandidateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateTableViewCell.swift; sourceTree = "<group>"; };
-		273DB187235F65A30009DC4E /* EntitySelectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitySelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeButtonListener.swift; sourceTree = "<group>"; };
 		27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MPVolumeView+VolumeListener.swift"; sourceTree = "<group>"; };
 		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		27B30AE12350C48A007347F5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		27BE0ED3235E3C57006F19FB /* EstimateResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateResultViewController.swift; sourceTree = "<group>"; };
 		27BF1D662350FF7700087274 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		27FA4728235F6EC600D233C3 /* Double+Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Unit.swift"; sourceTree = "<group>"; };
 		27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceOrientationIndicateView.swift; sourceTree = "<group>"; };
 		39B2B8BA27A8ACF35ABC48B6 /* Pods-insulin_calculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorTests.release.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorTests/Pods-insulin_calculatorTests.release.xcconfig"; sourceTree = "<group>"; };
 		3F22E0B47A17051DB3D8877F /* Pods_insulin_calculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_insulin_calculatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,8 +142,6 @@
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
 				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
-				2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */,
-				273DB184235F64FE0009DC4E /* EstimateResult */,
 				27A44AE323888E15004CBDC9 /* Utils */,
 				27B30AE32350C491007347F5 /* Model */,
 				273B47E52350BC620093B7DE /* Assets.xcassets */,
@@ -179,19 +169,10 @@
 			path = insulin_calculatorUITests;
 			sourceTree = "<group>";
 		};
-		273DB184235F64FE0009DC4E /* EstimateResult */ = {
-			isa = PBXGroup;
-			children = (
-				27BE0ED3235E3C57006F19FB /* EstimateResultViewController.swift */,
-				273DB185235F65200009DC4E /* CandidateTableViewCell.swift */,
-				273DB187235F65A30009DC4E /* EntitySelectCollectionViewCell.swift */,
-			);
-			path = EstimateResult;
-			sourceTree = "<group>";
-		};
 		27A44AE323888E15004CBDC9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */,
 				27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */,
 				2730F67D238C3B98005E025F /* ImpactGenerator.swift */,
 				27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */,
@@ -202,7 +183,6 @@
 		27A44AE623888E46004CBDC9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				27FA4728235F6EC600D233C3 /* Double+Unit.swift */,
 				27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */,
 			);
 			path = Extensions;
@@ -479,21 +459,17 @@
 			files = (
 				272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */,
 				27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */,
-				27BE0ED4235E3C57006F19FB /* EstimateResultViewController.swift in Sources */,
 				273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */,
-				273DB188235F65A30009DC4E /* EntitySelectCollectionViewCell.swift in Sources */,
 				2730F67E238C3B98005E025F /* ImpactGenerator.swift in Sources */,
 				2730F680238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift in Sources */,
 				27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */,
 				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
-				27FA4729235F6EC600D233C3 /* Double+Unit.swift in Sources */,
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
 				272AF2CE2358B6400053F214 /* Structures.swift in Sources */,
 				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
 				27BF1D672350FF7700087274 /* Errors.swift in Sources */,
 				27B30AE02350C432007347F5 /* utils.swift in Sources */,
-				273DB186235F65200009DC4E /* CandidateTableViewCell.swift in Sources */,
 				27A44AE823888E53004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

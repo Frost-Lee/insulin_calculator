@@ -85,17 +85,6 @@ class EstimateImageCaptureViewController: UIViewController {
         estimateImageCaptureManager.stopRunning()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        switch segue.identifier {
-        case "showEstimateResultViewController":
-            let destination = (segue.destination as! UINavigationController).topViewController!
-            (destination as! EstimateResultViewController).sessionRecord = sender as? SessionRecord
-        default:
-            break
-        }
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         guard isDeviceSupported else {return}
@@ -145,18 +134,7 @@ class EstimateImageCaptureViewController: UIViewController {
                     SVProgressHUD.showError(withStatus: "Server Error")
                     return
                 }
-                self.dataManager.saveFile(data: result!.rawJSON.rawString()!.data(using: .utf8)!, extensionName: "json") { url in
-                    self.isAvailable = true
-                    SVProgressHUD.showSuccess(withStatus: "Done")
-                    let sessionRecord = SessionRecord(
-                        photoURL: photoURL!,
-                        captureJSONURL: jsonURL!,
-                        recognitionJSONURL: url,
-                        timestamp: Date(),
-                        sessionId: sessionId
-                    )
-                    self.performSegue(withIdentifier: "showEstimateResultViewController", sender: sessionRecord)
-                }
+                SVProgressHUD.showSuccess(withStatus: "Uploaded")
             }
         }
     }
