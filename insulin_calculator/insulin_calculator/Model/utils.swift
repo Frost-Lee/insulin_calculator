@@ -16,7 +16,7 @@ import CoreML
 /**
  Wrap the depth map, calibration data, and attitude data as a `Data` object. The object is in JSON format.
  
- - Parameters:
+ - parameters:
     - depthMap: The depth map captured along with the image, represente as `[[Float32]]`.
     - calibration: The calibration data of the camera when capturing the image.
     - attitude: The device attitude when capturing the image.
@@ -67,10 +67,10 @@ func wrapEstimateImageData(
 /**
  Convert the depth data from `CVPixelBuffer` to `[[Float32]]`.
  
- - Parameters:
+ - parameters:
     - depthMap: The pixel buffer containing the depth data.
  
- - Returns:
+ - returns:
     The type casted depth data, represented as `[[Float32]]`.
  */
 func convertDepthData(depthMap: CVPixelBuffer) -> [[Float32]] {
@@ -98,12 +98,12 @@ func convertDepthData(depthMap: CVPixelBuffer) -> [[Float32]] {
 /**
  Convert the `lensDistortionLookupTable` or `inverseLensDistortionLookupTable` to a `Float` array.
  
- - Parameters:
+ - parameters:
     - lookupTable: The `lensDistortionLookupTable` or `inverseLensDistortionLookupTable`,
         see [AVCameraCalibrationData](https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata)
         for details.
  
- - Returns:
+ - returns:
     A `Float` array that contains numbers in the lookup table.
  */
 func convertLensDistortionLookupTable(lookupTable: Data) -> [Float] {

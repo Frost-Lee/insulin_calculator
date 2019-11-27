@@ -92,7 +92,7 @@ class DeviceOrientationIndicateView: UIView {
     /**
      Start updating the view.
      
-     - Parameters:
+     - parameters:
         - attitudeSource: A closure that provides the `CMAttitude` object. This closure will be called
             when `DeviceOrientationIndicateView` needs to update itself.
      */

@@ -14,7 +14,7 @@ protocol EstimateImageCaptureDelegate {
      Providing the delegate with the captured data, including colored image, depth map, calibration and device
      device attitude when capturing the image.
      
-     - Parameters:
+     - parameters:
         - image: The colored image.
         - depthMap: The depth map captured along with the image. The data type has been converted to
             `kCVPixelFormatType_DepthFloat32`.

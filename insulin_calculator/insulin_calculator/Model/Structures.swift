@@ -10,6 +10,8 @@ import Foundation
 import SwiftyJSON
 
 
+// MARK: - Server Response Structures
+
 /**
  The nutrition information of a specific kind of food. The units are all kilogram per kilogram.
  */
@@ -153,10 +155,16 @@ struct SessionRecognitionResult {
 }
 
 
-struct SessionRecord {
-    var photoURL: URL
-    var captureJSONURL: URL
-    var recognitionJSONURL: URL
-    var timestamp: Date
-    var sessionId: UUID
+// MARK: - Capture Raw Data Structures
+
+struct EstimateCapture: Equatable {
+    var jsonURL: URL?
+    var photoURL: URL?
+    var additionalPhotoURL: URL?
+    var timestamp: Date?
+    var sessionId: UUID?
+    var isSubmitted: Bool?
+    var initialWeight: Double?
+    var plateWeight: Double?
+    var foodName: String?
 }
