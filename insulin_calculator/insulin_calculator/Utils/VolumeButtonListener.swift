@@ -11,9 +11,19 @@ import AVFoundation
 import MediaPlayer
 
 protocol VolumeButtonListenerDelegate {
+    /**
+     This method will be triggered when one of the device volume button is triggered.
+     
+     - parameters:
+        - isUpperButton: `true` if the triggered button is the volume up button, otherwise it's the volume
+            down button.
+     */
     func volumeButtonClicked(isUpperButton: Bool)
 }
 
+/**
+ A listener for volume button click event.
+ */
 class VolumeButtonListener: NSObject {
     
     override init() {
@@ -58,6 +68,11 @@ class VolumeButtonListener: NSObject {
     ) {
         switch keyPath {
         case observerKey:
+            /**
+             - TODO:
+                Obserbed situation when click a volume button, then click another volume button, the latter click
+                will not change the device volume.
+             */
             if abs(currentVolume - originalVolume) < minimumVolumeChange {return}
             delegate?.volumeButtonClicked(isUpperButton: currentVolume > originalVolume)
             currentVolume = originalVolume
@@ -66,7 +81,15 @@ class VolumeButtonListener: NSObject {
         }
     }
     
+    /**
+     Start listening for volume button click event.
+     */
     func startListening() {
+        /**
+         - TODO:
+            Consider the case when the user's initial volume is minimum or maximum, on which status clicking
+            one volume button will have no effect.
+         */
         audioSession = AVAudioSession.sharedInstance()
         try! audioSession!.setActive(true)
         isListening = true
@@ -74,20 +97,23 @@ class VolumeButtonListener: NSObject {
         originalVolume = AVAudioSession.sharedInstance().outputVolume
     }
     
+    /**
+     Stop listening for volume button click event.
+     */
     func stopListening() {
         audioSession?.removeObserver(self, forKeyPath: observerKey)
         try! audioSession?.setActive(false)
         isListening = false
     }
     
-    @objc func applicationBecomeActive() {
+    @objc private func applicationBecomeActive() {
         if shouldRecoverListening {
             startListening()
             shouldRecoverListening = false
         }
     }
     
-    @objc func applicationResignActive() {
+    @objc private func applicationResignActive() {
         if isListening {
             stopListening()
             shouldRecoverListening = true
