@@ -10,13 +10,8 @@
 		270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */; };
 		27286A4823609DCC0026DE57 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27286A4623609DCC0026DE57 /* DataModel.xcdatamodeld */; };
 		272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AF2CB2358B3110053F214 /* BackendConnector.swift */; };
-<<<<<<< HEAD
 		272AF2CE2358B6400053F214 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AF2CD2358B6400053F214 /* Structures.swift */; };
 		272AFE022360C3440072EC14 /* EstimateCaptureSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AFE012360C3440072EC14 /* EstimateCaptureSubmissionViewController.swift */; };
-=======
-		2730F67E238C3B98005E025F /* ImpactGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730F67D238C3B98005E025F /* ImpactGenerator.swift */; };
-		2730F680238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */; };
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 		273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DC2350BC5C0093B7DE /* AppDelegate.swift */; };
 		273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */; };
 		273B47E42350BC5C0093B7DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E22350BC5C0093B7DE /* Main.storyboard */; };
@@ -24,7 +19,6 @@
 		273B47E92350BC620093B7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E72350BC620093B7DE /* LaunchScreen.storyboard */; };
 		273B47F42350BC630093B7DE /* insulin_calculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47F32350BC630093B7DE /* insulin_calculatorTests.swift */; };
 		273B47FF2350BC630093B7DE /* insulin_calculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */; };
-<<<<<<< HEAD
 		274AF37B238C8F6E0050DF32 /* AdditionalImageCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AF37A238C8F6E0050DF32 /* AdditionalImageCaptureViewController.swift */; };
 		274AF37D238C92FC0050DF32 /* ImageCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AF37C238C92FC0050DF32 /* ImageCaptureManager.swift */; };
 		2752A865238DAEE300118993 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752A864238DAEE300118993 /* HomeViewController.swift */; };
@@ -38,14 +32,10 @@
 		279B4E5F238C30B500A45A6A /* ImpactGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279B4E5E238C30B400A45A6A /* ImpactGenerator.swift */; };
 		27A44AE0238870AA004CBDC9 /* VolumeButtonListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44ADF238870AA004CBDC9 /* VolumeButtonListener.swift */; };
 		27A44AE223887841004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE123887841004CBDC9 /* MPVolumeView+VolumeListener.swift */; };
-=======
-		27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */; };
-		27A44AE823888E53004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */; };
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
+		27AE3A0F238F0D7A007F0CE7 /* Double+Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE3A0E238F0D79007F0CE7 /* Double+Unit.swift */; };
 		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
 		27B30AE22350C48A007347F5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
 		27BF1D672350FF7700087274 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D662350FF7700087274 /* Errors.swift */; };
-		27E72245238F084B00219EDA /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E72244238F084B00219EDA /* Structures.swift */; };
 		27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */; };
 		67D5F1E84B73CD79928CDFAC /* Pods_insulin_calculatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F22E0B47A17051DB3D8877F /* Pods_insulin_calculatorTests.framework */; };
 		6DACAC56ADA1C7A9B6DBF3D8 /* Pods_insulin_calculatorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09ED6C9BD80B7C06F1D81FA /* Pods_insulin_calculatorUITests.framework */; };
@@ -74,15 +64,9 @@
 		2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureManager.swift; sourceTree = "<group>"; };
 		27286A4723609DCC0026DE57 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		272AF2CB2358B3110053F214 /* BackendConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendConnector.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		272AF2CD2358B6400053F214 /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		272AFE012360C3440072EC14 /* EstimateCaptureSubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateCaptureSubmissionViewController.swift; sourceTree = "<group>"; };
 		273B47D92350BC5C0093B7DE /* insulin_calculator_collect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = insulin_calculator_collect.app; sourceTree = BUILT_PRODUCTS_DIR; };
-=======
-		2730F67D238C3B98005E025F /* ImpactGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactGenerator.swift; sourceTree = "<group>"; };
-		2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUnsupportInformationViewController.swift; sourceTree = "<group>"; };
-		273B47D92350BC5C0093B7DE /* insulin_calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = insulin_calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 		273B47DC2350BC5C0093B7DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		273B47E32350BC5C0093B7DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,7 +79,6 @@
 		273B47FA2350BC630093B7DE /* insulin_calculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = insulin_calculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insulin_calculatorUITests.swift; sourceTree = "<group>"; };
 		273B48002350BC630093B7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		274AF37A238C8F6E0050DF32 /* AdditionalImageCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalImageCaptureViewController.swift; sourceTree = "<group>"; };
 		274AF37C238C92FC0050DF32 /* ImageCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaptureManager.swift; sourceTree = "<group>"; };
 		2752A864238DAEE300118993 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -109,14 +92,10 @@
 		279B4E5E238C30B400A45A6A /* ImpactGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactGenerator.swift; sourceTree = "<group>"; };
 		27A44ADF238870AA004CBDC9 /* VolumeButtonListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeButtonListener.swift; sourceTree = "<group>"; };
 		27A44AE123887841004CBDC9 /* MPVolumeView+VolumeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MPVolumeView+VolumeListener.swift"; sourceTree = "<group>"; };
-=======
-		27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeButtonListener.swift; sourceTree = "<group>"; };
-		27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MPVolumeView+VolumeListener.swift"; sourceTree = "<group>"; };
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
+		27AE3A0E238F0D79007F0CE7 /* Double+Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Unit.swift"; sourceTree = "<group>"; };
 		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		27B30AE12350C48A007347F5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		27BF1D662350FF7700087274 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		27E72244238F084B00219EDA /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceOrientationIndicateView.swift; sourceTree = "<group>"; };
 		39B2B8BA27A8ACF35ABC48B6 /* Pods-insulin_calculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorTests.release.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorTests/Pods-insulin_calculatorTests.release.xcconfig"; sourceTree = "<group>"; };
 		3F22E0B47A17051DB3D8877F /* Pods_insulin_calculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_insulin_calculatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,15 +175,11 @@
 				273B47DC2350BC5C0093B7DE /* AppDelegate.swift */,
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
-<<<<<<< HEAD
 				273B47E72350BC620093B7DE /* LaunchScreen.storyboard */,
 				2752A864238DAEE300118993 /* HomeViewController.swift */,
 				279B4E5D238C300200A45A6A /* DataCapturePipeline */,
 				2798F9762360AD5E00A917CF /* EstimateCaptureHistory */,
 				27FA472C235F799500D233C3 /* Utils */,
-=======
-				27A44AE323888E15004CBDC9 /* Utils */,
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 				27B30AE32350C491007347F5 /* Model */,
 				273B47E52350BC620093B7DE /* Assets.xcassets */,
 				273B47EA2350BC620093B7DE /* Info.plist */,
@@ -230,7 +205,6 @@
 			path = insulin_calculatorUITests;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		2798F9762360AD5E00A917CF /* EstimateCaptureHistory */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,9 +218,9 @@
 		2798F97D2360B23800A917CF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				27FA4728235F6EC600D233C3 /* Double+Unit.swift */,
 				2798F97B2360B22000A917CF /* Date+Format.swift */,
 				27A44AE123887841004CBDC9 /* MPVolumeView+VolumeListener.swift */,
+				27AE3A0E238F0D79007F0CE7 /* Double+Unit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -254,31 +228,11 @@
 		279B4E5D238C300200A45A6A /* DataCapturePipeline */ = {
 			isa = PBXGroup;
 			children = (
-				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
 				274AF37A238C8F6E0050DF32 /* AdditionalImageCaptureViewController.swift */,
 				2772CEE7238D7A4500C7870E /* InitialInformationInputViewController.swift */,
 				279B4E5B238C2F9200A45A6A /* DeviceUnsupportInformationViewController.swift */,
 			);
 			path = DataCapturePipeline;
-=======
-		27A44AE323888E15004CBDC9 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */,
-				2730F67D238C3B98005E025F /* ImpactGenerator.swift */,
-				27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */,
-				2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		27A44AE623888E46004CBDC9 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */,
-			);
-			path = Extensions;
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 			sourceTree = "<group>";
 		};
 		27B30AE32350C491007347F5 /* Model */ = {
@@ -288,20 +242,13 @@
 				2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */,
 				274AF37C238C92FC0050DF32 /* ImageCaptureManager.swift */,
 				272AF2CB2358B3110053F214 /* BackendConnector.swift */,
-<<<<<<< HEAD
 				27B30ADF2350C432007347F5 /* utils.swift */,
 				2798F97D2360B23800A917CF /* Extensions */,
 				27286A8C2360A5670026DE57 /* DataModel */,
-=======
-				27E72244238F084B00219EDA /* Structures.swift */,
-				27B30ADF2350C432007347F5 /* utils.swift */,
-				27A44AE623888E46004CBDC9 /* Extensions */,
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		27FA472C235F799500D233C3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,8 +259,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-=======
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 		2E373B0639C780AFDDB63912 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,47 +515,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */,
-<<<<<<< HEAD
 				274AF37D238C92FC0050DF32 /* ImageCaptureManager.swift in Sources */,
-				273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */,
 				27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */,
 				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
 				2798F97C2360B22000A917CF /* Date+Format.swift in Sources */,
 				2772CEEB238D846A00C7870E /* ManagedEstimateCapture+CoreDataClass.swift in Sources */,
 				27286A4823609DCC0026DE57 /* DataModel.xcdatamodeld in Sources */,
 				2772CEEC238D846A00C7870E /* ManagedEstimateCapture+CoreDataProperties.swift in Sources */,
+				27AE3A0F238F0D7A007F0CE7 /* Double+Unit.swift in Sources */,
 				279B4E5F238C30B500A45A6A /* ImpactGenerator.swift in Sources */,
-				27FA4729235F6EC600D233C3 /* Double+Unit.swift in Sources */,
 				2752A865238DAEE300118993 /* HomeViewController.swift in Sources */,
 				2772CEE8238D7A4500C7870E /* InitialInformationInputViewController.swift in Sources */,
 				272AFE022360C3440072EC14 /* EstimateCaptureSubmissionViewController.swift in Sources */,
-=======
-				27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */,
-				27E72245238F084B00219EDA /* Structures.swift in Sources */,
-				2730F67E238C3B98005E025F /* ImpactGenerator.swift in Sources */,
-				2730F680238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift in Sources */,
-				27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */,
-				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
 				27A44AE223887841004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */,
 				279B4E5C238C2F9200A45A6A /* DeviceUnsupportInformationViewController.swift in Sources */,
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
-<<<<<<< HEAD
 				272AF2CE2358B6400053F214 /* Structures.swift in Sources */,
 				2798F9782360AD9F00A917CF /* EstimateCaptureHistoryTableViewController.swift in Sources */,
 				2798F97A2360AEB100A917CF /* EstimateCaptureHistoryTableViewCell.swift in Sources */,
-=======
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
 				274AF37B238C8F6E0050DF32 /* AdditionalImageCaptureViewController.swift in Sources */,
 				27A44AE0238870AA004CBDC9 /* VolumeButtonListener.swift in Sources */,
 				27BF1D672350FF7700087274 /* Errors.swift in Sources */,
 				27B30AE02350C432007347F5 /* utils.swift in Sources */,
-<<<<<<< HEAD
-=======
-				27A44AE823888E53004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */,
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -791,14 +719,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-<<<<<<< HEAD
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.langerlab.insulin-calculator-collect";
 				PRODUCT_NAME = insulin_calculator_collect;
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = "com.langerlab.insulin-calculator";
-				PRODUCT_NAME = "$(TARGET_NAME)";
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -816,14 +739,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-<<<<<<< HEAD
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.langerlab.insulin-calculator-collect";
 				PRODUCT_NAME = insulin_calculator_collect;
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = "com.langerlab.insulin-calculator";
-				PRODUCT_NAME = "$(TARGET_NAME)";
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -11,25 +11,9 @@ import AVFoundation
 import MediaPlayer
 
 protocol VolumeButtonListenerDelegate {
-<<<<<<< HEAD
-    /**
-     This method will be triggered when one of the device volume button is triggered.
-     
-     - parameters:
-        - isUpperButton: `true` if the triggered button is the volume up button, otherwise it's the volume
-            down button.
-     */
     func volumeButtonClicked(isUpperButton: Bool)
 }
 
-/**
- A listener for volume button click event.
- */
-=======
-    func volumeButtonClicked(isUpperButton: Bool)
-}
-
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 class VolumeButtonListener: NSObject {
     
     override init() {
@@ -74,14 +58,6 @@ class VolumeButtonListener: NSObject {
     ) {
         switch keyPath {
         case observerKey:
-<<<<<<< HEAD
-            /**
-             - TODO:
-                Obserbed situation when click a volume button, then click another volume button, the latter click
-                will not change the device volume.
-             */
-=======
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
             if abs(currentVolume - originalVolume) < minimumVolumeChange {return}
             delegate?.volumeButtonClicked(isUpperButton: currentVolume > originalVolume)
             currentVolume = originalVolume
@@ -90,19 +66,7 @@ class VolumeButtonListener: NSObject {
         }
     }
     
-<<<<<<< HEAD
-    /**
-     Start listening for volume button click event.
-     */
     func startListening() {
-        /**
-         - TODO:
-            Consider the case when the user's initial volume is minimum or maximum, on which status clicking
-            one volume button will have no effect.
-         */
-=======
-    func startListening() {
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
         audioSession = AVAudioSession.sharedInstance()
         try! audioSession!.setActive(true)
         isListening = true
@@ -110,34 +74,20 @@ class VolumeButtonListener: NSObject {
         originalVolume = AVAudioSession.sharedInstance().outputVolume
     }
     
-<<<<<<< HEAD
-    /**
-     Stop listening for volume button click event.
-     */
-=======
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
     func stopListening() {
         audioSession?.removeObserver(self, forKeyPath: observerKey)
         try! audioSession?.setActive(false)
         isListening = false
     }
     
-<<<<<<< HEAD
-    @objc private func applicationBecomeActive() {
-=======
     @objc func applicationBecomeActive() {
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
         if shouldRecoverListening {
             startListening()
             shouldRecoverListening = false
         }
     }
     
-<<<<<<< HEAD
-    @objc private func applicationResignActive() {
-=======
     @objc func applicationResignActive() {
->>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
         if isListening {
             stopListening()
             shouldRecoverListening = true
