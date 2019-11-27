@@ -11,7 +11,7 @@ import SVProgressHUD
 import SwiftyJSON
 
 class EstimateResultViewController: UIViewController {
-
+    
     @IBOutlet weak var capturedImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!

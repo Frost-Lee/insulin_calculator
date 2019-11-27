@@ -9,7 +9,7 @@
 import UIKit
 
 class EntitySelectCollectionViewCell: UICollectionViewCell {
-    
+
     @IBOutlet weak var indexLabel: UILabel! {
         didSet {
             indexLabel.layer.cornerRadius = 8.0

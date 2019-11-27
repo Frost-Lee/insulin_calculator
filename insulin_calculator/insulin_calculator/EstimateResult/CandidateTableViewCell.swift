@@ -9,7 +9,7 @@
 import UIKit
 
 class CandidateTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var groupLabel: UILabel!
     
