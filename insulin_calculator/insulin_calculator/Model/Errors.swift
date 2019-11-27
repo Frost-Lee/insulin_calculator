@@ -18,11 +18,14 @@ enum NetworkError: Error {
     case unexpectedResponse
 }
 
+<<<<<<< HEAD
 enum DataStorageError: Error {
     case saveFailure
     case fetchFailure
 }
 
+=======
+>>>>>>> 68c6ea513f00bb497b7bab3e87d4c69216efcaeb
 enum DeviceSupportError: Error {
     case deviceUnsupported
 }

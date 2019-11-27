@@ -9,9 +9,6 @@ import tensorflow as tf
 from . import config
 from . import utils
 
-tf_session = tf.Session()
-tf_graph = tf.get_default_graph()
-tf.keras.backend.set_session(tf_session)
 segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
 
 def _get_segmentation(image):
@@ -25,16 +22,14 @@ def _get_segmentation(image):
     Returns:
         The segmentation mask with shape `config.UNIFIED_IMAGE_SIZE`.
     """
-    global segmentation_model, tf_graph, tf_session
+    global segmentation_model
     def center_normalize(image):
-        mean_list = np.reshape(np.array([32.768, 32.768, 32.768]), (1, 1, 3))
-        std_list = np.reshape(np.array([72.57518, 66.39548, 61.829777]), (1, 1, 3))
-        return (image - mean_list) / std_list
-    with tf_graph.as_default():
-        tf.keras.backend.set_session(tf_session)
-        predicted_result = segmentation_model.predict(
-            np.reshape(center_normalize(image), (1, *config.UNIFIED_IMAGE_SIZE, 3))
-        )[0]
+        mean = np.mean(cv2.resize(image, (512, 512)), axis=(0, 1))
+        std = np.std(cv2.resize(image, (512, 512)), axis=(0, 1))
+        return (image - mean) / std
+    predicted_result = segmentation_model.predict(
+        np.reshape(center_normalize(image), (1, *config.UNIFIED_IMAGE_SIZE, 3))
+    )[0]
     return np.reshape(
         predicted_result,
         config.UNIFIED_IMAGE_SIZE

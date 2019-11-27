@@ -1,6 +1,7 @@
-.DS_Store
+*.DS_Store
 *.so
 *.pyc
 *.o
 *.xcuserstate
+config_secure.py
 

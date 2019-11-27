@@ -16,22 +16,38 @@ class DataManager: NSObject {
     static var shared: DataManager = DataManager()
     
     /**
-     Save `data` as a user file in `documentDirectory` with extension name `extensionName`.
+     Save `data` as a temporary file in `documentDirectory` with extension name `extensionName`.
      The file name would be a UUID string.
      
-     - Parameters:
+     - parameters:
         - data: The data to be saved. Callers are responsible for converting objects to `Data` with proper encoding.
         - extensionName: The extension name of the saved file.
         - completion: The completion handler. This closure will be called once the saving process finished, the parameter
             is the URL of the saved temporary file.
      */
-    func saveFile(data: Data, extensionName: String, completion: ((URL) -> ())?) {
-        let temporaryURL = FileManager.default.urls(
+    func saveFile(
+        data: Data,
+        extensionName: String,
+        completion: ((URL) -> ())?
+    ) {
+        let url = FileManager.default.urls(
             for: .documentDirectory,
             in: .userDomainMask
         )[0].appendingPathComponent(UUID().uuidString).appendingPathExtension(extensionName)
-        try! data.write(to: temporaryURL)
-        completion?(temporaryURL)
+        try! data.write(to: url)
+        completion?(url)
+    }
+    
+    /**
+     Remove the file with the given URL.
+     
+     - parameters:
+        - url: The url of the file to be removed.
+     */
+    func removeFile(url: URL?) {
+        guard url != nil else {return}
+        guard FileManager.default.fileExists(atPath: url!.path) else {return}
+        try! FileManager.default.removeItem(at: url!)
     }
     
 }

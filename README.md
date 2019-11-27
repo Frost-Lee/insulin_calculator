@@ -1,6 +1,12 @@
 # Insulin Calculator
-
 A system that calculates the insulin required to compensate the blood glucose rise caused by a meal.
+
+
+
+## Configuration
+
+- Generate the C shared objects by executing `make` under `insulin_calculator_server/fvolume/c_core/`.
+- Set storage directories in `insulin_calculator_server/config.py`.
 
 
 
@@ -40,16 +46,16 @@ Here are some possible ways for improving the performance of this system. They a
 
 ### Speed Improvements
 
-- Try different semantic segmentation network for food segmentation, such as [DeepLab V3](https://github.com/tensorflow/models/tree/master/research/deeplab).
-- Find better ways to extract depth map as JSON.
-- Filtering entities that is too small to be a real food entity.
-- Switch the segmentation mask generation to CoreML and run it on device.
+- [ ] Try different semantic segmentation network for food segmentation, such as [DeepLab V3](https://github.com/tensorflow/models/tree/master/research/deeplab).
+- [ ] Find better ways to extract depth map as JSON.
+- [x] Filtering entities that is too small to be a real food entity.
+- [ ] Switch the segmentation mask generation to CoreML and run it on device.
 
 ### Accuracy Improvements
 
-- Using algorithm that considers color image instead of simple connect domain detection.
-- Correct depth map and color image distortion, see [here](https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata) for the details.
-- Compensating the device orientation bias by applying transformation to the point cloud.
+- [ ] Using algorithm that considers color image instead of simple connect domain detection.
+- [x] Correct depth map and color image distortion, see [here](https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata) for the details.
+- [x] Compensating the device orientation bias by updating the volume calculation algorithm.
 
 
 
