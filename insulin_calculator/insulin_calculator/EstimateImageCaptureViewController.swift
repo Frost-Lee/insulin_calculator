@@ -125,7 +125,7 @@ class EstimateImageCaptureViewController: UIViewController {
         group.notify(queue: .main) {
             self.backendConnector.getRecognitionResult(
                 token: "abcd1234",
-                session_id: sessionId.uuidString,
+                sessionId: sessionId.uuidString,
                 jsonURL: jsonURL!,
                 photoURL: photoURL!
             ) { result, error in

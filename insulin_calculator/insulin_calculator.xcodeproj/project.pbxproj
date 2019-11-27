@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */; };
+		27082F3D238F17F800DAA01A /* EstimateImageCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27082F3C238F17F800DAA01A /* EstimateImageCaptureViewController.swift */; };
+		27082F3F238F18B100DAA01A /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27082F3E238F18B100DAA01A /* Structures.swift */; };
 		272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AF2CB2358B3110053F214 /* BackendConnector.swift */; };
-		272AF2CE2358B6400053F214 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AF2CD2358B6400053F214 /* Structures.swift */; };
 		2730F67E238C3B98005E025F /* ImpactGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730F67D238C3B98005E025F /* ImpactGenerator.swift */; };
 		2730F680238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */; };
 		273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DC2350BC5C0093B7DE /* AppDelegate.swift */; };
 		273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */; };
-		273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */; };
 		273B47E42350BC5C0093B7DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E22350BC5C0093B7DE /* Main.storyboard */; };
 		273B47E62350BC620093B7DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E52350BC620093B7DE /* Assets.xcassets */; };
 		273B47E92350BC620093B7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E72350BC620093B7DE /* LaunchScreen.storyboard */; };
@@ -51,14 +51,14 @@
 /* Begin PBXFileReference section */
 		2097F940CCC8ED3EDA137AA2 /* Pods-insulin_calculatorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorUITests.release.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorUITests/Pods-insulin_calculatorUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureManager.swift; sourceTree = "<group>"; };
+		27082F3C238F17F800DAA01A /* EstimateImageCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureViewController.swift; sourceTree = "<group>"; };
+		27082F3E238F18B100DAA01A /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		272AF2CB2358B3110053F214 /* BackendConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendConnector.swift; sourceTree = "<group>"; };
-		272AF2CD2358B6400053F214 /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		2730F67D238C3B98005E025F /* ImpactGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactGenerator.swift; sourceTree = "<group>"; };
 		2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUnsupportInformationViewController.swift; sourceTree = "<group>"; };
 		273B47D92350BC5C0093B7DE /* insulin_calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = insulin_calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		273B47DC2350BC5C0093B7DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureViewController.swift; sourceTree = "<group>"; };
 		273B47E32350BC5C0093B7DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		273B47E52350BC620093B7DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		273B47E82350BC620093B7DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 				273B47DC2350BC5C0093B7DE /* AppDelegate.swift */,
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
-				273B47E02350BC5C0093B7DE /* EstimateImageCaptureViewController.swift */,
+				27082F3C238F17F800DAA01A /* EstimateImageCaptureViewController.swift */,
 				27A44AE323888E15004CBDC9 /* Utils */,
 				27B30AE32350C491007347F5 /* Model */,
 				273B47E52350BC620093B7DE /* Assets.xcassets */,
@@ -172,10 +172,10 @@
 		27A44AE323888E15004CBDC9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */,
 				27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */,
 				2730F67D238C3B98005E025F /* ImpactGenerator.swift */,
 				27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */,
+				2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -195,7 +195,7 @@
 				2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */,
 				27B30AE12350C48A007347F5 /* DataManager.swift */,
 				272AF2CB2358B3110053F214 /* BackendConnector.swift */,
-				272AF2CD2358B6400053F214 /* Structures.swift */,
+				27082F3E238F18B100DAA01A /* Structures.swift */,
 				27B30ADF2350C432007347F5 /* utils.swift */,
 				27A44AE623888E46004CBDC9 /* Extensions */,
 			);
@@ -459,15 +459,15 @@
 			files = (
 				272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */,
 				27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */,
-				273B47E12350BC5C0093B7DE /* EstimateImageCaptureViewController.swift in Sources */,
 				2730F67E238C3B98005E025F /* ImpactGenerator.swift in Sources */,
+				27082F3F238F18B100DAA01A /* Structures.swift in Sources */,
 				2730F680238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift in Sources */,
 				27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */,
 				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
-				272AF2CE2358B6400053F214 /* Structures.swift in Sources */,
 				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
+				27082F3D238F17F800DAA01A /* EstimateImageCaptureViewController.swift in Sources */,
 				27BF1D672350FF7700087274 /* Errors.swift in Sources */,
 				27B30AE02350C432007347F5 /* utils.swift in Sources */,
 				27A44AE823888E53004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */,
