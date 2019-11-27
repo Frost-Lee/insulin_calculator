@@ -15,6 +15,7 @@
 		2739DE1F238F13FA0067755A /* CandidateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2739DE1C238F13FA0067755A /* CandidateTableViewCell.swift */; };
 		2739DE20238F13FA0067755A /* EntitySelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2739DE1D238F13FA0067755A /* EntitySelectCollectionViewCell.swift */; };
 		2739DE22238F144D0067755A /* EstimateImageCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2739DE21238F144D0067755A /* EstimateImageCaptureViewController.swift */; };
+		2739DE24238F15120067755A /* Double+Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2739DE23238F15120067755A /* Double+Unit.swift */; };
 		273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DC2350BC5C0093B7DE /* AppDelegate.swift */; };
 		273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */; };
 		273B47E42350BC5C0093B7DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E22350BC5C0093B7DE /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		2739DE1C238F13FA0067755A /* CandidateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateTableViewCell.swift; sourceTree = "<group>"; };
 		2739DE1D238F13FA0067755A /* EntitySelectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntitySelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		2739DE21238F144D0067755A /* EstimateImageCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureViewController.swift; sourceTree = "<group>"; };
+		2739DE23238F15120067755A /* Double+Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Unit.swift"; sourceTree = "<group>"; };
 		273B47D92350BC5C0093B7DE /* insulin_calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = insulin_calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		273B47DC2350BC5C0093B7DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */,
+				2739DE23238F15120067755A /* Double+Unit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
 				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
 				27BF1D672350FF7700087274 /* Errors.swift in Sources */,
+				2739DE24238F15120067755A /* Double+Unit.swift in Sources */,
 				27B30AE02350C432007347F5 /* utils.swift in Sources */,
 				2739DE1F238F13FA0067755A /* CandidateTableViewCell.swift in Sources */,
 				27A44AE823888E53004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */,
