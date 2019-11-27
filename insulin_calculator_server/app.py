@@ -35,6 +35,7 @@ def response_density_collect():
     session_data_manager = data_manager.SessionDataManager(args.get('session_id'), collection_session=True)
     session_data_manager.register_image_file(files['image'])
     session_data_manager.register_peripheral_file(files['peripheral'])
+    session_data_manager.register_collection_additional_image(files['additional'])
     session_data_manager.register_collection_label(args.get('name'), args.get('weight'))
     return '{"status": "OK"}'
 
