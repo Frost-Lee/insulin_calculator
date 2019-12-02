@@ -10,6 +10,7 @@ from . import config
 from . import utils
 
 segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
+SESSION_ID = None
 
 def _get_segmentation(image):
     """ Returning the raw segmentation mask for the image. Each pixel's value 
@@ -151,6 +152,9 @@ def get_recognition_results(image, calibration):
     """
     regulated_image = utils.regulate_image(image, calibration)
     mask = _get_segmentation(regulated_image)
+    np.save('/Users/Frost/Desktop/masks/' + SESSION_ID + 'recognition.npy', np.concatenate((regulated_image, np.reshape(mask, (512, 512, 1))), axis=-1))
+    # np.save('/Users/Frost/Desktop/masks/' + SESSION_ID + '_image.npy', mask)
+    # np.save('/Users/Frost/Desktop/masks/' + SESSION_ID + '_mask.npy', mask)
     label_mask, boxes = _get_entity_labeling(regulated_image, mask)
     multiplier = image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
     images = [

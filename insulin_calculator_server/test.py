@@ -27,7 +27,7 @@ def get_area_volume_estimate(image, peripheral):
 if __name__ == '__main__':
     for root, dirs, files in os.walk('/Users/Frost/Desktop/data/collection_session_data/2019_12/2'):
         for dir in dirs:
-            print(dir)
+            fvolume.recognition.SESSION_ID = dir
             image = np.array(Image.open(os.path.join(root, dir, 'image.jpg')))
             peripheral = json.loads(open(os.path.join(root, dir, 'peripheral.json')).read())
             get_area_volume_estimate(image, peripheral)
