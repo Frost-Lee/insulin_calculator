@@ -135,6 +135,7 @@ class EstimateImageCaptureViewController: UIViewController {
                     return
                 }
                 SVProgressHUD.showSuccess(withStatus: "Uploaded")
+                self.isAvailable = true
             }
         }
     }
