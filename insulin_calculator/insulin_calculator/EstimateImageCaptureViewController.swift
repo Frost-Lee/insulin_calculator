@@ -139,7 +139,7 @@ class EstimateImageCaptureViewController: UIViewController {
                 SVProgressHUD.showSuccess(withStatus: "Uploaded")
                 self.isAvailable = true
                 self.captureCount += 1
-                if self.captureCount < 16 {
+                if self.captureCount < 32 {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
                         self.captureButtonTapped(nil)
                     }
