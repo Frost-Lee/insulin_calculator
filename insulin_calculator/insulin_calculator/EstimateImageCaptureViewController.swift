@@ -30,6 +30,8 @@ class EstimateImageCaptureViewController: UIViewController {
     private var dataManager: DataManager = DataManager.shared
     private var backendConnector: BackendConnector = BackendConnector.shared
     
+    private var captureCount: Int = 0
+    
     private var isAvailable: Bool = false {
         didSet {
             guard oldValue != isAvailable else {return}
@@ -136,6 +138,14 @@ class EstimateImageCaptureViewController: UIViewController {
                 }
                 SVProgressHUD.showSuccess(withStatus: "Uploaded")
                 self.isAvailable = true
+                self.captureCount += 1
+                if self.captureCount < 16 {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+                        self.captureButtonTapped(nil)
+                    }
+                } else {
+                    self.captureCount = 0
+                }
             }
         }
     }
