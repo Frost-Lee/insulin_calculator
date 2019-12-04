@@ -94,9 +94,11 @@ class EstimateImageCaptureViewController: UIViewController {
     }
 
     @IBAction func captureButtonTapped(_ sender: Any?) {
-        isAvailable = false
-        SVProgressHUD.show(withStatus: "Fetching Estimation Result")
-        estimateImageCaptureManager.captureImage()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
+            self.isAvailable = false
+            SVProgressHUD.show(withStatus: "Fetching Estimation Result")
+            self.estimateImageCaptureManager.captureImage()
+        }
     }
     
     private func setupVolumeButtonListener() {
@@ -139,7 +141,7 @@ class EstimateImageCaptureViewController: UIViewController {
                 SVProgressHUD.showSuccess(withStatus: "Uploaded")
                 self.isAvailable = true
                 self.captureCount += 1
-                if self.captureCount < 8 {
+                if self.captureCount < 16 {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
                         self.captureButtonTapped(nil)
                     }
