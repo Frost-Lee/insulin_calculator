@@ -2,10 +2,8 @@ import json
 import numpy as np
 import flask
 
-import fvolume.classification
-import fvolume.estimation
-import fvolume.recognition
-import fdensitylib.density
+import fvolume
+import fdensitylib
 
 import data_manager
 
