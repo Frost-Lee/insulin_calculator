@@ -68,7 +68,6 @@ class EstimateImageCaptureViewController: UIViewController {
         deviceOrientationIndicatorView.startRunning() {
             return self.estimateImageCaptureManager.deviceAttitude
         }
-        
         isAvailable = true
     }
     
@@ -94,9 +93,18 @@ class EstimateImageCaptureViewController: UIViewController {
     }
 
     @IBAction func captureButtonTapped(_ sender: Any?) {
-        isAvailable = false
-        SVProgressHUD.show(withStatus: "Fetching Estimation Result")
-        estimateImageCaptureManager.captureImage()
+        if sender != nil {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
+                self.isAvailable = false
+                SVProgressHUD.show(withStatus: "Fetching Estimation Result")
+                self.estimateImageCaptureManager.captureImage()
+            }
+        } else {
+            self.isAvailable = false
+            SVProgressHUD.show(withStatus: "Fetching Estimation Result")
+            self.estimateImageCaptureManager.captureImage()
+        }
+        
     }
     
     private func setupVolumeButtonListener() {
@@ -139,7 +147,7 @@ class EstimateImageCaptureViewController: UIViewController {
                 SVProgressHUD.showSuccess(withStatus: "Uploaded")
                 self.isAvailable = true
                 self.captureCount += 1
-                if self.captureCount < 16 {
+                if self.captureCount < 4 {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
                         self.captureButtonTapped(nil)
                     }

@@ -3,8 +3,8 @@ import json
 from PIL import Image
 import os
 
-# import fvolume
-# import fdensitylib
+import fvolume
+import fdensitylib
 import analysis
 
 # def get_area_volume_estimate(image, peripheral):
@@ -23,7 +23,7 @@ import analysis
 #     )
 #     return area_volumes
 
-# for path in analysis.utils.capture_storage_dirs('/Volumes/tsanchen/carbs_estimate/volume_accuracy_test/biscuit'):
+# for path in analysis.utils.capture_storage_dirs('/Volumes/tsanchen/carbs_estimate/volume_accuracy_test/double_burger/height_var'):
 #     print('\rProcessing: ', path, end='')
 #     image = analysis.utils.load_image(os.path.join(path, 'image.jpg'))
 #     peripheral = analysis.utils.load_peripheral(os.path.join(path, 'peripheral.json'))
@@ -33,9 +33,9 @@ import analysis
 #     with open(os.path.join(path, 'result.json'), 'w') as out_file:
 #         out_file.write(result_json)
 df = analysis.utils.get_result_df(
-    '/Volumes/tsanchen/carbs_estimate/volume_accuracy_test/biscuit/reference',
-    '/Volumes/tsanchen/carbs_estimate/volume_accuracy_test/biscuit/position_var',
-    lambda x: x['center_deviation']
+    '/Volumes/tsanchen/carbs_estimate/volume_accuracy_test/double_burger/reference',
+    '/Volumes/tsanchen/carbs_estimate/volume_accuracy_test/double_burger/height_var',
+    lambda x: x['height']
 )
-df.to_csv('/Users/Frost/Desktop/a.csv')
+
 analysis.visualize.visualize_result_df(df, '/Users/Frost/Desktop/a.jpg', 'volume')
