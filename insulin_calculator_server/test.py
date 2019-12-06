@@ -23,7 +23,9 @@ import analysis
 #     )
 #     return area_volumes
 
-# for path in analysis.utils.capture_storage_dirs('/Volumes/tsanchen/carbs_estimate/volume_accuracy_test/double_burger/height_var'):
+# for path in analysis.utils.capture_storage_dirs('/Volumes/tsanchen/carbs_estimate/error_tolerance_test/archive'):
+#     if os.path.exists(os.path.join(path, 'result.json')):
+#         continue
 #     print('\rProcessing: ', path, end='')
 #     image = analysis.utils.load_image(os.path.join(path, 'image.jpg'))
 #     peripheral = analysis.utils.load_peripheral(os.path.join(path, 'peripheral.json'))
