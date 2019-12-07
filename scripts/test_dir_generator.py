@@ -39,11 +39,11 @@ class TestCase:
     def dir_name(self):
         return '{}_{}'.format('case', str(self.case_index))
 
-FOOD_NAME = 'McDonald\'s French Fries'
+FOOD_NAME = 'McDouble'
 FOOD_WEIGHT = 0.132
 
 path_dict = {
-    'frenchfries': {
+    'burger': {
         'reference': {
             TestCase(FOOD_NAME, FOOD_WEIGHT, 0)
         },

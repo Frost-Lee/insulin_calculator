@@ -25,7 +25,7 @@ class ImpactGenerator: NSObject {
      */
     func startRunning() {
         timer = Timer.scheduledTimer(withTimeInterval: period, repeats: true) { timer in
-            Haptic.impact(.light).generate()
+//            Haptic.impact(.light).generate()
         }
         timer?.fire()
     }
