@@ -39,11 +39,11 @@ class TestCase:
     def dir_name(self):
         return '{}_{}'.format('case', str(self.case_index))
 
-FOOD_NAME = 'Banana'
-FOOD_WEIGHT = 0.190
+FOOD_NAME = 'McDonald\'s French Fries'
+FOOD_WEIGHT = 0.132
 
 path_dict = {
-    'banana': {
+    'frenchfries': {
         'reference': {
             TestCase(FOOD_NAME, FOOD_WEIGHT, 0)
         },
@@ -118,7 +118,7 @@ def path_gen(path_dict, root_path):
         else:
             yield (path_dict[key], os.path.join(root_path, key))
 
-for cases, path in path_gen(path_dict, '/Volumes/tsanchen/carbs_estimate/volume_accuracy_test'):
+for cases, path in path_gen(path_dict, '/Volumes/tsanchen/carbs_estimate/error_tolerance_test'):
     for case in cases:
         dir_path = os.path.join(path, case.dir_name())
         os.makedirs(dir_path)
