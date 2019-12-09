@@ -1,4 +1,6 @@
 import seaborn as sns
+from matplotlib import pyplot as plt
+import os
 
 
 def visualize_result_df(result_df, save_path, y_col_name):
@@ -16,8 +18,11 @@ def visualize_result_df(result_df, save_path, y_col_name):
         err_style='bars'
     )
     plot.set(ylim=(0, 1.2 * result_df.max()[y_col_name]))
+    if not os.path.exists(os.path.dirname(save_path)):
+        os.makedirs(os.path.dirname(save_path))
     plot.get_figure().savefig(
         save_path, 
         bbox_inches='tight', 
         dpi=500
     )
+    plt.clf()
