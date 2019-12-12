@@ -20,10 +20,16 @@ arg_group.add_argument(
     help='Estimating the food volumes for all captures in a directory.'
 )
 arg_group.add_argument(
+    '-c',
+    '--clean',
+    type=str,
+    help='Cleaning estimated result files in the given data directory.'
+)
+arg_group.add_argument(
     '-p',
     '--plot',
-    nargs=3,
-    help='Plot all graphs for all captures in a directory.'
+    nargs=2,
+    help='Plot all graphs for all captures in a directory. Arguments: input directory, output directory.'
 )
 args = arg_parser.parse_args()
 
@@ -128,6 +134,15 @@ if args.estimate:
             print('\rCapture error at', path)
     exit()
 
+
+if args.clean:
+    for root, dirs, files in os.walk(args.clean):
+        for file_name in files:
+            if file_name == 'result.json':
+                os.remove(os.path.join(root, file_name))
+    exit()
+
+
 if args.plot:
     root, entity_dirs, _ = next(os.walk(args.plot[0]))
     for entity_dir in entity_dirs:
@@ -143,16 +158,6 @@ if args.plot:
             )
             analysis.visualize.visualize_result_df(
                 df, 
-                os.path.join(args.plot[1], '{}_{}_{}.{}'.format(entity_dir, variate, args.plot[2], 'jpg')),
-                args.plot[2]
+                os.path.join(args.plot[1], '{}_{}.{}'.format(entity_dir, variate, 'jpg'))
             )
     exit()
-
-
-# df = analysis.utils.get_result_df(
-#     '/Volumes/tsanchen/carbs_estimate/error_tolerance_test/new/frenchfries/reference',
-#     '/Volumes/tsanchen/carbs_estimate/error_tolerance_test/new/frenchfries/height_var',
-#     lambda x: x['height']
-# )
-
-# analysis.visualize.visualize_result_df(df, '/Users/Frost/Desktop/a.jpg', 'volume')

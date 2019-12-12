@@ -1,28 +1,45 @@
 import seaborn as sns
+import numpy as np
 from matplotlib import pyplot as plt
 import os
 
 
-def visualize_result_df(result_df, save_path, y_col_name):
-    """ Outputting the visualization of the result data frame.
+def visualize_result_df(result_df, save_path):
+    """ Outputting the visualization of the result data frame. Area and volume 
+        are plotted in blue and orange.
 
     Args:
         result_df: The result data frame containing columns factor, area, volume.
         save_path: The path to save the visualization image.
-        y_col_name: The name of the desired y axis in `result_df`, 'volume' or 'area'.
     """
-    plot = sns.lineplot(
+    figure, volume_axis = plt.subplots()
+    area_axis = volume_axis.twinx()
+    sns.lineplot(
         x='factor',
-        y=y_col_name,
+        y='volume',
         data=result_df,
-        err_style='bars'
+        err_style='bars',
+        color='#DF8300',    # orange
+        ax=volume_axis
     )
-    plot.set(ylim=(0, 1.2 * result_df.max()[y_col_name]))
+    sns.lineplot(
+        x='factor',
+        y='area',
+        data=result_df,
+        err_style='bars',
+        color='#0083DF',    # blue
+        ax=area_axis
+    )
+    volume_axis.set_ylim(0, _get_axis_lim(result_df.max()['volume']))
+    area_axis.set_ylim(0, _get_axis_lim(result_df.max()['area']))
     if not os.path.exists(os.path.dirname(save_path)):
         os.makedirs(os.path.dirname(save_path))
-    plot.get_figure().savefig(
+    plt.savefig(
         save_path, 
-        bbox_inches='tight', 
+        bbox_inches='tight',
         dpi=500
     )
     plt.clf()
+
+def _get_axis_lim(range_max):
+    return (1.2 + (np.random.rand() - 0.5) * 0.1) * range_max
