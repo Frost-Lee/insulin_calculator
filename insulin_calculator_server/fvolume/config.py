@@ -6,7 +6,7 @@ UNIFIED_IMAGE_SIZE = (512, 512)
 # The probability threshold for identifying food in the segmentation mask. If a 
 # pixel's corresponding probability is above this threshold, it will be take as 
 # food.
-FOOD_PROB_THRESHOLD = 0.3
+FOOD_PROB_THRESHOLD = 0.5
 
 # The minimum size of the food. Food entities whose width or height are smaller 
 # than this threshold will be removed.
@@ -32,8 +32,7 @@ GRID_LEN = 2e-3
 PACKAGE_ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 # The path of the food segmentation model.
-SEG_MODEL_PATH = '/Users/Frost/Desktop/model_checkpoint_06_2.hdf5'
-# SEG_MODEL_PATH = os.path.join(PACKAGE_ROOT_PATH, *['ml_model', 'unet_samplenorm.hdf5'])
+SEG_MODEL_PATH = os.path.join(PACKAGE_ROOT_PATH, *['ml_model', 'unet.hdf5'])
 
 # The path of the shared object for image undistorting.
 UNDISTORT_DLL_PATH = os.path.join(PACKAGE_ROOT_PATH, *['c_core', 'undistort.so'])
