@@ -10,7 +10,6 @@ from . import config
 from . import utils
 
 segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
-SESSION_ID = None
 
 def _get_segmentation(image):
     """ Returning the raw segmentation mask for the image. Each pixel's value 
