@@ -103,10 +103,12 @@ if args.generate:
 if args.estimate:
     import fvolume
     import numpy as np
-    def get_area_volume_estimate(image, peripheral):
+    def get_area_volume_estimate(image, peripheral, path):
         depth_map = np.array(peripheral['depth_data'])
         calibration = peripheral['calibration_data']
         attitude = peripheral['device_attitude']
+        fvolume.estimation.FILE_DIR = path
+        fvolume.recognition.FILE_DIR = path
         label_mask, boxes, buffers = fvolume.recognition.get_recognition_results(
             image,
             calibration
@@ -126,7 +128,7 @@ if args.estimate:
             image = analysis.utils.load_image(os.path.join(path, 'image.jpg'))
             peripheral = analysis.utils.load_peripheral(os.path.join(path, 'peripheral.json'))
             result_json = analysis.utils.format_result(
-                get_area_volume_estimate(image, peripheral)
+                get_area_volume_estimate(image, peripheral, path)
             )
             with open(os.path.join(path, 'result.json'), 'w') as out_file:
                 out_file.write(result_json)

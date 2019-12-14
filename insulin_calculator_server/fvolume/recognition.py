@@ -11,6 +11,9 @@ from . import utils
 
 segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
 
+import os
+FILE_DIR = None
+
 def _get_segmentation(image):
     """ Returning the raw segmentation mask for the image. Each pixel's value 
         stands for the probability of this pixel being food.
@@ -153,6 +156,12 @@ def get_recognition_results(image, calibration):
     mask = _get_segmentation(regulated_image)
     label_mask, boxes = _get_entity_labeling(regulated_image, mask)
     multiplier = image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
+    mask[mask < 0.5] = 0
+    mask[mask >= 0.5] = 1
+    plt.imshow(regulated_image)
+    plt.imshow(mask, alpha=0.5)
+    plt.savefig(os.path.join(FILE_DIR, 'mask.jpg'), dpi=500)
+    plt.clf()
     images = [
         cv2.resize(
             _index_crop(image, box, multiplier),

@@ -10,6 +10,9 @@ from . import utils
 
 intrinsics = None
 
+import os
+FILE_DIR = None
+
 def _get_remapping_intrinsics(depth_map, calibration):
     """ Returning the focal length, horizontal optical center, and vertical optical 
         center of the given depth map.
@@ -140,6 +143,8 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
     food_point_clouds = [pc[background_depth - pc[:, 2] > 0] for pc in food_point_clouds]
     food_grid_lookups = [_get_xoy_grid_lookup(pc) for pc in food_point_clouds]
+    np.save(os.path.join(FILE_DIR, 'food_pc.npy'), food_point_clouds[0])
+    np.save(os.path.join(FILE_DIR, 'full_pc.npy'), full_point_cloud)
     area_volume_list = [(
         sum([sum([
             config.GRID_LEN ** 2 for y_value in x_value.values()
