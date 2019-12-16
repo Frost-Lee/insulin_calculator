@@ -29,18 +29,29 @@ def center_crop(array):
 
 
 def regulate_image(image, calibration):
-    """ Rectify, center crop and resize the image to a square of shape `config.UNIFIED_IMAGE_SIZE`.
+    """ Transpose, rectify, center crop and resize the image to a square of 
+        shape `config.UNIFIED_IMAGE_SIZE`.
+    
+    Since PIL image and extracted depth map uses a transposed coordinate system, 
+        they are supposed to be transposed back in order to match the camera 
+        intrinsics.
 
     Args:
         image: The image to be regulated. Represented as a numpy array with shape 
-            `(width, height, channel)`.
+            `(height, width, channel)`.
         calibration: The camera calibration data when capturing the image.
     
     Returns:
-        The regulated image with shape specified by `config.UNIFIED_IMAGE_SIZE`.
+        The regulated image with shape specified by `config.UNIFIED_IMAGE_SIZE`,
+            the shape stands for `(width, height, channel)`.
     """
-    scale = min(config.UNIFIED_IMAGE_SIZE) / min(image.shape[:2])
-    resized_image = cv2.resize(image, (int(image.shape[1] * scale), int(image.shape[0] * scale)))
+    transposed_image = np.swapaxes(image, 0, 1)
+    image_shape = transposed_image.shape
+    scale = min(config.UNIFIED_IMAGE_SIZE) / min(image_shape[:2])
+    resized_image = cv2.resize(
+        transposed_image, 
+        (int(image_shape[1] * scale), int(image_shape[0] * scale))
+    )
     rectified_image = rectify_image_c(
         resized_image,
         np.array(calibration['lens_distortion_lookup_table']),

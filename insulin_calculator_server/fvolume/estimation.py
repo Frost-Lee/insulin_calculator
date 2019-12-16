@@ -18,15 +18,15 @@ def _get_remapping_intrinsics(depth_map, calibration):
         depth_map: The depth map represented as a numpy array.
         calibration: The camera calibration data when capturing the depth map.
     """
-    # FIXME(canchen.lee@gmail.com): The way calculating the optical center might 
-    # be errorneous because of the cropping of the image.
     global intrinsics
     if intrinsics is None:
         intrinsic_matrix = np.array(calibration['intrinsic_matrix'])
-        scale = min(depth_map.shape) / min(calibration['intrinsic_matrix_reference_dimensions'])
-        fl = intrinsic_matrix[0, 0] * scale     # focal length
-        oc_x = intrinsic_matrix[0, 2] * scale   # horizontal optical center
-        oc_y = intrinsic_matrix[1, 2] * scale   # vertical optical center
+        original_dimension = calibration['intrinsic_matrix_reference_dimensions']
+        scale = min(depth_map.shape) / min(original_dimension)
+        oc_x_offset = (original_dimension[0] - original_dimension[1]) // 2
+        fl = intrinsic_matrix[0, 0] * scale
+        oc_x = (intrinsic_matrix[0, 2] - oc_x_offset) * scale
+        oc_y = intrinsic_matrix[1, 2] * scale
         intrinsics = fl, oc_x, oc_y
     return intrinsics
 
