@@ -140,7 +140,7 @@ if args.estimate:
 if args.clean:
     for root, dirs, files in os.walk(args.clean):
         for file_name in files:
-            if file_name == 'result.json':
+            if file_name == 'result.json' or file_name == 'food_pc.npy' or file_name == 'full_pc.npy' or file_name == 'mask.jpg' or file_name == 'projection.jpg':
                 os.remove(os.path.join(root, file_name))
     exit()
 

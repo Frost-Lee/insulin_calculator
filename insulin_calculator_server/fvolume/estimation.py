@@ -11,6 +11,7 @@ from . import utils
 intrinsics = None
 
 import os
+from matplotlib import pyplot as plt
 FILE_DIR = None
 
 def _get_remapping_intrinsics(depth_map, calibration):
@@ -145,6 +146,17 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     food_grid_lookups = [_get_xoy_grid_lookup(pc) for pc in food_point_clouds]
     np.save(os.path.join(FILE_DIR, 'food_pc.npy'), food_point_clouds[0])
     np.save(os.path.join(FILE_DIR, 'full_pc.npy'), full_point_cloud)
+    grid_x_range = (min(food_grid_lookups[0].keys()), max(food_grid_lookups[0].keys()))
+    grid_y_range = (min([min(values.keys()) for values in food_grid_lookups[0].values()]), max([max(values.keys()) for values in food_grid_lookups[0].values()]))
+    projection_array = np.zeros((grid_x_range[1] - grid_x_range[0] + 1, grid_y_range[1] - grid_y_range[0] + 1))
+    for x_value in food_grid_lookups[0].keys():
+        for y_value in food_grid_lookups[0][x_value].keys():
+            points = food_grid_lookups[0][x_value][y_value]
+            projection_array[x_value - grid_x_range[0], y_value - grid_y_range[0]] = np.mean(background_depth - np.array(points), axis=0)[2]
+    plt.imshow(projection_array)
+    plt.colorbar()
+    plt.savefig(os.path.join(FILE_DIR, 'projection.jpg'), dpi=500)
+    plt.clf()
     area_volume_list = [(
         sum([sum([
             config.GRID_LEN ** 2 for y_value in x_value.values()
