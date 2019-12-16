@@ -41,9 +41,10 @@ def _get_plane_recognition(point_cloud):
     Returns:
         (inlier_mask, rotation)
         `inlier_mask` is the mask of the base plane, corresponding to the point 
-        cloud. The value if `True` if the point lies in the plane, `False` otherwise.
+            cloud. The value if `True` if the point lies in the plane, `False` 
+            otherwise.
         `rotation` can help to rotate the plane parallel to xOy surface in the 
-        coordinate system of `point_cloud`.
+            coordinate system of `point_cloud`.
     """
     ransac = linear_model.RANSACRegressor(
         linear_model.LinearRegression(),
@@ -67,12 +68,12 @@ def _get_xoy_grid_lookup(point_cloud):
     """ Returning the grid lookup of a point cloud.
 
     A grid lookup is a dictionary for looking up the points fall in a specific 
-    grid. When querying points in a grid with index `x_index, y_index`, 
-    `lookup[x_index][y_index]` is the list containing points in this grid. Each 
-    point is represented as a numpy array with shape `(3,)`.
+        grid. When querying points in a grid with index `x_index, y_index`, 
+        `lookup[x_index][y_index]` is the list containing points in this grid. Each 
+        point is represented as a numpy array with shape `(3,)`.
     In this method, the coordinate of the grid is built by projecting all points 
-    in `point_cloud` to XOY surface, the axis parallels to x-axis and y-axis of 
-    the world coordinate.
+        in `point_cloud` to XOY surface, the axis parallels to x-axis and y-axis of 
+        the world coordinate.
 
     Args:
         point_cloud: The point cloud to build a grid lookup upon, represented as 
@@ -120,7 +121,7 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     
     Returns:
         A area volume list. The values stands for `(area, volume)`, measured in 
-        square meter and cube meter.
+            square meter and cube meter.
     """
     regulated_depth_map = utils.regulate_image(depth_map, calibration)
     intrinsics = _get_remapping_intrinsics(regulated_depth_map, calibration)
