@@ -8,8 +8,6 @@ from scipy.spatial.transform import Rotation
 from . import config
 from . import utils
 
-intrinsics = None
-
 def _get_remapping_intrinsics(depth_map, calibration):
     """ Returning the focal length, horizontal optical center, and vertical optical 
         center of the given depth map.
@@ -18,17 +16,14 @@ def _get_remapping_intrinsics(depth_map, calibration):
         depth_map: The depth map represented as a numpy array.
         calibration: The camera calibration data when capturing the depth map.
     """
-    global intrinsics
-    if intrinsics is None:
-        intrinsic_matrix = np.array(calibration['intrinsic_matrix'])
-        original_dimension = calibration['intrinsic_matrix_reference_dimensions']
-        scale = min(depth_map.shape) / min(original_dimension)
-        oc_x_offset = (original_dimension[0] - original_dimension[1]) // 2
-        fl = intrinsic_matrix[0, 0] * scale
-        oc_x = (intrinsic_matrix[0, 2] - oc_x_offset) * scale
-        oc_y = intrinsic_matrix[1, 2] * scale
-        intrinsics = fl, oc_x, oc_y
-    return intrinsics
+    intrinsic_matrix = np.array(calibration['intrinsic_matrix'])
+    original_dimension = calibration['intrinsic_matrix_reference_dimensions']
+    scale = min(depth_map.shape) / min(original_dimension)
+    oc_x_offset = (original_dimension[0] - original_dimension[1]) // 2
+    fl = intrinsic_matrix[0, 0] * scale
+    oc_x = (intrinsic_matrix[2, 0] - oc_x_offset) * scale
+    oc_y = intrinsic_matrix[2, 1] * scale
+    return fl, oc_x, oc_y
 
 
 def _get_plane_recognition(point_cloud):
