@@ -8,8 +8,6 @@ from scipy.spatial.transform import Rotation
 from . import config
 from . import utils
 
-intrinsics = None
-
 import os
 from matplotlib import pyplot as plt
 FILE_DIR = None
@@ -22,17 +20,14 @@ def _get_remapping_intrinsics(depth_map, calibration):
         depth_map: The depth map represented as a numpy array.
         calibration: The camera calibration data when capturing the depth map.
     """
-    global intrinsics
-    if intrinsics is None:
-        intrinsic_matrix = np.array(calibration['intrinsic_matrix'])
-        original_dimension = calibration['intrinsic_matrix_reference_dimensions']
-        scale = min(depth_map.shape) / min(original_dimension)
-        oc_x_offset = (original_dimension[0] - original_dimension[1]) // 2
-        fl = intrinsic_matrix[0, 0] * scale
-        oc_x = (intrinsic_matrix[0, 2] - oc_x_offset) * scale
-        oc_y = intrinsic_matrix[1, 2] * scale
-        intrinsics = fl, oc_x, oc_y
-    return intrinsics
+    intrinsic_matrix = np.array(calibration['intrinsic_matrix'])
+    original_dimension = calibration['intrinsic_matrix_reference_dimensions']
+    scale = min(depth_map.shape) / min(original_dimension)
+    oc_x_offset = (original_dimension[0] - original_dimension[1]) // 2
+    fl = intrinsic_matrix[0, 0] * scale
+    oc_x = (intrinsic_matrix[2, 0] - oc_x_offset) * scale
+    oc_y = intrinsic_matrix[2, 1] * scale
+    return fl, oc_x, oc_y
 
 
 def _get_plane_recognition(point_cloud):
@@ -150,13 +145,21 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     grid_x_range = (min(food_grid_lookups[0].keys()), max(food_grid_lookups[0].keys()))
     grid_y_range = (min([min(values.keys()) for values in food_grid_lookups[0].values()]), max([max(values.keys()) for values in food_grid_lookups[0].values()]))
     projection_array = np.zeros((grid_x_range[1] - grid_x_range[0] + 1, grid_y_range[1] - grid_y_range[0] + 1))
+    distribution_dict = {}
     for x_value in food_grid_lookups[0].keys():
         for y_value in food_grid_lookups[0][x_value].keys():
             points = food_grid_lookups[0][x_value][y_value]
             projection_array[x_value - grid_x_range[0], y_value - grid_y_range[0]] = np.mean(background_depth - np.array(points), axis=0)[2]
+            if len(points) in distribution_dict:
+                distribution_dict[len(points)] += 1
+            else:
+                distribution_dict[len(points)] = 1
     plt.imshow(projection_array)
     plt.colorbar()
     plt.savefig(os.path.join(FILE_DIR, 'projection.jpg'), dpi=500)
+    plt.clf()
+    plt.bar([*distribution_dict.keys()], [*distribution_dict.values()])
+    plt.savefig(os.path.join(FILE_DIR, 'distribition.jpg'), dpi=500)
     plt.clf()
     area_volume_list = [(
         sum([sum([
