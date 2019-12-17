@@ -52,10 +52,11 @@ def regulate_image(image, calibration):
         transposed_image, 
         (int(image_shape[1] * scale), int(image_shape[0] * scale))
     )
+    reference_scale = min(resized_image.shape[:2]) / min(calibration['lens_distortion_center'])
     rectified_image = rectify_image_c(
         resized_image,
         np.array(calibration['lens_distortion_lookup_table']),
-        np.array(calibration['lens_distortion_center']) * scale
+        np.array(calibration['lens_distortion_center']) * reference_scale
     )
     center_cropped_image = center_crop(rectified_image)
     return cv2.resize(center_cropped_image, config.UNIFIED_IMAGE_SIZE)
