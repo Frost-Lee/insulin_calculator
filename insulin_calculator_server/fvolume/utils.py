@@ -52,7 +52,7 @@ def regulate_image(image, calibration):
         transposed_image, 
         (int(image_shape[1] * scale), int(image_shape[0] * scale))
     )
-    reference_scale = min(resized_image.shape[:2]) / min(calibration['lens_distortion_center'])
+    reference_scale = min(resized_image.shape[:2]) / min(calibration['intrinsic_matrix_reference_dimensions'])
     rectified_image = rectify_image_c(
         resized_image,
         np.array(calibration['lens_distortion_lookup_table']),
