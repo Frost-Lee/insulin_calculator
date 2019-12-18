@@ -85,7 +85,7 @@ def rectify_image_c(image, lookup_table, distortion_center):
     c_free_double_pointer.restype = None
     channel = 1 if len(image.shape) < 3 else image.shape[2]
     original_datatype = image.dtype
-    image = image.astype('double')
+    image = np.ascontiguousarray(image.astype('double'))
     raw_result = c_rectify_image(
         image.ctypes.data_as(ctypes.POINTER(ctypes.c_double)),
         image.shape[0],
@@ -105,8 +105,7 @@ def get_lens_distortion_point_c(point, lookup_table, distortion_center, image_si
         implemented in C.
 
     Args:
-        point: The point position before distortion. numpy array with shape `(2,)`, 
-            the dtype is `int`.
+        point: The point position before distortion. numpy array with shape `(2,)`.
         lookup_table: The lookuptable to rectify the image, represented as a one 
             dimensional array. The dtype is `c_double` equivalent.
         distortion_center: The distortion center of the image, numpy array with shape 
