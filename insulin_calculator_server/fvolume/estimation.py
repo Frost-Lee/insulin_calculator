@@ -8,8 +8,6 @@ from scipy.spatial.transform import Rotation
 from . import config
 from . import utils
 
-intrinsics = None
-
 def _get_remapping_intrinsics(depth_map, calibration):
     """ Returning the focal length, horizontal optical center, and vertical optical 
         center of the given depth map.
@@ -18,17 +16,14 @@ def _get_remapping_intrinsics(depth_map, calibration):
         depth_map: The depth map represented as a numpy array.
         calibration: The camera calibration data when capturing the depth map.
     """
-    # FIXME(canchen.lee@gmail.com): The way calculating the optical center might 
-    # be errorneous because of the cropping of the image.
-    global intrinsics
-    if intrinsics is None:
-        intrinsic_matrix = np.array(calibration['intrinsic_matrix'])
-        scale = min(depth_map.shape) / min(calibration['intrinsic_matrix_reference_dimensions'])
-        fl = intrinsic_matrix[0, 0] * scale     # focal length
-        oc_x = intrinsic_matrix[0, 2] * scale   # horizontal optical center
-        oc_y = intrinsic_matrix[1, 2] * scale   # vertical optical center
-        intrinsics = fl, oc_x, oc_y
-    return intrinsics
+    intrinsic_matrix = np.array(calibration['intrinsic_matrix'])
+    original_dimension = calibration['intrinsic_matrix_reference_dimensions']
+    scale = min(depth_map.shape) / min(original_dimension)
+    oc_x_offset = (original_dimension[0] - original_dimension[1]) // 2
+    fl = intrinsic_matrix[0, 0] * scale
+    oc_x = (intrinsic_matrix[2, 0] - oc_x_offset) * scale
+    oc_y = intrinsic_matrix[2, 1] * scale
+    return fl, oc_x, oc_y
 
 
 def _get_plane_recognition(point_cloud):
@@ -41,9 +36,10 @@ def _get_plane_recognition(point_cloud):
     Returns:
         (inlier_mask, rotation)
         `inlier_mask` is the mask of the base plane, corresponding to the point 
-        cloud. The value if `True` if the point lies in the plane, `False` otherwise.
+            cloud. The value if `True` if the point lies in the plane, `False` 
+            otherwise.
         `rotation` can help to rotate the plane parallel to xOy surface in the 
-        coordinate system of `point_cloud`.
+            coordinate system of `point_cloud`.
     """
     ransac = linear_model.RANSACRegressor(
         linear_model.LinearRegression(),
@@ -67,12 +63,12 @@ def _get_xoy_grid_lookup(point_cloud):
     """ Returning the grid lookup of a point cloud.
 
     A grid lookup is a dictionary for looking up the points fall in a specific 
-    grid. When querying points in a grid with index `x_index, y_index`, 
-    `lookup[x_index][y_index]` is the list containing points in this grid. Each 
-    point is represented as a numpy array with shape `(3,)`.
+        grid. When querying points in a grid with index `x_index, y_index`, 
+        `lookup[x_index][y_index]` is the list containing points in this grid. Each 
+        point is represented as a numpy array with shape `(3,)`.
     In this method, the coordinate of the grid is built by projecting all points 
-    in `point_cloud` to XOY surface, the axis parallels to x-axis and y-axis of 
-    the world coordinate.
+        in `point_cloud` to XOY surface, the axis parallels to x-axis and y-axis of 
+        the world coordinate.
 
     Args:
         point_cloud: The point cloud to build a grid lookup upon, represented as 
@@ -120,7 +116,7 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     
     Returns:
         A area volume list. The values stands for `(area, volume)`, measured in 
-        square meter and cube meter.
+            square meter and cube meter.
     """
     regulated_depth_map = utils.regulate_image(depth_map, calibration)
     intrinsics = _get_remapping_intrinsics(regulated_depth_map, calibration)
@@ -136,8 +132,9 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     ]) for food_id in np.unique(label_mask)[1:]]
     plane_inlier_mask, rotation = _get_plane_recognition(full_point_cloud)
     full_point_cloud = rotation.apply(full_point_cloud)
-    food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
     background_depth = np.mean(full_point_cloud[plane_inlier_mask][:,2])
+    food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
+    food_point_clouds = [pc[background_depth - pc[:, 2] > 0] for pc in food_point_clouds]
     food_grid_lookups = [_get_xoy_grid_lookup(pc) for pc in food_point_clouds]
     area_volume_list = [(
         sum([sum([

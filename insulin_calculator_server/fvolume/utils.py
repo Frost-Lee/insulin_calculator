@@ -29,22 +29,34 @@ def center_crop(array):
 
 
 def regulate_image(image, calibration):
-    """ Rectify, center crop and resize the image to a square of shape `config.UNIFIED_IMAGE_SIZE`.
+    """ Transpose, rectify, center crop and resize the image to a square of 
+        shape `config.UNIFIED_IMAGE_SIZE`.
+    
+    Since PIL image and extracted depth map uses a transposed coordinate system, 
+        they are supposed to be transposed back in order to match the camera 
+        intrinsics.
 
     Args:
         image: The image to be regulated. Represented as a numpy array with shape 
-            `(width, height, channel)`.
+            `(height, width, channel)`.
         calibration: The camera calibration data when capturing the image.
     
     Returns:
-        The regulated image with shape specified by `config.UNIFIED_IMAGE_SIZE`.
+        The regulated image with shape specified by `config.UNIFIED_IMAGE_SIZE`,
+            the shape stands for `(width, height, channel)`.
     """
-    scale = min(config.UNIFIED_IMAGE_SIZE) / min(image.shape[:2])
-    resized_image = cv2.resize(image, (int(image.shape[1] * scale), int(image.shape[0] * scale)))
+    transposed_image = np.swapaxes(image, 0, 1)
+    image_shape = transposed_image.shape
+    scale = min(config.UNIFIED_IMAGE_SIZE) / min(image_shape[:2])
+    resized_image = cv2.resize(
+        transposed_image, 
+        (int(image_shape[1] * scale), int(image_shape[0] * scale))
+    )
+    reference_scale = min(resized_image.shape[:2]) / min(calibration['intrinsic_matrix_reference_dimensions'])
     rectified_image = rectify_image_c(
         resized_image,
         np.array(calibration['lens_distortion_lookup_table']),
-        np.array(calibration['lens_distortion_center']) * scale
+        np.array(calibration['lens_distortion_center']) * reference_scale
     )
     center_cropped_image = center_crop(rectified_image)
     return cv2.resize(center_cropped_image, config.UNIFIED_IMAGE_SIZE)
@@ -73,7 +85,7 @@ def rectify_image_c(image, lookup_table, distortion_center):
     c_free_double_pointer.restype = None
     channel = 1 if len(image.shape) < 3 else image.shape[2]
     original_datatype = image.dtype
-    image = image.astype('double')
+    image = np.ascontiguousarray(image.astype('double'))
     raw_result = c_rectify_image(
         image.ctypes.data_as(ctypes.POINTER(ctypes.c_double)),
         image.shape[0],
@@ -93,8 +105,7 @@ def get_lens_distortion_point_c(point, lookup_table, distortion_center, image_si
         implemented in C.
 
     Args:
-        point: The point position before distortion. numpy array with shape `(2,)`, 
-            the dtype is `int`.
+        point: The point position before distortion. numpy array with shape `(2,)`.
         lookup_table: The lookuptable to rectify the image, represented as a one 
             dimensional array. The dtype is `c_double` equivalent.
         distortion_center: The distortion center of the image, numpy array with shape 

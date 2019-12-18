@@ -65,7 +65,8 @@ double* rectify_image(
             for (int c = 0; c < channel; c ++) {
                 double original_value = image[((int)original_index[0] * height + (int)original_index[1]) * channel + c];
                 rectified_image[(i * height + j) * channel + c] = original_value;
-            } 
+            }
+            free(original_index);
         }
     }
     return rectified_image;
