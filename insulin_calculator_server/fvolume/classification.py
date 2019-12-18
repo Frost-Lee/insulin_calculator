@@ -19,8 +19,11 @@ def _get_raw_classification_result(buffers):
         headers={'Content-type': 'image/jpeg'},
         data=buffer.getvalue()
     ) for buffer in buffers[:config.MAX_ENTITIES_THRESHOLD]]
-    placeholders = ['{"is_food": false}' for _ in range(len(buffers) - config.MAX_ENTITIES_THRESHOLD)]
-    return responses + placeholders
+    if len(buffers) > config.MAX_ENTITIES_THRESHOLD:
+        placeholders = ['{"is_food": false}' for _ in range(len(buffers) - config.MAX_ENTITIES_THRESHOLD)]
+        return responses + placeholders
+    else:
+        return responses
 
 
 def get_classification_result(buffers):
