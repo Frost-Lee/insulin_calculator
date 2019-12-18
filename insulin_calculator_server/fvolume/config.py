@@ -26,7 +26,7 @@ CLASSIFICATION_CANDIDATES = 5
 RANSAC_THRESHOLD = 0.002
 
 # The edge length of the grid when calculating the volume of food entity. In meters.
-GRID_LEN = 2e-3
+GRID_LEN = 1e-3
 
 # The root path of this package.
 PACKAGE_ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
