@@ -98,8 +98,8 @@ def _format_estimate_response(classifications, area_volumes, densities, boxes):
         if candidates is None:
             continue
         for j, candidate in enumerate(candidates):
-            candidates_list[i][j]['volume_density'] = densities[i][j][0]
-            candidates_list[i][j]['area_density'] = densities[i][j][1]
+            candidates_list[i][j]['area_density'] = densities[i][j][0]
+            candidates_list[i][j]['volume_density'] = densities[i][j][1]
     response = {
         'results' : [{
             'area' : av[0],
