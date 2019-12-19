@@ -159,9 +159,6 @@ def get_recognition_results(image, calibration):
     label_mask, boxes = _get_entity_labeling(regulated_image, mask)
     multiplier = image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
     recorder.record([regulated_image, label_mask], 'image_and_mask')
-    # mask[mask < 0.5] = 0
-    # mask[mask >= 0.5] = 1
-    # visualize.plot_mask(regulated_image, mask, os.path.join(FILE_DIR, 'mask.jpg'))
     images = [
         cv2.resize(
             _index_crop(utils.center_crop(preprocessed_image), box, multiplier),
