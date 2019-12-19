@@ -156,7 +156,7 @@ def get_recognition_results(image, calibration):
     multiplier = image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
     images = [
         cv2.resize(
-            _index_crop(preprocessed_image, box, multiplier),
+            _index_crop(utils.center_crop(preprocessed_image), box, multiplier),
             config.CLASSIFIER_IMAGE_SIZE
         ) for box in boxes
     ]
