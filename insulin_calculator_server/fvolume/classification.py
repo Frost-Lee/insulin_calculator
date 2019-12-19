@@ -26,6 +26,34 @@ def _get_raw_classification_result(buffers):
         return responses
 
 
+unit_weights = {
+    'Chocolate Donut': 0.0583,
+    'Glazed Donut': 0.0627,
+    'Chicken Nugget': 0.0155
+}
+
+def _correct_nutrition_unit(item):
+    """ Make the nutrition unit of `item` to kilometer per kilometer.
+
+    Due to the unit of nutrition offered by Calorie mama is inconsistant, we 
+        need to manually unify the unit to kilometer per kilometer.
+    
+    Args:
+        item: A json object containing nutrition information of the corresponding 
+            food.
+    """
+    # TODO(canchen.lee@gmail.com): Find better ways to do this, either negotiate 
+    # with Calorie mama, or create a library file.
+    global unit_weights
+    if 'servingWeight' not in item['servingSizes'][0]:
+        if item['name'] in unit_weights:
+            for key, value in item['nutrition'].items():
+                item['nutrition'][key] = value / unit_weights[item['name']]
+            for serving_size in item['servingSizes']:
+                serving_size['corrected'] = True
+    return item
+
+
 def get_classification_result(buffers):
     """ Get the food classification results for a list of image buffers.
 
@@ -34,13 +62,13 @@ def get_classification_result(buffers):
     
     Returns:
         The list of classification results. Each classification result is a list 
-        of candidates (represented as json format) if the object is food in the 
-        corresponding image, or `None` if not.
+            of candidates (represented as json format) if the object is food in 
+            the corresponding image, or `None` if not.
     """
     responses = _get_raw_classification_result(buffers)
     json_contents = [json.loads(response.content.decode('utf8')) for response in responses]
     food_items = [
-        [item for result in content['results'] for item in sorted(
+        [_correct_nutrition_unit(item) for result in content['results'] for item in sorted(
             result['items'], 
             key=lambda x: x['score'], 
             reverse=True
