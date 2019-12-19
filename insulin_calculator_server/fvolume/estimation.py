@@ -118,7 +118,8 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
         A area volume list. The values stands for `(area, volume)`, measured in 
             square meter and cube meter.
     """
-    regulated_depth_map = utils.regulate_image(depth_map, calibration)
+    preprocessed_depth_map = utils.preprocess_image(depth_map, calibration)
+    regulated_depth_map = utils.regulate_image(preprocessed_depth_map)
     intrinsics = _get_remapping_intrinsics(regulated_depth_map, calibration)
     full_point_cloud = np.array([
         _get_3d_coordinate(
