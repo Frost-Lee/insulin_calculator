@@ -62,7 +62,7 @@ def _get_entity_labeling(image, mask):
     # component.
     bin_func = np.vectorize(lambda x: 0 if x < config.FOOD_PROB_THRESHOLD else 1)
     binary_mask = bin_func(mask)
-    label_mask = skimage.measure.label(binary_mask, neighbors=4, background=0)
+    label_mask = skimage.measure.label(binary_mask, connectivity=2, background=0)
     boxes = [[
             *map(lambda x: (min(x), max(x) + 1), np.where(label_mask == entity))
         ] for entity in np.unique(label_mask)
