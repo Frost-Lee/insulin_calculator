@@ -65,7 +65,7 @@ def _get_entity_labeling(image, mask):
     # component.
     bin_func = np.vectorize(lambda x: 0 if x < config.FOOD_PROB_THRESHOLD else 1)
     binary_mask = bin_func(mask)
-    label_mask = skimage.measure.label(binary_mask, neighbors=4, background=0)
+    label_mask = skimage.measure.label(binary_mask, connectivity=2, background=0)
     boxes = [[
             *map(lambda x: (min(x), max(x) + 1), np.where(label_mask == entity))
         ] for entity in np.unique(label_mask)
@@ -152,7 +152,8 @@ def get_recognition_results(image, calibration):
         `buffers` is a list of image buffers, each image is the cropped food 
             image in `image`, and are all resized to `config.CLASSIFIER_IMAGE_SIZE`.
     """
-    regulated_image = utils.regulate_image(image, calibration)
+    preprocessed_image = utils.preprocess_image(image, calibration)
+    regulated_image = utils.regulate_image(preprocessed_image)
     mask = _get_segmentation(regulated_image)
     label_mask, boxes = _get_entity_labeling(regulated_image, mask)
     multiplier = image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
@@ -164,7 +165,7 @@ def get_recognition_results(image, calibration):
     plt.clf()
     images = [
         cv2.resize(
-            _index_crop(image, box, multiplier),
+            _index_crop(preprocessed_image, box, multiplier),
             config.CLASSIFIER_IMAGE_SIZE
         ) for box in boxes
     ]
