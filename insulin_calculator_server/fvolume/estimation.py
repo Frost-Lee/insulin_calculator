@@ -7,10 +7,7 @@ from scipy.spatial.transform import Rotation
 
 from . import config
 from . import utils
-
-import os
-from matplotlib import pyplot as plt
-FILE_DIR = None
+from . import recorder
 
 def _get_remapping_intrinsics(depth_map, calibration):
     """ Returning the focal length, horizontal optical center, and vertical optical 
@@ -141,27 +138,9 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
     food_point_clouds = [pc[background_depth - pc[:, 2] > 0] for pc in food_point_clouds]
     food_grid_lookups = [_get_xoy_grid_lookup(pc) for pc in food_point_clouds]
-    np.save(os.path.join(FILE_DIR, 'food_pc.npy'), food_point_clouds[0])
-    np.save(os.path.join(FILE_DIR, 'full_pc.npy'), full_point_cloud)
-    grid_x_range = (min(food_grid_lookups[0].keys()), max(food_grid_lookups[0].keys()))
-    grid_y_range = (min([min(values.keys()) for values in food_grid_lookups[0].values()]), max([max(values.keys()) for values in food_grid_lookups[0].values()]))
-    projection_array = np.zeros((grid_x_range[1] - grid_x_range[0] + 1, grid_y_range[1] - grid_y_range[0] + 1))
-    distribution_dict = {}
-    for x_value in food_grid_lookups[0].keys():
-        for y_value in food_grid_lookups[0][x_value].keys():
-            points = food_grid_lookups[0][x_value][y_value]
-            projection_array[x_value - grid_x_range[0], y_value - grid_y_range[0]] = np.mean(background_depth - np.array(points), axis=0)[2]
-            if len(points) in distribution_dict:
-                distribution_dict[len(points)] += 1
-            else:
-                distribution_dict[len(points)] = 1
-    plt.imshow(projection_array)
-    plt.colorbar()
-    plt.savefig(os.path.join(FILE_DIR, 'projection.jpg'), dpi=500)
-    plt.clf()
-    plt.bar([*distribution_dict.keys()], [*distribution_dict.values()])
-    plt.savefig(os.path.join(FILE_DIR, 'distribition.jpg'), dpi=500)
-    plt.clf()
+    recorder.record([full_point_cloud], 'full_point_cloud')
+    recorder.record([food_point_clouds], 'food_point_clouds')
+    recorder.record([food_grid_lookups, background_depth], 'food_grid_lookups')
     area_volume_list = [(
         sum([sum([
             config.GRID_LEN ** 2 for y_value in x_value.values()

@@ -8,6 +8,7 @@ import tensorflow as tf
 
 from . import config
 from . import utils
+from . import recorder
 
 segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
 
@@ -157,12 +158,10 @@ def get_recognition_results(image, calibration):
     mask = _get_segmentation(regulated_image)
     label_mask, boxes = _get_entity_labeling(regulated_image, mask)
     multiplier = image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
-    mask[mask < 0.5] = 0
-    mask[mask >= 0.5] = 1
-    plt.imshow(regulated_image)
-    plt.imshow(mask, alpha=0.5)
-    plt.savefig(os.path.join(FILE_DIR, 'mask.jpg'), dpi=500)
-    plt.clf()
+    recorder.record([regulated_image, label_mask], 'image_and_mask')
+    # mask[mask < 0.5] = 0
+    # mask[mask >= 0.5] = 1
+    # visualize.plot_mask(regulated_image, mask, os.path.join(FILE_DIR, 'mask.jpg'))
     images = [
         cv2.resize(
             _index_crop(utils.center_crop(preprocessed_image), box, multiplier),

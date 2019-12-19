@@ -107,8 +107,7 @@ if args.estimate:
         depth_map = np.array(peripheral['depth_data'])
         calibration = peripheral['calibration_data']
         attitude = peripheral['device_attitude']
-        fvolume.estimation.FILE_DIR = path
-        fvolume.recognition.FILE_DIR = path
+        fvolume.recorder.container_directory = path
         label_mask, boxes, buffers = fvolume.recognition.get_recognition_results(
             image,
             calibration
