@@ -14,11 +14,7 @@
 		272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AF2CB2358B3110053F214 /* BackendConnector.swift */; };
 		2730F67E238C3B98005E025F /* ImpactGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730F67D238C3B98005E025F /* ImpactGenerator.swift */; };
 		2730F680238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */; };
-		2739DE1E238F13FA0067755A /* EstimateResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2739DE1B238F13FA0067755A /* EstimateResultViewController.swift */; };
-		2739DE1F238F13FA0067755A /* CandidateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2739DE1C238F13FA0067755A /* CandidateTableViewCell.swift */; };
-		2739DE20238F13FA0067755A /* EntitySelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2739DE1D238F13FA0067755A /* EntitySelectCollectionViewCell.swift */; };
 		2739DE22238F144D0067755A /* EstimateImageCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2739DE21238F144D0067755A /* EstimateImageCaptureViewController.swift */; };
-		2739DE24238F15120067755A /* Double+Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2739DE23238F15120067755A /* Double+Unit.swift */; };
 		273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DC2350BC5C0093B7DE /* AppDelegate.swift */; };
 		273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */; };
 		273B47E42350BC5C0093B7DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E22350BC5C0093B7DE /* Main.storyboard */; };
@@ -26,6 +22,10 @@
 		273B47E92350BC620093B7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E72350BC620093B7DE /* LaunchScreen.storyboard */; };
 		273B47F42350BC630093B7DE /* insulin_calculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47F32350BC630093B7DE /* insulin_calculatorTests.swift */; };
 		273B47FF2350BC630093B7DE /* insulin_calculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */; };
+		2742AD7F23AD5D9300753DC4 /* CandidateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2742AD7C23AD5D9300753DC4 /* CandidateTableViewCell.swift */; };
+		2742AD8023AD5D9300753DC4 /* EntitySelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2742AD7D23AD5D9300753DC4 /* EntitySelectCollectionViewCell.swift */; };
+		2742AD8123AD5D9300753DC4 /* EstimateResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2742AD7E23AD5D9300753DC4 /* EstimateResultViewController.swift */; };
+		2742AD8623AD5ED600753DC4 /* Double+Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2739DE23238F15120067755A /* Double+Unit.swift */; };
 		27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */; };
 		27A44AE823888E53004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */; };
 		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
@@ -66,7 +66,6 @@
 		2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUnsupportInformationViewController.swift; sourceTree = "<group>"; };
 		2739DE1B238F13FA0067755A /* EstimateResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimateResultViewController.swift; sourceTree = "<group>"; };
 		2739DE1C238F13FA0067755A /* CandidateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateTableViewCell.swift; sourceTree = "<group>"; };
-		2739DE1D238F13FA0067755A /* EntitySelectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntitySelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		2739DE21238F144D0067755A /* EstimateImageCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureViewController.swift; sourceTree = "<group>"; };
 		2739DE23238F15120067755A /* Double+Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Unit.swift"; sourceTree = "<group>"; };
 		273B47D92350BC5C0093B7DE /* insulin_calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = insulin_calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +81,9 @@
 		273B47FA2350BC630093B7DE /* insulin_calculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = insulin_calculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insulin_calculatorUITests.swift; sourceTree = "<group>"; };
 		273B48002350BC630093B7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2742AD7C23AD5D9300753DC4 /* CandidateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateTableViewCell.swift; sourceTree = "<group>"; };
+		2742AD7D23AD5D9300753DC4 /* EntitySelectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntitySelectCollectionViewCell.swift; sourceTree = "<group>"; };
+		2742AD7E23AD5D9300753DC4 /* EstimateResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimateResultViewController.swift; sourceTree = "<group>"; };
 		27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeButtonListener.swift; sourceTree = "<group>"; };
 		27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MPVolumeView+VolumeListener.swift"; sourceTree = "<group>"; };
 		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
@@ -127,16 +129,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-<<<<<<< HEAD
-		2739DE1A238F13FA0067755A /* EstimateResult */ = {
-			isa = PBXGroup;
-			children = (
-				2739DE1B238F13FA0067755A /* EstimateResultViewController.swift */,
-				2739DE1C238F13FA0067755A /* CandidateTableViewCell.swift */,
-				2739DE1D238F13FA0067755A /* EntitySelectCollectionViewCell.swift */,
-			);
-			path = EstimateResult;
-=======
 		27013D2C23AD2DFB00418C57 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,7 +139,6 @@
 				27013D2E23AD2F7E00418C57 /* ManagedSessionRecord+CoreDataProperties.swift */,
 			);
 			path = DataModel;
->>>>>>> 7a98ea67f1ba70e1c5020fd99b3b24c55b743526
 			sourceTree = "<group>";
 		};
 		273B47D02350BC5B0093B7DE = {
@@ -159,6 +150,7 @@
 				273B47DA2350BC5C0093B7DE /* Products */,
 				CACDF92D954C70207AC0A700 /* Pods */,
 				2E373B0639C780AFDDB63912 /* Frameworks */,
+				2742AD6D23AD5CD900753DC4 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,7 +171,7 @@
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
 				2739DE21238F144D0067755A /* EstimateImageCaptureViewController.swift */,
-				2739DE1A238F13FA0067755A /* EstimateResult */,
+				2742AD8223AD5D9B00753DC4 /* EstimateResult */,
 				27A44AE323888E15004CBDC9 /* Utils */,
 				27B30AE32350C491007347F5 /* Model */,
 				273B47E52350BC620093B7DE /* Assets.xcassets */,
@@ -205,6 +197,25 @@
 				273B48002350BC630093B7DE /* Info.plist */,
 			);
 			path = insulin_calculatorUITests;
+			sourceTree = "<group>";
+		};
+		2742AD6D23AD5CD900753DC4 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2739DE1B238F13FA0067755A /* EstimateResultViewController.swift */,
+				2739DE1C238F13FA0067755A /* CandidateTableViewCell.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		2742AD8223AD5D9B00753DC4 /* EstimateResult */ = {
+			isa = PBXGroup;
+			children = (
+				2742AD7C23AD5D9300753DC4 /* CandidateTableViewCell.swift */,
+				2742AD7D23AD5D9300753DC4 /* EntitySelectCollectionViewCell.swift */,
+				2742AD7E23AD5D9300753DC4 /* EstimateResultViewController.swift */,
+			);
+			path = EstimateResult;
 			sourceTree = "<group>";
 		};
 		27A44AE323888E15004CBDC9 /* Utils */ = {
@@ -495,32 +506,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2742AD8623AD5ED600753DC4 /* Double+Unit.swift in Sources */,
+				2742AD7F23AD5D9300753DC4 /* CandidateTableViewCell.swift in Sources */,
+				2742AD8123AD5D9300753DC4 /* EstimateResultViewController.swift in Sources */,
+				2742AD8023AD5D9300753DC4 /* EntitySelectCollectionViewCell.swift in Sources */,
 				272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */,
 				27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */,
 				27E72245238F084B00219EDA /* Structures.swift in Sources */,
-<<<<<<< HEAD
-				2739DE20238F13FA0067755A /* EntitySelectCollectionViewCell.swift in Sources */,
-=======
 				27013D3023AD2F7E00418C57 /* ManagedSessionRecord+CoreDataProperties.swift in Sources */,
->>>>>>> 7a98ea67f1ba70e1c5020fd99b3b24c55b743526
 				2730F67E238C3B98005E025F /* ImpactGenerator.swift in Sources */,
 				2730F680238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift in Sources */,
 				27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */,
 				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
-				2739DE1E238F13FA0067755A /* EstimateResultViewController.swift in Sources */,
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
 				2739DE22238F144D0067755A /* EstimateImageCaptureViewController.swift in Sources */,
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
 				27013D2B23AD2DE100418C57 /* ICDataModel.xcdatamodeld in Sources */,
 				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
 				27BF1D672350FF7700087274 /* Errors.swift in Sources */,
-<<<<<<< HEAD
-				2739DE24238F15120067755A /* Double+Unit.swift in Sources */,
-=======
 				27013D2F23AD2F7E00418C57 /* ManagedSessionRecord+CoreDataClass.swift in Sources */,
->>>>>>> 7a98ea67f1ba70e1c5020fd99b3b24c55b743526
 				27B30AE02350C432007347F5 /* utils.swift in Sources */,
-				2739DE1F238F13FA0067755A /* CandidateTableViewCell.swift in Sources */,
 				27A44AE823888E53004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
