@@ -173,9 +173,14 @@ struct EstimateCapture: Equatable {
 // MARK: - Capture Raw Data Structures: Product
 
 struct SessionRecord {
+    /// URL of the captured color image.
     var photoURL: URL
+    /// URL of the captured peripheral data, saved in JSON format.
     var captureJSONURL: URL
+    /// URL of the recognition result, saved in JSON format.
     var recognitionJSONURL: URL
+    /// The timestamp when the record is created.
     var timestamp: Date
+    /// The id of the record.
     var sessionId: UUID
 }
