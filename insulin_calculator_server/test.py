@@ -139,7 +139,8 @@ if args.estimate:
 if args.clean:
     for root, dirs, files in os.walk(args.clean):
         for file_name in files:
-            if not (file_name[0] == '.' or file_name == 'image.jpg' or file_name == 'peripheral.json' or file_name == 'metadata.json'):
+            accepted_file_names = ['image.jpg', 'peripheral.json', 'metadata.json', 'recognition.json']
+            if not (file_name[0] == '.' or file_name in accepted_file_names):
                 os.remove(os.path.join(root, file_name))
     exit()
 
