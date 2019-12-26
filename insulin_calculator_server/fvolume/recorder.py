@@ -28,19 +28,17 @@ def record(objects, record_key):
             grid_x_range = (min(food_grid_lookup.keys()), max(food_grid_lookup.keys()))
             grid_y_range = (min([min(values.keys()) for values in food_grid_lookup.values()]), max([max(values.keys()) for values in food_grid_lookup.values()]))
             projection_array = np.zeros((grid_x_range[1] - grid_x_range[0] + 1, grid_y_range[1] - grid_y_range[0] + 1))
-            distribution_dict = {}
+            distribution_array = np.zeros((grid_x_range[1] - grid_x_range[0] + 1, grid_y_range[1] - grid_y_range[0] + 1))
             for x_value in food_grid_lookup.keys():
                 for y_value in food_grid_lookup[x_value].keys():
                     points = food_grid_lookup[x_value][y_value]
                     projection_array[x_value - grid_x_range[0], y_value - grid_y_range[0]] = np.mean(background_depth - np.array(points), axis=0)[2]
-                    if len(points) in distribution_dict:
-                        distribution_dict[len(points)] += 1
-                    else:
-                        distribution_dict[len(points)] = 1
+                    distribution_array[x_value - grid_x_range[0], y_value - grid_y_range[0]] = len(points)
             plt.imshow(projection_array)
             plt.colorbar()
             plt.savefig(os.path.join(container_directory, 'projection_{}.jpg'.format(i)), dpi=500)
             plt.clf()
-            plt.bar([*distribution_dict.keys()], [*distribution_dict.values()])
+            plt.imshow(distribution_array)
+            plt.colorbar()
             plt.savefig(os.path.join(container_directory, 'distribition_{}.jpg'.format(i)), dpi=500)
             plt.clf()
