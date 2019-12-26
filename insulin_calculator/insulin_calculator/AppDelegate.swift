@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UserDefaults.standard.register(defaults: [
+            "isDepthDataFiltered": false,
+            "host": "127.0.0.1",
+            "port": "5000"
+        ])
         return true
     }
 

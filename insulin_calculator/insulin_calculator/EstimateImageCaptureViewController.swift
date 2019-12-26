@@ -93,18 +93,20 @@ class EstimateImageCaptureViewController: UIViewController {
     }
 
     @IBAction func captureButtonTapped(_ sender: Any?) {
-        if sender != nil {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
-                self.isAvailable = false
-                SVProgressHUD.show(withStatus: "Fetching Estimation Result")
-                self.estimateImageCaptureManager.captureImage()
-            }
-        } else {
+        func executeCapture() {
             self.isAvailable = false
             SVProgressHUD.show(withStatus: "Fetching Estimation Result")
-            self.estimateImageCaptureManager.captureImage()
+            self.estimateImageCaptureManager.captureImage(
+                isDepthDataFiltered: UserDefaults.standard.bool(forKey: "isDepthDataFiltered")
+            )
         }
-        
+        if sender != nil {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
+                executeCapture()
+            }
+        } else {
+            executeCapture()
+        }
     }
     
     private func setupVolumeButtonListener() {
