@@ -103,11 +103,16 @@ class EstimateImageCaptureManager: NSObject {
     
     /**
      Capture an image, the depth map and the device attitude are recorded. The result will be passed to the delegate.
+     
+     - parameters:
+        - isDepthDataFiltered: A Boolean value that determines whether to smooth noise and fill in
+            missing values in depth data output. See [isDepthDataFiltered](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/2881293-isdepthdatafiltered)
+            for details.
      */
-    func captureImage() {
+    func captureImage(isDepthDataFiltered: Bool) {
         let photoSettings = AVCapturePhotoSettings()
         photoSettings.isDepthDataDeliveryEnabled = true
-        photoSettings.isDepthDataFiltered = false
+        photoSettings.isDepthDataFiltered = isDepthDataFiltered
         photoOutput.capturePhoto(with: photoSettings, delegate: self)
         attitude = motionManager.deviceMotion!.attitude
     }
