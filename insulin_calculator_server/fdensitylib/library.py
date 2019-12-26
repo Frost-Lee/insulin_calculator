@@ -3,7 +3,7 @@ density_library = {
         'Plain Bagel': [0.0, 424.4507]
     },
     'Burger': {
-        'Beef Burger': [0.0, 424.4507]
+        'Beef Burger': [0.0, 391.7372]
     },
     'French Fries': {
         'French Fries': [0.0, 328.3566]
