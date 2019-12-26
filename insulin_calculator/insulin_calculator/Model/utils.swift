@@ -65,7 +65,8 @@ func wrapEstimateImageData(
 // MARK: Data Convertion.
 
 /**
- Convert the depth data from `CVPixelBuffer` to `[[Float32]]`.
+ Convert the depth data from `CVPixelBuffer` to `[[Float32]]`. NaN values in the pixel buffer will be
+ converted to -1.
  
  - parameters:
     - depthMap: The pixel buffer containing the depth data.
@@ -87,7 +88,11 @@ func convertDepthData(depthMap: CVPixelBuffer) -> [[Float32]] {
     )
     for row in 0 ..< height {
         for col in 0 ..< width {
-            convertedDepthMap[row][col] = floatBuffer[width * row + col]
+            if floatBuffer[width * row + col].isNaN {
+                convertedDepthMap[row][col] = -1.0
+            } else {
+                convertedDepthMap[row][col] = floatBuffer[width * row + col]
+            }
         }
     }
     CVPixelBufferUnlockBaseAddress(depthMap, CVPixelBufferLockFlags(rawValue: 2))
