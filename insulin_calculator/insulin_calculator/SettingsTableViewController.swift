@@ -23,13 +23,11 @@ class SettingsTableViewController: UITableViewController {
 
     @IBAction func hostInputFinished(_ sender: UITextField) {
         guard sender.text != nil else {return}
-        print("set host")
         UserDefaults.standard.set(sender.text!, forKey: "host")
     }
     
     @IBAction func portInputFinished(_ sender: UITextField) {
         guard sender.text != nil else {return}
-        print("set port")
         UserDefaults.standard.set(sender.text!, forKey: "port")
     }
     
@@ -41,7 +39,6 @@ class SettingsTableViewController: UITableViewController {
 
 extension SettingsTableViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("here")
         textField.resignFirstResponder()
         return true
     }
