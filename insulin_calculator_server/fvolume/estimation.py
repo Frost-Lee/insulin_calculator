@@ -124,12 +124,12 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     full_point_cloud = np.array([
         _get_3d_coordinate(
             i[0], i[1], *intrinsics, v
-        ) for i, v in np.ndenumerate(regulated_depth_map)
+        ) for i, v in np.ndenumerate(regulated_depth_map) if v > 0
     ])
     food_point_clouds = [np.array([
         _get_3d_coordinate(
             row, col, *intrinsics, regulated_depth_map[row, col]
-        ) for row, col in zip(*np.where(label_mask == food_id))
+        ) for row, col in zip(*np.where(label_mask == food_id)) if regulated_depth_map[row, col] > 0
     ]) for food_id in np.unique(label_mask)[1:]]
     plane_inlier_mask, rotation = _get_plane_recognition(full_point_cloud)
     full_point_cloud = rotation.apply(full_point_cloud)
