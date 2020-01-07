@@ -60,7 +60,7 @@ def _get_plane_recognition(point_cloud):
     return ransac.inlier_mask_, rotation
 
 
-def _get_xoy_grid_lookup(point_cloud):
+def _get_xoy_grid_lookup(point_cloud, grid_len):
     """ Returning the grid lookup of a point cloud.
 
     A grid lookup is a dictionary for looking up the points fall in a specific 
@@ -74,12 +74,13 @@ def _get_xoy_grid_lookup(point_cloud):
     Args:
         point_cloud: The point cloud to build a grid lookup upon, represented as 
             a numpy array with shape `(n, 3)`.
+        grid_len: The length of the grid.
     """
     xoy_grid_lookup = {}
     x_min, y_min = np.min(point_cloud[:,0]), np.min(point_cloud[:,1])
     for point in point_cloud:
-        x_index = math.floor((point[0] - x_min) / config.GRID_LEN)
-        y_index = math.floor((point[1] - y_min) / config.GRID_LEN)
+        x_index = utils.get_relative_index(point[0], x_min, grid_len)
+        y_index = utils.get_relative_index(point[1], y_min, grid_len)
         if x_index not in xoy_grid_lookup:
             xoy_grid_lookup[x_index] = {}
         if y_index not in xoy_grid_lookup[x_index]:
@@ -101,6 +102,35 @@ def _get_3d_coordinate(row, col, fl, oc_x, oc_y, depth):
         depth: The depth value of the corresponding pixel, measured in meter.
     """
     return np.array([(row - oc_x) * depth / fl, (col - oc_y) * depth / fl, depth])
+
+
+def _filter_interpolation_points(point_cloud):
+    """ Filtering the interpolation points that lays on depth incontinuous regions.
+
+    Args:
+        point_cloud: A point cloud, represented by a numpy array with shape `(N, 3)`.
+    
+    Returns:
+        The filtered point cloud.
+    """
+    # TODO(canchen.lee@gmail.com): The `INTERPOLATION_POINT_FILTER_COUNT` should 
+    # depends on distance from the camera to the table surface.
+    filtered_point_cloud = np.zeros(point_cloud.shape)
+    filtered_count = 0
+    point_x_min, point_y_min = np.min(point_cloud[:,0]), np.min(point_cloud[:,1])
+    grid_lookup = _get_xoy_grid_lookup(point_cloud, config.INTERPOLATION_POINT_FILTER_DISTANCE)
+    for point in point_cloud:
+        possible_close_points = grid_lookup[
+            utils.get_relative_index(point[0], point_x_min, config.INTERPOLATION_POINT_FILTER_DISTANCE)
+        ][
+            utils.get_relative_index(point[1], point_y_min, config.INTERPOLATION_POINT_FILTER_DISTANCE)
+        ]
+        distance_squares = np.sum(np.where(possible_close_points - point), axis=1)
+        close_points_count = len(np.where(distance_squares < config.INTERPOLATION_POINT_FILTER_DISTANCE ** 2)[0])
+        if close_points_count > config.INTERPOLATION_POINT_FILTER_COUNT:
+            filtered_point_cloud[filtered_count] = point
+            filtered_count += 1
+    return filtered_point_cloud[:filtered_count]
 
 
 def get_area_volume(depth_map, calibration, attitude, label_mask):
@@ -136,7 +166,7 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     full_point_cloud = rotation.apply(full_point_cloud)
     background_depth = np.mean(full_point_cloud[plane_inlier_mask][:,2])
     food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
-    food_point_clouds = [pc[background_depth - pc[:, 2] > 0] for pc in food_point_clouds]
+    food_point_clouds = [_filter_interpolation_points(pc[background_depth - pc[:, 2] > 0]) for pc in food_point_clouds]
     food_grid_lookups = [_get_xoy_grid_lookup(pc) for pc in food_point_clouds]
     recorder.record([full_point_cloud], 'full_point_cloud')
     recorder.record([food_point_clouds], 'food_point_clouds')

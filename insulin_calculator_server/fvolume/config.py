@@ -28,6 +28,12 @@ RANSAC_THRESHOLD = 0.002
 # The edge length of the grid when calculating the volume of food entity. In meters.
 GRID_LEN = 2e-3
 
+# In a given point cloud, for each point, if number of points which distance to it 
+# is less than `INTERPOLATION_POINT_FILTER_DISTANCE` is less than `INTERPOLATION_POINT_FILTER_COUNT`,
+# then the point will be filtered.
+INTERPOLATION_POINT_FILTER_DISTANCE = 4e-3
+INTERPOLATION_POINT_FILTER_COUNT = 9
+
 # The root path of this package.
 PACKAGE_ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
 

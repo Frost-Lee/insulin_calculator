@@ -136,6 +136,19 @@ def get_lens_distortion_point_c(point, lookup_table, distortion_center, image_si
     return converted_result
 
 
+def get_relative_index(value, min_value, step):
+    """ Returning the relative bin index of a value given bin start and bin span.
+
+    Args:
+        value: The value to be converted to index.
+        min_value: The minimum value of a value series.
+        step: The span of the bin.
+    """
+    assert value >= min_value
+    assert step > 0
+    return math.floor((value - min_value) / step)
+
+
 def rectify_image(image, lookup_table, distortion_center):
     """ Get the rectified image.
 
