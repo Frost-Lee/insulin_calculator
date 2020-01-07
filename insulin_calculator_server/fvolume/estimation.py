@@ -119,13 +119,28 @@ def _filter_interpolation_points(point_cloud):
     filtered_count = 0
     point_x_min, point_y_min = np.min(point_cloud[:,0]), np.min(point_cloud[:,1])
     grid_lookup = _get_xoy_grid_lookup(point_cloud, config.INTERPOLATION_POINT_FILTER_DISTANCE)
-    for point in point_cloud:
-        possible_close_points = grid_lookup[
-            utils.get_relative_index(point[0], point_x_min, config.INTERPOLATION_POINT_FILTER_DISTANCE)
-        ][
-            utils.get_relative_index(point[1], point_y_min, config.INTERPOLATION_POINT_FILTER_DISTANCE)
+    def get_possible_points(lookup, center_coordinate):
+        c = center_coordinate
+        possible_coordinates = [
+            (c[0] - 1, c[1] - 1), (c[0], c[1] - 1), (c[0] + 1, c[1] - 1),
+            (c[0] - 1, c[1]), c, (c[0] + 1, c[1]),
+            (c[0] - 1, c[1] + 1), (c[0], c[1] + 1), (c[0] + 1, c[1] + 1)
         ]
-        distance_squares = np.sum(np.where(possible_close_points - point), axis=1)
+        possible_coordinates = filter(lambda x: x[0] < 0 or x[1] < 0, possible_coordinates)
+        points = []
+        for coordinate in possible_coordinates:
+            if coordinate[0] in lookup and coordinate[1] in lookup[coordinate[0]]:
+                points += lookup[coordinate[0]][coordinate[1]]
+        return np.array(points)
+    for point in point_cloud:
+        possible_close_points = get_possible_points(
+            grid_lookup, 
+            tuple(
+                utils.get_relative_index(point[0], point_x_min, config.INTERPOLATION_POINT_FILTER_DISTANCE),
+                utils.get_relative_index(point[1], point_y_min, config.INTERPOLATION_POINT_FILTER_DISTANCE)
+            )
+        )
+        distance_squares = np.sum(np.square(possible_close_points - point), axis=1)
         close_points_count = len(np.where(distance_squares < config.INTERPOLATION_POINT_FILTER_DISTANCE ** 2)[0])
         if close_points_count > config.INTERPOLATION_POINT_FILTER_COUNT:
             filtered_point_cloud[filtered_count] = point
