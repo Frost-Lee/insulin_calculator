@@ -126,7 +126,7 @@ def _filter_interpolation_points(point_cloud):
             (c[0] - 1, c[1]), c, (c[0] + 1, c[1]),
             (c[0] - 1, c[1] + 1), (c[0], c[1] + 1), (c[0] + 1, c[1] + 1)
         ]
-        possible_coordinates = filter(lambda x: x[0] < 0 or x[1] < 0, possible_coordinates)
+        possible_coordinates = filter(lambda x: x[0] >= 0 and x[1] >= 0, possible_coordinates)
         points = []
         for coordinate in possible_coordinates:
             if coordinate[0] in lookup and coordinate[1] in lookup[coordinate[0]]:
