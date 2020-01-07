@@ -124,7 +124,7 @@ def _filter_interpolation_points(point_cloud):
         ][
             utils.get_relative_index(point[1], point_y_min, config.INTERPOLATION_POINT_FILTER_DISTANCE)
         ]
-        distance_squares = np.sum(np.where(possible_close_points - point), axis=1)
+        distance_squares = np.sum(np.square(possible_close_points - point), axis=1)
         close_points_count = len(np.where(distance_squares < config.INTERPOLATION_POINT_FILTER_DISTANCE ** 2)[0])
         if close_points_count > config.INTERPOLATION_POINT_FILTER_COUNT:
             filtered_point_cloud[filtered_count] = point
@@ -165,7 +165,8 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     full_point_cloud = rotation.apply(full_point_cloud)
     background_depth = np.mean(full_point_cloud[plane_inlier_mask][:,2])
     food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
-    food_point_clouds = [_filter_interpolation_points(pc[background_depth - pc[:, 2] > 0]) for pc in food_point_clouds]
+    food_point_clouds = [pc[background_depth - pc[:, 2] > 0] for pc in food_point_clouds]
+    food_point_clouds = [_filter_interpolation_points(pc) for pc in food_point_clouds]
     food_grid_lookups = [_get_xoy_grid_lookup(pc, config.GRID_LEN) for pc in food_point_clouds]
     area_volume_list = [(
         sum([sum([
