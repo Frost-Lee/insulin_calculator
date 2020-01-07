@@ -166,8 +166,9 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     full_point_cloud = rotation.apply(full_point_cloud)
     background_depth = np.mean(full_point_cloud[plane_inlier_mask][:,2])
     food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
-    food_point_clouds = [_filter_interpolation_points(pc[background_depth - pc[:, 2] > 0]) for pc in food_point_clouds]
-    food_grid_lookups = [_get_xoy_grid_lookup(pc) for pc in food_point_clouds]
+    food_point_clouds = [pc[background_depth - pc[:, 2] > 0] for pc in food_point_clouds]
+    food_point_clouds = [_filter_interpolation_points(pc) for pc in food_point_clouds]
+    food_grid_lookups = [_get_xoy_grid_lookup(pc, config.GRID_LEN) for pc in food_point_clouds]
     recorder.record([full_point_cloud], 'full_point_cloud')
     recorder.record([food_point_clouds], 'food_point_clouds')
     recorder.record([food_grid_lookups, background_depth], 'food_grid_lookups')
