@@ -134,8 +134,7 @@ def _filter_interpolation_points(point_cloud):
         return np.array(points)
     for point in point_cloud:
         possible_close_points = get_possible_points(
-            grid_lookup, 
-            tuple(
+            grid_lookup, (
                 utils.get_relative_index(point[0], point_x_min, config.INTERPOLATION_POINT_FILTER_DISTANCE),
                 utils.get_relative_index(point[1], point_y_min, config.INTERPOLATION_POINT_FILTER_DISTANCE)
             )
