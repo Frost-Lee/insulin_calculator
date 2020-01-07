@@ -109,7 +109,7 @@ class TestCase:
         weight, 
         case_index, 
         background='Paper', 
-        height=0.45, 
+        height=0.50, 
         pitch=0.0, 
         roll=0.0, 
         center_deviation=0.0

@@ -70,7 +70,7 @@ if args.generate:
             'reference': get_control_variates_cases(VARIATES[0], [None]),
             VARIATES[1]: get_control_variates_cases(
                 VARIATES[1], 
-                [0.4, 0.5, 0.55, 0.6]
+                [0.45, 0.55, 0.60]
             ),
             VARIATES[2]: get_control_variates_cases(
                 VARIATES[2], 
