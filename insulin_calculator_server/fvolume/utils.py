@@ -44,6 +44,8 @@ def preprocess_image(image, calibration):
         The preprocessed image. The image is transposed and rectified, while 
             preserving the same resolution.
     """
+    # FIXME(canchen.lee@gmail.com): Using `np.swapaxes` here reduces segmentation 
+    # model performance for unknown reason.
     transposed_image = np.swapaxes(image, 0, 1)
     reference_scale = min(transposed_image.shape[:2]) / min(calibration['intrinsic_matrix_reference_dimensions'])
     rectified_image = rectify_image_c(
