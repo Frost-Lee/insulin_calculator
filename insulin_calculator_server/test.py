@@ -38,7 +38,7 @@ VARIATE_ACCESSES = {
     'height': (lambda x: x['height']), 
     'pitch': (lambda x: x['angle']['pitch']),
     'roll': (lambda x: x['angle']['roll']),
-    'deviation': (lambda x: x['center_deviation']),
+    'center_deviation': (lambda x: x['center_deviation']),
     'background': (lambda x: x['background'])
 }
 VARIATES = [*VARIATE_ACCESSES.keys()]
@@ -123,16 +123,16 @@ if args.estimate:
         if os.path.exists(os.path.join(path, 'result.json')):
             continue
         print('\rProcessing: ', path, end='')
-        # try:
-        image = analysis.utils.load_image(os.path.join(path, 'image.jpg'))
-        peripheral = analysis.utils.load_peripheral(os.path.join(path, 'peripheral.json'))
-        result_json = analysis.utils.format_result(
-            get_area_volume_estimate(image, peripheral, path)
-        )
-        with open(os.path.join(path, 'result.json'), 'w') as out_file:
-            out_file.write(result_json)
-        # except ValueError:
-        #     print('\rCapture error at', path)
+        try:
+            image = analysis.utils.load_image(os.path.join(path, 'image.jpg'))
+            peripheral = analysis.utils.load_peripheral(os.path.join(path, 'peripheral.json'))
+            result_json = analysis.utils.format_result(
+                get_area_volume_estimate(image, peripheral, path)
+            )
+            with open(os.path.join(path, 'result.json'), 'w') as out_file:
+                out_file.write(result_json)
+        except ValueError:
+            print('\rCapture error at', path)
     exit()
 
 
