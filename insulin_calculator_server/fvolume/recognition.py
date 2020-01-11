@@ -26,18 +26,21 @@ def _get_segmentation(image):
     Returns:
         The segmentation mask with shape `config.UNIFIED_IMAGE_SIZE`.
     """
+    # TODO(canchen.lee@gmail.com): Try to figure out why transposing the image 
+    # will impact the model's performance.
     global segmentation_model
     def center_normalize(image):
         mean = np.mean(cv2.resize(image, (512, 512)), axis=(0, 1))
         std = np.std(cv2.resize(image, (512, 512)), axis=(0, 1))
         return (image - mean) / std
+    image = np.swapaxes(image, 0, 1)
     predicted_result = segmentation_model.predict(
         np.reshape(center_normalize(image), (1, *config.UNIFIED_IMAGE_SIZE, 3))
     )[0]
-    return np.reshape(
+    return np.swapaxes(np.reshape(
         predicted_result,
         config.UNIFIED_IMAGE_SIZE
-    )
+    ))
 
 
 def _get_entity_labeling(image, mask):
