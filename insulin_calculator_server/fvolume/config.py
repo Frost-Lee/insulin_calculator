@@ -6,7 +6,7 @@ UNIFIED_IMAGE_SIZE = (512, 512)
 # The probability threshold for identifying food in the segmentation mask. If a 
 # pixel's corresponding probability is above this threshold, it will be take as 
 # food.
-FOOD_PROB_THRESHOLD = 0.5
+FOOD_PROB_THRESHOLD = 0
 
 # The minimum size of the food. Food entities whose width or height are smaller 
 # than this threshold will be removed.

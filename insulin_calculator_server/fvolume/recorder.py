@@ -18,6 +18,8 @@ def record(objects, record_key):
         plt.imshow(objects[1], alpha=0.5)
         plt.savefig(os.path.join(container_directory, 'mask.jpg'), dpi=500)
         plt.clf()
+    elif record_key == 'full_point_cloud_plane':
+        np.save(os.path.join(container_directory, 'plane_pc.npy'), objects[0])
     elif record_key == 'full_point_cloud':
         np.save(os.path.join(container_directory, 'full_pc.npy'), objects[0])
     elif record_key == 'food_point_clouds':

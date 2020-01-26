@@ -10,6 +10,7 @@ from . import config
 from . import utils
 from . import recorder
 
+keras.losses.lovasz_hinge = keras.losses.binary_crossentropy
 segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
 
 import os
@@ -40,7 +41,7 @@ def _get_segmentation(image):
     return np.swapaxes(np.reshape(
         predicted_result,
         config.UNIFIED_IMAGE_SIZE
-    ))
+    ), 0, 1)
 
 
 def _get_entity_labeling(image, mask):
