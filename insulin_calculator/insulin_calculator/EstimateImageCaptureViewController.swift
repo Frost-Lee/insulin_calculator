@@ -105,7 +105,7 @@ class EstimateImageCaptureViewController: UIViewController {
     @IBAction func captureButtonTapped(_ sender: Any?) {
         isAvailable = false
         SVProgressHUD.show(withStatus: "Fetching Estimation Result")
-        estimateImageCaptureManager.captureImage()
+        estimateImageCaptureManager.captureImage(isDepthDataFiltered: true)
     }
     
     private func setupVolumeButtonListener() {

@@ -17,7 +17,7 @@ protocol EstimateImageCaptureDelegate {
      - parameters:
         - image: The colored image.
         - depthMap: The depth map captured along with the image. The data type has been converted to
-            `kCVPixelFormatType_DepthFloat32`.
+            `kCVPixelFormatType_DepthFloat32`. Missing values are represented as NaN.
         - calibration: The camera calibration data when capturing the image.
         - attitude: The device attitude when capturing the image.
         - error: See [photoOutput(_:didFinishProcessingPhoto:error:)](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate/2873949-photooutput)
@@ -103,11 +103,16 @@ class EstimateImageCaptureManager: NSObject {
     
     /**
      Capture an image, the depth map and the device attitude are recorded. The result will be passed to the delegate.
+     
+     - parameters:
+        - isDepthDataFiltered: A Boolean value that determines whether to smooth noise and fill in
+            missing values in depth data output. See [isDepthDataFiltered](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/2881293-isdepthdatafiltered)
+            for details.
      */
-    func captureImage() {
+    func captureImage(isDepthDataFiltered: Bool) {
         let photoSettings = AVCapturePhotoSettings()
         photoSettings.isDepthDataDeliveryEnabled = true
-        photoSettings.isDepthDataFiltered = true
+        photoSettings.isDepthDataFiltered = isDepthDataFiltered
         photoOutput.capturePhoto(with: photoSettings, delegate: self)
         attitude = motionManager.deviceMotion!.attitude
     }
