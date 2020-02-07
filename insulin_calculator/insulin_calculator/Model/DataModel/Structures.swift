@@ -118,7 +118,7 @@ struct RecognitionResult {
         }
     }
     
-    init(json: JSON) throws {
+    init(json: JSON, selectedCandidateIndex: Int? = nil) throws {
         guard
             (json["bounding_box"].arrayValue.map{$0.double}.filter{$0 != nil}.count) == 4,
             json["volume"].double != nil,
@@ -136,7 +136,7 @@ struct RecognitionResult {
         volume = json["volume"].double!
         area = json["area"].double!
         candidates = try json["candidates"].arrayValue.map{try RecognitionEntityCandidate(json: $0)}
-        selectedCandidateIndex = 0
+        self.selectedCandidateIndex = selectedCandidateIndex ?? 0
     }
 }
 
@@ -148,9 +148,12 @@ struct SessionRecognitionResult {
     var results: [RecognitionResult]
     var rawJSON: JSON
     
-    init(json: JSON) throws {
+    init(json: JSON, selectedCandidateIndices: [Int]? = nil) throws {
         rawJSON = json
-        results = try json["results"].arrayValue.map{try RecognitionResult(json: $0)}
+        results = try json["results"].arrayValue.enumerated().map{ (arg) -> RecognitionResult in
+            let (index, json) = arg
+            return try RecognitionResult(json: json, selectedCandidateIndex: selectedCandidateIndices?[index])
+        }
     }
 }
 
@@ -179,6 +182,8 @@ struct SessionRecord {
     var captureJSONURL: URL
     /// URL of the recognition result, saved in JSON format.
     var recognitionJSONURL: URL
+    /// The user selected food entity candidates.
+    var selectedCandidateIndices: [Int]
     /// The timestamp when the record is created.
     var timestamp: Date
     /// The id of the record.

@@ -2,8 +2,8 @@
 //  ManagedSessionRecord+CoreDataClass.swift
 //  insulin_calculator
 //
-//  Created by 李灿晨 on 12/20/19.
-//  Copyright © 2019 李灿晨. All rights reserved.
+//  Created by 李灿晨 on 2/7/20.
+//  Copyright © 2020 李灿晨. All rights reserved.
 //
 //
 
@@ -17,6 +17,7 @@ public class ManagedSessionRecord: NSManagedObject {
         self.photoURL = record.photoURL
         self.captureJSONURL = record.captureJSONURL
         self.recognitionJSONURL = record.recognitionJSONURL
+        self.selectedCandidateIndices = record.selectedCandidateIndices.map({String($0)}).joined(separator: ";")
         self.timestamp = record.timestamp
         self.sessionId = record.sessionId
     }
@@ -26,6 +27,7 @@ public class ManagedSessionRecord: NSManagedObject {
             photoURL: self.photoURL!,
             captureJSONURL: self.captureJSONURL!,
             recognitionJSONURL: self.recognitionJSONURL!,
+            selectedCandidateIndices: self.selectedCandidateIndices!.split(separator: ";").map({Int($0) ?? 0}),
             timestamp: self.timestamp!,
             sessionId: self.sessionId!
         )
