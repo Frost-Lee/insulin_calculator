@@ -36,7 +36,7 @@ def _get_segmentation(image):
     return np.swapaxes(np.reshape(
         predicted_result,
         config.UNIFIED_IMAGE_SIZE
-    ))
+    ), 0, 1)
 
 
 def _get_entity_labeling(image, mask):
