@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CandidateTableViewCell: UITableViewCell {
+class CandidateSelectTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var groupLabel: UILabel!

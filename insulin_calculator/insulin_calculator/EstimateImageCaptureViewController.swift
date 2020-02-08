@@ -152,6 +152,7 @@ class EstimateImageCaptureViewController: UIViewController {
                         photoURL: photoURL!,
                         captureJSONURL: jsonURL!,
                         recognitionJSONURL: url,
+                        selectedCandidateIndices: Array(repeating: 0, count: result!.results.count),
                         timestamp: Date(),
                         sessionId: sessionId
                     )
