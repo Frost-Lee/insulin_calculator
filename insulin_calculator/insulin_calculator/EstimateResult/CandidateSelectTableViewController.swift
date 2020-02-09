@@ -21,6 +21,7 @@ class CandidateSelectTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         selectedIndex = recognitionResult.selectedCandidateIndex
+        tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -32,7 +33,7 @@ class CandidateSelectTableViewController: UITableViewController {
 
 extension CandidateSelectTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
     
     override func tableView(
@@ -57,6 +58,7 @@ extension CandidateSelectTableViewController {
     ) {
         let candidateCell = cell as! CandidateSelectTableViewCell
         candidateCell.candidate = recognitionResult.candidates[indexPath.row]
+        candidateCell.setSelected(indexPath.row == selectedIndex, animated: true)
     }
     
     override func tableView(
@@ -64,7 +66,7 @@ extension CandidateSelectTableViewController {
         didSelectRowAt indexPath: IndexPath
     ) {
         tableView.cellForRow(at: IndexPath(row: selectedIndex, section: 0))?.setSelected(false, animated: true)
-        tableView.cellForRow(at: indexPath)?.setSelected(true, animated: true)
         selectedIndex = indexPath.row
+        navigationController?.popViewController(animated: true)
     }
 }

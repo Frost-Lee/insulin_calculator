@@ -34,7 +34,7 @@ class EstimateResultViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         switch segue.identifier {
-        case "showresultsTableViewController":
+        case "showCandidateSelectTableViewController":
             let destination = segue.destination as! CandidateSelectTableViewController
             destination.recognitionResult = sender as? RecognitionResult
             destination.delegate = self
@@ -99,8 +99,8 @@ extension EstimateResultViewController: UITableViewDataSource, UITableViewDelega
         willDisplay cell: UITableViewCell,
         forRowAt indexPath: IndexPath
     ) {
-        let cell = cell as! CandidateSelectTableViewCell
-        cell.candidate = sessionRecognitionResult?.results[indexPath.row].selectedCandidate
+        let cell = cell as! RecognitionResultTableViewCell
+        cell.recognitionResult = sessionRecognitionResult?.results[indexPath.row]
     }
     
     func tableView(
@@ -109,7 +109,7 @@ extension EstimateResultViewController: UITableViewDataSource, UITableViewDelega
     ) {
         modifyingResultIndex = indexPath.row
         performSegue(
-            withIdentifier: "showresultsTableViewController",
+            withIdentifier: "showCandidateSelectTableViewController",
             sender: sessionRecognitionResult?.results[indexPath.row]
         )
     }
@@ -118,7 +118,7 @@ extension EstimateResultViewController: UITableViewDataSource, UITableViewDelega
 extension EstimateResultViewController: CandidateSelectDelegate {
     func candidateDidSelected(index: Int) {
         sessionRecord?.selectedCandidateIndices[modifyingResultIndex!] = index
-        setRecognitionResult()
         modifyingResultIndex = nil
+        setRecognitionResult()
     }
 }

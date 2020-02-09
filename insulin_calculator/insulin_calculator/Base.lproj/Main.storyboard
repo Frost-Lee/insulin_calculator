@@ -235,7 +235,7 @@
                                 <rect key="frame" x="0.0" y="251.66666666666666" width="375" height="486.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="candidateTableViewCell" rowHeight="139" id="NJJ-QI-mlf" customClass="RecognitionResultTableViewCell" customModule="insulin_calculator" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="candidateTableViewCell" rowHeight="139" id="NJJ-QI-mlf" customClass="RecognitionResultTableViewCell" customModule="insulin_calculator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="139"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NJJ-QI-mlf" id="6wv-XZ-YN1">
@@ -312,6 +312,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="carbsLabel" destination="BfC-mY-reU" id="6zd-Cs-He4"/>
+                                            <outlet property="nameLabel" destination="VDP-HR-wRZ" id="Ryl-ZJ-QCv"/>
                                             <outlet property="sizeLabel" destination="KDL-5w-kvG" id="jDL-dJ-V1f"/>
                                             <outlet property="weightLabel" destination="Go4-3p-Wxe" id="CNl-Du-5Pk"/>
                                         </connections>
@@ -367,16 +368,16 @@
             </objects>
             <point key="canvasLocation" x="2472.8000000000002" y="128.57142857142858"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Candidate Select Table View Controller-->
         <scene sceneID="glR-3j-Umu">
             <objects>
-                <tableViewController id="SES-4D-UZq" sceneMemberID="viewController">
+                <tableViewController id="SES-4D-UZq" customClass="CandidateSelectTableViewController" customModule="insulin_calculator" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jPN-CW-Txx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="candidateSelectTableViewCell" textLabel="1yb-l2-8uz" detailTextLabel="NIi-Pp-PzP" style="IBUITableViewCellStyleSubtitle" id="jpF-ns-3TF" customClass="CandidateSelectTableViewCell" customModule="insulin_calculator" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="candidateSelectTableViewCell" textLabel="1yb-l2-8uz" detailTextLabel="NIi-Pp-PzP" style="IBUITableViewCellStyleSubtitle" id="jpF-ns-3TF" customClass="CandidateSelectTableViewCell" customModule="insulin_calculator" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="55.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jpF-ns-3TF" id="uQE-1o-29S">

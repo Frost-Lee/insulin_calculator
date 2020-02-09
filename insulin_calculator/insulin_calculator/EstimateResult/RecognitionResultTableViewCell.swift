@@ -10,6 +10,7 @@ import UIKit
 
 class RecognitionResultTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var carbsLabel: UILabel!
@@ -17,6 +18,7 @@ class RecognitionResultTableViewCell: UITableViewCell {
     var recognitionResult: RecognitionResult? {
         didSet {
             guard recognitionResult != nil else {return}
+            setRecognitionResult()
         }
     }
     
@@ -26,6 +28,7 @@ class RecognitionResultTableViewCell: UITableViewCell {
             weightLabel != nil,
             carbsLabel != nil
         else {return}
+        nameLabel.text = recognitionResult?.selectedCandidate.name
         sizeLabel.text = recognitionResult?.volume.volumeString()
         weightLabel.text = recognitionResult?.weight.weightString()
         carbsLabel.text = recognitionResult?.carbs.weightString()
