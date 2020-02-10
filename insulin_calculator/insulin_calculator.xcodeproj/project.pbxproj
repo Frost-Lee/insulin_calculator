@@ -32,6 +32,7 @@
 		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
 		27B30AE22350C48A007347F5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
 		27BF1D672350FF7700087274 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D662350FF7700087274 /* Errors.swift */; };
+		27CF98AF23F1B55A00A8E116 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CF98AE23F1B55A00A8E116 /* BoundingBoxView.swift */; };
 		27E72245238F084B00219EDA /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E72244238F084B00219EDA /* Structures.swift */; };
 		27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */; };
 		67D5F1E84B73CD79928CDFAC /* Pods_insulin_calculatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F22E0B47A17051DB3D8877F /* Pods_insulin_calculatorTests.framework */; };
@@ -91,6 +92,7 @@
 		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		27B30AE12350C48A007347F5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		27BF1D662350FF7700087274 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		27CF98AE23F1B55A00A8E116 /* BoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
 		27E72244238F084B00219EDA /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceOrientationIndicateView.swift; sourceTree = "<group>"; };
 		39B2B8BA27A8ACF35ABC48B6 /* Pods-insulin_calculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorTests.release.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorTests/Pods-insulin_calculatorTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */,
+				27CF98AE23F1B55A00A8E116 /* BoundingBoxView.swift */,
 				2730F67D238C3B98005E025F /* ImpactGenerator.swift */,
 				27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */,
 				2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */,
@@ -516,6 +519,7 @@
 				2757878C23EE087E0020733A /* CandidateSelectTableViewController.swift in Sources */,
 				27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */,
 				27E72245238F084B00219EDA /* Structures.swift in Sources */,
+				27CF98AF23F1B55A00A8E116 /* BoundingBoxView.swift in Sources */,
 				271B4C8F23EDF33300361E00 /* ManagedSessionRecord+CoreDataProperties.swift in Sources */,
 				2730F67E238C3B98005E025F /* ImpactGenerator.swift in Sources */,
 				2730F680238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift in Sources */,

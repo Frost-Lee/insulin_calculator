@@ -17,6 +17,7 @@ class EstimateResultViewController: UIViewController {
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var carbsLabel: UILabel!
     
+    @IBOutlet weak var boundingBoxView: BoundingBoxView!
     @IBOutlet weak var resultsTableView: UITableView!
     
     /// The primary data content of the view. Passed from `EstimateImageCaptureViewController`.
@@ -70,6 +71,7 @@ class EstimateResultViewController: UIViewController {
         sizeLabel.text = sessionRecognitionResult?.results.reduce(0.0, {$0 + $1.volume}).volumeString()
         weightLabel.text = sessionRecognitionResult?.results.filter({$0.weight > 0}).reduce(0.0, {$0 + $1.weight}).weightString()
         carbsLabel.text = sessionRecognitionResult?.results.filter({$0.carbs > 0}).reduce(0.0, {$0 + $1.carbs}).weightString()
+        boundingBoxView.boundingBoxes = sessionRecognitionResult?.results.map({$0.boundingBox})
     }
 
 }
@@ -101,6 +103,7 @@ extension EstimateResultViewController: UITableViewDataSource, UITableViewDelega
     ) {
         let cell = cell as! RecognitionResultTableViewCell
         cell.recognitionResult = sessionRecognitionResult?.results[indexPath.row]
+        cell.cellIndex = indexPath.row
     }
     
     func tableView(
