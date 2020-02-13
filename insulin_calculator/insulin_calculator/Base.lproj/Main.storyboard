@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -81,27 +80,15 @@
                                     <action selector="captureButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xUC-7T-LzU"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J16-NC-rvK">
-                                <rect key="frame" x="20" y="490.66666666666669" width="335" height="191.33333333333331"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <string key="text">Place the dish on the table and hold the device horizontally upside down to your dish, tap the button or click the volume button to take picture. You should see the table in the picture, the distance between the device and table should be 25 to 50 cm.</string>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="J16-NC-rvK" secondAttribute="trailing" constant="20" id="1HS-eJ-8zn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="U4y-Bu-IfF" secondAttribute="trailing" constant="20" id="DK3-go-ikZ"/>
                             <constraint firstItem="U4y-Bu-IfF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Hcy-X1-YVw"/>
                             <constraint firstItem="U4y-Bu-IfF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="LVq-5P-Zex"/>
                             <constraint firstItem="VkE-Er-OOW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="UCS-sg-fSL"/>
                             <constraint firstItem="VkE-Er-OOW" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-16" id="ZHg-nW-0Bh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VkE-Er-OOW" secondAttribute="trailing" constant="20" id="dgl-cN-4vl"/>
-                            <constraint firstItem="J16-NC-rvK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ejX-lP-fao"/>
-                            <constraint firstItem="VkE-Er-OOW" firstAttribute="top" secondItem="J16-NC-rvK" secondAttribute="bottom" constant="16" id="hLe-8g-CkK"/>
-                            <constraint firstItem="J16-NC-rvK" firstAttribute="top" secondItem="U4y-Bu-IfF" secondAttribute="bottom" id="teM-en-ai3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -177,66 +164,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VVa-n2-lGG">
-                                <rect key="frame" x="8" y="63.999999999999986" width="171.66666666666666" height="171.66666666666663"/>
+                                <rect key="frame" x="8" y="64" width="359" height="359"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="VVa-n2-lGG" secondAttribute="height" multiplier="1:1" id="WYW-w0-OLa"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HhF-SH-03d" customClass="BoundingBoxView" customModule="insulin_calculator" customModuleProvider="target">
-                                <rect key="frame" x="8" y="63.999999999999986" width="171.66666666666666" height="171.66666666666663"/>
+                                <rect key="frame" x="8" y="64" width="359" height="359"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LXB-sW-abc">
-                                <rect key="frame" x="195.66666666666666" y="63.999999999999986" width="63.999999999999972" height="171.66666666666663"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16d-TI-IbJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="64" height="52"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BP-YH-sVw">
-                                        <rect key="frame" x="0.0" y="60" width="64" height="51.666666666666657"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpU-wT-Euu">
-                                        <rect key="frame" x="0.0" y="119.66666666666666" width="64" height="52"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="2Gn-4l-knz"/>
-                                </constraints>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QFF-GI-xme">
-                                <rect key="frame" x="267.66666666666669" y="63.999999999999986" width="99.333333333333314" height="171.66666666666663"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="220 cm^3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hi-vf-vxK">
-                                        <rect key="frame" x="0.0" y="0.0" width="99.333333333333329" height="52"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="390 g" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2L-pz-4Bj">
-                                        <rect key="frame" x="0.0" y="60" width="99.333333333333329" height="51.666666666666657"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120 g" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPO-Uh-BA7">
-                                        <rect key="frame" x="0.0" y="119.66666666666666" width="99.333333333333329" height="52"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xSa-80-MlN">
-                                <rect key="frame" x="0.0" y="251.66666666666666" width="375" height="486.33333333333337"/>
+                                <rect key="frame" x="0.0" y="439" width="375" height="299"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="candidateTableViewCell" rowHeight="139" id="NJJ-QI-mlf" customClass="RecognitionResultTableViewCell" customModule="insulin_calculator" customModuleProvider="target">
@@ -353,20 +291,13 @@
                             <constraint firstItem="xSa-80-MlN" firstAttribute="top" secondItem="VVa-n2-lGG" secondAttribute="bottom" constant="16" id="6vF-I1-2zk"/>
                             <constraint firstItem="HhF-SH-03d" firstAttribute="height" secondItem="VVa-n2-lGG" secondAttribute="height" id="DMs-3N-PV6"/>
                             <constraint firstItem="HhF-SH-03d" firstAttribute="centerX" secondItem="VVa-n2-lGG" secondAttribute="centerX" id="GOb-Tx-p3O"/>
-                            <constraint firstItem="QFF-GI-xme" firstAttribute="height" secondItem="VVa-n2-lGG" secondAttribute="height" id="LCL-9t-wgJ"/>
-                            <constraint firstItem="LXB-sW-abc" firstAttribute="leading" secondItem="259-Cf-R6k" secondAttribute="centerX" constant="8" id="Li2-sY-ptR"/>
                             <constraint firstItem="HhF-SH-03d" firstAttribute="width" secondItem="VVa-n2-lGG" secondAttribute="width" id="PWv-fh-bmP"/>
                             <constraint firstItem="VVa-n2-lGG" firstAttribute="leading" secondItem="259-Cf-R6k" secondAttribute="leading" constant="8" id="Z80-AA-L7L"/>
                             <constraint firstItem="VVa-n2-lGG" firstAttribute="top" secondItem="259-Cf-R6k" secondAttribute="top" constant="8" id="ZBY-qX-A3C"/>
                             <constraint firstItem="xSa-80-MlN" firstAttribute="leading" secondItem="259-Cf-R6k" secondAttribute="leading" id="Zd4-Ra-lyf"/>
                             <constraint firstAttribute="bottom" secondItem="xSa-80-MlN" secondAttribute="bottom" constant="20" symbolic="YES" id="aOl-OS-7jb"/>
-                            <constraint firstItem="VVa-n2-lGG" firstAttribute="trailing" secondItem="259-Cf-R6k" secondAttribute="centerX" constant="-8" id="kpf-tA-eCd"/>
-                            <constraint firstItem="LXB-sW-abc" firstAttribute="height" secondItem="VVa-n2-lGG" secondAttribute="height" id="mzP-NX-y5a"/>
+                            <constraint firstItem="VVa-n2-lGG" firstAttribute="trailing" secondItem="259-Cf-R6k" secondAttribute="trailing" constant="-8" id="kpf-tA-eCd"/>
                             <constraint firstItem="xSa-80-MlN" firstAttribute="trailing" secondItem="259-Cf-R6k" secondAttribute="trailing" id="oKm-yV-rxe"/>
-                            <constraint firstItem="QFF-GI-xme" firstAttribute="leading" secondItem="LXB-sW-abc" secondAttribute="trailing" constant="8" id="p5h-ti-jDe"/>
-                            <constraint firstItem="QFF-GI-xme" firstAttribute="top" secondItem="259-Cf-R6k" secondAttribute="top" constant="8" id="ve5-dy-djD"/>
-                            <constraint firstItem="259-Cf-R6k" firstAttribute="trailing" secondItem="QFF-GI-xme" secondAttribute="trailing" constant="8" id="wRq-4g-B6M"/>
-                            <constraint firstItem="LXB-sW-abc" firstAttribute="top" secondItem="259-Cf-R6k" secondAttribute="top" constant="8" id="zQe-NL-qwW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="259-Cf-R6k"/>
                     </view>
@@ -385,10 +316,7 @@
                     <connections>
                         <outlet property="boundingBoxView" destination="HhF-SH-03d" id="d1J-1j-Da1"/>
                         <outlet property="capturedImageView" destination="VVa-n2-lGG" id="wZ4-so-pdM"/>
-                        <outlet property="carbsLabel" destination="PPO-Uh-BA7" id="0gl-jR-ce1"/>
                         <outlet property="resultsTableView" destination="xSa-80-MlN" id="8cB-t8-Yng"/>
-                        <outlet property="sizeLabel" destination="2hi-vf-vxK" id="U3X-Pm-Ck2"/>
-                        <outlet property="weightLabel" destination="h2L-pz-4Bj" id="F3c-NP-Pfl"/>
                         <segue destination="SES-4D-UZq" kind="show" identifier="showCandidateSelectTableViewController" id="7Ab-3U-tiq"/>
                     </connections>
                 </viewController>

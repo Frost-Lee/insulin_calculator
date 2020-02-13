@@ -13,9 +13,6 @@ import SwiftyJSON
 class EstimateResultViewController: UIViewController {
     
     @IBOutlet weak var capturedImageView: UIImageView!
-    @IBOutlet weak var sizeLabel: UILabel!
-    @IBOutlet weak var weightLabel: UILabel!
-    @IBOutlet weak var carbsLabel: UILabel!
     
     @IBOutlet weak var boundingBoxView: BoundingBoxView!
     @IBOutlet weak var resultsTableView: UITableView!
@@ -68,9 +65,6 @@ class EstimateResultViewController: UIViewController {
             dismiss(animated: true, completion: nil)
         }
         resultsTableView.reloadData()
-        sizeLabel.text = sessionRecognitionResult?.results.reduce(0.0, {$0 + $1.volume}).volumeString()
-        weightLabel.text = sessionRecognitionResult?.results.filter({$0.weight > 0}).reduce(0.0, {$0 + $1.weight}).weightString()
-        carbsLabel.text = sessionRecognitionResult?.results.filter({$0.carbs > 0}).reduce(0.0, {$0 + $1.carbs}).weightString()
         boundingBoxView.boundingBoxes = sessionRecognitionResult?.results.map({$0.boundingBox})
     }
 
