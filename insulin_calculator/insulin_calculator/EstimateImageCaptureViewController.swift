@@ -147,7 +147,7 @@ class EstimateImageCaptureViewController: UIViewController {
                 }
                 self.dataManager.saveFile(data: result!.rawJSON.rawString()!.data(using: .utf8)!, extensionName: "json") { url in
                     self.isAvailable = true
-                    SVProgressHUD.showSuccess(withStatus: "Done")
+                    SVProgressHUD.dismiss()
                     let sessionRecord = SessionRecord(
                         photoURL: photoURL!,
                         captureJSONURL: jsonURL!,
