@@ -55,7 +55,7 @@ class EstimateImageCaptureViewController: UIViewController {
         do {
             estimateImageCaptureManager = try EstimateImageCaptureManager(delegate: self)
         } catch {isDeviceSupported = false;return}
-        previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
+//        previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
         setupVolumeButtonListener()
     }
 
@@ -137,8 +137,8 @@ class EstimateImageCaptureViewController: UIViewController {
             self.backendConnector.getRecognitionResult(
                 token: "abcd1234",
                 sessionId: sessionId.uuidString,
-                jsonURL: Bundle.main.url(forResource: "peripheral", withExtension: "json")!,
-                photoURL: Bundle.main.url(forResource: "image", withExtension: "jpg")!
+                jsonURL: jsonURL!,
+                photoURL: photoURL!
             ) { result, error in
                 guard error == nil else {
                     self.isAvailable = true
@@ -149,8 +149,8 @@ class EstimateImageCaptureViewController: UIViewController {
                     self.isAvailable = true
                     SVProgressHUD.dismiss()
                     let sessionRecord = SessionRecord(
-                        photoURL: Bundle.main.url(forResource: "image", withExtension: "jpg")!,
-                        captureJSONURL: Bundle.main.url(forResource: "peripheral", withExtension: "json")!,
+                        photoURL: photoURL!,
+                        captureJSONURL: jsonURL!,
                         recognitionJSONURL: url,
                         selectedCandidateIndices: Array(repeating: 0, count: result!.results.count),
                         timestamp: Date(),
