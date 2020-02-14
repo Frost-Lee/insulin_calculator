@@ -89,7 +89,7 @@ def _index_crop(array, i, multiplier):
         region specified by the index while having the minimum area.
 
     Args:
-        array: A 3d numpy array with shape (width, height, 3).
+        array: A 3d numpy array with shape (width, height, channel).
         i: The crop index, represented as a 2x2 2d list, such as which stands for 
             `[[min width, max width], [min height, max height]]`.
         multiplier: The multiplier of the index. Considering the index is calculated 
@@ -115,20 +115,20 @@ def _index_crop(array, i, multiplier):
         return array[
             int((i[0][0]-margin+offset)*multiplier) : int((i[0][1]+margin+offset)*multiplier), 
             int(i[1][0]*multiplier) : int(i[1][1]*multiplier),
-            0:3
+            :
         ]
     elif width > height:
         offset = get_offset(i[1], margin, array_height)
         return array[
             int(i[0][0]*multiplier) : int(i[0][1]*multiplier), 
             int((i[1][0]-margin+offset)*multiplier) : int((i[1][1]+margin+offset)*multiplier),
-            0:3
+            :
         ]
     else:
         return array[
             int(i[0][0]*multiplier) : int(i[0][1]*multiplier), 
             int(i[1][0]*multiplier) : int(i[1][1]*multiplier), 
-            0:3
+            :
         ]
 
 
@@ -162,7 +162,12 @@ def get_recognition_results(image, calibration):
     multiplier = image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
     images = [
         cv2.resize(
-            _index_crop(utils.center_crop(preprocessed_image), box, multiplier),
+            _index_crop(
+                utils.center_crop(preprocessed_image), [
+                    [max(0, box[0][0] - config.CLASSIFIER_IMAGE_OFFSET), min(config.UNIFIED_IMAGE_SIZE[0] - 1, box[0][1] + config.CLASSIFIER_IMAGE_OFFSET)], 
+                    [max(0, box[1][0] - config.CLASSIFIER_IMAGE_OFFSET), min(config.UNIFIED_IMAGE_SIZE[0] - 1, box[1][1] + config.CLASSIFIER_IMAGE_OFFSET)]
+                ], multiplier
+            ),
             config.CLASSIFIER_IMAGE_SIZE
         ) for box in boxes
     ]

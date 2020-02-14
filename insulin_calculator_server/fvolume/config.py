@@ -15,6 +15,9 @@ FOOD_MIN_SIZE_THRESHOLD = UNIFIED_IMAGE_SIZE[0] / 16
 # The commercial classifier's input image size, depending on https://dev.caloriemama.ai.
 CLASSIFIER_IMAGE_SIZE = (544, 544)
 
+# The offset added to the cropped image for the commercial classifier.
+CLASSIFIER_IMAGE_OFFSET = 16
+
 # The maximum entities for classification.
 MAX_ENTITIES_THRESHOLD = 5
 
