@@ -9,7 +9,10 @@ import tensorflow as tf
 from . import config
 from . import utils
 
-segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
+segmentation_model = tf.keras.models.load_model(
+    config.SEG_MODEL_PATH, 
+    custom_objects={'lovasz_hinge': keras.losses.binary_crossentropy}
+)
 
 def _get_segmentation(image):
     """ Returning the raw segmentation mask for the image. Each pixel's value 

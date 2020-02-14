@@ -20,7 +20,7 @@ MAX_ENTITIES_THRESHOLD = 5
 
 # The number of candidates to return. For each food entity, this amount of candidate 
 # classifications will be returned.
-CLASSIFICATION_CANDIDATES = 5
+CLASSIFICATION_CANDIDATES = 15
 
 # The threshold for RANSAC for plane detection. See https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RANSACRegressor.html.
 RANSAC_THRESHOLD = 0.002
