@@ -16,7 +16,7 @@ class BoundingBoxView: UIView {
             setNeedsDisplay()
         }
     }
-    static let boundingBoxColors: [UIColor] = [#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1), #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1), #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1), #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)]
+    static let boundingBoxColors: [UIColor] = [#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1), #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1), #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)]
 
     override func draw(_ rect: CGRect) {
         for (index, box) in boundingBoxes!.enumerated() {
@@ -31,9 +31,8 @@ class BoundingBoxView: UIView {
     ) {
         let viewWidth = Double(bounds.width)
         let viewHeight = Double(bounds.height)
-        print(viewWidth, viewHeight)
         let context = UIGraphicsGetCurrentContext()
-        context?.setLineWidth(2)
+        context?.setLineWidth(4)
         color.set()
         context?.addRect(CGRect(
             x: viewWidth * boundingBox.0,

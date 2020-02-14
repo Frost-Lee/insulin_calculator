@@ -137,8 +137,8 @@ class EstimateImageCaptureViewController: UIViewController {
             self.backendConnector.getRecognitionResult(
                 token: "abcd1234",
                 sessionId: sessionId.uuidString,
-                jsonURL: jsonURL!,
-                photoURL: photoURL!
+                jsonURL: Bundle.main.url(forResource: "peripheral", withExtension: "json")!,
+                photoURL: Bundle.main.url(forResource: "image", withExtension: "jpg")!
             ) { result, error in
                 guard error == nil else {
                     self.isAvailable = true
@@ -149,8 +149,8 @@ class EstimateImageCaptureViewController: UIViewController {
                     self.isAvailable = true
                     SVProgressHUD.dismiss()
                     let sessionRecord = SessionRecord(
-                        photoURL: photoURL!,
-                        captureJSONURL: jsonURL!,
+                        photoURL: Bundle.main.url(forResource: "image", withExtension: "jpg")!,
+                        captureJSONURL: Bundle.main.url(forResource: "peripheral", withExtension: "json")!,
                         recognitionJSONURL: url,
                         selectedCandidateIndices: Array(repeating: 0, count: result!.results.count),
                         timestamp: Date(),
