@@ -9,7 +9,9 @@ import tensorflow as tf
 from . import config
 from . import utils
 
-segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
+# keras.losses.lovasz_hinge = keras.losses.binary_crossentropy
+# tf.keras.losses.lovasz_hinge = tf.keras.losses.binary_crossentropy
+segmentation_model = tf.keras.models.load_model(config.SEG_MODEL_PATH, custom_objects={'lovasz_hinge': keras.losses.binary_crossentropy})
 
 def _get_segmentation(image):
     """ Returning the raw segmentation mask for the image. Each pixel's value 
@@ -36,7 +38,7 @@ def _get_segmentation(image):
     return np.swapaxes(np.reshape(
         predicted_result,
         config.UNIFIED_IMAGE_SIZE
-    ))
+    ), 0, 1)
 
 
 def _get_entity_labeling(image, mask):

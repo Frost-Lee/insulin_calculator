@@ -38,7 +38,8 @@ INTERPOLATION_POINT_FILTER_COUNT = 5
 PACKAGE_ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 # The path of the food segmentation model.
-SEG_MODEL_PATH = os.path.join(PACKAGE_ROOT_PATH, *['ml_model', 'unet.hdf5'])
+# SEG_MODEL_PATH = os.path.join(PACKAGE_ROOT_PATH, *['ml_model', 'unet.hdf5'])
+SEG_MODEL_PATH = '/Users/Frost/Desktop/lovasz_inceptionresnetv2_unet.hdf5'
 
 # The path of the shared object for image undistorting.
 UNDISTORT_DLL_PATH = os.path.join(PACKAGE_ROOT_PATH, *['c_core', 'undistort.so'])
