@@ -165,6 +165,7 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     """
     regulated_depth_map = utils.regulate_image(depth_map)
     intrinsics = _get_remapping_intrinsics(regulated_depth_map, calibration)
+    # TODO(canchen.lee@gmail.com): Performance bottleneck of the following line.
     full_point_cloud = np.array([
         _get_3d_coordinate(
             i[0], i[1], *intrinsics, v
@@ -180,7 +181,7 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     background_depth = np.mean(full_point_cloud[plane_inlier_mask][:,2])
     food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
     food_point_clouds = [pc[background_depth - pc[:, 2] > 0] for pc in food_point_clouds]
-    food_point_clouds = [_filter_interpolation_points(pc) for pc in food_point_clouds]
+    # food_point_clouds = [_filter_interpolation_points(pc) for pc in food_point_clouds]
     food_grid_lookups = [_get_xoy_grid_lookup(pc, config.GRID_LEN) for pc in food_point_clouds]
     area_volume_list = [(
         sum([sum([
