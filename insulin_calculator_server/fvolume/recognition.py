@@ -155,7 +155,7 @@ def get_recognition_results(image, calibration):
         `buffers` is a list of image buffers, each image is the cropped food 
             image in `image`, and are all resized to `config.CLASSIFIER_IMAGE_SIZE`.
     """
-    regulated_image = utils.regulate_image(image)
+    regulated_image = utils.regulate_image(image, calibration)
     mask = _get_segmentation(regulated_image)
     label_mask, boxes = _get_entity_labeling(regulated_image, mask)
     multiplier = image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
