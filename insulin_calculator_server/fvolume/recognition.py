@@ -10,8 +10,10 @@ from . import config
 from . import utils
 from . import recorder
 
-keras.losses.lovasz_hinge = keras.losses.binary_crossentropy
-segmentation_model = keras.models.load_model(config.SEG_MODEL_PATH)
+segmentation_model = tf.keras.models.load_model(
+    config.SEG_MODEL_PATH, 
+    custom_objects={'lovasz_hinge': keras.losses.binary_crossentropy}
+)
 
 import os
 FILE_DIR = None
@@ -91,7 +93,7 @@ def _index_crop(array, i, multiplier):
         region specified by the index while having the minimum area.
 
     Args:
-        array: A 3d numpy array with shape (width, height, 3).
+        array: A 3d numpy array with shape (width, height, channel).
         i: The crop index, represented as a 2x2 2d list, such as which stands for 
             `[[min width, max width], [min height, max height]]`.
         multiplier: The multiplier of the index. Considering the index is calculated 
@@ -117,20 +119,20 @@ def _index_crop(array, i, multiplier):
         return array[
             int((i[0][0]-margin+offset)*multiplier) : int((i[0][1]+margin+offset)*multiplier), 
             int(i[1][0]*multiplier) : int(i[1][1]*multiplier),
-            0:3
+            :
         ]
     elif width > height:
         offset = get_offset(i[1], margin, array_height)
         return array[
             int(i[0][0]*multiplier) : int(i[0][1]*multiplier), 
             int((i[1][0]-margin+offset)*multiplier) : int((i[1][1]+margin+offset)*multiplier),
-            0:3
+            :
         ]
     else:
         return array[
             int(i[0][0]*multiplier) : int(i[0][1]*multiplier), 
             int(i[1][0]*multiplier) : int(i[1][1]*multiplier), 
-            0:3
+            :
         ]
 
 
@@ -157,15 +159,19 @@ def get_recognition_results(image, calibration):
         `buffers` is a list of image buffers, each image is the cropped food 
             image in `image`, and are all resized to `config.CLASSIFIER_IMAGE_SIZE`.
     """
-    preprocessed_image = utils.preprocess_image(image, calibration)
-    regulated_image = utils.regulate_image(preprocessed_image)
+    regulated_image = utils.regulate_image(image, calibration)
     mask = _get_segmentation(regulated_image)
     label_mask, boxes = _get_entity_labeling(regulated_image, mask)
     multiplier = image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
     recorder.record([regulated_image, label_mask], 'image_and_mask')
     images = [
         cv2.resize(
-            _index_crop(utils.center_crop(preprocessed_image), box, multiplier),
+            _index_crop(
+                utils.center_crop(np.swapaxes(image, 0, 1)), [
+                    [max(0, box[0][0] - config.CLASSIFIER_IMAGE_OFFSET), min(config.UNIFIED_IMAGE_SIZE[0] - 1, box[0][1] + config.CLASSIFIER_IMAGE_OFFSET)], 
+                    [max(0, box[1][0] - config.CLASSIFIER_IMAGE_OFFSET), min(config.UNIFIED_IMAGE_SIZE[0] - 1, box[1][1] + config.CLASSIFIER_IMAGE_OFFSET)]
+                ], multiplier
+            ),
             config.CLASSIFIER_IMAGE_SIZE
         ) for box in boxes
     ]

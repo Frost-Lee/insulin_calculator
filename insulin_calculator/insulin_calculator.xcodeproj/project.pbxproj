@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		27013D2B23AD2DE100418C57 /* ICDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27013D2923AD2DE100418C57 /* ICDataModel.xcdatamodeld */; };
 		270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */; };
-		27082F3D238F17F800DAA01A /* EstimateImageCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27082F3C238F17F800DAA01A /* EstimateImageCaptureViewController.swift */; };
-		270F8F2F23B547C5006A5F10 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270F8F2E23B547C5006A5F10 /* Structures.swift */; };
-		270F8F3223B547EE006A5F10 /* ManagedSessionRecord+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270F8F3023B547EE006A5F10 /* ManagedSessionRecord+CoreDataProperties.swift */; };
-		270F8F3323B547EE006A5F10 /* ManagedSessionRecord+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270F8F3123B547EE006A5F10 /* ManagedSessionRecord+CoreDataClass.swift */; };
+		271B4C8E23EDF33300361E00 /* ManagedSessionRecord+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271B4C8C23EDF33300361E00 /* ManagedSessionRecord+CoreDataClass.swift */; };
+		271B4C8F23EDF33300361E00 /* ManagedSessionRecord+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271B4C8D23EDF33300361E00 /* ManagedSessionRecord+CoreDataProperties.swift */; };
 		272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AF2CB2358B3110053F214 /* BackendConnector.swift */; };
 		2730F67E238C3B98005E025F /* ImpactGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730F67D238C3B98005E025F /* ImpactGenerator.swift */; };
 		2730F680238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */; };
@@ -23,10 +21,10 @@
 		273B47E92350BC620093B7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273B47E72350BC620093B7DE /* LaunchScreen.storyboard */; };
 		273B47F42350BC630093B7DE /* insulin_calculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47F32350BC630093B7DE /* insulin_calculatorTests.swift */; };
 		273B47FF2350BC630093B7DE /* insulin_calculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */; };
+		279BA47523FC7DF1009F27DB /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BA47423FC7DF1009F27DB /* Structures.swift */; };
 		27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */; };
 		27A44AE823888E53004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */; };
 		27B30AE02350C432007347F5 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30ADF2350C432007347F5 /* utils.swift */; };
-		27B30AE22350C48A007347F5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
 		27BF1D672350FF7700087274 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1D662350FF7700087274 /* Errors.swift */; };
 		27F06EA523B550CF007A6EC5 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F06EA423B550CF007A6EC5 /* SettingsTableViewController.swift */; };
 		27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FA472A235F797A00D233C3 /* DeviceOrientationIndicateView.swift */; };
@@ -56,10 +54,8 @@
 		2097F940CCC8ED3EDA137AA2 /* Pods-insulin_calculatorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorUITests.release.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorUITests/Pods-insulin_calculatorUITests.release.xcconfig"; sourceTree = "<group>"; };
 		27013D2A23AD2DE100418C57 /* ICDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ICDataModel.xcdatamodel; sourceTree = "<group>"; };
 		2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureManager.swift; sourceTree = "<group>"; };
-		27082F3C238F17F800DAA01A /* EstimateImageCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureViewController.swift; sourceTree = "<group>"; };
-		270F8F2E23B547C5006A5F10 /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
-		270F8F3023B547EE006A5F10 /* ManagedSessionRecord+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedSessionRecord+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		270F8F3123B547EE006A5F10 /* ManagedSessionRecord+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedSessionRecord+CoreDataClass.swift"; sourceTree = "<group>"; };
+		271B4C8C23EDF33300361E00 /* ManagedSessionRecord+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedSessionRecord+CoreDataClass.swift"; sourceTree = "<group>"; };
+		271B4C8D23EDF33300361E00 /* ManagedSessionRecord+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedSessionRecord+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		272AF2CB2358B3110053F214 /* BackendConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendConnector.swift; sourceTree = "<group>"; };
 		2730F67D238C3B98005E025F /* ImpactGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactGenerator.swift; sourceTree = "<group>"; };
 		2730F67F238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUnsupportInformationViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +72,7 @@
 		273B47FA2350BC630093B7DE /* insulin_calculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = insulin_calculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		273B47FE2350BC630093B7DE /* insulin_calculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insulin_calculatorUITests.swift; sourceTree = "<group>"; };
 		273B48002350BC630093B7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		279BA47423FC7DF1009F27DB /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		27A44AE423888E3B004CBDC9 /* VolumeButtonListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeButtonListener.swift; sourceTree = "<group>"; };
 		27A44AE723888E53004CBDC9 /* MPVolumeView+VolumeListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MPVolumeView+VolumeListener.swift"; sourceTree = "<group>"; };
 		27B30ADF2350C432007347F5 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
@@ -125,10 +122,10 @@
 			isa = PBXGroup;
 			children = (
 				27B30AE12350C48A007347F5 /* DataManager.swift */,
+				279BA47423FC7DF1009F27DB /* Structures.swift */,
 				27013D2923AD2DE100418C57 /* ICDataModel.xcdatamodeld */,
-				270F8F2E23B547C5006A5F10 /* Structures.swift */,
-				270F8F3123B547EE006A5F10 /* ManagedSessionRecord+CoreDataClass.swift */,
-				270F8F3023B547EE006A5F10 /* ManagedSessionRecord+CoreDataProperties.swift */,
+				271B4C8C23EDF33300361E00 /* ManagedSessionRecord+CoreDataClass.swift */,
+				271B4C8D23EDF33300361E00 /* ManagedSessionRecord+CoreDataProperties.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -161,7 +158,6 @@
 				273B47DC2350BC5C0093B7DE /* AppDelegate.swift */,
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
-				27082F3C238F17F800DAA01A /* EstimateImageCaptureViewController.swift */,
 				27F06EA423B550CF007A6EC5 /* SettingsTableViewController.swift */,
 				27A44AE323888E15004CBDC9 /* Utils */,
 				27B30AE32350C491007347F5 /* Model */,
@@ -479,22 +475,20 @@
 			files = (
 				272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */,
 				27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */,
+				271B4C8F23EDF33300361E00 /* ManagedSessionRecord+CoreDataProperties.swift in Sources */,
 				2730F67E238C3B98005E025F /* ImpactGenerator.swift in Sources */,
-				270F8F3223B547EE006A5F10 /* ManagedSessionRecord+CoreDataProperties.swift in Sources */,
-				270F8F3323B547EE006A5F10 /* ManagedSessionRecord+CoreDataClass.swift in Sources */,
 				2730F680238C3BDC005E025F /* DeviceUnsupportInformationViewController.swift in Sources */,
 				27FA472B235F797A00D233C3 /* DeviceOrientationIndicateView.swift in Sources */,
-				27B30AE22350C48A007347F5 /* DataManager.swift in Sources */,
 				27F06EA523B550CF007A6EC5 /* SettingsTableViewController.swift in Sources */,
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
 				27013D2B23AD2DE100418C57 /* ICDataModel.xcdatamodeld in Sources */,
 				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
-				27082F3D238F17F800DAA01A /* EstimateImageCaptureViewController.swift in Sources */,
 				27BF1D672350FF7700087274 /* Errors.swift in Sources */,
+				271B4C8E23EDF33300361E00 /* ManagedSessionRecord+CoreDataClass.swift in Sources */,
 				27B30AE02350C432007347F5 /* utils.swift in Sources */,
 				27A44AE823888E53004CBDC9 /* MPVolumeView+VolumeListener.swift in Sources */,
-				270F8F2F23B547C5006A5F10 /* Structures.swift in Sources */,
+				279BA47523FC7DF1009F27DB /* Structures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

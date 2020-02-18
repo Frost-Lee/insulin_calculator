@@ -32,6 +32,17 @@ class DataManager: NSObject {
     }
     
     /**
+     Update a session record in the persistant container. Do not update the URL related fields.
+     
+     - parameters:
+        - record: The `SessionRecord` object to be updated.
+     */
+    func updateSessionRecord(record: SessionRecord) {
+        removeSessionRecord(record: record, withFiles: false)
+        createSessionRecord(record: record)
+    }
+    
+    /**
      Remove a session record from the persistant container.
      
      - parameters:
@@ -54,6 +65,9 @@ class DataManager: NSObject {
         saveContext()
     }
     
+    /**
+     Return all stored session records in an array.
+     */
     func getAllSessionRecords() -> [SessionRecord] {
         let fetchRequest: NSFetchRequest = ManagedSessionRecord.fetchRequest()
         let managedRecords = (try! context.fetch(fetchRequest)) as [ManagedSessionRecord]

@@ -28,46 +28,36 @@ def center_crop(array):
         return array[:, offset:array.shape[0] + offset]
 
 
-def preprocess_image(image, calibration):
-    """ Transpose and rectify the image.
-
+def regulate_image(image, calibration):
+    """ Transpose, rectify, center crop and resize the image to a square of 
+        shape `config.UNIFIED_IMAGE_SIZE`.
+    
     Since PIL image and extracted depth map uses a transposed coordinate system, 
         they are supposed to be transposed back in order to match the camera 
         intrinsics.
-    
-    Args:
-        image: The image to be processed. Represented as a numpy array with shape 
-            `(height, width, channel)`.
-        calibration: The camera calibration data when capturing the image.
-    
-    Returns:
-        The preprocessed image. The image is transposed and rectified, while 
-            preserving the same resolution.
-    """
-    # FIXME(canchen.lee@gmail.com): Using `np.swapaxes` here reduces segmentation 
-    # model performance for unknown reason.
-    transposed_image = np.swapaxes(image, 0, 1)
-    reference_scale = min(transposed_image.shape[:2]) / min(calibration['intrinsic_matrix_reference_dimensions'])
-    rectified_image = rectify_image_c(
-        transposed_image,
-        np.array(calibration['lens_distortion_lookup_table']),
-        np.array(calibration['lens_distortion_center']) * reference_scale
-    )
-    return rectified_image
-
-
-def regulate_image(image):
-    """ Center crop and resize the image to a square of shape `config.UNIFIED_IMAGE_SIZE`.
-
     Args:
         image: The image to be regulated. Represented as a numpy array with shape 
-            `(width, height, channel)`.
+            `(height, width, channel)`.
+        calibration: The camera calibration data when capturing the image.
     
     Returns:
         The regulated image with shape specified by `config.UNIFIED_IMAGE_SIZE`,
             the shape stands for `(width, height, channel)`.
     """
-    center_cropped_image = center_crop(image)
+    transposed_image = np.swapaxes(image, 0, 1)
+    image_shape = transposed_image.shape
+    scale = min(config.UNIFIED_IMAGE_SIZE) / min(image_shape[:2])
+    resized_image = cv2.resize(
+        transposed_image, 
+        (int(image_shape[1] * scale), int(image_shape[0] * scale))
+    )
+    reference_scale = min(resized_image.shape[:2]) / min(calibration['intrinsic_matrix_reference_dimensions'])
+    rectified_image = rectify_image_c(
+        resized_image,
+        np.array(calibration['lens_distortion_lookup_table']),
+        np.array(calibration['lens_distortion_center']) * reference_scale
+    )
+    center_cropped_image = center_crop(rectified_image)
     return cv2.resize(center_cropped_image, config.UNIFIED_IMAGE_SIZE)
 
 
