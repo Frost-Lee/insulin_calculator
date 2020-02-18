@@ -62,10 +62,11 @@ double* rectify_image(
                 (int)original_index[1] < 0 || (int)original_index[1] >= height) {
                 continue;
             }
-            for (int c = 0; c < channel; c ++) {
-                double original_value = image[((int)original_index[0] * height + (int)original_index[1]) * channel + c];
-                rectified_image[(i * height + j) * channel + c] = original_value;
-            }
+            memcpy(
+                rectified_image + (i * height + j) * channel, 
+                image + ((int)original_index[0] * height + (int)original_index[1]) * channel,
+                channel * sizeof(double)
+            );
             free(original_index);
         }
     }

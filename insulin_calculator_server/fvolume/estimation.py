@@ -100,7 +100,8 @@ def _get_3d_coordinate(row, col, fl, oc_x, oc_y, depth):
         oc_y: The y coordinate of the optical center.
         depth: The depth value of the corresponding pixel, measured in meter.
     """
-    return np.array([(row - oc_x) * depth / fl, (col - oc_y) * depth / fl, depth])
+    ratio = depth / fl
+    return np.array([(row - oc_x) * ratio, (col - oc_y) * ratio, depth])
 
 
 def _filter_interpolation_points(point_cloud):
@@ -162,8 +163,7 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
         A area volume list. The values stands for `(area, volume)`, measured in 
             square meter and cube meter.
     """
-    preprocessed_depth_map = utils.preprocess_image(depth_map, calibration)
-    regulated_depth_map = utils.regulate_image(preprocessed_depth_map)
+    regulated_depth_map = utils.regulate_image(depth_map)
     intrinsics = _get_remapping_intrinsics(regulated_depth_map, calibration)
     full_point_cloud = np.array([
         _get_3d_coordinate(

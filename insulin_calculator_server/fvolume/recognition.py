@@ -155,15 +155,14 @@ def get_recognition_results(image, calibration):
         `buffers` is a list of image buffers, each image is the cropped food 
             image in `image`, and are all resized to `config.CLASSIFIER_IMAGE_SIZE`.
     """
-    preprocessed_image = utils.preprocess_image(image, calibration)
-    regulated_image = utils.regulate_image(preprocessed_image)
+    regulated_image = utils.regulate_image(image)
     mask = _get_segmentation(regulated_image)
     label_mask, boxes = _get_entity_labeling(regulated_image, mask)
     multiplier = image.shape[0] / config.UNIFIED_IMAGE_SIZE[0]
     images = [
         cv2.resize(
             _index_crop(
-                utils.center_crop(preprocessed_image), [
+                utils.center_crop(np.swapaxes(image, 0, 1)), [
                     [max(0, box[0][0] - config.CLASSIFIER_IMAGE_OFFSET), min(config.UNIFIED_IMAGE_SIZE[0] - 1, box[0][1] + config.CLASSIFIER_IMAGE_OFFSET)], 
                     [max(0, box[1][0] - config.CLASSIFIER_IMAGE_OFFSET), min(config.UNIFIED_IMAGE_SIZE[0] - 1, box[1][1] + config.CLASSIFIER_IMAGE_OFFSET)]
                 ], multiplier
