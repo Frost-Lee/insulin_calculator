@@ -55,7 +55,7 @@ class EstimateImageCaptureViewController: UIViewController {
         do {
             estimateImageCaptureManager = try EstimateImageCaptureManager(delegate: self)
         } catch {isDeviceSupported = false;return}
-//        previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
+        previewContainerView.layer.insertSublayer(estimateImageCaptureManager.previewLayer, at: 0)
         setupVolumeButtonListener()
     }
 
