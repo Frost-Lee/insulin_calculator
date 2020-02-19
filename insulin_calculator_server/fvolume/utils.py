@@ -84,7 +84,7 @@ def rectify_image_c(image, lookup_table, distortion_center):
     c_free_double_pointer.restype = None
     channel = 1 if len(image.shape) < 3 else image.shape[2]
     original_datatype = image.dtype
-    image = np.ascontiguousarray(image.astype('double'))
+    image = np.ascontiguousarray(image, dtype='double')
     raw_result = c_rectify_image(
         image.ctypes.data_as(ctypes.POINTER(ctypes.c_double)),
         image.shape[0],
