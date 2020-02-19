@@ -16,8 +16,8 @@ class BackendConnector: NSObject {
      */
     static var shared: BackendConnector = BackendConnector()
     
-    private let backendRecognitionURLString: String = "http://18.20.186.201:5000/nutritionestimation"
-    private let backendCollectionURLString: String = "http://18.20.186.201:5000/densitycollect"
+    private let backendRecognitionURLString: String = "http://35.192.94.30:5000/nutritionestimation"
+    private let backendCollectionURLString: String = "http://35.192.94.30:5000/densitycollect"
     
     /**
      Getting the session's recognition result.
