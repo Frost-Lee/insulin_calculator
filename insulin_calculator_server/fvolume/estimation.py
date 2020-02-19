@@ -88,22 +88,6 @@ def _get_xoy_grid_lookup(point_cloud, grid_len):
     return xoy_grid_lookup
 
 
-def _get_3d_coordinate(row, col, fl, oc_x, oc_y, depth):
-    """ Returning the 3D coordinate of a pixel, the coordinate is represented in 
-        a numpy array with shape `(3,)`.
-    
-    Args:
-        row: The row index of the pixel in the image.
-        col: The column index of the pixel in the image.
-        fl: The focal length when taking the image.
-        oc_x: The x coordinate of the optical center.
-        oc_y: The y coordinate of the optical center.
-        depth: The depth value of the corresponding pixel, measured in meter.
-    """
-    ratio = depth / fl
-    return np.array([(row - oc_x) * ratio, (col - oc_y) * ratio, depth])
-
-
 def _filter_interpolation_points(point_cloud):
     """ Filtering the interpolation points that lays on depth incontinuous regions.
 
@@ -165,22 +149,24 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     """
     regulated_depth_map = utils.regulate_image(depth_map, calibration)
     intrinsics = _get_remapping_intrinsics(regulated_depth_map, calibration)
-    # TODO(canchen.lee@gmail.com): Performance bottleneck of the following line.
-    full_point_cloud = np.array([
-        _get_3d_coordinate(
-            i[0], i[1], *intrinsics, v
-        ) for i, v in np.ndenumerate(regulated_depth_map) if v > 0
-    ])
-    food_point_clouds = [np.array([
-        _get_3d_coordinate(
-            row, col, *intrinsics, regulated_depth_map[row, col]
-        ) for row, col in zip(*np.where(label_mask == food_id)) if regulated_depth_map[row, col] > 0
-    ]) for food_id in np.unique(label_mask)[1:]]
+    x_axis_matrix = np.fromfunction(lambda i, j: (i - intrinsics[1]) * intrinsics[0], config.UNIFIED_IMAGE_SIZE)
+    y_axis_matrix = np.fromfunction(lambda i, j: (j - intrinsics[2]) * intrinsics[0], config.UNIFIED_IMAGE_SIZE)
+    full_point_cloud = np.swapaxes(np.array([
+        (x_axis_matrix * depth_map).flatten(), 
+        (y_axis_matrix * depth_map).flatten(), 
+        depth_map.flatten()
+    ]), 0, 1)
+    full_point_cloud = full_point_cloud[full_point_cloud[:, 2] > 0]
     plane_inlier_mask, rotation = _get_plane_recognition(full_point_cloud)
     full_point_cloud = rotation.apply(full_point_cloud)
     background_depth = np.mean(full_point_cloud[plane_inlier_mask][:,2])
+    food_point_clouds = [np.swapaxes(np.array([
+        np.array([x_axis_matrix[row, col] for row, col in zip(*np.where(label_mask == food_id))]),
+        np.array([y_axis_matrix[row, col] for row, col in zip(*np.where(label_mask == food_id))]),
+        np.array([depth_map[row, col] for row, col in zip(*np.where(label_mask == food_id))]),
+    ]), 0, 1) for food_id in np.unique(label_mask)[1:]]
+    food_point_clouds = [pc[background_depth - pc[:, 2] > 0]for pc in food_point_clouds]
     food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
-    food_point_clouds = [pc[background_depth - pc[:, 2] > 0] for pc in food_point_clouds]
     # food_point_clouds = [_filter_interpolation_points(pc) for pc in food_point_clouds]
     food_grid_lookups = [_get_xoy_grid_lookup(pc, config.GRID_LEN) for pc in food_point_clouds]
     area_volume_list = [(
