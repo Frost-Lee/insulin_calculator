@@ -150,11 +150,17 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     """
     regulated_depth_map = utils.regulate_image(depth_map, calibration)
     intrinsics = _get_remapping_intrinsics(regulated_depth_map, calibration)
-    x_axis_matrix = np.fromfunction(lambda i, j: (i - intrinsics[1]) * intrinsics[0], config.UNIFIED_IMAGE_SIZE)
-    y_axis_matrix = np.fromfunction(lambda i, j: (j - intrinsics[2]) * intrinsics[0], config.UNIFIED_IMAGE_SIZE)
+    x_axis_matrix = np.fromfunction(
+        lambda i, j: (i - intrinsics[1]) / intrinsics[0], 
+        config.UNIFIED_IMAGE_SIZE
+    ) * regulated_depth_map
+    y_axis_matrix = np.fromfunction(
+        lambda i, j: (j - intrinsics[2]) / intrinsics[0], 
+        config.UNIFIED_IMAGE_SIZE
+    ) * regulated_depth_map
     full_point_cloud = np.swapaxes(np.array([
-        (x_axis_matrix * depth_map).flatten(), 
-        (y_axis_matrix * depth_map).flatten(), 
+        x_axis_matrix.flatten(), 
+        y_axis_matrix.flatten(), 
         regulated_depth_map.flatten()
     ]), 0, 1)
     full_point_cloud = full_point_cloud[full_point_cloud[:, 2] > 0]
@@ -164,10 +170,10 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     food_point_clouds = [np.swapaxes(np.array([
         np.array([x_axis_matrix[row, col] for row, col in zip(*np.where(label_mask == food_id))]),
         np.array([y_axis_matrix[row, col] for row, col in zip(*np.where(label_mask == food_id))]),
-        np.array([regulated_depth_map[row, col] for row, col in zip(*np.where(label_mask == food_id))]),
+        np.array([regulated_depth_map[row, col] for row, col in zip(*np.where(label_mask == food_id))])
     ]), 0, 1) for food_id in np.unique(label_mask)[1:]]
-    food_point_clouds = [pc[background_depth - pc[:, 2] > 0]for pc in food_point_clouds]
     food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
+    food_point_clouds = [pc[background_depth - pc[:, 2] > 0]for pc in food_point_clouds]
     # food_point_clouds = [_filter_interpolation_points(pc) for pc in food_point_clouds]
     food_grid_lookups = [_get_xoy_grid_lookup(pc, config.GRID_LEN) for pc in food_point_clouds]
     recorder.record([full_point_cloud[plane_inlier_mask]], 'full_point_cloud_plane')
