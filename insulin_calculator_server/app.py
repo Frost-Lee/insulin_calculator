@@ -8,10 +8,10 @@ import fdensitylib
 import data_manager
 
 
-app = flask.Flask(__name__)
+application = flask.Flask(__name__)
 
 
-@app.route('/nutritionestimation', methods=['GET', 'POST'])
+@application.route('/nutritionestimation', methods=['GET', 'POST'])
 def response_nutrition_estimate():
     files, args = flask.request.files, flask.request.form
     if not (files['image'] and files['peripheral']):
@@ -24,7 +24,7 @@ def response_nutrition_estimate():
     response = _get_nutrition_estimate(session_data_manager)
     return response
 
-@app.route('/densitycollect', methods=['GET', 'POST'])
+@application.route('/densitycollect', methods=['GET', 'POST'])
 def response_density_collect():
     files, args = flask.request.files, flask.request.form
     if not (files['image'] and files['additional'] and files['peripheral']):
@@ -111,5 +111,7 @@ def _format_estimate_response(classifications, area_volumes, densities, boxes):
     return json.dumps(response, indent=4, sort_keys=True)
 
 
+# Use gunicorn instead of directly running app.py to achieve better performance.
+# `gunicorn --bind 0.0.0.0:5000 --timeout 300 app`
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    application.run(debug=True, host='0.0.0.0')
