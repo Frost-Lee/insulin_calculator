@@ -154,7 +154,7 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     full_point_cloud = np.swapaxes(np.array([
         (x_axis_matrix * depth_map).flatten(), 
         (y_axis_matrix * depth_map).flatten(), 
-        depth_map.flatten()
+        regulated_depth_map.flatten()
     ]), 0, 1)
     full_point_cloud = full_point_cloud[full_point_cloud[:, 2] > 0]
     plane_inlier_mask, rotation = _get_plane_recognition(full_point_cloud)
@@ -163,7 +163,7 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
     food_point_clouds = [np.swapaxes(np.array([
         np.array([x_axis_matrix[row, col] for row, col in zip(*np.where(label_mask == food_id))]),
         np.array([y_axis_matrix[row, col] for row, col in zip(*np.where(label_mask == food_id))]),
-        np.array([depth_map[row, col] for row, col in zip(*np.where(label_mask == food_id))]),
+        np.array([regulated_depth_map[row, col] for row, col in zip(*np.where(label_mask == food_id))]),
     ]), 0, 1) for food_id in np.unique(label_mask)[1:]]
     food_point_clouds = [pc[background_depth - pc[:, 2] > 0]for pc in food_point_clouds]
     food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
