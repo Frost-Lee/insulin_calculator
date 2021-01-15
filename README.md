@@ -46,14 +46,14 @@ Here are some possible ways for improving the performance of this system. They a
 
 ### Speed Improvements
 
-- [ ] Try different semantic segmentation network for food segmentation, such as [DeepLab V3](https://github.com/tensorflow/models/tree/master/research/deeplab).
+- [ ] Use a server with GPU
 - [ ] Find better ways to extract depth map as JSON.
 - [x] Filtering entities that is too small to be a real food entity.
-- [ ] Switch the segmentation mask generation to CoreML and run it on device.
+- [ ] Compress the data and reduce the data transfering time.
 
 ### Accuracy Improvements
 
-- [ ] Using algorithm that considers color image instead of simple connect domain detection.
+- [ ] Consider instance segmentation.
 - [x] Correct depth map and color image distortion, see [here](https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata) for the details.
 - [x] Compensating the device orientation bias by updating the volume calculation algorithm.
 
