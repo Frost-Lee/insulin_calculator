@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		27013D2B23AD2DE100418C57 /* ICDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27013D2923AD2DE100418C57 /* ICDataModel.xcdatamodeld */; };
 		270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */; };
+		2719EC2925B1E58A009EEF49 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B30AE12350C48A007347F5 /* DataManager.swift */; };
+		2719EC4225B1E5F8009EEF49 /* EstimateImageCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719EC4125B1E5F8009EEF49 /* EstimateImageCaptureViewController.swift */; };
 		271B4C8E23EDF33300361E00 /* ManagedSessionRecord+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271B4C8C23EDF33300361E00 /* ManagedSessionRecord+CoreDataClass.swift */; };
 		271B4C8F23EDF33300361E00 /* ManagedSessionRecord+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271B4C8D23EDF33300361E00 /* ManagedSessionRecord+CoreDataProperties.swift */; };
 		272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272AF2CB2358B3110053F214 /* BackendConnector.swift */; };
@@ -54,6 +56,7 @@
 		2097F940CCC8ED3EDA137AA2 /* Pods-insulin_calculatorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insulin_calculatorUITests.release.xcconfig"; path = "Target Support Files/Pods-insulin_calculatorUITests/Pods-insulin_calculatorUITests.release.xcconfig"; sourceTree = "<group>"; };
 		27013D2A23AD2DE100418C57 /* ICDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ICDataModel.xcdatamodel; sourceTree = "<group>"; };
 		2701713F2350D64E00EDAE9A /* EstimateImageCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureManager.swift; sourceTree = "<group>"; };
+		2719EC4125B1E5F8009EEF49 /* EstimateImageCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimateImageCaptureViewController.swift; sourceTree = "<group>"; };
 		271B4C8C23EDF33300361E00 /* ManagedSessionRecord+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedSessionRecord+CoreDataClass.swift"; sourceTree = "<group>"; };
 		271B4C8D23EDF33300361E00 /* ManagedSessionRecord+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedSessionRecord+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		272AF2CB2358B3110053F214 /* BackendConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendConnector.swift; sourceTree = "<group>"; };
@@ -158,6 +161,7 @@
 				273B47DC2350BC5C0093B7DE /* AppDelegate.swift */,
 				273B47DE2350BC5C0093B7DE /* SceneDelegate.swift */,
 				273B47E22350BC5C0093B7DE /* Main.storyboard */,
+				2719EC4125B1E5F8009EEF49 /* EstimateImageCaptureViewController.swift */,
 				27F06EA423B550CF007A6EC5 /* SettingsTableViewController.swift */,
 				27A44AE323888E15004CBDC9 /* Utils */,
 				27B30AE32350C491007347F5 /* Model */,
@@ -473,6 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2719EC2925B1E58A009EEF49 /* DataManager.swift in Sources */,
 				272AF2CC2358B3110053F214 /* BackendConnector.swift in Sources */,
 				27A44AE523888E3B004CBDC9 /* VolumeButtonListener.swift in Sources */,
 				271B4C8F23EDF33300361E00 /* ManagedSessionRecord+CoreDataProperties.swift in Sources */,
@@ -483,6 +488,7 @@
 				270171402350D64E00EDAE9A /* EstimateImageCaptureManager.swift in Sources */,
 				273B47DD2350BC5C0093B7DE /* AppDelegate.swift in Sources */,
 				27013D2B23AD2DE100418C57 /* ICDataModel.xcdatamodeld in Sources */,
+				2719EC4225B1E5F8009EEF49 /* EstimateImageCaptureViewController.swift in Sources */,
 				273B47DF2350BC5C0093B7DE /* SceneDelegate.swift in Sources */,
 				27BF1D672350FF7700087274 /* Errors.swift in Sources */,
 				271B4C8E23EDF33300361E00 /* ManagedSessionRecord+CoreDataClass.swift in Sources */,
