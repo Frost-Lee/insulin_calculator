@@ -172,8 +172,11 @@ def get_area_volume(depth_map, calibration, attitude, label_mask):
         np.array([regulated_depth_map[row, col] for row, col in zip(*np.where(label_mask == food_id))])
     ]), 0, 1) for food_id in np.unique(label_mask)[1:]]
     food_point_clouds = [rotation.apply(pc) for pc in food_point_clouds]
-    food_point_clouds = [pc[background_depth - pc[:, 2] > 0]for pc in food_point_clouds]
-    # food_point_clouds = [_filter_interpolation_points(pc) for pc in food_point_clouds]
+    # TODO(canchen.lee@gmail.com): find outlier detection methods for filtering
+    # interpolation points
+    # 0.15 is the approximate minimum distance that TrueDepth camera could give
+    # reasonable depth estimation
+    food_point_clouds = [pc[(pc[:,2] < background_depth) & (pc[:,2] > 0.15)] for pc in food_point_clouds]
     food_grid_lookups = [_get_xoy_grid_lookup(pc, config.GRID_LEN) for pc in food_point_clouds]
     area_volume_list = [(
         sum([sum([
